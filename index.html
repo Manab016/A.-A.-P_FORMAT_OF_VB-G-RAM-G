@@ -3,47 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>A.A.P Offline Data Entry</title>
+
+<title>A.A.P_FORMAT_FOR_VB G RAM G</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box
+}
 
 body{
   margin:0;
   background:#f1f5f9;
   color:#17212b;
   font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
-  font-size:15px;
+  font-size:15px
 }
 
 header{
   background:#17324d;
   color:#fff;
   padding:18px 12px;
-  text-align:center;
+  text-align:center
 }
 
 header h1{
   font-size:20px;
   margin:0;
-  font-weight:800;
+  font-weight:800
 }
 
 header p{
   font-size:12px;
-  margin:4px 0 0;
+  margin:4px 0 0
 }
 
 header .yearText{
   font-size:12px;
   margin:5px 0 0;
-  font-weight:700;
+  font-weight:700
 }
 
 .container{
   max-width:1100px;
   margin:auto;
-  padding:10px;
+  padding:10px
 }
 
 .card{
@@ -51,28 +54,28 @@ header .yearText{
   border:1px solid #d8e0e7;
   border-radius:12px;
   margin-bottom:12px;
-  overflow:hidden;
+  overflow:hidden
 }
 
 .title{
   font-size:17px;
   font-weight:800;
   padding:14px;
-  border-bottom:1px solid #e4e9ee;
+  border-bottom:1px solid #e4e9ee
 }
 
 .form{
   padding:12px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:11px;
+  gap:11px
 }
 
 .field label{
   display:block;
   font-weight:800;
   font-size:13px;
-  margin-bottom:5px;
+  margin-bottom:5px
 }
 
 input,select{
@@ -82,11 +85,11 @@ input,select{
   border-radius:9px;
   padding:12px;
   background:#fff;
-  outline:none;
+  outline:none
 }
 
 input:focus,select:focus{
-  border-color:#1769aa;
+  border-color:#1769aa
 }
 
 button{
@@ -96,123 +99,120 @@ button{
   border-radius:9px;
   padding:12px 14px;
   cursor:pointer;
-  min-height:46px;
+  min-height:46px
 }
 
 .primary{
   background:#1769aa;
-  color:#fff;
+  color:#fff
 }
 
 .success{
   background:#198754;
-  color:#fff;
+  color:#fff
 }
 
 .danger{
   background:#c0392b;
-  color:#fff;
+  color:#fff
 }
 
 .gray{
   background:#e8edf2;
-  color:#203040;
+  color:#203040
 }
 
 .secondary{
   background:#eef4f8;
   color:#17324d;
-  border:1px solid #cbd7e1;
+  border:1px solid #cbd7e1
 }
 
-.actions,.toolbar{
+.actions,
+.toolbar{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
-  padding:12px;
+  padding:12px
 }
 
 .toolbar .search{
-  grid-column:1/-1;
+  grid-column:1/-1
 }
 
 .count{
   text-align:center;
   font-weight:800;
   color:#198754;
-  padding:0 10px 10px;
+  padding:0 10px 10px
 }
 
 .tablebox{
   overflow:auto;
-  padding:0 8px 12px;
+  padding:0 8px 12px
 }
 
 table{
   border-collapse:collapse;
   width:100%;
-  min-width:1350px;
-  font-size:12px;
+  min-width:1450px;
+  font-size:12px
 }
 
 th,td{
   border:1px solid #aeb8c2;
   padding:7px;
-  vertical-align:top;
+  vertical-align:top
 }
 
 th{
   background:#e9eff4;
   text-align:center;
   white-space:nowrap;
-  font-weight:800;
+  font-weight:800
 }
 
 td{
   white-space:normal;
   overflow-wrap:anywhere;
-  word-break:break-word;
+  word-break:break-word
 }
 
 .actionbtn{
   padding:7px 9px;
   min-height:34px;
   font-size:12px;
-  margin:2px;
+  margin:2px
 }
 
 .empty{
   text-align:center;
   padding:30px;
-  color:#65717d;
+  color:#65717d
 }
 
 .formnav{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:8px;
-  padding:10px 12px 4px;
+  padding:10px 12px 4px
 }
 
 .formnav button{
   min-height:44px;
-  font-size:13px;
+  font-size:13px
 }
 
 .formnav button.active{
   background:#1769aa;
-  color:#fff;
+  color:#fff
 }
 
 .topbar{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
-  padding:10px 12px;
-}
-
-.topbar .wide{
-  grid-column:1/-1;
+  padding:10px 12px
 }
 
 .notice{
@@ -223,24 +223,100 @@ td{
   border:1px solid #c9e2f8;
   color:#174d73;
   font-size:13px;
-  font-weight:700;
+  font-weight:700
+}
+
+.stagebar{
+  display:none;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  padding:8px 12px 12px;
+  background:#f8fbfd;
+  border-top:1px solid #e4e9ee
+}
+
+.stagebar.show{
+  display:grid
+}
+
+.stagebar button{
+  min-height:42px;
+  font-size:12px
+}
+
+.stagebar button.active{
+  background:#198754;
+  color:#fff
+}
+
+.transferbar{
+  display:none;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  padding:10px 12px;
+  background:#fff8e8;
+  border-top:1px solid #ead9ad
+}
+
+.transferbar.show{
+  display:grid
+}
+
+.transferbar button{
+  font-size:12px;
+  min-height:42px
+}
+
+.selectCell{
+  text-align:center
+}
+
+.rowcheck{
+  width:20px;
+  height:20px;
+  cursor:pointer
+}
+
+.selectAll{
+  width:18px;
+  height:18px;
+  cursor:pointer
+}
+
+.selectedInfo{
+  padding:5px 12px 10px;
+  text-align:center;
+  color:#b26b00;
+  font-weight:800;
+  font-size:13px
 }
 
 @media(max-width:700px){
+
   .form{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
-  .actions,.toolbar,.topbar{
-    grid-template-columns:1fr 1fr;
+  .actions,
+  .toolbar,
+  .topbar{
+    grid-template-columns:1fr 1fr
   }
 
   .formnav{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr 1fr
+  }
+
+  .stagebar{
+    grid-template-columns:1fr
+  }
+
+  .transferbar{
+    grid-template-columns:1fr
   }
 
   input{
-    font-size:16px;
+    font-size:16px
   }
 }
 </style>
@@ -249,16 +325,25 @@ td{
 <body>
 
 <header>
-  <h1>A.A.P Format of V.B.G.R.A.M.G</h1>
+
+  <!-- REGULAR FORM-এ এই Heading কখনো পরিবর্তন হবে না -->
+  <h1 id="appHeading">A.A.P Format of V.B.G.R.A.M.G</h1>
+
   <p>Mahishbathani Gram Panchayat Scheme</p>
+
   <div class="yearText">
     Data Entry Form — <span id="headerYear">2026 - 27</span>
   </div>
+
 </header>
+
 
 <div class="container">
 
-  <!-- FORM SELECT -->
+  <!-- =====================================================
+       FORM SELECT
+       ====================================================== -->
+
   <div class="card">
 
     <div class="title">📁 Form Select</div>
@@ -278,6 +363,7 @@ td{
         </select>
       </div>
 
+
       <div>
         <label for="entryDate"><b>Date</b></label>
         <input id="entryDate" type="date">
@@ -285,6 +371,8 @@ td{
 
     </div>
 
+
+    <!-- MAIN 4 BUTTON -->
     <div class="formnav">
 
       <button
@@ -317,38 +405,87 @@ td{
 
     </div>
 
+
+    <!-- MODEL VILLAGE-এর আলাদা STAGE -->
+    <div id="modelStageBar" class="stagebar">
+
+      <button
+        id="stage-modelVillage"
+        class="active"
+        onclick="switchForm('modelVillage')">
+        Model Village Approach
+      </button>
+
+      <button
+        id="stage-modelApprove"
+        class="secondary"
+        onclick="switchForm('modelApprove')">
+        Model Village Approve
+      </button>
+
+      <button
+        id="stage-modelTender"
+        class="secondary"
+        onclick="switchForm('modelTender')">
+        Model Village Tender
+      </button>
+
+    </div>
+
+
     <div class="notice">
+
       বর্তমানে:
-      <span id="currentFormName">Approach Scheme</span>
-      — এই form-এর data অন্য ৩টি form-এর data থেকে সম্পূর্ণ আলাদা থাকবে।
+      <span id="currentFormName">
+        Approach Scheme
+      </span>
+
+      — এই form-এর data অন্য form-এর data থেকে সম্পূর্ণ আলাদা থাকবে।
+
     </div>
 
   </div>
 
 
-  <!-- DATA ENTRY FORM -->
+
+  <!-- =====================================================
+       DATA ENTRY FORM
+       ====================================================== -->
+
   <div class="card">
 
-    <div class="title" id="formTitle">
+    <div
+      class="title"
+      id="formTitle">
       ➕ Approach Scheme — নতুন Data Entry
     </div>
+
 
     <div class="form">
 
       <div class="field">
         <label>Scheme Name</label>
-        <input id="scheme" placeholder="Scheme Name">
+        <input
+          id="scheme"
+          placeholder="Scheme Name">
       </div>
+
 
       <div class="field">
         <label>Nature of Work</label>
-        <input id="nature" placeholder="Nature of Work">
+        <input
+          id="nature"
+          placeholder="Nature of Work">
       </div>
+
 
       <div class="field">
         <label>Length or Area</label>
-        <input id="lengthArea" placeholder="যেমন 150 m">
+        <input
+          id="lengthArea"
+          placeholder="যেমন 150 m">
       </div>
+
 
       <div class="field">
         <label>Mouja</label>
@@ -386,20 +523,30 @@ td{
         </select>
       </div>
 
+
       <div class="field">
         <label>Starting Dag No.</label>
-        <input id="startDag" placeholder="যেমন 202/1423">
+        <input
+          id="startDag"
+          placeholder="যেমন 202/1423">
       </div>
+
 
       <div class="field">
         <label>End Dag No.</label>
-        <input id="endDag" placeholder="যেমন 205/1424">
+        <input
+          id="endDag"
+          placeholder="যেমন 205/1424">
       </div>
+
 
       <div class="field">
         <label>I.B.S. Job Card No.</label>
-        <input id="jobCard" placeholder="Job Card No.">
+        <input
+          id="jobCard"
+          placeholder="Job Card No.">
       </div>
+
 
       <div class="field">
         <label>Latitude</label>
@@ -409,6 +556,7 @@ td{
           placeholder="Latitude">
       </div>
 
+
       <div class="field">
         <label>Longitude</label>
         <input
@@ -417,6 +565,7 @@ td{
           placeholder="Longitude">
       </div>
 
+
       <div class="field">
         <label>Latitude (2)</label>
         <input
@@ -424,6 +573,7 @@ td{
           inputmode="decimal"
           placeholder="Latitude">
       </div>
+
 
       <div class="field">
         <label>Longitude (2)</label>
@@ -434,6 +584,7 @@ td{
       </div>
 
     </div>
+
 
     <div class="actions">
 
@@ -454,12 +605,19 @@ td{
   </div>
 
 
-  <!-- SAVED DATA -->
+
+  <!-- =====================================================
+       SAVED DATA
+       ====================================================== -->
+
   <div class="card">
 
-    <div class="title" id="savedTitle">
+    <div
+      class="title"
+      id="savedTitle">
       📋 Approach Scheme — Saved Data
     </div>
+
 
     <div class="toolbar">
 
@@ -469,17 +627,20 @@ td{
         oninput="render()"
         placeholder="🔎 Scheme / Dag / Mouja দিয়ে Search করুন">
 
+
       <button
         class="success"
         onclick="exportExcel()">
         📊 Export Excel
       </button>
 
+
       <button
         class="gray"
         onclick="backup()">
         💾 Backup All
       </button>
+
 
       <button
         class="gray"
@@ -494,11 +655,13 @@ td{
         hidden
         onchange="restore(event)">
 
+
       <button
         class="danger"
         onclick="deleteCurrentForm()">
         🗑 Delete This Form
       </button>
+
 
       <button
         class="danger"
@@ -508,9 +671,42 @@ td{
 
     </div>
 
-    <div class="count" id="count">
+
+    <!-- TRANSFER BUTTON -->
+    <div
+      id="transferBar"
+      class="transferbar">
+
+      <button
+        id="nextTransferBtn"
+        class="success"
+        onclick="transferNext()">
+        ➡ পরের Stage-এ Transfer
+      </button>
+
+      <button
+        id="backTransferBtn"
+        class="gray"
+        onclick="transferBack()">
+        ⬅ আগের Stage-এ Back
+      </button>
+
+    </div>
+
+
+    <div
+      id="selectedInfo"
+      class="selectedInfo">
+      কোনো Project Select করা হয়নি
+    </div>
+
+
+    <div
+      class="count"
+      id="count">
       0 entries
     </div>
+
 
     <div class="tablebox">
 
@@ -520,25 +716,50 @@ td{
 
           <tr>
 
+            <th>
+              <input
+                type="checkbox"
+                class="selectAll"
+                id="selectAll"
+                onchange="toggleAll(this)">
+              <br>
+              Select
+            </th>
+
             <th>S.L. No.<br>(Auto)</th>
+
             <th>Date</th>
+
             <th>Financial<br>Year</th>
+
             <th>Scheme Name</th>
+
             <th>Nature of Work</th>
+
             <th>Length / Area</th>
+
             <th>Mouja</th>
+
             <th>Starting Dag No.</th>
+
             <th>End Dag No.</th>
+
             <th>In Case I.B.S<br>Job Card No.</th>
+
             <th>Lat</th>
+
             <th>Long</th>
+
             <th>Lat</th>
+
             <th>Long</th>
+
             <th>Action</th>
 
           </tr>
 
         </thead>
+
 
         <tbody id="tbody"></tbody>
 
@@ -551,33 +772,97 @@ td{
 </div>
 
 
+
 <script>
 
 /* =========================================================
-   DATA STRUCTURE
+   STORAGE
    ========================================================= */
 
 const STORAGE_KEY =
-  'AAP_OFFLINE_DATA_MOBILE_V3';
+  'AAP_OFFLINE_DATA_MOBILE_V5';
+
 
 const OLD_KEYS = [
-
+  'AAP_OFFLINE_DATA_MOBILE_V4',
+  'AAP_OFFLINE_DATA_MOBILE_V3',
   'AAP_OFFLINE_DATA_MOBILE_V2',
   'AAP_OFFLINE_DATA',
   'AAP_DATA',
   'AAP_OFFLINE_DATA_MOBILE',
   'AAP_OFFLINE_DATA_MOBILE_V1'
-
 ];
+
+
+/* =========================================================
+   FORM NAMES
+   ========================================================= */
 
 const FORM_NAMES = {
 
-  approach:'Approach Scheme',
-  approve:'Approve Scheme',
-  tender:'Tender Scheme',
-  modelVillage:'Model Village'
+  approach:
+    'Approach Scheme',
+
+  approve:
+    'Approve Scheme',
+
+  tender:
+    'Tender Scheme',
+
+  modelVillage:
+    'Model Village Approach',
+
+  modelApprove:
+    'Model Village Approve',
+
+  modelTender:
+    'Model Village Tender'
 
 };
+
+
+/* =========================================================
+   FLOW
+   ========================================================= */
+
+const FLOW = {
+
+  approach:{
+    next:'approve',
+    back:null
+  },
+
+  approve:{
+    next:'tender',
+    back:'approach'
+  },
+
+  tender:{
+    next:null,
+    back:'approve'
+  },
+
+  modelVillage:{
+    next:'modelApprove',
+    back:null
+  },
+
+  modelApprove:{
+    next:'modelTender',
+    back:'modelVillage'
+  },
+
+  modelTender:{
+    next:null,
+    back:'modelApprove'
+  }
+
+};
+
+
+/* =========================================================
+   FORM IDs
+   ========================================================= */
 
 const ids = [
 
@@ -595,42 +880,61 @@ const ids = [
 
 ];
 
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
 let state = {
 
-  version:3,
+  version:5,
 
   year:'2026-27',
 
   forms:{
 
     approach:[],
+
     approve:[],
+
     tender:[],
-    modelVillage:[]
+
+    modelVillage:[],
+
+    modelApprove:[],
+
+    modelTender:[]
 
   }
 
 };
 
-let currentForm = 'approach';
 
-let editIndex = -1;
+let currentForm =
+  'approach';
+
+
+let editIndex =
+  -1;
 
 
 /* =========================================================
    BASIC HELPERS
    ========================================================= */
 
-const $ = id =>
-  document.getElementById(id);
+const $ =
+  id => document.getElementById(id);
 
-const val = id => {
+
+function val(id){
 
   const el = $(id);
 
-  return el ? el.value.trim() : '';
+  return el
+    ? el.value.trim()
+    : '';
 
-};
+}
 
 
 function todayISO(){
@@ -643,7 +947,9 @@ function todayISO(){
       d.getTimezoneOffset() * 60000
     );
 
-  return local.toISOString().slice(0,10);
+  return local
+    .toISOString()
+    .slice(0,10);
 
 }
 
@@ -651,15 +957,16 @@ function todayISO(){
 function esc(s){
 
   return String(s ?? '')
-    .replace(/[&<>"']/g,c => ({
-
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      '"':'&quot;',
-      "'":'&#39;'
-
-    }[c]));
+    .replace(
+      /[&<>"']/g,
+      c => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[c])
+    );
 
 }
 
@@ -679,33 +986,75 @@ function formName(){
 
 
 /* =========================================================
-   STORAGE
+   MAIN HEADING
+   ========================================================= */
+
+/*
+   IMPORTANT:
+
+   Approach / Approve / Tender
+   = A.A.P Format of V.B.G.R.A.M.G
+
+   Model Village-এর সব stage
+   = MODEL VILLAGE
+*/
+
+function updateMainHeading(){
+
+  const heading =
+    $('appHeading');
+
+  if(
+    currentForm === 'modelVillage' ||
+    currentForm === 'modelApprove' ||
+    currentForm === 'modelTender'
+  ){
+
+    heading.textContent =
+      'MODEL VILLAGE';
+
+  }else{
+
+    heading.textContent =
+      'A.A.P Format of V.B.G.R.A.M.G';
+
+  }
+
+}
+
+
+/* =========================================================
+   NORMALIZE STATE
    ========================================================= */
 
 function normalizeState(input){
 
   const result = {
 
-    version:3,
+    version:5,
 
     year:'2026-27',
 
     forms:{
 
       approach:[],
+
       approve:[],
+
       tender:[],
-      modelVillage:[]
+
+      modelVillage:[],
+
+      modelApprove:[],
+
+      modelTender:[]
 
     }
 
   };
 
 
-  /*
-    পুরনো JSON যদি সরাসরি Array হয়,
-    তাহলে পুরনো সব data Approach Scheme-এ যাবে।
-  */
+  /* OLD ARRAY BACKUP */
 
   if(Array.isArray(input)){
 
@@ -717,7 +1066,10 @@ function normalizeState(input){
   }
 
 
-  if(input && typeof input === 'object'){
+  if(
+    input &&
+    typeof input === 'object'
+  ){
 
     if(input.year){
 
@@ -727,44 +1079,29 @@ function normalizeState(input){
     }
 
 
-    /*
-      নতুন backup format:
-      {
-        forms:{
-          approach:[],
-          approve:[],
-          tender:[],
-          modelVillage:[]
-        }
-      }
-    */
-
     if(
       input.forms &&
       typeof input.forms === 'object'
     ){
 
-      for(
-        const key of Object.keys(result.forms)
-      ){
+      Object.keys(result.forms)
+        .forEach(key => {
 
-        if(
-          Array.isArray(input.forms[key])
-        ){
+          if(
+            Array.isArray(
+              input.forms[key]
+            )
+          ){
 
-          result.forms[key] =
-            input.forms[key]
-              .map(normalizeEntry);
+            result.forms[key] =
+              input.forms[key]
+                .map(normalizeEntry);
 
-        }
+          }
 
-      }
+        });
 
     }
-
-    /*
-      {data:[...]} format-ও support করবে
-    */
 
     else if(
       Array.isArray(input.data)
@@ -783,70 +1120,82 @@ function normalizeState(input){
 }
 
 
+/* =========================================================
+   NORMALIZE ENTRY
+   ========================================================= */
+
 function normalizeEntry(x){
 
   x = x || {};
 
+
   return {
 
-    scheme:String(x.scheme ?? ''),
+    id:
+      String(
+        x.id ||
+        (
+          Date.now() +
+          '_' +
+          Math.random()
+            .toString(36)
+            .slice(2)
+        )
+      ),
 
-    nature:String(x.nature ?? ''),
+    scheme:
+      String(x.scheme ?? ''),
 
-    lengthArea:String(
-      x.lengthArea ?? ''
-    ),
+    nature:
+      String(x.nature ?? ''),
 
-    mouza:String(
-      x.mouza ?? 'Sahara'
-    ),
+    lengthArea:
+      String(x.lengthArea ?? ''),
 
-    startDag:String(
-      x.startDag ?? ''
-    ),
+    mouza:
+      String(x.mouza ?? 'Sahara'),
 
-    endDag:String(
-      x.endDag ?? ''
-    ),
+    startDag:
+      String(x.startDag ?? ''),
 
-    jobCard:String(
-      x.jobCard ?? ''
-    ),
+    endDag:
+      String(x.endDag ?? ''),
 
-    lat1:String(
-      x.lat1 ?? ''
-    ),
+    jobCard:
+      String(x.jobCard ?? ''),
 
-    long1:String(
-      x.long1 ?? ''
-    ),
+    lat1:
+      String(x.lat1 ?? ''),
 
-    lat2:String(
-      x.lat2 ?? ''
-    ),
+    long1:
+      String(x.long1 ?? ''),
 
-    long2:String(
-      x.long2 ?? ''
-    ),
+    lat2:
+      String(x.lat2 ?? ''),
 
-    date:String(
-      x.date ?? ''
-    ),
+    long2:
+      String(x.long2 ?? ''),
 
-    year:String(
-      x.year ?? ''
-    )
+    date:
+      String(x.date ?? ''),
+
+    year:
+      String(x.year ?? '')
 
   };
 
 }
 
 
+/* =========================================================
+   STORAGE SAVE
+   ========================================================= */
+
 function persist(){
 
   try{
 
-    state.version = 3;
+    state.version = 5;
 
     localStorage.setItem(
       STORAGE_KEY,
@@ -868,14 +1217,21 @@ function persist(){
 }
 
 
+/* =========================================================
+   LOAD
+   ========================================================= */
+
 function load(){
 
   let loaded = false;
 
+
   try{
 
     const raw =
-      localStorage.getItem(STORAGE_KEY);
+      localStorage.getItem(
+        STORAGE_KEY
+      );
 
 
     if(raw){
@@ -891,11 +1247,6 @@ function load(){
 
     else{
 
-      /*
-        পুরনো localStorage data থাকলে
-        সেটাকেও নতুন structure-এ migrate করবে।
-      */
-
       for(
         const key of OLD_KEYS
       ){
@@ -903,8 +1254,8 @@ function load(){
         const oldRaw =
           localStorage.getItem(key);
 
-        if(!oldRaw)
-          continue;
+        if(!oldRaw) continue;
+
 
         try{
 
@@ -912,7 +1263,9 @@ function load(){
             JSON.parse(oldRaw);
 
           state =
-            normalizeState(oldParsed);
+            normalizeState(
+              oldParsed
+            );
 
           persist();
 
@@ -945,8 +1298,10 @@ function load(){
   $('year').value =
     state.year || '2026-27';
 
+
   $('entryDate').value =
     todayISO();
+
 
   updateUI();
 
@@ -954,18 +1309,24 @@ function load(){
 
 
 /* =========================================================
-   FORM SWITCH
+   SWITCH FORM
    ========================================================= */
 
 function switchForm(form){
 
-  if(!FORM_NAMES[form])
-    return;
+  if(
+    !FORM_NAMES[form]
+  ) return;
 
-  currentForm = form;
 
-  editIndex = -1;
+  currentForm =
+    form;
 
+  editIndex =
+    -1;
+
+
+  /* MAIN BUTTON ACTIVE */
 
   document
     .querySelectorAll('.formnav button')
@@ -978,14 +1339,30 @@ function switchForm(form){
     });
 
 
+  let mainButtonId;
+
+
+  if(
+    form === 'modelVillage' ||
+    form === 'modelApprove' ||
+    form === 'modelTender'
+  ){
+
+    mainButtonId =
+      'nav-model';
+
+  }
+
+  else{
+
+    mainButtonId =
+      'nav-' + form;
+
+  }
+
+
   const active =
-    $('nav-' +
-      (
-        form === 'modelVillage'
-        ? 'model'
-        : form
-      )
-    );
+    $(mainButtonId);
 
 
   if(active){
@@ -997,50 +1374,107 @@ function switchForm(form){
   }
 
 
-  $('currentFormName').textContent =
-    formName();
+  /* MODEL STAGE BAR */
 
-  $('formTitle').textContent =
-    '➕ ' +
-    formName() +
-    ' — নতুন Data Entry';
+  const modelBar =
+    $('modelStageBar');
 
-  $('savedTitle').textContent =
-    '📋 ' +
-    formName() +
-    ' — Saved Data';
+
+  if(
+    form === 'modelVillage' ||
+    form === 'modelApprove' ||
+    form === 'modelTender'
+  ){
+
+    modelBar.classList.add('show');
+
+  }else{
+
+    modelBar.classList.remove('show');
+
+  }
+
+
+  document
+    .querySelectorAll('#modelStageBar button')
+    .forEach(b => {
+
+      b.classList.remove('active');
+
+      b.classList.add('secondary');
+
+    });
+
+
+  if(
+    form === 'modelVillage'
+  ){
+
+    $('stage-modelVillage')
+      .classList.add('active');
+
+    $('stage-modelVillage')
+      .classList.remove('secondary');
+
+  }
+
+
+  if(
+    form === 'modelApprove'
+  ){
+
+    $('stage-modelApprove')
+      .classList.add('active');
+
+    $('stage-modelApprove')
+      .classList.remove('secondary');
+
+  }
+
+
+  if(
+    form === 'modelTender'
+  ){
+
+    $('stage-modelTender')
+      .classList.add('active');
+
+    $('stage-modelTender')
+      .classList.remove('secondary');
+
+  }
+
+
+  updateMainHeading();
+
+
+  $('currentFormName')
+    .textContent =
+      formName();
+
+
+  $('formTitle')
+    .textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
+
+
+  $('savedTitle')
+    .textContent =
+      '📋 ' +
+      formName() +
+      ' — Saved Data';
 
 
   $('search').value = '';
 
+
   clearForm(false);
 
-  render();
 
-}
+  updateTransferButtons();
 
-
-function updateUI(){
-
-  $('headerYear').textContent =
-    String(state.year)
-      .replace('-',' - ');
-
-  $('year').value =
-    state.year;
-
-  $('currentFormName').textContent =
-    formName();
-
-  $('formTitle').textContent =
-    '➕ ' +
-    formName() +
-    ' — নতুন Data Entry';
-
-  $('savedTitle').textContent =
-    '📋 ' +
-    formName() +
-    ' — Saved Data';
 
   render();
 
@@ -1048,7 +1482,53 @@ function updateUI(){
 
 
 /* =========================================================
-   YEAR / DATE
+   UPDATE UI
+   ========================================================= */
+
+function updateUI(){
+
+  $('headerYear')
+    .textContent =
+      String(state.year)
+        .replace('-', ' - ');
+
+
+  $('year').value =
+    state.year;
+
+
+  $('currentFormName')
+    .textContent =
+      formName();
+
+
+  $('formTitle')
+    .textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
+
+
+  $('savedTitle')
+    .textContent =
+      '📋 ' +
+      formName() +
+      ' — Saved Data';
+
+
+  updateMainHeading();
+
+
+  updateTransferButtons();
+
+
+  render();
+
+}
+
+
+/* =========================================================
+   YEAR
    ========================================================= */
 
 function changeYear(){
@@ -1056,8 +1536,12 @@ function changeYear(){
   state.year =
     $('year').value;
 
-  $('headerYear').textContent =
-    state.year.replace('-',' - ');
+
+  $('headerYear')
+    .textContent =
+      state.year
+        .replace('-', ' - ');
+
 
   persist();
 
@@ -1067,7 +1551,7 @@ function changeYear(){
 
 
 /* =========================================================
-   SAVE / CLEAR / EDIT
+   SAVE
    ========================================================= */
 
 function saveEntry(){
@@ -1077,7 +1561,8 @@ function saveEntry(){
 
   ids.forEach(id => {
 
-    x[id] = val(id);
+    x[id] =
+      val(id);
 
   });
 
@@ -1085,6 +1570,7 @@ function saveEntry(){
   x.date =
     val('entryDate') ||
     todayISO();
+
 
   x.year =
     state.year;
@@ -1110,22 +1596,38 @@ function saveEntry(){
 
   if(editIndex >= 0){
 
-    arr[editIndex] = x;
+    /*
+      Edit করার সময় পুরনো ID
+      অবশ্যই রেখে দেওয়া হবে
+    */
 
-  }else{
+    x.id =
+      arr[editIndex].id ||
+      createId();
+
+
+    arr[editIndex] =
+      x;
+
+  }
+
+  else{
+
+    x.id =
+      createId();
 
     arr.push(x);
 
   }
 
 
-  if(!persist())
-    return;
+  if(!persist()) return;
 
 
   render();
 
   clearForm();
+
 
   alert(
     formName() +
@@ -1134,6 +1636,27 @@ function saveEntry(){
 
 }
 
+
+/* =========================================================
+   CREATE ID
+   ========================================================= */
+
+function createId(){
+
+  return (
+    Date.now() +
+    '_' +
+    Math.random()
+      .toString(36)
+      .slice(2)
+  );
+
+}
+
+
+/* =========================================================
+   CLEAR
+   ========================================================= */
 
 function clearForm(resetDate=true){
 
@@ -1152,10 +1675,11 @@ function clearForm(resetDate=true){
   editIndex = -1;
 
 
-  $('formTitle').textContent =
-    '➕ ' +
-    formName() +
-    ' — নতুন Data Entry';
+  $('formTitle')
+    .textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
 
 
   if(resetDate){
@@ -1168,13 +1692,17 @@ function clearForm(resetDate=true){
 }
 
 
+/* =========================================================
+   EDIT
+   ========================================================= */
+
 function edit(i){
 
   const x =
     currentData()[i];
 
-  if(!x)
-    return;
+
+  if(!x) return;
 
 
   ids.forEach(id => {
@@ -1201,8 +1729,10 @@ function edit(i){
     $('year').value =
       x.year;
 
-    $('headerYear').textContent =
-      x.year.replace('-',' - ');
+    $('headerYear')
+      .textContent =
+        x.year
+          .replace('-', ' - ');
 
     persist();
 
@@ -1212,10 +1742,11 @@ function edit(i){
   editIndex = i;
 
 
-  $('formTitle').textContent =
-    '✏️ ' +
-    formName() +
-    ' — Data Entry Edit করুন';
+  $('formTitle')
+    .textContent =
+      '✏️ ' +
+      formName() +
+      ' — Data Entry Edit করুন';
 
 
   window.scrollTo({
@@ -1230,7 +1761,7 @@ function edit(i){
 
 
 /* =========================================================
-   DELETE
+   DELETE ONE
    ========================================================= */
 
 function del(i){
@@ -1242,7 +1773,8 @@ function del(i){
     )
   ){
 
-    currentData().splice(i,1);
+    currentData()
+      .splice(i,1);
 
     persist();
 
@@ -1252,6 +1784,10 @@ function del(i){
 
 }
 
+
+/* =========================================================
+   DELETE CURRENT FORM
+   ========================================================= */
 
 function deleteCurrentForm(){
 
@@ -1278,58 +1814,8 @@ function deleteCurrentForm(){
     )
   ){
 
-    state.forms[currentForm] = [];
-
-    editIndex = -1;
-
-    persist();
-
-    clearForm();
-
-    render();
-
-  }
-
-}
-
-
-function deleteAll(){
-
-  const total =
-
-    state.forms.approach.length +
-
-    state.forms.approve.length +
-
-    state.forms.tender.length +
-
-    state.forms.modelVillage.length;
-
-
-  if(!total){
-
-    alert(
-      'কোনো Data নেই।'
-    );
-
-    return;
-
-  }
-
-
-  if(
-    confirm(
-      'চারটি Form-এর সব Data একসাথে মুছে ফেলবেন?'
-    )
-  ){
-
-    state.forms.approach = [];
-
-    state.forms.approve = [];
-
-    state.forms.tender = [];
-
-    state.forms.modelVillage = [];
+    state.forms[currentForm] =
+      [];
 
     editIndex = -1;
 
@@ -1345,36 +1831,475 @@ function deleteAll(){
 
 
 /* =========================================================
+   DELETE ALL
+   ========================================================= */
+
+function deleteAll(){
+
+  const total =
+    Object.values(
+      state.forms
+    )
+    .reduce(
+      (sum,arr) =>
+        sum + arr.length,
+      0
+    );
+
+
+  if(!total){
+
+    alert(
+      'কোনো Data নেই।'
+    );
+
+    return;
+
+  }
+
+
+  if(
+    confirm(
+      'সব Form-এর সব Data একসাথে মুছে ফেলবেন?'
+    )
+  ){
+
+    Object.keys(
+      state.forms
+    ).forEach(key => {
+
+      state.forms[key] = [];
+
+    });
+
+
+    editIndex = -1;
+
+    persist();
+
+    clearForm();
+
+    render();
+
+  }
+
+}
+
+
+/* =========================================================
+   SELECTED ROWS
+   ========================================================= */
+
+function getSelectedIndexes(){
+
+  return Array.from(
+    document.querySelectorAll(
+      '.rowcheck:checked'
+    )
+  )
+  .map(
+    el =>
+      Number(
+        el.dataset.index
+      )
+  );
+
+}
+
+
+/* =========================================================
+   SELECT ALL
+   ========================================================= */
+
+function toggleAll(box){
+
+  document
+    .querySelectorAll('.rowcheck')
+    .forEach(cb => {
+
+      cb.checked =
+        box.checked;
+
+    });
+
+
+  updateSelectedInfo();
+
+}
+
+
+/* =========================================================
+   SELECT INFO
+   ========================================================= */
+
+function updateSelectedInfo(){
+
+  const selected =
+    getSelectedIndexes();
+
+
+  $('selectedInfo')
+    .textContent =
+      selected.length
+      ? selected.length +
+        ' টি Project Select করা হয়েছে'
+      : 'কোনো Project Select করা হয়নি';
+
+}
+
+
+/* =========================================================
+   UPDATE TRANSFER BUTTON
+   ========================================================= */
+
+function updateTransferButtons(){
+
+  const flow =
+    FLOW[currentForm];
+
+
+  const bar =
+    $('transferBar');
+
+
+  if(
+    flow.next ||
+    flow.back
+  ){
+
+    bar.classList.add('show');
+
+  }else{
+
+    bar.classList.remove('show');
+
+  }
+
+
+  const nextBtn =
+    $('nextTransferBtn');
+
+
+  const backBtn =
+    $('backTransferBtn');
+
+
+  if(flow.next){
+
+    nextBtn.style.display =
+      'block';
+
+
+    nextBtn.textContent =
+      '➡ ' +
+      FORM_NAMES[flow.next] +
+      ' -এ Transfer';
+
+  }else{
+
+    nextBtn.style.display =
+      'none';
+
+  }
+
+
+  if(flow.back){
+
+    backBtn.style.display =
+      'block';
+
+
+    backBtn.textContent =
+      '⬅ ' +
+      FORM_NAMES[flow.back] +
+      ' -এ Back';
+
+  }else{
+
+    backBtn.style.display =
+      'none';
+
+  }
+
+}
+
+
+/* =========================================================
+   TRANSFER NEXT
+   ========================================================= */
+
+function transferNext(){
+
+  const flow =
+    FLOW[currentForm];
+
+
+  if(!flow.next){
+
+    alert(
+      'এই Stage-এর পরে আর কোনো Stage নেই।'
+    );
+
+    return;
+
+  }
+
+
+  const selected =
+    getSelectedIndexes();
+
+
+  if(!selected.length){
+
+    alert(
+      'আগে অন্তত ১টি Project Select করুন।'
+    );
+
+    return;
+
+  }
+
+
+  const target =
+    state.forms[flow.next];
+
+
+  const source =
+    state.forms[currentForm];
+
+
+  const selectedRecords =
+    selected.map(
+      i => source[i]
+    )
+    .filter(Boolean);
+
+
+  if(
+    !confirm(
+      selectedRecords.length +
+      ' টি Project\n' +
+      formName() +
+      ' থেকে\n' +
+      FORM_NAMES[flow.next] +
+      ' -এ Transfer করবেন?'
+    )
+  ){
+
+    return;
+
+  }
+
+
+  selectedRecords.forEach(record => {
+
+    /*
+      একই ID থাকলে duplicate হবে না
+    */
+
+    const already =
+      target.some(
+        x =>
+          x.id &&
+          x.id === record.id
+      );
+
+
+    if(!already){
+
+      target.push(
+        normalizeEntry(record)
+      );
+
+    }
+
+  });
+
+
+  /*
+    Source থেকে selected records remove
+  */
+
+  selected
+    .sort(
+      (a,b) => b-a
+    )
+    .forEach(i => {
+
+      source.splice(i,1);
+
+    });
+
+
+  editIndex = -1;
+
+
+  persist();
+
+  render();
+
+
+  alert(
+    selectedRecords.length +
+    ' টি Project সফলভাবে\n' +
+    FORM_NAMES[flow.next] +
+    ' -এ Transfer হয়েছে ✓'
+  );
+
+}
+
+
+/* =========================================================
+   TRANSFER BACK
+   ========================================================= */
+
+function transferBack(){
+
+  const flow =
+    FLOW[currentForm];
+
+
+  if(!flow.back){
+
+    alert(
+      'এই Stage-এর আগে আর কোনো Stage নেই।'
+    );
+
+    return;
+
+  }
+
+
+  const selected =
+    getSelectedIndexes();
+
+
+  if(!selected.length){
+
+    alert(
+      'আগে অন্তত ১টি Project Select করুন।'
+    );
+
+    return;
+
+  }
+
+
+  const target =
+    state.forms[flow.back];
+
+
+  const source =
+    state.forms[currentForm];
+
+
+  const selectedRecords =
+    selected.map(
+      i => source[i]
+    )
+    .filter(Boolean);
+
+
+  if(
+    !confirm(
+      selectedRecords.length +
+      ' টি Project\n' +
+      formName() +
+      ' থেকে\n' +
+      FORM_NAMES[flow.back] +
+      ' -এ Back করবেন?'
+    )
+  ){
+
+    return;
+
+  }
+
+
+  selectedRecords.forEach(record => {
+
+    const already =
+      target.some(
+        x =>
+          x.id &&
+          x.id === record.id
+      );
+
+
+    if(!already){
+
+      target.push(
+        normalizeEntry(record)
+      );
+
+    }
+
+  });
+
+
+  selected
+    .sort(
+      (a,b) => b-a
+    )
+    .forEach(i => {
+
+      source.splice(i,1);
+
+    });
+
+
+  editIndex = -1;
+
+
+  persist();
+
+  render();
+
+
+  alert(
+    selectedRecords.length +
+    ' টি Project সফলভাবে\n' +
+    FORM_NAMES[flow.back] +
+    ' -এ Back হয়েছে ✓'
+  );
+
+}
+
+
+/* =========================================================
    RENDER TABLE
    ========================================================= */
 
 function render(){
 
   const q =
-    val('search').toLowerCase();
+    val('search')
+      .toLowerCase();
 
 
   const list =
     currentData()
-
-      .map((x,i)=>({
-        x,
-        i
-      }))
-
-      .filter(o =>
-
-        JSON.stringify(o.x)
+      .map(
+        (x,i) => ({
+          x:x,
+          i:i
+        })
+      )
+      .filter(
+        o =>
+          JSON.stringify(
+            o.x
+          )
           .toLowerCase()
           .includes(q)
-
       );
 
 
-  $('count').textContent =
-    list.length +
-    ' entries — ' +
-    formName();
+  $('count')
+    .textContent =
+      list.length +
+      ' entries — ' +
+      formName();
 
 
   $('tbody').innerHTML =
@@ -1383,72 +2308,90 @@ function render(){
 
     ?
 
-    list.map((o,n)=>{
+    list.map(
+      (o,n) => {
 
-      const x = o.x;
+        const x =
+          o.x;
 
-      const i = o.i;
+        const i =
+          o.i;
 
 
-      return '<tr>' +
+        return (
 
-        '<td>' +
+          '<tr>' +
+
+          '<td class="selectCell">' +
+
+          '<input ' +
+          'type="checkbox" ' +
+          'class="rowcheck" ' +
+          'data-index="' +
+          i +
+          '" ' +
+          'onchange="updateSelectedInfo()">' +
+
+          '</td>' +
+
+          '<td>' +
           (n+1) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.date) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.year) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.scheme) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.nature) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.lengthArea) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
-          esc(x.mouza).toUpperCase() +
-        '</td>' +
+          '<td>' +
+          esc(x.mouza)
+            .toUpperCase() +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.startDag) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.endDag) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.jobCard) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.lat1) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.long1) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.lat2) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
           esc(x.long2) +
-        '</td>' +
+          '</td>' +
 
-        '<td>' +
+          '<td>' +
 
           '<button ' +
           'class="actionbtn primary" ' +
@@ -1466,44 +2409,53 @@ function render(){
           'Delete' +
           '</button>' +
 
-        '</td>' +
+          '</td>' +
 
-      '</tr>';
+          '</tr>'
 
-    }).join('')
+        );
+
+      }
+    ).join('')
 
     :
 
     '<tr>' +
 
-      '<td colspan="15" class="empty">' +
+    '<td colspan="16" class="empty">' +
 
-        formName() +
-        ' এ কোনো Data Entry নেই।' +
+    formName() +
+    ' এ কোনো Data Entry নেই।' +
 
-      '</td>' +
+    '</td>' +
 
     '</tr>';
+
+
+  /*
+    Select All reset
+  */
+
+  $('selectAll').checked =
+    false;
+
+
+  updateSelectedInfo();
 
 }
 
 
 /* =========================================================
-   EXCEL EXPORT
+   EXCEL ESCAPE
    ========================================================= */
 
 function excelEsc(s){
 
   return String(s ?? '')
-
     .replace(/&/g,'&amp;')
-
     .replace(/</g,'&lt;')
-
     .replace(/>/g,'&gt;')
-
     .replace(/"/g,'&quot;')
-
     .replace(/'/g,'&apos;');
 
 }
@@ -1515,7 +2467,9 @@ function excelCell(
   merge=''
 ){
 
-  return '<Cell ss:StyleID="' +
+  return (
+
+    '<Cell ss:StyleID="' +
     style +
     '"' +
 
@@ -1529,15 +2483,26 @@ function excelCell(
       ''
     ) +
 
-    '><Data ss:Type="String">' +
+    '>' +
+
+    '<Data ss:Type="String">' +
 
     excelEsc(s)
-      .replace(/\n/g,'&#10;') +
+      .replace(
+        /\n/g,
+        '&#10;'
+      ) +
 
-    '</Data></Cell>';
+    '</Data></Cell>'
+
+  );
 
 }
 
+
+/* =========================================================
+   EXCEL EXPORT
+   ========================================================= */
 
 function exportExcel(){
 
@@ -1592,7 +2557,7 @@ function exportExcel(){
 
   const widths = [
 
-    32,
+    40,
     70,
     65,
     125,
@@ -1631,142 +2596,131 @@ function exportExcel(){
 
     '<Styles>' +
 
-      '<Style ss:ID="Default" ss:Name="Normal">' +
+    '<Style ss:ID="Default" ss:Name="Normal">' +
 
-        '<Alignment ss:Vertical="Center"/>' +
+    '<Alignment ss:Vertical="Center"/>' +
 
-        '<Font ss:FontName="Arial" ss:Size="9"/>' +
+    '<Font ss:FontName="Arial" ss:Size="9"/>' +
 
-      '</Style>' +
-
-
-      '<Style ss:ID="Title">' +
-
-        '<Alignment ' +
-        'ss:Horizontal="Center" ' +
-        'ss:Vertical="Center" ' +
-        'ss:WrapText="1"/>' +
-
-        '<Font ' +
-        'ss:FontName="Arial" ' +
-        'ss:Size="14" ' +
-        'ss:Bold="1"/>' +
-
-      '</Style>' +
+    '</Style>' +
 
 
-      '<Style ss:ID="SubTitle">' +
+    '<Style ss:ID="Title">' +
 
-        '<Alignment ' +
-        'ss:Horizontal="Center" ' +
-        'ss:Vertical="Center" ' +
-        'ss:WrapText="1"/>' +
+    '<Alignment ' +
+    'ss:Horizontal="Center" ' +
+    'ss:Vertical="Center" ' +
+    'ss:WrapText="1"/>' +
 
-        '<Font ' +
-        'ss:FontName="Arial" ' +
-        'ss:Size="11" ' +
-        'ss:Bold="1"/>' +
+    '<Font ' +
+    'ss:FontName="Arial" ' +
+    'ss:Size="14" ' +
+    'ss:Bold="1"/>' +
 
-      '</Style>' +
-
-
-      '<Style ss:ID="Header">' +
-
-        '<Alignment ' +
-        'ss:Horizontal="Center" ' +
-        'ss:Vertical="Center" ' +
-        'ss:WrapText="1"/>' +
-
-        '<Font ' +
-        'ss:FontName="Arial" ' +
-        'ss:Size="10" ' +
-        'ss:Bold="1"/>' +
-
-        '<Borders>' +
-
-          '<Border ' +
-          'ss:Position="Bottom" ' +
-          'ss:LineStyle="Continuous" ' +
-          'ss:Weight="1"/>' +
-
-          '<Border ' +
-          'ss:Position="Left" ' +
-          'ss:LineStyle="Continuous" ' +
-          'ss:Weight="1"/>' +
-
-          '<Border ' +
-          'ss:Position="Right" ' +
-          'ss:LineStyle="Continuous" ' +
-          'ss:Weight="1"/>' +
-
-          '<Border ' +
-          'ss:Position="Top" ' +
-          'ss:LineStyle="Continuous" ' +
-          'ss:Weight="1"/>' +
-
-        '</Borders>' +
-
-      '</Style>' +
+    '</Style>' +
 
 
-      '<Style ss:ID="Cell">' +
+    '<Style ss:ID="Header">' +
 
-        '<Alignment ' +
-        'ss:Horizontal="Center" ' +
-        'ss:Vertical="Center" ' +
-        'ss:WrapText="1"/>' +
+    '<Alignment ' +
+    'ss:Horizontal="Center" ' +
+    'ss:Vertical="Center" ' +
+    'ss:WrapText="1"/>' +
 
-        '<Font ' +
-        'ss:FontName="Arial" ' +
-        'ss:Size="9"/>' +
+    '<Font ' +
+    'ss:FontName="Arial" ' +
+    'ss:Size="10" ' +
+    'ss:Bold="1"/>' +
 
-        '<Borders>' +
+    '<Borders>' +
 
-          '<Border ' +
-          'ss:Position="Bottom" ' +
-          'ss:LineStyle="Continuous" ' +
-          'ss:Weight="1"/>' +
+    '<Border ' +
+    'ss:Position="Bottom" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-          '<Border ' +
-          'ss:Position="Left" ' +
-          'ss:LineStyle="Continuous" ' +
-          'ss:Weight="1"/>' +
+    '<Border ' +
+    'ss:Position="Left" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-          '<Border ' +
-          'ss:Position="Right" ' +
-          'ss:LineStyle="Continuous" ' +
-          'ss:Weight="1"/>' +
+    '<Border ' +
+    'ss:Position="Right" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-          '<Border ' +
-          'ss:Position="Top" ' +
-          'ss:LineStyle="Continuous" ' +
-          'ss:Weight="1"/>' +
+    '<Border ' +
+    'ss:Position="Top" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-        '</Borders>' +
+    '</Borders>' +
 
-      '</Style>' +
+    '</Style>' +
+
+
+    '<Style ss:ID="Cell">' +
+
+    '<Alignment ' +
+    'ss:Horizontal="Center" ' +
+    'ss:Vertical="Center" ' +
+    'ss:WrapText="1"/>' +
+
+    '<Font ' +
+    'ss:FontName="Arial" ' +
+    'ss:Size="9"/>' +
+
+    '<Borders>' +
+
+    '<Border ' +
+    'ss:Position="Bottom" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
+
+    '<Border ' +
+    'ss:Position="Left" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
+
+    '<Border ' +
+    'ss:Position="Right" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
+
+    '<Border ' +
+    'ss:Position="Top" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
+
+    '</Borders>' +
+
+    '</Style>' +
 
     '</Styles>';
 
+
+  /*
+    Excel sheet name
+  */
 
   xml +=
 
     '<Worksheet ss:Name="' +
 
     excelEsc(
-      formName().slice(0,31)
+      formName()
+        .slice(0,31)
     ) +
 
     '">' +
+
 
     '<Table ' +
 
     'ss:ExpandedColumnCount="14" ' +
 
     'ss:ExpandedRowCount="' +
-
-    (data.length + 3) +
-
+    (data.length + 2) +
     '" ' +
 
     'x:FullColumns="1" ' +
@@ -1775,188 +2729,202 @@ function exportExcel(){
 
 
   xml +=
-
-    widths.map(w =>
-
-      '<Column ' +
-
-      'ss:Width="' +
-      w +
-      '" ' +
-
-      'ss:AutoFitWidth="1"/>'
-
+    widths.map(
+      w =>
+        '<Column ss:Width="' +
+        w +
+        '" ss:AutoFitWidth="1"/>'
     ).join('');
+
+
+  /*
+    IMPORTANT:
+    Regular form = A.A.P heading
+    Model Village = MODEL VILLAGE
+  */
+
+  const excelHeading =
+
+    (
+      currentForm === 'modelVillage' ||
+      currentForm === 'modelApprove' ||
+      currentForm === 'modelTender'
+    )
+
+    ?
+
+    'MODEL VILLAGE'
+
+    :
+
+    'A. A. P Format of V. B. G. R. A. M. G';
 
 
   xml +=
 
     '<Row ss:Height="32">' +
 
-      excelCell(
-
-        'A. A. P Format of V. B. G. R. A. M. G',
-
-        'Title',
-
-        '13'
-
-      ) +
+    excelCell(
+      excelHeading,
+      'Title',
+      '13'
+    ) +
 
     '</Row>';
 
 
-  xml +=
-
-    '<Row ss:Height="25">' +
-
-      excelCell(
-
-        formName() +
-        ' — Data Entry Form ' +
-        state.year,
-
-        'SubTitle',
-
-        '13'
-
-      ) +
-
-    '</Row>';
+  /*
+    এখানে আর
+    Approach Scheme 2026-27
+    টাইপ আলাদা দ্বিতীয় heading নেই।
+  */
 
 
   xml +=
 
     '<Row ss:Height="62">' +
 
-      headers
-        .map(h =>
-          excelCell(h,'Header')
-        )
-        .join('') +
+    headers
+      .map(
+        h =>
+          excelCell(
+            h,
+            'Header'
+          )
+      )
+      .join('') +
 
     '</Row>';
 
 
-  data.forEach((x,n)=>{
+  data.forEach(
+    (x,n) => {
 
-    const row = [
+      const row = [
 
-      n+1,
+        n+1,
 
-      x.date || '',
+        x.date || '',
 
-      x.year || state.year,
+        x.year || state.year,
 
-      x.scheme || '',
+        x.scheme || '',
 
-      x.nature || '',
+        x.nature || '',
 
-      x.lengthArea || '',
+        x.lengthArea || '',
 
-      String(
-        x.mouza || ''
-      ).toUpperCase(),
+        String(
+          x.mouza || ''
+        ).toUpperCase(),
 
-      x.startDag || '',
+        x.startDag || '',
 
-      x.endDag || '',
+        x.endDag || '',
 
-      x.jobCard || '',
+        x.jobCard || '',
 
-      x.lat1 || '',
+        x.lat1 || '',
 
-      x.long1 || '',
+        x.long1 || '',
 
-      x.lat2 || '',
+        x.lat2 || '',
 
-      x.long2 || ''
+        x.long2 || ''
 
-    ];
-
-
-    let maxLines = 1;
+      ];
 
 
-    row.forEach(
-      (value,index)=>{
-
-        const text =
-          String(value ?? '');
-
-        let charsPerLine = 8;
+      let maxLines = 1;
 
 
-        if(index === 3)
-          charsPerLine = 17;
+      row.forEach(
+        (value,index) => {
 
-        else if(index === 4)
-          charsPerLine = 10;
-
-        else if(index === 5)
-          charsPerLine = 8;
-
-        else if(index === 6)
-          charsPerLine = 9;
-
-        else if(
-          index === 7 ||
-          index === 8
-        )
-          charsPerLine = 8;
-
-        else if(index === 9)
-          charsPerLine = 11;
+          const text =
+            String(
+              value ?? ''
+            );
 
 
-        maxLines = Math.max(
-
-          maxLines,
-
-          Math.ceil(
-            text.length /
-            charsPerLine
-          ),
-
-          text
-            .split(/\n/)
-            .length
-
-        );
-
-      }
-    );
+          let charsPerLine = 8;
 
 
-    const rowHeight =
-      Math.max(
-        20,
-        Math.min(
-          75,
-          14 + maxLines * 9
-        )
+          if(index === 3)
+            charsPerLine = 17;
+
+          else if(index === 4)
+            charsPerLine = 10;
+
+          else if(index === 5)
+            charsPerLine = 8;
+
+          else if(index === 6)
+            charsPerLine = 9;
+
+          else if(
+            index === 7 ||
+            index === 8
+          )
+            charsPerLine = 8;
+
+          else if(index === 9)
+            charsPerLine = 11;
+
+
+          maxLines =
+            Math.max(
+
+              maxLines,
+
+              Math.ceil(
+                text.length /
+                charsPerLine
+              ),
+
+              text
+                .split(/\n/)
+                .length
+
+            );
+
+        }
       );
 
 
-    xml +=
+      const rowHeight =
+        Math.max(
+          20,
+          Math.min(
+            75,
+            14 +
+            maxLines * 9
+          )
+        );
 
-      '<Row ss:AutoFitHeight="1" ' +
 
-      'ss:Height="' +
+      xml +=
 
-      rowHeight +
+        '<Row ' +
+        'ss:AutoFitHeight="1" ' +
+        'ss:Height="' +
+        rowHeight +
+        '">' +
 
-      '">' +
+        row
+          .map(
+            v =>
+              excelCell(
+                v,
+                'Cell'
+              )
+          )
+          .join('') +
 
-      row
-        .map(v =>
-          excelCell(v,'Cell')
-        )
-        .join('') +
+        '</Row>';
 
-      '</Row>';
-
-  });
+    }
+  );
 
 
   xml +=
@@ -1966,65 +2934,64 @@ function exportExcel(){
     '<WorksheetOptions ' +
     'xmlns="urn:schemas-microsoft-com:office:excel">' +
 
-      '<PageSetup>' +
+    '<PageSetup>' +
 
-        '<Layout ' +
-        'x:Orientation="Landscape" ' +
-        'x:CenterHorizontal="1" ' +
-        'x:CenterVertical="0"/>' +
+    '<Layout ' +
+    'x:Orientation="Landscape" ' +
+    'x:CenterHorizontal="1" ' +
+    'x:CenterVertical="0"/>' +
 
-        '<PageMargins ' +
-        'x:Bottom="0.20" ' +
-        'x:Left="0.15" ' +
-        'x:Right="0.15" ' +
-        'x:Top="0.20"/>' +
+    '<PageMargins ' +
+    'x:Bottom="0.20" ' +
+    'x:Left="0.15" ' +
+    'x:Right="0.15" ' +
+    'x:Top="0.20"/>' +
 
-      '</PageSetup>' +
+    '</PageSetup>' +
 
-      '<FitToPage/>' +
+    '<FitToPage/>' +
 
-      '<Print>' +
+    '<Print>' +
 
-        '<ValidPrinterInfo/>' +
+    '<ValidPrinterInfo/>' +
 
-        '<Gridlines>False</Gridlines>' +
+    '<Gridlines>False</Gridlines>' +
 
-        '<HorizontalCentered>1</HorizontalCentered>' +
+    '<HorizontalCentered>1</HorizontalCentered>' +
 
-      '</Print>' +
+    '</Print>' +
 
-      '<Selected/>' +
+    '<Selected/>' +
 
-      '<FreezePanes>' +
+    '<FreezePanes>' +
 
-        '<FrozenNoSplit/>' +
+    '<FrozenNoSplit/>' +
 
-        '<SplitHorizontal>3</SplitHorizontal>' +
+    '<SplitHorizontal>2</SplitHorizontal>' +
 
-        '<TopRowBottom>3</TopRowBottom>' +
+    '<TopRowBottom>2</TopRowBottom>' +
 
-      '</FreezePanes>' +
+    '</FreezePanes>' +
 
-      '<FitToWidth>1</FitToWidth>' +
+    '<FitToWidth>1</FitToWidth>' +
 
-      '<FitToHeight>0</FitToHeight>' +
+    '<FitToHeight>0</FitToHeight>' +
 
     '</WorksheetOptions>' +
 
-    '</Worksheet></Workbook>';
+    '</Worksheet>' +
+
+    '</Workbook>';
 
 
   download(
 
     new Blob(
-
       [xml],
-
       {
         type:
         'application/vnd.ms-excel'
       }
-
     ),
 
     formName()
@@ -2039,14 +3006,14 @@ function exportExcel(){
 
 
 /* =========================================================
-   BACKUP — ALL 4 FORMS IN ONE JSON FILE
+   BACKUP
    ========================================================= */
 
 function backup(){
 
   const backupObject = {
 
-    backupVersion:3,
+    backupVersion:5,
 
     app:
       'A.A.P Offline Data Entry',
@@ -2069,7 +3036,13 @@ function backup(){
         state.forms.tender,
 
       modelVillage:
-        state.forms.modelVillage
+        state.forms.modelVillage,
+
+      modelApprove:
+        state.forms.modelApprove,
+
+      modelTender:
+        state.forms.modelTender
 
     }
 
@@ -2089,7 +3062,8 @@ function backup(){
       ],
 
       {
-        type:'application/json'
+        type:
+          'application/json'
       }
 
     ),
@@ -2102,7 +3076,7 @@ function backup(){
 
 
 /* =========================================================
-   RESTORE — NEW + OLD JSON BOTH SUPPORTED
+   RESTORE
    ========================================================= */
 
 function restore(e){
@@ -2110,15 +3084,15 @@ function restore(e){
   const f =
     e.target.files[0];
 
-  if(!f)
-    return;
+
+  if(!f) return;
 
 
   const reader =
     new FileReader();
 
 
-  reader.onload = ()=>{
+  reader.onload = () => {
 
     try{
 
@@ -2128,36 +3102,30 @@ function restore(e){
         );
 
 
-      /*
-        পুরনো Array JSON,
-        নতুন Object JSON,
-        এবং {data:[]} JSON —
-        তিনটাই support করবে।
-      */
-
       const restored =
-        normalizeState(parsed);
+        normalizeState(
+          parsed
+        );
 
 
       const total =
-
-        restored.forms.approach.length +
-
-        restored.forms.approve.length +
-
-        restored.forms.tender.length +
-
-        restored.forms.modelVillage.length;
+        Object.values(
+          restored.forms
+        )
+        .reduce(
+          (sum,arr) =>
+            sum + arr.length,
+          0
+        );
 
 
       if(
-
         !total &&
-
         !Array.isArray(parsed) &&
-
-        !(parsed && parsed.forms)
-
+        !(
+          parsed &&
+          parsed.forms
+        )
       ){
 
         throw new Error(
@@ -2176,9 +3144,13 @@ function restore(e){
         '2026-27';
 
 
-      $('headerYear').textContent =
-        state.year
-          .replace('-',' - ');
+      $('headerYear')
+        .textContent =
+          state.year
+            .replace(
+              '-',
+              ' - '
+            );
 
 
       if(!persist()){
@@ -2201,27 +3173,29 @@ function restore(e){
 
         'Approach Scheme: ' +
         state.forms.approach.length +
-        '\n' +
 
-        'Approve Scheme: ' +
+        '\nApprove Scheme: ' +
         state.forms.approve.length +
-        '\n' +
 
-        'Tender Scheme: ' +
+        '\nTender Scheme: ' +
         state.forms.tender.length +
-        '\n' +
 
-        'Model Village: ' +
-        state.forms.modelVillage.length
+        '\nModel Village Approach: ' +
+        state.forms.modelVillage.length +
+
+        '\nModel Village Approve: ' +
+        state.forms.modelApprove.length +
+
+        '\nModel Village Tender: ' +
+        state.forms.modelTender.length
 
       );
 
-    }
 
-
-    catch(err){
+    }catch(err){
 
       console.error(err);
+
 
       alert(
 
@@ -2236,7 +3210,7 @@ function restore(e){
   };
 
 
-  reader.onerror = ()=>{
+  reader.onerror = () => {
 
     alert(
       'JSON file পড়া যায়নি। আবার চেষ্টা করুন।'
@@ -2247,6 +3221,7 @@ function restore(e){
 
   reader.readAsText(f);
 
+
   e.target.value = '';
 
 }
@@ -2256,32 +3231,47 @@ function restore(e){
    DOWNLOAD
    ========================================================= */
 
-function download(blob,name){
+function download(
+  blob,
+  name
+){
 
   const a =
     document.createElement('a');
+
 
   const url =
     URL.createObjectURL(blob);
 
 
-  a.href = url;
+  a.href =
+    url;
 
-  a.download = name;
+
+  a.download =
+    name;
 
 
-  document.body.appendChild(a);
+  document
+    .body
+    .appendChild(a);
+
 
   a.click();
 
 
-  setTimeout(()=>{
+  setTimeout(
+    () => {
 
-    URL.revokeObjectURL(url);
+      URL.revokeObjectURL(
+        url
+      );
 
-    a.remove();
+      a.remove();
 
-  },1000);
+    },
+    1000
+  );
 
 }
 
