@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+
+<title>A.A.P Offline Data Entry</title>
+
+<style>
+
+*{
+ box-sizing:border-box;
+}
+
+body{
+ margin:0;
+ background:#f1f5f9;
+ color:#17212b;
+ font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
+ font-size:15px;
+}
+
+header{
+ background:#17324d;
+ color:#fff;
+ padding:18px 12px;
+ text-align:center;
+}
+
+header h1{
+ font-size:20px;
+ margin:0;
+ font-weight:800;
+}
+
+header p{
+ font-size:12px;
+ margin:4px 0 0;
+}
+
+header x{
+ font-size:10px;
+ margin:2px 0 0;
+}
+
+
+.container{
+ max-width:1100px;
+ margin:auto;
+ padding:10px;
+}
+
+.card{
+ background:#fff;
+ border:1px solid #d8e0e7;
+ border-radius:12px;
+ margin-bottom:12px;
+ overflow:hidden;
+}
+
+.title{
+ font-size:17px;
+ font-weight:800;
+ padding:14px;
+ border-bottom:1px solid #e4e9ee;
+}
+
+.form{
+ padding:12px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:11px;
+}
+
+.field label{
+ display:block;
+ font-weight:800;
+ font-size:13px;
+ margin-bottom:5px;
+}
+
+input,
+select{
+ width:100%;
+ font:inherit;
+ border:1px solid #bdc9d4;
+ border-radius:9px;
+ padding:12px;
+ background:#fff;
+ outline:none;
+}
+
+input:focus,
+select:focus{
+ border-color:#1769aa;
+}
+
+button{
+ font:inherit;
+ font-weight:800;
+ border:0;
+ border-radius:9px;
+ padding:12px 14px;
+ cursor:pointer;
+ min-height:46px;
+}
+
+.primary{
+ background:#1769aa;
+ color:#fff;
+}
+
+.success{
+ background:#198754;
+ color:#fff;
+}
+
+.danger{
+ background:#c0392b;
+ color:#fff;
+}
+
+.gray{
+ background:#e8edf2;
+ color:#203040;
+}
+
+.actions,
+.toolbar{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:8px;
+ padding:12px;
+}
+
+.toolbar .search{
+ grid-column:1/-1;
+}
+
+.count{
+ text-align:center;
+ font-weight:800;
+ color:#198754;
+ padding:0 10px 10px;
+}
+
+.tablebox{
+ overflow:auto;
+ padding:0 8px 12px;
+}
+
+table{
+ border-collapse:collapse;
+ width:100%;
+ min-width:1150px;
+ font-size:12px;
+}
+
+th,
+td{
+ border:1px solid #aeb8c2;
+ padding:7px;
+ vertical-align:top;
+}
+
+th{
+ background:#e9eff4;
+ text-align:center;
+ white-space:nowrap;
+ font-weight:800;
+}
+
+td{
+ white-space:normal;
+ overflow-wrap:anywhere;
+ word-break:break-word;
+}
+
+.actionbtn{
+ padding:7px 9px;
+ min-height:34px;
+ font-size:12px;
+ margin:2px;
+}
+
+.empty{
+ text-align:center;
+ padding:30px;
+ color:#65717d;
+}
+
+@media(max-width:600px){
+
+ .form{
+  grid-template-columns:1fr;
+ }
+
+ .actions,
+ .toolbar{
+  grid-template-columns:1fr 1fr;
+ }
+
+ input{
+  font-size:16px;
+ }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+A.A.P Format of V.B.G.R.A.M.G
+</h1>
+
+<p>
+Mahishbathani Gram Panchayat Scheme 
+</p>
+
+<x>
+Data Entry Form 2026 - 27
+</x>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     DATA ENTRY
+     ===================================================== -->
+
+<div class="card">
+
+<div class="title" id="formTitle">
+➕ নতুন Data Entry
+</div>
+
+
+<div class="form">
+
+
+<div class="field">
+
+<label>
+Scheme Name
+</label>
+
+<input
+ id="scheme"
+ placeholder="Scheme Name">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Nature of Work
+</label>
+
+<input
+ id="nature"
+ placeholder="Nature of Work">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Length or Area
+</label>
+
+<input
+ id="lengthArea"
+ placeholder="যেমন 150 m">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Mouja
+</label>
+
+<select id="mouza">
+
+<option value="Sahara">SAHARA</option>
+
+<option value="Aihorani">AIHORANI</option>
+
+<option value="Badanpur">BADANPUR</option>
+
+<option value="Balarampur">BALARAMPUR</option>
+
+<option value="Bangabari">BANGABARI</option>
+
+<option value="Barkol">BARKOL</option>
+
+<option value="Belahar">BELAHAR</option>
+
+<option value="Chhotapara">CHHOTAPARA</option>
+
+<option value="Goalpara">GOALPARA</option>
+
+<option value="Gotpara">GOTPARA</option>
+
+<option value="Harirampur">HARIRAMPUR</option>
+
+<option value="Kadamtali">KADAMTALI</option>
+
+<option value="Kesrail Pirgain">
+KESRAIL PIRGAIN
+</option>
+
+<option value="Lakshmi Kandar">
+LAKSHMI KANDAR
+</option>
+
+<option value="Maheshkuri">
+MAHESHKURI
+</option>
+
+<option value="Mahish Bathani">
+MAHISH BATHANI
+</option>
+
+<option value="Mekpur">
+MEKPUR
+</option>
+
+<option value="Muralighat">
+MURALIGHAT
+</option>
+
+<option value="Paiti">
+PAITI
+</option>
+
+<option value="Patamari">
+PATAMARI
+</option>
+
+<option value="Rahutgaon">
+RAHUTGAON
+</option>
+
+<option value="Sabdalkhani">
+SABDALKHANI
+</option>
+
+<option value="Samsabad">
+SAMSABAD
+</option>
+
+<option value="Sanjail">
+SANJAIL
+</option>
+
+<option value="Sultandighi">
+SULTANDIGHI
+</option>
+
+<option value="Tutkhan">
+TUTKHAN
+</option>
+
+<option value="Uttar Bhatra">
+UTTAR BHATRA
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Starting Dag No.
+</label>
+
+<input
+ id="startDag"
+ placeholder="যেমন 202/1423">
+
+</div>
+
+
+<div class="field">
+
+<label>
+End Dag No.
+</label>
+
+<input
+ id="endDag"
+ placeholder="যেমন 205/1424">
+
+</div>
+
+
+<div class="field">
+
+<label>
+I.B.S. Job Card No.
+</label>
+
+<input
+ id="jobCard"
+ placeholder="Job Card No.">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Latitude
+</label>
+
+<input
+ id="lat1"
+ inputmode="decimal"
+ placeholder="Latitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Longitude
+</label>
+
+<input
+ id="long1"
+ inputmode="decimal"
+ placeholder="Longitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Latitude (2)
+</label>
+
+<input
+ id="lat2"
+ inputmode="decimal"
+ placeholder="Latitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Longitude (2)
+</label>
+
+<input
+ id="long2"
+ inputmode="decimal"
+ placeholder="Longitude">
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button
+ class="primary"
+ onclick="saveEntry()">
+
+💾 Save Entry
+
+</button>
+
+
+<button
+ class="gray"
+ onclick="clearForm()">
+
+↩ Clear
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     SAVED DATA
+     ===================================================== -->
+
+<div class="card">
+
+<div class="title">
+📋 Saved Data
+</div>
+
+
+<div class="toolbar">
+
+
+<input
+ class="search"
+ id="search"
+ oninput="render()"
+ placeholder="🔎 Scheme / Dag / Mouja দিয়ে Search করুন">
+
+
+<button
+ class="success"
+ onclick="exportExcel()">
+
+📊 Export Excel
+
+</button>
+
+
+<button
+ class="gray"
+ onclick="backup()">
+
+💾 Backup
+
+</button>
+
+
+<button
+ class="gray"
+ onclick="document.getElementById('restore').click()">
+
+♻ Restore
+
+</button>
+
+
+<input
+ id="restore"
+ type="file"
+ accept=".json"
+ hidden
+ onchange="restore(event)">
+
+
+<button
+ class="danger"
+ onclick="deleteAll()">
+
+🗑 Delete All
+
+</button>
+
+
+</div>
+
+
+<div
+ class="count"
+ id="count">
+
+0 entries
+
+</div>
+
+
+<div class="tablebox">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+S.L. No.<br>
+(Auto)
+</th>
+
+<th>
+Scheme Name
+</th>
+
+<th>
+Nature of Work
+</th>
+
+<th>
+Length / Area
+</th>
+
+<th>
+Mouja
+</th>
+
+<th>
+Starting Dag No.
+</th>
+
+<th>
+End Dag No.
+</th>
+
+<th>
+In Case I.B.S<br>
+Job Card No.
+</th>
+
+<th>
+Lat
+</th>
+
+<th>
+Long
+</th>
+
+<th>
+Lat
+</th>
+
+<th>
+Long
+</th>
+
+<th>
+Action
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="tbody">
+</tbody>
+
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   PERMANENT LOCAL STORAGE
+   ===================================================== */
+
+const KEY =
+ 'AAP_OFFLINE_DATA_MOBILE_V2';
+
+
+/*
+ Old versions-এর data থাকলে
+ সেটাও automatically খুঁজে current
+ storage-এ নিয়ে আসবে।
+*/
+
+const OLD_KEYS = [
+
+ 'AAP_OFFLINE_DATA',
+
+ 'AAP_DATA',
+
+ 'AAP_OFFLINE_DATA_MOBILE',
+
+ 'AAP_OFFLINE_DATA_MOBILE_V1'
+
+];
+
+
+const ids = [
+
+ 'scheme',
+
+ 'nature',
+
+ 'lengthArea',
+
+ 'mouza',
+
+ 'startDag',
+
+ 'endDag',
+
+ 'jobCard',
+
+ 'lat1',
+
+ 'long1',
+
+ 'lat2',
+
+ 'long2'
+
+];
+
+
+let data = [];
+
+let editIndex = -1;
+
+
+
+/* =====================================================
+   BASIC FUNCTIONS
+   ===================================================== */
+
+const $ = id =>
+ document.getElementById(id);
+
+
+const val = id =>
+ $(id).value.trim();
+
+
+
+/* =====================================================
+   HTML ESCAPE
+   ===================================================== */
+
+function esc(s){
+
+ return String(s ?? '').replace(
+
+  /[&<>"']/g,
+
+  c => ({
+
+   '&':'&amp;',
+
+   '<':'&lt;',
+
+   '>':'&gt;',
+
+   '"':'&quot;',
+
+   "'":'&#39;'
+
+  }[c])
+
+ );
+
+}
+
+
+
+/* =====================================================
+   LOAD DATA
+   ===================================================== */
+
+function load(){
+
+ try{
+
+  let raw =
+   localStorage.getItem(KEY);
+
+
+  if(raw){
+
+   const x =
+    JSON.parse(raw);
+
+   data =
+    Array.isArray(x)
+    ? x
+    : [];
+
+  }
+
+
+  else{
+
+   data = [];
+
+
+   for(
+    const oldKey of OLD_KEYS
+   ){
+
+    const oldRaw =
+     localStorage.getItem(oldKey);
+
+
+    if(!oldRaw)
+     continue;
+
+
+    try{
+
+     const oldData =
+      JSON.parse(oldRaw);
+
+
+     if(
+      Array.isArray(oldData) &&
+      oldData.length
+     ){
+
+      data = oldData;
+
+
+      localStorage.setItem(
+
+       KEY,
+
+       JSON.stringify(data)
+
+      );
+
+
+      break;
+
+     }
+
+    }
+
+    catch(e){}
+
+   }
+
+  }
+
+ }
+
+ catch(e){
+
+  data = [];
+
+ }
+
+
+ render();
+
+}
+
+
+
+/* =====================================================
+   SAVE DATA
+   ===================================================== */
+
+function persist(){
+
+ try{
+
+  /*
+   localStorage-এ কোনো expiry নেই।
+
+   Browser/site data clear না করা পর্যন্ত
+   data নিজে থেকে remove হবে না।
+  */
+
+  localStorage.setItem(
+
+   KEY,
+
+   JSON.stringify(data)
+
+  );
+
+
+  return true;
+
+ }
+
+ catch(e){
+
+  alert(
+   'Browser Storage unavailable। Backup ব্যবহার করুন।'
+  );
+
+  return false;
+
+ }
+
+}
+
+
+
+/* =====================================================
+   SAVE ENTRY
+   ===================================================== */
+
+function saveEntry(){
+
+ let x = {};
+
+
+ ids.forEach(id => {
+
+  x[id] = val(id);
+
+ });
+
+
+ if(
+  !x.scheme &&
+  !x.startDag
+ ){
+
+  alert(
+   'Scheme Name অথবা Starting Dag No. দিন।'
+  );
+
+  return;
+
+ }
+
+
+ if(editIndex >= 0){
+
+  data[editIndex] = x;
+
+ }
+
+ else{
+
+  data.push(x);
+
+ }
+
+
+ if(!persist())
+  return;
+
+
+ render();
+
+
+ clearForm();
+
+
+ alert(
+  'Entry Save হয়েছে ✓'
+ );
+
+}
+
+
+
+/* =====================================================
+   CLEAR FORM
+   ===================================================== */
+
+function clearForm(){
+
+ ids.forEach(id => {
+
+  $(id).value = '';
+
+ });
+
+
+ $('mouza').value =
+  'Sahara';
+
+
+ editIndex = -1;
+
+
+ $('formTitle').textContent =
+  '➕ নতুন Data Entry';
+
+}
+
+
+
+/* =====================================================
+   EDIT
+   ===================================================== */
+
+function edit(i){
+
+ const x =
+  data[i];
+
+
+ ids.forEach(id => {
+
+  $(id).value =
+   x[id] || '';
+
+ });
+
+
+ editIndex = i;
+
+
+ $('formTitle').textContent =
+  '✏️ Data Entry Edit করুন';
+
+
+ window.scrollTo({
+
+  top:0,
+
+  behavior:'smooth'
+
+ });
+
+}
+
+
+
+/* =====================================================
+   DELETE ONE
+   ===================================================== */
+
+function del(i){
+
+ if(
+  confirm(
+   'এই Entry মুছে ফেলবেন?'
+  )
+ ){
+
+  data.splice(i,1);
+
+  persist();
+
+  render();
+
+ }
+
+}
+
+
+
+/* =====================================================
+   RENDER TABLE
+   ===================================================== */
+
+function render(){
+
+ const q =
+  val('search').toLowerCase();
+
+
+ const list =
+  data
+
+  .map((x,i)=>({
+
+   x,
+   i
+
+  }))
+
+  .filter(o =>
+
+   JSON.stringify(o.x)
+    .toLowerCase()
+    .includes(q)
+
+  );
+
+
+ $('count').textContent =
+  list.length + ' entries';
+
+
+ $('tbody').innerHTML =
+
+  list.length
+
+  ?
+
+  list.map((o,n)=>{
+
+   const x = o.x;
+
+   const i = o.i;
+
+
+   const cells = [
+
+    'scheme',
+
+    'nature',
+
+    'lengthArea',
+
+    'mouza',
+
+    'startDag',
+
+    'endDag',
+
+    'jobCard',
+
+    'lat1',
+
+    'long1',
+
+    'lat2',
+
+    'long2'
+
+   ];
+
+
+   return (
+
+    '<tr>' +
+
+    '<td>' +
+
+    (n+1) +
+
+    '</td>' +
+
+
+    cells.map(
+
+     id =>
+
+      '<td>' +
+
+      esc(x[id]) +
+
+      '</td>'
+
+    ).join('') +
+
+
+    '<td>' +
+
+
+    '<button ' +
+
+    'class="actionbtn primary" ' +
+
+    'onclick="edit(' +
+
+    i +
+
+    ')">' +
+
+    'Edit' +
+
+    '</button>' +
+
+
+    '<button ' +
+
+    'class="actionbtn danger" ' +
+
+    'onclick="del(' +
+
+    i +
+
+    ')">' +
+
+    'Delete' +
+
+    '</button>' +
+
+
+    '</td>' +
+
+
+    '</tr>'
+
+   );
+
+  }).join('')
+
+
+  :
+
+
+  '<tr>' +
+
+  '<td colspan="13" class="empty">' +
+
+  'কোনো Data Entry নেই।' +
+
+  '</td>' +
+
+  '</tr>';
+
+}
+
+
+
+/* =====================================================
+   EXCEL ESCAPE
+   ===================================================== */
+
+function excelEsc(s){
+
+ return String(s ?? '')
+
+  .replace(
+   /&/g,
+   '&amp;'
+  )
+
+  .replace(
+   /</g,
+   '&lt;'
+  )
+
+  .replace(
+   />/g,
+   '&gt;'
+  )
+
+  .replace(
+   /"/g,
+   '&quot;'
+  )
+
+  .replace(
+   /'/g,
+   '&apos;'
+  );
+
+}
+
+
+
+/* =====================================================
+   EXCEL CELL
+   ===================================================== */
+
+function excelCell(
+
+ s,
+
+ style='Cell',
+
+ merge=''
+
+){
+
+ return (
+
+  '<Cell ss:StyleID="' +
+
+  style +
+
+  '"' +
+
+  (
+
+   merge !== ''
+
+   ?
+
+   ' ss:MergeAcross="' +
+
+   merge +
+
+   '"'
+
+   :
+
+   ''
+
+  ) +
+
+  '>' +
+
+  '<Data ss:Type="String">' +
+
+  excelEsc(s)
+
+   .replace(
+    /\n/g,
+    '&#10;'
+   ) +
+
+  '</Data>' +
+
+  '</Cell>'
+
+ );
+
+}
+
+
+
+/* =====================================================
+   EXPORT EXCEL
+   ===================================================== */
+
+function exportExcel(){
+
+ if(!data.length){
+
+  alert(
+   'Export করার মতো Data নেই।'
+  );
+
+  return;
+
+ }
+
+
+
+/* =================================================
+   EXCEL HEADERS
+   ================================================= */
+
+ const headers = [
+
+  'S.L.\nNo.',
+
+  'Scheme Name',
+
+  'Nature of\nWork',
+
+  'Length /\nArea',
+
+  'Mouja',
+
+  'Starting\nDag No.',
+
+  'End Dag\nNo.',
+
+  'In Case I.B.S\nJob Card\nNo.',
+
+  'Lat',
+
+  'Long',
+
+  'Lat',
+
+  'Long'
+
+ ];
+
+
+
+/* =================================================
+   COMPACT COLUMN WIDTHS
+   ================================================= */
+
+ const widths = [
+
+  32,
+
+  125,
+
+  72,
+
+  55,
+
+  58,
+
+  60,
+
+  60,
+
+  78,
+
+  38,
+
+  42,
+
+  38,
+
+  42
+
+ ];
+
+
+
+/* =================================================
+   XML START
+   ================================================= */
+
+ let xml =
+
+ '<?xml version="1.0" encoding="UTF-8"?>' +
+
+ '<?mso-application progid="Excel.Sheet"?>' +
+
+ '<Workbook ' +
+
+ 'xmlns="urn:schemas-microsoft-com:office:spreadsheet" ' +
+
+ 'xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+
+ 'xmlns:x="urn:schemas-microsoft-com:office:excel" ' +
+
+ 'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
+
+
+
+/* =================================================
+   STYLES
+   ================================================= */
+
+ xml +=
+
+ '<Styles>' +
+
+
+
+ '<Style ' +
+
+ 'ss:ID="Default" ' +
+
+ 'ss:Name="Normal">' +
+
+ '<Alignment ss:Vertical="Center"/>' +
+
+ '<Font ' +
+
+ 'ss:FontName="Arial" ' +
+
+ 'ss:Size="9"/>' +
+
+ '</Style>' +
+
+
+
+ '<Style ss:ID="Title">' +
+
+ '<Alignment ' +
+
+ 'ss:Horizontal="Center" ' +
+
+ 'ss:Vertical="Center" ' +
+
+ 'ss:WrapText="1"/>' +
+
+ '<Font ' +
+
+ 'ss:FontName="Arial" ' +
+
+ 'ss:Size="14" ' +
+
+ 'ss:Bold="1"/>' +
+
+ '</Style>' +
+
+
+
+ '<Style ss:ID="Header">' +
+
+ '<Alignment ' +
+
+ 'ss:Horizontal="Center" ' +
+
+ 'ss:Vertical="Center" ' +
+
+ 'ss:WrapText="1"/>' +
+
+ '<Font ' +
+
+ 'ss:FontName="Arial" ' +
+
+ 'ss:Size="10" ' +
+
+ 'ss:Bold="1"/>' +
+
+ '<Borders>' +
+
+ '<Border ' +
+
+ 'ss:Position="Bottom" ' +
+
+ 'ss:LineStyle="Continuous" ' +
+
+ 'ss:Weight="1"/>' +
+
+ '<Border ' +
+
+ 'ss:Position="Left" ' +
+
+ 'ss:LineStyle="Continuous" ' +
+
+ 'ss:Weight="1"/>' +
+
+ '<Border ' +
+
+ 'ss:Position="Right" ' +
+
+ 'ss:LineStyle="Continuous" ' +
+
+ 'ss:Weight="1"/>' +
+
+ '<Border ' +
+
+ 'ss:Position="Top" ' +
+
+ 'ss:LineStyle="Continuous" ' +
+
+ 'ss:Weight="1"/>' +
+
+ '</Borders>' +
+
+ '</Style>' +
+
+
+
+ '<Style ss:ID="Cell">' +
+
+ '<Alignment ' +
+
+ 'ss:Horizontal="Center" ' +
+
+ 'ss:Vertical="Center" ' +
+
+ 'ss:WrapText="1"/>' +
+
+ '<Font ' +
+
+ 'ss:FontName="Arial" ' +
+
+ 'ss:Size="9"/>' +
+
+ '<Borders>' +
+
+ '<Border ' +
+
+ 'ss:Position="Bottom" ' +
+
+ 'ss:LineStyle="Continuous" ' +
+
+ 'ss:Weight="1"/>' +
+
+ '<Border ' +
+
+ 'ss:Position="Left" ' +
+
+ 'ss:LineStyle="Continuous" ' +
+
+ 'ss:Weight="1"/>' +
+
+ '<Border ' +
+
+ 'ss:Position="Right" ' +
+
+ 'ss:LineStyle="Continuous" ' +
+
+ 'ss:Weight="1"/>' +
+
+ '<Border ' +
+
+ 'ss:Position="Top" ' +
+
+ 'ss:LineStyle="Continuous" ' +
+
+ 'ss:Weight="1"/>' +
+
+ '</Borders>' +
+
+ '</Style>' +
+
+
+ '</Styles>';
+
+
+
+/* =================================================
+   WORKSHEET
+   ================================================= */
+
+ xml +=
+
+ '<Worksheet ss:Name="AAP Format">' +
+
+ '<Table ' +
+
+ 'ss:ExpandedColumnCount="12" ' +
+
+ 'ss:ExpandedRowCount="' +
+
+ (data.length + 2) +
+
+ '" ' +
+
+ 'x:FullColumns="1" ' +
+
+ 'x:FullRows="1">';
+
+
+
+/* =================================================
+   COLUMN WIDTHS
+   ================================================= */
+
+ xml +=
+
+ widths.map(
+
+  w =>
+
+   '<Column ' +
+
+   'ss:Width="' +
+
+   w +
+
+   '" ' +
+
+   'ss:AutoFitWidth="1"/>'
+
+
+ ).join('');
+
+
+
+/* =================================================
+   TITLE
+   ================================================= */
+
+ xml +=
+
+ '<Row ss:Height="32">' +
+
+ excelCell(
+
+  'A. A. P Format of V. B. G. R. A. M. G',
+
+  'Title',
+
+  '11'
+
+ ) +
+
+ '</Row>';
+
+
+
+/* =================================================
+   HEADER
+   ================================================= */
+
+ xml +=
+
+ '<Row ss:Height="62">' +
+
+ headers.map(
+
+  h =>
+
+   excelCell(
+
+    h,
+
+    'Header'
+
+   )
+
+ ).join('') +
+
+ '</Row>';
+
+
+
+/* =================================================
+   DATA ROWS
+   ================================================= */
+
+ data.forEach((x,n)=>{
+
+
+  /* -----------------------------------------------
+     MOUJA CAPITAL
+     ----------------------------------------------- */
+
+  const moujaName =
+
+   String(
+    x.mouza || ''
+   ).toUpperCase();
+
+
+
+  /* -----------------------------------------------
+     12 COLUMNS
+     ----------------------------------------------- */
+
+  const row = [
+
+   n + 1,
+
+   x.scheme || '',
+
+   x.nature || '',
+
+   x.lengthArea || '',
+
+   moujaName,
+
+   x.startDag || '',
+
+   x.endDag || '',
+
+   x.jobCard || '',
+
+   x.lat1 || '',
+
+   x.long1 || '',
+
+   x.lat2 || '',
+
+   x.long2 || ''
+
+  ];
+
+
+
+  /* -----------------------------------------------
+     AUTO ROW HEIGHT
+     ----------------------------------------------- */
+
+  let maxLines = 1;
+
+
+  row.forEach(
+
+   (value,index)=>{
+
+    const text =
+     String(value ?? '');
+
+
+    let charsPerLine = 8;
+
+
+    /*
+     Scheme Name
+    */
+
+    if(index === 1){
+
+     charsPerLine = 17;
+
+    }
+
+
+    /*
+     Nature of Work
+    */
+
+    else if(index === 2){
+
+     charsPerLine = 10;
+
+    }
+
+
+    /*
+     Length / Area
+    */
+
+    else if(index === 3){
+
+     charsPerLine = 8;
+
+    }
+
+
+    /*
+     Mouja
+    */
+
+    else if(index === 4){
+
+     charsPerLine = 9;
+
+    }
+
+
+    /*
+     Starting / End Dag
+    */
+
+    else if(
+     index === 5 ||
+     index === 6
+    ){
+
+     charsPerLine = 8;
+
+    }
+
+
+    /*
+     Job Card
+    */
+
+    else if(index === 7){
+
+     charsPerLine = 11;
+
+    }
+
+
+    /*
+     Lat / Long
+    */
+
+    else{
+
+     charsPerLine = 8;
+
+    }
+
+
+    const calculated =
+
+     Math.ceil(
+      text.length /
+      charsPerLine
+     );
+
+
+    const manualLines =
+
+     text.split(/\n/).length;
+
+
+    maxLines = Math.max(
+
+     maxLines,
+
+     calculated,
+
+     manualLines
+
+    );
+
+   }
+
+  );
+
+
+
+  /*
+   Blank / short data হলে
+   row ছোট থাকবে।
+
+   বড় text হলে row বড় হবে।
+
+   Maximum 75.
+  */
+
+  const rowHeight =
+
+   Math.max(
+
+    20,
+
+    Math.min(
+
+     75,
+
+     14 +
+     maxLines * 9
+
+    )
+
+   );
+
+
+
+  xml +=
+
+   '<Row ' +
+
+   'ss:AutoFitHeight="1" ' +
+
+   'ss:Height="' +
+
+   rowHeight +
+
+   '">' +
+
+
+   row.map(
+
+    v =>
+
+     excelCell(
+
+      v,
+
+      'Cell'
+
+     )
+
+   ).join('') +
+
+
+   '</Row>';
+
+ });
+
+
+
+/* =================================================
+   PAGE SETUP
+   ================================================= */
+
+ xml +=
+
+ '</Table>' +
+
+
+ '<WorksheetOptions ' +
+
+ 'xmlns="urn:schemas-microsoft-com:office:excel">' +
+
+
+ '<PageSetup>' +
+
+
+ '<Layout ' +
+
+ 'x:Orientation="Landscape" ' +
+
+ 'x:CenterHorizontal="1" ' +
+
+ 'x:CenterVertical="0"/>' +
+
+
+ '<PageMargins ' +
+
+ 'x:Bottom="0.20" ' +
+
+ 'x:Left="0.15" ' +
+
+ 'x:Right="0.15" ' +
+
+ 'x:Top="0.20"/>' +
+
+
+ '</PageSetup>' +
+
+
+ '<FitToPage/>' +
+
+
+ '<Print>' +
+
+ '<ValidPrinterInfo/>' +
+
+ '<Gridlines>False</Gridlines>' +
+
+ '<HorizontalCentered>1</HorizontalCentered>' +
+
+ '</Print>' +
+
+
+ '<Selected/>' +
+
+
+ '<FreezePanes>' +
+
+ '<FrozenNoSplit/>' +
+
+ '<SplitHorizontal>2</SplitHorizontal>' +
+
+ '<TopRowBottom>2</TopRowBottom>' +
+
+ '</FreezePanes>' +
+
+
+ '<FitToWidth>1</FitToWidth>' +
+
+ '<FitToHeight>0</FitToHeight>' +
+
+
+ '</WorksheetOptions>' +
+
+
+ '</Worksheet>' +
+
+
+ '</Workbook>';
+
+
+
+/* =================================================
+   DOWNLOAD EXCEL
+   ================================================= */
+
+ download(
+
+  new Blob(
+
+   [xml],
+
+   {
+    type:
+     'application/vnd.ms-excel'
+   }
+
+  ),
+
+  'AAP_Format_A4.xls'
+
+ );
+
+}
+
+
+
+/* =====================================================
+   BACKUP
+   ===================================================== */
+
+function backup(){
+
+ download(
+
+  new Blob(
+
+   [
+
+    JSON.stringify(
+
+     data,
+
+     null,
+
+     2
+
+    )
+
+   ],
+
+   {
+    type:'application/json'
+   }
+
+  ),
+
+  'AAP_Data_Backup.json'
+
+ );
+
+}
+
+
+
+/* =====================================================
+   RESTORE
+   ===================================================== */
+
+function restore(e){
+
+ const f =
+  e.target.files[0];
+
+
+ if(!f)
+  return;
+
+
+ const r =
+  new FileReader();
+
+
+ r.onload = ()=>{
+
+  try{
+
+   const x =
+    JSON.parse(r.result);
+
+
+   if(!Array.isArray(x))
+    throw 1;
+
+
+   data = x;
+
+
+   if(!persist())
+    throw 2;
+
+
+   render();
+
+
+   alert(
+    'Backup Restore হয়েছে ✓'
+   );
+
+  }
+
+  catch(z){
+
+   alert(
+    'সঠিক Backup file নয়।'
+   );
+
+  }
+
+ };
+
+
+ r.readAsText(f);
+
+
+ e.target.value = '';
+
+}
+
+
+
+/* =====================================================
+   DELETE ALL
+   ===================================================== */
+
+function deleteAll(){
+
+ if(
+
+  data.length &&
+
+  confirm(
+   'সব Data মুছে ফেলবেন?'
+  )
+
+ ){
+
+  data = [];
+
+  persist();
+
+  render();
+
+  clearForm();
+
+ }
+
+}
+
+
+
+/* =====================================================
+   DOWNLOAD
+   ===================================================== */
+
+function download(
+ blob,
+ name
+){
+
+ const a =
+  document.createElement('a');
+
+
+ a.href =
+  URL.createObjectURL(blob);
+
+
+ a.download =
+  name;
+
+
+ document.body.appendChild(a);
+
+
+ a.click();
+
+
+ setTimeout(()=>{
+
+  URL.revokeObjectURL(
+   a.href
+  );
+
+  a.remove();
+
+ },1000);
+
+}
+
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+load();
+
+
+</script>
+
+</body>
+</html>
