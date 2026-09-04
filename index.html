@@ -389,7 +389,17 @@ function normalizeEntry(x, index = 0, formKey = 'approach'){
   let baseIndex = Number(x.sortIndex ?? (globalSortCounter + index));
   let defaultPhase = (formKey === 'modelVillage' || formKey === 'modelApprove' || formKey === 'modelTender') ? 'Phase 1' : 'Phase 2';
   
-  let rawDate = String(x.date || todayISO());
+  let existingDate = x.date ? String(x.date).trim() : '';
+  let rawDate = existingDate;
+  if (!rawDate) {
+    if (baseIndex && !isNaN(baseIndex) && baseIndex > 1000000000) {
+      const d = new Date(baseIndex);
+      const local = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
+      rawDate = toDDMMYYYY(local.toISOString().slice(0,10));
+    } else {
+      rawDate = todayISO();
+    }
+  }
   let formattedDate = (rawDate.includes('-') && rawDate.split('-')[0].length === 4) ? toDDMMYYYY(rawDate) : rawDate;
 
   return {
@@ -546,7 +556,6 @@ function saveEntry(){
     x.phase = val('phase') || 'Phase 1';
   }
 
-  x.date = toDDMMYYYY(val('entryDate')) || toDDMMYYYY(todayISO());
   x.year = state.year;
   
   if(!x.scheme && !x.startDag){ alert('Scheme Name অথবা Starting Dag No. দিন।'); return; }
@@ -559,6 +568,7 @@ function saveEntry(){
     x.tenderIndex = arr[editIndex].tenderIndex;
     x.modelApproveIndex = arr[editIndex].modelApproveIndex;
     x.modelTenderIndex = arr[editIndex].modelTenderIndex;
+    x.date = arr[editIndex].date; // Keep original date when editing unless explicitly changed
     arr[editIndex] = x;
   } else {
     x.id = createId();
@@ -568,6 +578,7 @@ function saveEntry(){
     x.tenderIndex = now;
     x.modelApproveIndex = now;
     x.modelTenderIndex = now;
+    x.date = toDDMMYYYY(val('entryDate')) || toDDMMYYYY(todayISO());
     arr.push(x);
   }
   
@@ -641,7 +652,7 @@ function toggleAll(box){
 
 function updateSelectedInfo(){
   const selected = getSelectedIndexes();
-  $('selectedInfo').textContent = selected.length ? selected.length + ' টি Project Select করা হয়েছে' : 'কোনো Project Select করা হয়নি';
+  $('selectedInfo').textContent = selected.length ? selected.length + ' টি Project Select করা হয়েছে' : 'কোনo Project Select করা হয়নি';
 }
 
 function updateTransferButtons(){
