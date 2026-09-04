@@ -125,7 +125,8 @@ color:#17324d;
 border:1px solid #cbd7e1
 }
 
-.actions,.toolbar{
+.actions,
+.toolbar{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:8px;
@@ -267,7 +268,8 @@ min-height:42px
 text-align:center
 }
 
-.rowcheck,.selectAll{
+.rowcheck,
+.selectAll{
 cursor:pointer
 }
 
@@ -299,34 +301,15 @@ color:#667;
 margin-top:4px
 }
 
-.approveBox{
-grid-column:1/-1;
-border:2px solid #1769aa;
-border-radius:10px;
-padding:12px;
-background:#f7fbff;
-margin-top:4px
-}
-
-.approveTitle{
-font-weight:900;
-color:#1769aa;
-font-size:15px;
-margin-bottom:10px
-}
-
-.approveGrid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:11px
-}
-
 @media(max-width:700px){
+
 .form{
 grid-template-columns:1fr
 }
 
-.actions,.toolbar,.topbar{
+.actions,
+.toolbar,
+.topbar{
 grid-template-columns:1fr 1fr
 }
 
@@ -334,17 +317,15 @@ grid-template-columns:1fr 1fr
 grid-template-columns:1fr 1fr
 }
 
-.stagebar,.transferbar{
-grid-template-columns:1fr
-}
-
-.approveGrid{
+.stagebar,
+.transferbar{
 grid-template-columns:1fr
 }
 
 input{
 font-size:16px
 }
+
 }
 </style>
 </head>
@@ -352,128 +333,231 @@ font-size:16px
 <body>
 
 <header>
-<h1 id="appHeading">A.A.P Format of V.B.G.R.A.M.G</h1>
-<p>Mahishbathani Gram Panchayat Scheme</p>
+
+<h1 id="appHeading">
+A.A.P Format of V.B.G.R.A.M.G
+</h1>
+
+<p>
+Mahishbathani Gram Panchayat Scheme
+</p>
+
 <div class="yearText">
-Data Entry Form — <span id="headerYear">2026 - 27</span>
+Data Entry Form —
+<span id="headerYear">2026 - 27</span>
 </div>
+
 </header>
+
 
 <div class="container">
 
+
+<!-- FORM SELECT -->
+
 <div class="card">
 
-<div class="title">📁 Form Select</div>
+<div class="title">
+📁 Form Select
+</div>
 
 <div class="topbar">
 
 <div>
-<label><b>Financial Year</b></label>
+
+<label>
+<b>Financial Year</b>
+</label>
 
 <select id="year" onchange="changeYear()">
+
 <option>2025-26</option>
 <option selected>2026-27</option>
 <option>2027-28</option>
 <option>2028-29</option>
 <option>2029-30</option>
 <option>2030-31</option>
+
 </select>
+
 </div>
+
 
 <div>
-<label><b>Date</b></label>
-<input id="entryDate" type="date">
+
+<label>
+<b>Date</b>
+</label>
+
+<input
+id="entryDate"
+type="date">
+
 </div>
 
 </div>
+
 
 <div class="formnav">
 
-<button id="nav-approach"
+<button
+id="nav-approach"
 class="active"
 onclick="switchForm('approach')">
+
 ➕ Approach Scheme
+
 </button>
 
-<button id="nav-approve"
+
+<button
+id="nav-approve"
 class="secondary"
 onclick="switchForm('approve')">
+
 ✅ Approve Scheme
+
 </button>
 
-<button id="nav-tender"
+
+<button
+id="nav-tender"
 class="secondary"
 onclick="switchForm('tender')">
+
 📄 Tender Scheme
+
 </button>
 
-<button id="nav-model"
+
+<button
+id="nav-model"
 class="secondary"
 onclick="switchForm('modelVillage')">
+
 🏘️ Model Village
+
 </button>
 
 </div>
 
-<div id="modelStageBar" class="stagebar">
 
-<button id="stage-modelVillage"
+<!-- MODEL VILLAGE STAGES -->
+
+<div
+id="modelStageBar"
+class="stagebar">
+
+<button
+id="stage-modelVillage"
 class="active"
 onclick="switchForm('modelVillage')">
+
 ➕ Model Village Approach
+
 </button>
 
-<button id="stage-modelApprove"
+
+<button
+id="stage-modelApprove"
 class="secondary"
 onclick="switchForm('modelApprove')">
+
 ✅ Model Village Approve
+
 </button>
 
-<button id="stage-modelTender"
+
+<button
+id="stage-modelTender"
 class="secondary"
 onclick="switchForm('modelTender')">
+
 📄 Model Village Tender
+
 </button>
 
 </div>
 
+
 <div class="notice">
+
 বর্তমানে:
-<span id="currentFormName">Approach Scheme</span>
-</div>
+<span id="currentFormName">
+Approach Scheme
+</span>
+
+— কোন Stage-এ কোন নতুন field থাকবে এবং Transfer-এ কী যাবে, তা নিচে নির্ধারিত নিয়মে কাজ করবে।
 
 </div>
 
+</div>
 
-<!-- ENTRY FORM -->
+
+
+<!-- DATA ENTRY -->
 
 <div class="card">
 
-<div class="title" id="formTitle">
+<div
+class="title"
+id="formTitle">
+
 ➕ Approach Scheme — নতুন Data Entry
+
 </div>
+
 
 <div class="form">
 
-<div class="field">
-<label>Scheme Name</label>
-<input id="scheme" placeholder="Scheme Name">
-</div>
 
 <div class="field">
-<label>Nature of Work</label>
-<input id="nature" placeholder="Nature of Work">
+
+<label>
+Scheme Name
+</label>
+
+<input
+id="scheme"
+placeholder="Scheme Name">
+
 </div>
 
-<div class="field">
-<label>Length or Area</label>
-<input id="lengthArea" placeholder="যেমন 150 m">
-</div>
 
 <div class="field">
-<label>Mouja</label>
+
+<label>
+Nature of Work
+</label>
+
+<input
+id="nature"
+placeholder="Nature of Work">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Length or Area
+</label>
+
+<input
+id="lengthArea"
+placeholder="যেমন 150 m">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Mouja
+</label>
 
 <select id="mouza">
+
 <option>Sahara</option>
 <option>Aihorani</option>
 <option>Badanpur</option>
@@ -501,134 +585,219 @@ onclick="switchForm('modelTender')">
 <option>Sultandighi</option>
 <option>Tutkhan</option>
 <option>Uttar Bhatra</option>
+
 </select>
 
 </div>
 
-<div class="field">
-<label>Starting Dag No.</label>
-<input id="startDag" placeholder="যেমন 202/1423">
-</div>
 
 <div class="field">
-<label>End Dag No.</label>
-<input id="endDag" placeholder="যেমন 205/1424">
-</div>
 
-<div class="field">
-<label>In Case I.B.S Job Card No.</label>
-<input id="jobCard" placeholder="Job Card No.">
-</div>
+<label>
+Starting Dag No.
+</label>
 
-<div class="field">
-<label>Latitude</label>
-<input id="lat1" inputmode="decimal" placeholder="Latitude">
-</div>
+<input
+id="startDag"
+placeholder="যেমন 202/1423">
 
-<div class="field">
-<label>Longitude</label>
-<input id="long1" inputmode="decimal" placeholder="Longitude">
-</div>
-
-<div class="field">
-<label>Latitude</label>
-<input id="lat2" inputmode="decimal" placeholder="Latitude">
-</div>
-
-<div class="field">
-<label>Longitude</label>
-<input id="long2" inputmode="decimal" placeholder="Longitude">
 </div>
 
 
-<!-- APPROVE FIELDS -->
+<div class="field">
 
-<div id="approveBox" class="approveBox hidden">
+<label>
+End Dag No.
+</label>
 
-<div class="approveTitle">
-✅ Approve Scheme Information
+<input
+id="endDag"
+placeholder="যেমন 205/1424">
+
 </div>
 
-<div class="approveGrid">
 
 <div class="field">
-<label>Sector</label>
-<input id="sector" placeholder="Sector">
+
+<label>
+I.B.S. Job Card No.
+</label>
+
+<input
+id="jobCard"
+placeholder="Job Card No.">
+
 </div>
 
+
 <div class="field">
-<label>Estimated Cost</label>
-<input id="estimateCost"
+
+<label>
+Latitude
+</label>
+
+<input
+id="lat1"
+inputmode="decimal"
+placeholder="Latitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Longitude
+</label>
+
+<input
+id="long1"
+inputmode="decimal"
+placeholder="Longitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Latitude (2)
+</label>
+
+<input
+id="lat2"
+inputmode="decimal"
+placeholder="Latitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Longitude (2)
+</label>
+
+<input
+id="long2"
+inputmode="decimal"
+placeholder="Longitude">
+
+</div>
+
+
+
+<!-- APPROVE ONLY FIELDS -->
+
+<div
+id="approvalFields"
+class="field hidden">
+
+<label>
+Sector
+</label>
+
+<input
+id="sector"
+placeholder="Sector">
+
+</div>
+
+
+<div
+id="approvalCostField"
+class="field hidden">
+
+<label>
+Estimated Cost
+</label>
+
+<input
+id="estimateCost"
 inputmode="decimal"
 placeholder="Estimated Cost">
+
 </div>
 
-<div class="field">
-<label>Fund</label>
-<input id="fund"
+
+<div
+id="approvalFundField"
+class="field hidden">
+
+<label>
+Fund
+</label>
+
+<input
+id="fund"
 placeholder="যেমন 16th Untied / 5TH Theme 3">
+
 </div>
 
-<div class="field">
+
+<div
+id="approvalSLField"
+class="field hidden">
+
 <label>
 New S.L. No.
-<span class="hint">(ম্যানুয়ালি লিখবেন)</span>
+
+<span class="hint">
+(ম্যানুয়ালি লিখবেন)
+</span>
+
 </label>
-<input id="newSL"
+
+<input
+id="newSL"
 placeholder="যেমন SL-86">
-</div>
 
 </div>
-</div>
 
-
-<!-- TENDER FIELD -->
-
-<div id="tenderBox" class="approveBox hidden">
-
-<div class="approveTitle">
-📄 Tender Information
-</div>
-
-<div class="field">
-<label>Estimated Cost</label>
-
-<input id="tenderEstimateCost"
-inputmode="decimal"
-placeholder="Estimated Cost">
-</div>
-
-</div>
 
 </div>
 
 
 <div class="actions">
 
-<button class="primary"
+<button
+class="primary"
 onclick="saveEntry()">
+
 💾 Save Entry
+
 </button>
 
-<button class="gray"
+
+<button
+class="gray"
 onclick="clearForm()">
+
 ↩ Clear
+
 </button>
 
 </div>
 
 </div>
+
 
 
 <!-- SAVED DATA -->
 
 <div class="card">
 
-<div class="title" id="savedTitle">
+<div
+class="title"
+id="savedTitle">
+
 📋 Approach Scheme — Saved Data
+
 </div>
 
+
 <div class="toolbar">
+
 
 <input
 class="search"
@@ -636,20 +805,33 @@ id="search"
 oninput="render()"
 placeholder="🔎 Scheme / Dag / Mouja / Sector / Fund দিয়ে Search করুন">
 
-<button class="success"
+
+<button
+class="success"
 onclick="exportExcel()">
+
 📊 Export Excel
+
 </button>
 
-<button class="gray"
+
+<button
+class="gray"
 onclick="backup()">
+
 💾 Backup All
+
 </button>
 
-<button class="gray"
+
+<button
+class="gray"
 onclick="document.getElementById('restore').click()">
+
 ♻ Restore
+
 </button>
+
 
 <input
 id="restore"
@@ -658,42 +840,73 @@ accept=".json,application/json"
 hidden
 onchange="restore(event)">
 
-<button class="danger"
+
+<button
+class="danger"
 onclick="deleteCurrentForm()">
+
 🗑 Delete This Form
+
 </button>
 
-<button class="danger"
+
+<button
+class="danger"
 onclick="deleteAll()">
+
 🗑 Delete ALL Forms
+
 </button>
 
 </div>
 
 
-<div id="transferBar" class="transferbar">
 
-<button id="nextTransferBtn"
+<!-- TRANSFER -->
+
+<div
+id="transferBar"
+class="transferbar">
+
+<button
+id="nextTransferBtn"
 class="success"
 onclick="transferNext()">
+
 ➡ পরের Stage-এ Transfer
+
 </button>
 
-<button id="backTransferBtn"
+
+<button
+id="backTransferBtn"
 class="gray"
 onclick="transferBack()">
+
 ⬅ আগের Stage-এ Back
+
 </button>
 
 </div>
 
-<div id="selectedInfo" class="selectedInfo">
+
+<div
+id="selectedInfo"
+class="selectedInfo">
+
 কোনো Project Select করা হয়নি
+
 </div>
 
-<div class="count" id="count">
+
+<div
+class="count"
+id="count">
+
 0 entries
+
 </div>
+
 
 <div class="tablebox">
 
@@ -715,15 +928,16 @@ onclick="transferBack()">
 <script>
 
 
-/* =========================================
-STORAGE
-========================================= */
+/* ================================
+   STORAGE
+================================ */
 
 const STORAGE_KEY =
-'AAP_OFFLINE_DATA_MOBILE_V8';
+'AAP_OFFLINE_DATA_MOBILE_V7';
+
 
 const OLD_KEYS = [
-'AAP_OFFLINE_DATA_MOBILE_V7',
+
 'AAP_OFFLINE_DATA_MOBILE_V6',
 'AAP_OFFLINE_DATA_MOBILE_V5',
 'AAP_OFFLINE_DATA_MOBILE_V4',
@@ -733,12 +947,14 @@ const OLD_KEYS = [
 'AAP_DATA',
 'AAP_OFFLINE_DATA_MOBILE',
 'AAP_OFFLINE_DATA_MOBILE_V1'
+
 ];
 
 
-/* =========================================
-FORM NAMES
-========================================= */
+
+/* ================================
+   FORM NAMES
+================================ */
 
 const FORM_NAMES = {
 
@@ -757,9 +973,10 @@ modelTender:'Model Village Tender'
 };
 
 
-/* =========================================
-FLOW
-========================================= */
+
+/* ================================
+   FLOW
+================================ */
 
 const FLOW = {
 
@@ -796,9 +1013,10 @@ back:'modelApprove'
 };
 
 
-/* =========================================
-BASE FIELDS
-========================================= */
+
+/* ================================
+   BASE FIELDS
+================================ */
 
 const BASE_IDS = [
 
@@ -817,56 +1035,63 @@ const BASE_IDS = [
 ];
 
 
-/* =========================================
-DEFAULT STATE
-========================================= */
 
-function stateDefault(){
+/* ================================
+   DEFAULT STATE
+================================ */
 
-return {
+const stateDefault = () => ({
 
-version:8,
+version:7,
 
 year:'2026-27',
 
 forms:{
 
 approach:[],
+
 approve:[],
+
 tender:[],
 
 modelVillage:[],
+
 modelApprove:[],
+
 modelTender:[]
 
 }
 
-};
+});
 
-}
 
 
 let state =
 stateDefault();
 
+
 let currentForm =
 'approach';
+
 
 let editIndex =
 -1;
 
 
-/* =========================================
-HELPERS
-========================================= */
+
+/* ================================
+   HELPERS
+================================ */
 
 const $ =
 id => document.getElementById(id);
+
 
 const val =
 id => $(id)
 ? $(id).value.trim()
 : '';
+
 
 
 function todayISO(){
@@ -884,6 +1109,7 @@ d.getTimezoneOffset()*60000
 }
 
 
+
 function esc(s){
 
 return String(s ?? '')
@@ -893,9 +1119,13 @@ return String(s ?? '')
 c => ({
 
 '&':'&amp;',
+
 '<':'&lt;',
+
 '>':'&gt;',
+
 '"':'&quot;',
+
 "'":'&#39;'
 
 }[c])
@@ -903,6 +1133,7 @@ c => ({
 );
 
 }
+
 
 
 function createId(){
@@ -916,24 +1147,25 @@ Math.random()
 }
 
 
+
 function isApproval(f){
 
-return (
+return
 f === 'approve' ||
-f === 'modelApprove'
-);
+f === 'modelApprove';
 
 }
+
 
 
 function isTender(f){
 
-return (
+return
 f === 'tender' ||
-f === 'modelTender'
-);
+f === 'modelTender';
 
 }
+
 
 
 function isModel(f){
@@ -943,24 +1175,10 @@ return f.startsWith('model');
 }
 
 
-function formName(){
 
-return FORM_NAMES[currentForm];
-
-}
-
-
-function currentData(){
-
-return state.forms[currentForm];
-
-}
-
-
-
-/* =========================================
-NORMALIZE ENTRY
-========================================= */
+/* ================================
+   NORMALIZE ENTRY
+================================ */
 
 function normalizeEntry(x){
 
@@ -969,97 +1187,84 @@ x = x || {};
 return {
 
 id:String(
-x.id ||
-createId()
+x.id || createId()
 ),
 
 scheme:String(
-x.scheme ??
-''
+x.scheme ?? ''
 ),
 
 nature:String(
-x.nature ??
-''
+x.nature ?? ''
 ),
 
 lengthArea:String(
-x.lengthArea ??
-''
+x.lengthArea ?? ''
 ),
 
 mouza:String(
-x.mouza ??
-'Sahara'
+x.mouza ?? 'Sahara'
 ),
 
 startDag:String(
-x.startDag ??
-''
+x.startDag ?? ''
 ),
 
 endDag:String(
-x.endDag ??
-''
+x.endDag ?? ''
 ),
 
 jobCard:String(
-x.jobCard ??
-''
+x.jobCard ?? ''
 ),
 
 lat1:String(
-x.lat1 ??
-''
+x.lat1 ?? ''
 ),
 
 long1:String(
-x.long1 ??
-''
+x.long1 ?? ''
 ),
 
 lat2:String(
-x.lat2 ??
-''
+x.lat2 ?? ''
 ),
 
 long2:String(
-x.long2 ??
-''
+x.long2 ?? ''
 ),
 
 date:String(
-x.date ??
-''
+x.date ?? ''
 ),
 
 year:String(
-x.year ??
-''
+x.year ?? ''
 ),
 
 sector:String(
-x.sector ??
-''
+x.sector ?? ''
 ),
 
 estimateCost:String(
-x.estimateCost ??
-''
+x.estimateCost ?? ''
 ),
 
 fund:String(
-x.fund ??
-''
+x.fund ?? ''
 ),
 
 newSL:String(
-x.newSL ??
-''
+x.newSL ?? ''
 ),
 
 _backSnapshot:
-x._backSnapshot || null
+x._backSnapshot || null,
+
+_order:
+Number.isFinite(Number(x._order))
+? Number(x._order)
+: null
 
 };
 
@@ -1067,9 +1272,9 @@ x._backSnapshot || null
 
 
 
-/* =========================================
-NORMALIZE STATE
-========================================= */
+/* ================================
+   NORMALIZE STATE
+================================ */
 
 function normalizeState(input){
 
@@ -1080,7 +1285,22 @@ stateDefault();
 if(Array.isArray(input)){
 
 r.forms.approach =
-input.map(normalizeEntry);
+input.map((entry,i) => {
+
+const x =
+normalizeEntry(entry);
+
+if(
+!Number.isFinite(
+Number(x._order)
+)
+)
+x._order =
+i;
+
+return x;
+
+});
 
 return r;
 
@@ -1104,9 +1324,7 @@ input.forms &&
 typeof input.forms === 'object'
 ){
 
-Object.keys(
-r.forms
-)
+Object.keys(r.forms)
 .forEach(k => {
 
 if(
@@ -1117,7 +1335,22 @@ input.forms[k]
 
 r.forms[k] =
 input.forms[k]
-.map(normalizeEntry);
+.map((entry,i) => {
+
+const x =
+normalizeEntry(entry);
+
+if(
+!Number.isFinite(
+Number(x._order)
+)
+)
+x._order =
+i;
+
+return x;
+
+});
 
 }
 
@@ -1130,9 +1363,22 @@ Array.isArray(input.data)
 ){
 
 r.forms.approach =
-input.data.map(
-normalizeEntry
-);
+input.data.map((entry,i) => {
+
+const x =
+normalizeEntry(entry);
+
+if(
+!Number.isFinite(
+Number(x._order)
+)
+)
+x._order =
+i;
+
+return x;
+
+});
 
 }
 
@@ -1145,15 +1391,16 @@ return r;
 
 
 
-/* =========================================
-PERSIST
-========================================= */
+/* ================================
+   SAVE STORAGE
+================================ */
 
 function persist(){
 
 try{
 
-state.version = 8;
+state.version =
+7;
 
 localStorage.setItem(
 STORAGE_KEY,
@@ -1178,20 +1425,22 @@ return false;
 
 
 
-/* =========================================
-LOAD
-========================================= */
+/* ================================
+   LOAD
+================================ */
 
 function load(){
 
-let loaded = false;
+let loaded =
+false;
 
 try{
 
-const raw =
+let raw =
 localStorage.getItem(
 STORAGE_KEY
 );
+
 
 if(raw){
 
@@ -1200,7 +1449,8 @@ normalizeState(
 JSON.parse(raw)
 );
 
-loaded = true;
+loaded =
+true;
 
 }
 
@@ -1224,11 +1474,13 @@ JSON.parse(q)
 
 persist();
 
-loaded = true;
+loaded =
+true;
 
 break;
 
 }
+
 catch(e){}
 
 }
@@ -1238,6 +1490,7 @@ catch(e){}
 }
 
 }
+
 catch(e){}
 
 
@@ -1253,8 +1506,10 @@ $('year').value =
 state.year ||
 '2026-27';
 
+
 $('entryDate').value =
 todayISO();
+
 
 updateUI();
 
@@ -1262,75 +1517,98 @@ updateUI();
 
 
 
-/* =========================================
-UPDATE UI
-========================================= */
+/* ================================
+   BASIC
+================================ */
 
-function updateUI(){
+function formName(){
 
-$('headerYear')
-.textContent =
-String(state.year)
-.replace('-',' - ');
+return
+FORM_NAMES[currentForm];
 
-$('year').value =
-state.year;
+}
 
-$('currentFormName')
-.textContent =
-formName();
 
-$('formTitle')
-.textContent =
-'➕ ' +
-formName() +
-' — নতুন Data Entry';
+function currentData(){
 
-$('savedTitle')
-.textContent =
-'📋 ' +
-formName() +
-' — Saved Data';
+return
+state.forms[currentForm];
 
-$('appHeading')
-.textContent =
+}
+
+
+
+/* ================================
+   HEADING
+================================ */
+
+function updateMainHeading(){
+
+$('appHeading').textContent =
 isModel(currentForm)
 ?
 'MODEL VILLAGE'
 :
 'A.A.P Format of V.B.G.R.A.M.G';
 
-updateApprovalFields();
+}
 
-updateTransferButtons();
 
-render();
+
+/* ================================
+   APPROVAL FIELDS
+================================ */
+
+function updateApprovalFields(){
+
+const show =
+isApproval(currentForm);
+
+[
+'approvalFields',
+'approvalCostField',
+'approvalFundField',
+'approvalSLField'
+
+]
+.forEach(id => {
+
+$(id)
+.classList
+.toggle(
+'hidden',
+!show
+);
+
+});
 
 }
 
 
 
-/* =========================================
-SWITCH FORM
-========================================= */
+/* ================================
+   SWITCH FORM
+================================ */
 
 function switchForm(form){
 
 if(!FORM_NAMES[form])
 return;
 
+
 currentForm =
 form;
 
+
 editIndex =
 -1;
+
 
 document
 .querySelectorAll(
 '.formnav button'
 )
-.forEach(
-b => {
+.forEach(b => {
 
 b.classList.remove(
 'active'
@@ -1349,7 +1627,7 @@ isModel(form)
 ?
 'nav-model'
 :
-'nav-'+form
+'nav-' + form
 );
 
 
@@ -1369,6 +1647,7 @@ main.classList.remove(
 const mb =
 $('modelStageBar');
 
+
 mb.classList.toggle(
 'show',
 isModel(form)
@@ -1379,8 +1658,7 @@ document
 .querySelectorAll(
 '#modelStageBar button'
 )
-.forEach(
-b => {
+.forEach(b => {
 
 b.classList.remove(
 'active'
@@ -1408,20 +1686,27 @@ modelTender:
 
 }[form];
 
-$(id).classList.add(
+
+$(id)
+.classList.add(
 'active'
 );
 
-$(id).classList.remove(
+$(id)
+.classList.remove(
 'secondary'
 );
 
 }
 
 
+updateMainHeading();
+
+
 $('currentFormName')
 .textContent =
 formName();
+
 
 $('formTitle')
 .textContent =
@@ -1429,15 +1714,74 @@ $('formTitle')
 formName() +
 ' — নতুন Data Entry';
 
+
 $('savedTitle')
 .textContent =
 '📋 ' +
 formName() +
 ' — Saved Data';
 
-$('search').value = '';
+
+$('search').value =
+'';
+
 
 clearForm(false);
+
+
+updateApprovalFields();
+
+
+updateTransferButtons();
+
+
+render();
+
+}
+
+
+
+/* ================================
+   UPDATE UI
+================================ */
+
+function updateUI(){
+
+$('headerYear')
+.textContent =
+String(
+state.year
+)
+.replace(
+'-',
+' - '
+);
+
+
+$('year').value =
+state.year;
+
+
+$('currentFormName')
+.textContent =
+formName();
+
+
+$('formTitle')
+.textContent =
+'➕ ' +
+formName() +
+' — নতুন Data Entry';
+
+
+$('savedTitle')
+.textContent =
+'📋 ' +
+formName() +
+' — Saved Data';
+
+
+updateMainHeading();
 
 updateApprovalFields();
 
@@ -1449,44 +1793,15 @@ render();
 
 
 
-/* =========================================
-APPROVAL / TENDER FIELDS
-========================================= */
-
-function updateApprovalFields(){
-
-const approval =
-isApproval(currentForm);
-
-const tender =
-isTender(currentForm);
-
-
-$('approveBox')
-.classList.toggle(
-'hidden',
-!approval
-);
-
-
-$('tenderBox')
-.classList.toggle(
-'hidden',
-!tender
-);
-
-}
-
-
-
-/* =========================================
-YEAR
-========================================= */
+/* ================================
+   YEAR
+================================ */
 
 function changeYear(){
 
 state.year =
 $('year').value;
+
 
 $('headerYear')
 .textContent =
@@ -1494,6 +1809,7 @@ state.year.replace(
 '-',
 ' - '
 );
+
 
 persist();
 
@@ -1503,9 +1819,9 @@ render();
 
 
 
-/* =========================================
-CLEAR
-========================================= */
+/* ================================
+   CLEAR
+================================ */
 
 function clearForm(
 resetDate=true
@@ -1513,39 +1829,38 @@ resetDate=true
 
 BASE_IDS
 .forEach(
-id => {
-
-$(id).value = '';
-
-});
+id =>
+$(id).value=''
+);
 
 
 [
 'sector',
 'estimateCost',
 'fund',
-'newSL',
-'tenderEstimateCost'
+'newSL'
+
 ]
 .forEach(
-id => {
-
-$(id).value = '';
-
-});
+id =>
+$(id).value=''
+);
 
 
 $('mouza').value =
 'Sahara';
 
+
 editIndex =
 -1;
+
 
 $('formTitle')
 .textContent =
 '➕ ' +
 formName() +
 ' — নতুন Data Entry';
+
 
 if(resetDate){
 
@@ -1558,16 +1873,16 @@ todayISO();
 
 
 
-/* =========================================
-SAVE ENTRY
-========================================= */
+/* ================================
+   SAVE ENTRY
+================================ */
 
 function saveEntry(){
 
 const x = {};
 
-BASE_IDS
-.forEach(
+
+BASE_IDS.forEach(
 id => {
 
 x[id] =
@@ -1580,67 +1895,59 @@ x.date =
 val('entryDate') ||
 todayISO();
 
+
 x.year =
 state.year;
 
 
 /*
  APPROVE:
- Sector + Estimated Cost + Fund + New SL
+ Sector
+ Estimated Cost
+ Fund
+ New SL
+
+ TENDER:
+ ONLY Estimated Cost
+
+ APPROACH:
+ NONE
 */
 
-if(isApproval(currentForm)){
 
 x.sector =
-val('sector');
+isApproval(currentForm)
+?
+val('sector')
+:
+'';
+
 
 x.estimateCost =
-val('estimateCost');
+(
+isApproval(currentForm) ||
+isTender(currentForm)
+)
+?
+val('estimateCost')
+:
+'';
+
 
 x.fund =
-val('fund');
+isApproval(currentForm)
+?
+val('fund')
+:
+'';
+
 
 x.newSL =
-val('newSL');
-
-}
-
-
-/*
- TENDER:
- শুধু Estimated Cost
-*/
-
-else if(isTender(currentForm)){
-
-x.sector = '';
-
-x.fund = '';
-
-x.newSL = '';
-
-x.estimateCost =
-val('tenderEstimateCost');
-
-}
-
-
-/*
- APPROACH:
- approval data থাকবে না
-*/
-
-else{
-
-x.sector = '';
-
-x.estimateCost = '';
-
-x.fund = '';
-
-x.newSL = '';
-
-}
+isApproval(currentForm)
+?
+val('newSL')
+:
+'';
 
 
 if(
@@ -1667,9 +1974,21 @@ x.id =
 arr[editIndex].id ||
 createId();
 
+
 x._backSnapshot =
 arr[editIndex]._backSnapshot ||
 null;
+
+
+x._order =
+Number.isFinite(
+Number(arr[editIndex]._order)
+)
+?
+Number(arr[editIndex]._order)
+:
+editIndex;
+
 
 arr[editIndex] =
 normalizeEntry(x);
@@ -1681,8 +2000,29 @@ else{
 x.id =
 createId();
 
+
 x._backSnapshot =
 null;
+
+
+x._order =
+arr.length
+?
+Math.max(
+...arr.map(
+r =>
+Number.isFinite(
+Number(r._order)
+)
+?
+Number(r._order)
+:
+-1
+)
+) + 1
+:
+0;
+
 
 arr.push(
 normalizeEntry(x)
@@ -1693,6 +2033,7 @@ normalizeEntry(x)
 
 if(!persist())
 return;
+
 
 render();
 
@@ -1707,25 +2048,26 @@ formName() +
 
 
 
-/* =========================================
-EDIT
-========================================= */
+/* ================================
+   EDIT
+================================ */
 
 function edit(i){
 
 const x =
 currentData()[i];
 
+
 if(!x)
 return;
 
 
-BASE_IDS
-.forEach(
+BASE_IDS.forEach(
 id => {
 
 $(id).value =
-x[id] || '';
+x[id] ||
+'';
 
 });
 
@@ -1739,20 +2081,19 @@ $('sector').value =
 x.sector ||
 '';
 
+
 $('estimateCost').value =
 x.estimateCost ||
 '';
+
 
 $('fund').value =
 x.fund ||
 '';
 
+
 $('newSL').value =
 x.newSL ||
-'';
-
-$('tenderEstimateCost').value =
-x.estimateCost ||
 '';
 
 
@@ -1779,9 +2120,9 @@ behavior:'smooth'
 
 
 
-/* =========================================
-DELETE
-========================================= */
+/* ================================
+   DELETE
+================================ */
 
 function del(i){
 
@@ -1793,7 +2134,10 @@ formName() +
 ){
 
 currentData()
-.splice(i,1);
+.splice(
+i,
+1
+);
 
 persist();
 
@@ -1804,10 +2148,6 @@ render();
 }
 
 
-
-/* =========================================
-DELETE CURRENT FORM
-========================================= */
 
 function deleteCurrentForm(){
 
@@ -1830,9 +2170,11 @@ formName() +
 )
 ){
 
-state.forms[currentForm] = [];
+state.forms[currentForm] =
+[];
 
-editIndex = -1;
+editIndex =
+-1;
 
 persist();
 
@@ -1846,19 +2188,18 @@ render();
 
 
 
-/* =========================================
-DELETE ALL
-========================================= */
-
 function deleteAll(){
 
 const total =
-Object
-.values(state.forms)
+Object.values(
+state.forms
+)
 .reduce(
-(s,a) => s+a.length,
+(s,a) =>
+s+a.length,
 0
 );
+
 
 if(!total){
 
@@ -1877,15 +2218,14 @@ confirm(
 )
 ){
 
-Object
-.keys(state.forms)
+Object.keys(
+state.forms
+)
 .forEach(
-k => {
-
-state.forms[k] = [];
-
-});
-
+k =>
+state.forms[k] =
+[]
+);
 
 persist();
 
@@ -1899,9 +2239,9 @@ render();
 
 
 
-/* =========================================
-SELECTION
-========================================= */
+/* ================================
+   SELECT
+================================ */
 
 function getSelectedIndexes(){
 
@@ -1921,6 +2261,7 @@ e.dataset.index
 }
 
 
+
 function toggleAll(box){
 
 document
@@ -1928,29 +2269,29 @@ document
 '.rowcheck'
 )
 .forEach(
-cb => {
-
+cb =>
 cb.checked =
-box.checked;
-
-});
+box.checked
+);
 
 updateSelectedInfo();
 
 }
 
 
+
 function updateSelectedInfo(){
 
 const n =
-getSelectedIndexes()
-.length;
+getSelectedIndexes().length;
+
 
 $('selectedInfo')
 .textContent =
 n
 ?
-n+' টি Project Select করা হয়েছে'
+n +
+' টি Project Select করা হয়েছে'
 :
 'কোনো Project Select করা হয়নি';
 
@@ -1958,17 +2299,19 @@ n+' টি Project Select করা হয়েছে'
 
 
 
-/* =========================================
-TRANSFER BUTTONS
-========================================= */
+/* ================================
+   TRANSFER BUTTONS
+================================ */
 
 function updateTransferButtons(){
 
 const f =
 FLOW[currentForm];
 
+
 const bar =
 $('transferBar');
+
 
 bar.classList.toggle(
 'show',
@@ -1981,6 +2324,7 @@ f.back
 
 const nb =
 $('nextTransferBtn');
+
 
 const bb =
 $('backTransferBtn');
@@ -1997,6 +2341,7 @@ FORM_NAMES[f.next] +
 ' -এ Transfer';
 
 }
+
 else{
 
 nb.style.display =
@@ -2016,6 +2361,7 @@ FORM_NAMES[f.back] +
 ' -এ Back';
 
 }
+
 else{
 
 bb.style.display =
@@ -2027,9 +2373,9 @@ bb.style.display =
 
 
 
-/* =========================================
-APPROACH -> APPROVE
-========================================= */
+/* ================================
+   COPY TO BASE / APPROACH
+================================ */
 
 function copyBase(r){
 
@@ -2038,20 +2384,27 @@ normalizeEntry(r);
 
 
 /*
- Approach-এর নতুন
- approval fields Approve-এ
- blank থাকবে।
+ Approach-এ কখনো
+ Sector / Fund / New SL
+ যাবে না।
+ Estimated Cost-ও থাকবে না।
 */
 
-x.sector = '';
+x.sector =
+'';
 
-x.estimateCost = '';
+x.fund =
+'';
 
-x.fund = '';
+x.newSL =
+'';
 
-x.newSL = '';
+x.estimateCost =
+'';
 
-x._backSnapshot = null;
+x._backSnapshot =
+null;
+
 
 return x;
 
@@ -2059,9 +2412,9 @@ return x;
 
 
 
-/* =========================================
-APPROVE -> TENDER
-========================================= */
+/* ================================
+   APPROVE -> TENDER
+================================ */
 
 function copyApproveToTender(r){
 
@@ -2070,66 +2423,35 @@ normalizeEntry(r);
 
 
 /*
- Approve-এর পুরো data
- Snapshot হিসেবে থাকবে।
- Back করলে এই data ফেরত আসবে।
+ Approve-এর পুরো record
+ back করার জন্য Snapshot রাখা হচ্ছে।
 */
 
-const snap = {
-
-id:x.id,
-
-scheme:x.scheme,
-
-nature:x.nature,
-
-lengthArea:x.lengthArea,
-
-mouza:x.mouza,
-
-startDag:x.startDag,
-
-endDag:x.endDag,
-
-jobCard:x.jobCard,
-
-lat1:x.lat1,
-
-long1:x.long1,
-
-lat2:x.lat2,
-
-long2:x.long2,
-
-date:x.date,
-
-year:x.year,
-
-sector:x.sector,
-
-estimateCost:x.estimateCost,
-
-fund:x.fund,
-
-newSL:x.newSL
-
+const snap =
+{
+...x,
+_order:x._order
 };
 
 
 /*
- Tender-এ:
- Sector যাবে না
- Fund যাবে না
- New SL যাবে না
+ Tender-এ শুধু Estimated Cost
+ যাবে।
 
-শুধু Estimated Cost যাবে।
+ Sector
+ Fund
+ New SL
+ যাবে না।
 */
 
-x.sector = '';
+x.sector =
+'';
 
-x.fund = '';
+x.fund =
+'';
 
-x.newSL = '';
+x.newSL =
+'';
 
 x.estimateCost =
 String(
@@ -2139,71 +2461,61 @@ r.estimateCost ||
 
 
 /*
- Tender থেকে Back করার জন্য
- Approve-এর আগের data রাখা হলো।
+ Back করলে Approve-এর
+ আগের সম্পূর্ণ data ফিরবে।
 */
 
 x._backSnapshot =
 snap;
 
+
 return x;
 
 }
 
 
 
-/* =========================================
-TENDER -> APPROVE
-========================================= */
+/* ================================
+   TENDER -> APPROVE BACK
+================================ */
 
 function copyTenderToApprove(r){
 
-let x;
-
-
 /*
- Snapshot থাকলে Approve-এর
- আগের সব data ফেরত।
+ যদি Snapshot থাকে,
+ তাহলে Approve-এর আগের
+ Sector + Cost + Fund + New SL
+ সহ সব data ফিরবে।
 */
 
 if(r._backSnapshot){
 
-x =
-normalizeEntry(
+return normalizeEntry(
 r._backSnapshot
 );
 
-
-/*
- Tender-এ Estimated Cost
- পরিবর্তন করলে সেটাও Approve-এ
- রাখা হবে।
-*/
-
-x.estimateCost =
-String(
-r.estimateCost ||
-x.estimateCost ||
-''
-);
-
-return x;
-
 }
 
 
 /*
- পুরোনো data হলে fallback
+ পুরনো data হলে
+ Snapshot না থাকলে
+ শুধু base + cost রাখা হবে।
 */
 
-x =
+const x =
 normalizeEntry(r);
 
-x.sector = '';
 
-x.fund = '';
+x.sector =
+'';
 
-x.newSL = '';
+x.fund =
+'';
+
+x.newSL =
+'';
+
 
 return x;
 
@@ -2211,14 +2523,77 @@ return x;
 
 
 
-/* =========================================
-TRANSFER NEXT
-========================================= */
+/* ================================
+   INSERT BY ORIGINAL ORDER
+================================ */
+
+function insertByOrder(
+target,
+x
+){
+
+if(
+!Number.isFinite(
+Number(x._order)
+)
+){
+
+x._order =
+target.length
+?
+Math.max(
+...target.map(
+r =>
+Number.isFinite(
+Number(r._order)
+)
+?
+Number(r._order)
+:
+-1
+)
+) + 1
+:
+0;
+
+}
+
+
+let pos =
+target.findIndex(
+t =>
+Number.isFinite(
+Number(t._order)
+) &&
+Number(t._order) >
+Number(x._order)
+);
+
+
+if(pos < 0)
+pos =
+target.length;
+
+
+target.splice(
+pos,
+0,
+x
+);
+
+}
+
+
+
+/* ================================
+   TRANSFER NEXT
+================================ */
 
 function transferNext(){
 
 const flow =
 FLOW[currentForm];
+
 
 if(!flow.next){
 
@@ -2234,6 +2609,7 @@ return;
 const selected =
 getSelectedIndexes();
 
+
 if(!selected.length){
 
 alert(
@@ -2247,6 +2623,7 @@ return;
 
 const source =
 state.forms[currentForm];
+
 
 const target =
 state.forms[flow.next];
@@ -2285,26 +2662,11 @@ let x;
 
 /*
  APPROVE -> TENDER
+ শুধু Estimated Cost যাবে
 */
 
 if(
-currentForm === 'approve' &&
-flow.next === 'tender'
-){
-
-x =
-copyApproveToTender(r);
-
-}
-
-
-/*
- MODEL APPROVE -> MODEL TENDER
-*/
-
-else if(
-currentForm === 'modelApprove' &&
-flow.next === 'modelTender'
+isTender(flow.next)
 ){
 
 x =
@@ -2315,11 +2677,12 @@ copyApproveToTender(r);
 
 /*
  APPROACH -> APPROVE
+ Base data যাবে,
+ approval fields blank থাকবে।
 */
 
 else if(
-currentForm === 'approach' &&
-flow.next === 'approve'
+isApproval(flow.next)
 ){
 
 x =
@@ -2329,18 +2692,10 @@ copyBase(r);
 
 
 /*
- MODEL APPROACH -> MODEL APPROVE
+ Model Village Approach
+ -> Model Village Approve
+ একই নিয়ম।
 */
-
-else if(
-currentForm === 'modelVillage' &&
-flow.next === 'modelApprove'
-){
-
-x =
-copyBase(r);
-
-}
 
 else{
 
@@ -2350,10 +2705,6 @@ normalizeEntry(r);
 }
 
 
-/*
- Duplicate prevent
-*/
-
 if(
 !target.some(
 t =>
@@ -2361,7 +2712,10 @@ t.id === x.id
 )
 ){
 
-target.push(x);
+insertByOrder(
+target,
+x
+);
 
 }
 
@@ -2369,8 +2723,8 @@ target.push(x);
 
 
 /*
- Source থেকে selected
- record remove
+ Source থেকে transfer করা
+ record সরিয়ে দেওয়া হচ্ছে।
 */
 
 selected
@@ -2380,15 +2734,20 @@ b-a
 )
 .forEach(
 i =>
-source.splice(i,1)
+source.splice(
+i,
+1
+)
 );
 
 
-editIndex = -1;
+editIndex =
+-1;
 
 persist();
 
 render();
+
 
 alert(
 records.length +
@@ -2401,14 +2760,15 @@ FORM_NAMES[flow.next] +
 
 
 
-/* =========================================
-TRANSFER BACK
-========================================= */
+/* ================================
+   TRANSFER BACK
+================================ */
 
 function transferBack(){
 
 const flow =
 FLOW[currentForm];
+
 
 if(!flow.back){
 
@@ -2424,6 +2784,7 @@ return;
 const selected =
 getSelectedIndexes();
 
+
 if(!selected.length){
 
 alert(
@@ -2437,6 +2798,7 @@ return;
 
 const source =
 state.forms[currentForm];
+
 
 const target =
 state.forms[flow.back];
@@ -2475,26 +2837,16 @@ let x;
 
 /*
  TENDER -> APPROVE
+
+ Snapshot থাকলে
+ Approve-এর আগের
+ Sector + Cost + Fund + New SL
+ সব ফিরবে।
 */
 
 if(
-currentForm === 'tender' &&
-flow.back === 'approve'
-){
-
-x =
-copyTenderToApprove(r);
-
-}
-
-
-/*
- MODEL TENDER -> MODEL APPROVE
-*/
-
-else if(
-currentForm === 'modelTender' &&
-flow.back === 'modelApprove'
+isApproval(flow.back) &&
+isTender(currentForm)
 ){
 
 x =
@@ -2505,25 +2857,16 @@ copyTenderToApprove(r);
 
 /*
  APPROVE -> APPROACH
+
+ Sector
+ Estimated Cost
+ Fund
+ New SL
+ কিছুই যাবে না।
 */
 
 else if(
-currentForm === 'approve' &&
-flow.back === 'approach'
-){
-
-x =
-copyBase(r);
-
-}
-
-
-/*
- MODEL APPROVE -> MODEL VILLAGE
-*/
-
-else if(
-currentForm === 'modelApprove' &&
+flow.back === 'approach' ||
 flow.back === 'modelVillage'
 ){
 
@@ -2531,6 +2874,7 @@ x =
 copyBase(r);
 
 }
+
 
 else{
 
@@ -2547,7 +2891,10 @@ t.id === x.id
 )
 ){
 
-target.push(x);
+insertByOrder(
+target,
+x
+);
 
 }
 
@@ -2561,15 +2908,20 @@ b-a
 )
 .forEach(
 i =>
-source.splice(i,1)
+source.splice(
+i,
+1
+)
 );
 
 
-editIndex = -1;
+editIndex =
+-1;
 
 persist();
 
 render();
+
 
 alert(
 records.length +
@@ -2582,9 +2934,9 @@ FORM_NAMES[flow.back] +
 
 
 
-/* =========================================
-COLUMNS
-========================================= */
+/* ================================
+   TABLE COLUMNS
+================================ */
 
 function columns(){
 
@@ -2621,6 +2973,15 @@ const base = [
 ];
 
 
+/*
+ APPROVE list:
+
+ Sector
+ Estimated Cost
+ Fund
+ New S.L.
+*/
+
 if(
 isApproval(currentForm)
 ){
@@ -2640,6 +3001,12 @@ base.push(
 }
 
 
+/*
+ TENDER list:
+
+ ONLY Estimated Cost
+*/
+
 if(
 isTender(currentForm)
 ){
@@ -2657,9 +3024,9 @@ return base;
 
 
 
-/* =========================================
-RENDER
-========================================= */
+/* ================================
+   RENDER
+================================ */
 
 function render(){
 
@@ -2673,13 +3040,15 @@ currentData()
 .map(
 (x,i) =>
 ({
-x:x,
-i:i
+x,
+i
 })
 )
 .filter(
 o =>
-JSON.stringify(o.x)
+JSON.stringify(
+o.x
+)
 .toLowerCase()
 .includes(q)
 );
@@ -2697,12 +3066,15 @@ formName();
 
 
 $('thead').innerHTML =
-
 '<tr>' +
 
 '<th>' +
 
-'<input type="checkbox" class="selectAll" id="selectAll" onchange="toggleAll(this)">' +
+'<input ' +
+'type="checkbox" ' +
+'class="selectAll" ' +
+'id="selectAll" ' +
+'onchange="toggleAll(this)">' +
 
 '<br>Select' +
 
@@ -2712,7 +3084,11 @@ cols
 .map(
 c =>
 '<th>' +
-esc(c[0]) +
+esc(c[0])
+.replace(
+/\n/g,
+'<br>'
+) +
 '</th>'
 )
 .join('') +
@@ -2722,31 +3098,10 @@ esc(c[0]) +
 '</tr>';
 
 
-if(!list.length){
-
 $('tbody').innerHTML =
+list.length
 
-'<tr>' +
-
-'<td colspan="' +
-(cols.length+2) +
-'" class="empty">' +
-
-formName() +
-' এ কোনো Data Entry নেই।' +
-
-'</td>' +
-
-'</tr>';
-
-updateSelectedInfo();
-
-return;
-
-}
-
-
-$('tbody').innerHTML =
+?
 
 list
 .map(
@@ -2762,63 +3117,78 @@ return (
 
 '<td class="selectCell">' +
 
-'<input type="checkbox" class="rowcheck" data-index="' +
+'<input ' +
+'type="checkbox" ' +
+'class="rowcheck" ' +
+'data-index="' +
 o.i +
-'" onchange="updateSelectedInfo()">' +
+'" ' +
+'onchange="updateSelectedInfo()">' +
 
 '</td>' +
 
+
 cols
 .map(
-c => {
+c =>
 
-let v;
+'<td>' +
 
+esc(
 
-if(c[1] === 'auto'){
+c[1] === 'auto'
 
-v =
-n+1;
+?
+n+1
 
-}
+:
 
-else if(c[1] === 'mouza'){
+c[1] === 'mouza'
 
-v =
+?
 String(
 x[c[1]] ||
 ''
 )
-.toUpperCase();
+.toUpperCase()
 
-}
+:
 
-else{
-
-v =
 x[c[1]] ||
-'';
+''
 
-}
+)
 
++
 
-return '<td>' +
-esc(v) +
-'</td>';
+'</td>'
 
-}
 )
 .join('') +
 
+
 '<td>' +
 
-'<button class="actionbtn primary" onclick="edit(' +
+'<button ' +
+'class="actionbtn primary" ' +
+'onclick="edit(' +
 o.i +
-')">Edit</button>' +
+')">' +
 
-'<button class="actionbtn danger" onclick="del(' +
+'Edit' +
+
+'</button>' +
+
+
+'<button ' +
+'class="actionbtn danger" ' +
+'onclick="del(' +
 o.i +
-')">Delete</button>' +
+')">' +
+
+'Delete' +
+
+'</button>' +
 
 '</td>' +
 
@@ -2827,12 +3197,29 @@ o.i +
 );
 
 }
+
 )
-.join('');
+.join('')
+
+:
+
+'<tr>' +
+
+'<td colspan="' +
+(cols.length+2) +
+'" class="empty">' +
+
+formName() +
+' এ কোনো Data Entry নেই।' +
+
+'</td>' +
+
+'</tr>';
 
 
 $('selectAll').checked =
 false;
+
 
 updateSelectedInfo();
 
@@ -2840,20 +3227,38 @@ updateSelectedInfo();
 
 
 
-/* =========================================
-EXCEL EXPORT
-========================================= */
+/* ================================
+   EXCEL
+================================ */
 
 function excelEsc(s){
 
-return String(s ?? '')
-.replace(/&/g,'&amp;')
-.replace(/</g,'&lt;')
-.replace(/>/g,'&gt;')
-.replace(/"/g,'&quot;')
-.replace(/'/g,'&apos;');
+return String(
+s ?? ''
+)
+.replace(
+/&/g,
+'&amp;'
+)
+.replace(
+/</g,
+'&lt;'
+)
+.replace(
+/>/g,
+'&gt;'
+)
+.replace(
+/"/g,
+'&quot;'
+)
+.replace(
+/'/g,
+'&apos;'
+);
 
 }
+
 
 
 function excelCell(
@@ -2862,7 +3267,9 @@ style='Cell',
 merge=''
 ){
 
-return '<Cell ss:StyleID="' +
+return (
+
+'<Cell ss:StyleID="' +
 style +
 '"' +
 
@@ -2876,15 +3283,29 @@ merge +
 ''
 ) +
 
-'><Data ss:Type="String">' +
+'>' +
+
+'<Data ss:Type="String">' +
 
 excelEsc(s)
-.replace(/\n/g,'&#10;') +
+.replace(
+/\n/g,
+'&#10;'
+) +
 
-'</Data></Cell>';
+'</Data>' +
+
+'</Cell>'
+
+);
 
 }
 
+
+
+/* ================================
+   EXPORT EXCEL
+================================ */
 
 function exportExcel(){
 
@@ -2909,8 +3330,14 @@ columns();
 
 
 /*
- আগের Export-এর
- column width
+ EXPORT DESIGN SAME থাকবে।
+
+ Column width fixed থাকবে,
+ কিন্তু data cell-এর text
+ Wrap + AutoFit row হবে।
+
+ ফলে Scheme Name / Nature of Work
+ আর কেটে যাবে না।
 */
 
 const widths =
@@ -2974,59 +3401,132 @@ let xml =
 
 'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
 
+
 '<Styles>' +
+
+
+/*
+ DEFAULT
+*/
 
 '<Style ss:ID="Default" ss:Name="Normal">' +
 
-'<Alignment ss:Vertical="Center"/>' +
+'<Alignment ' +
+'ss:Horizontal="Center" ' +
+'ss:Vertical="Center" ' +
+'ss:WrapText="1"/>' +
 
-'<Font ss:FontName="Arial" ss:Size="9"/>' +
+'<Font ' +
+'ss:FontName="Arial" ' +
+'ss:Size="9"/>' +
 
 '</Style>' +
+
+
+/*
+ TITLE
+*/
 
 '<Style ss:ID="Title">' +
 
-'<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>' +
+'<Alignment ' +
+'ss:Horizontal="Center" ' +
+'ss:Vertical="Center" ' +
+'ss:WrapText="1"/>' +
 
-'<Font ss:FontName="Arial" ss:Size="14" ss:Bold="1"/>' +
+'<Font ' +
+'ss:FontName="Arial" ' +
+'ss:Size="14" ' +
+'ss:Bold="1"/>' +
 
 '</Style>' +
 
+
+/*
+ HEADER
+*/
+
 '<Style ss:ID="Header">' +
 
-'<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>' +
+'<Alignment ' +
+'ss:Horizontal="Center" ' +
+'ss:Vertical="Center" ' +
+'ss:WrapText="1"/>' +
 
-'<Font ss:FontName="Arial" ss:Size="10" ss:Bold="1"/>' +
+'<Font ' +
+'ss:FontName="Arial" ' +
+'ss:Size="10" ' +
+'ss:Bold="1"/>' +
 
 '<Borders>' +
 
-'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
+'ss:Position="Bottom" ' +
+'ss:LineStyle="Continuous" ' +
+'ss:Weight="1"/>' +
 
-'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
+'ss:Position="Left" ' +
+'ss:LineStyle="Continuous" ' +
+'ss:Weight="1"/>' +
 
-'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
+'ss:Position="Right" ' +
+'ss:LineStyle="Continuous" ' +
+'ss:Weight="1"/>' +
 
-'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
+'ss:Position="Top" ' +
+'ss:LineStyle="Continuous" ' +
+'ss:Weight="1"/>' +
 
 '</Borders>' +
 
 '</Style>' +
 
+
+/*
+ DATA CELL
+
+ Center
+ Vertical Center
+ Wrap Text
+ Border
+*/
+
 '<Style ss:ID="Cell">' +
 
-'<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>' +
+'<Alignment ' +
+'ss:Horizontal="Center" ' +
+'ss:Vertical="Center" ' +
+'ss:WrapText="1" ' +
+'ss:ShrinkToFit="0"/>' +
 
-'<Font ss:FontName="Arial" ss:Size="9"/>' +
+'<Font ' +
+'ss:FontName="Arial" ' +
+'ss:Size="9"/>' +
 
 '<Borders>' +
 
-'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
+'ss:Position="Bottom" ' +
+'ss:LineStyle="Continuous" ' +
+'ss:Weight="1"/>' +
 
-'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
+'ss:Position="Left" ' +
+'ss:LineStyle="Continuous" ' +
+'ss:Weight="1"/>' +
 
-'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
+'ss:Position="Right" ' +
+'ss:LineStyle="Continuous" ' +
+'ss:Weight="1"/>' +
 
-'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
+'ss:Position="Top" ' +
+'ss:LineStyle="Continuous" ' +
+'ss:Weight="1"/>' +
 
 '</Borders>' +
 
@@ -3034,39 +3534,75 @@ let xml =
 
 '</Styles>' +
 
+
+/*
+ WORKSHEET
+*/
+
 '<Worksheet ss:Name="' +
 
 excelEsc(
-formName().slice(0,31)
+formName()
+.slice(0,31)
 ) +
 
 '">' +
 
-'<Table ss:ExpandedColumnCount="' +
+
+'<Table ' +
+
+'ss:ExpandedColumnCount="' +
 cols.length +
-'" ss:ExpandedRowCount="' +
+'" ' +
+
+'ss:ExpandedRowCount="' +
 (data.length+2) +
-'" x:FullColumns="1" x:FullRows="1">' +
+'" ' +
+
+'x:FullColumns="1" ' +
+
+'x:FullRows="1">' +
+
+
+/*
+ WIDTH FIXED
+ AUTO WIDTH OFF
+
+ তাই পুরোনো design-এর
+ column width বদলাবে না।
+*/
 
 widths
 .map(
 w =>
-'<Column ss:Width="' +
+'<Column ' +
+'ss:Width="' +
 w +
-'" ss:AutoFitWidth="1"/>'
+'" ' +
+'ss:AutoFitWidth="0"/>' 
 )
 .join('');
 
 
 /*
- আগের sheet title
+ HEADING
+
+ Regular:
+ A. A. P Format...
+
+ Model:
+ MODEL VILLAGE
 */
 
 const heading =
 isModel(currentForm)
+
 ?
+
 'MODEL VILLAGE'
+
 :
+
 'A. A. P Format of V. B. G. R. A. M. G';
 
 
@@ -3086,7 +3622,7 @@ cols.length-1
 
 
 /*
- Header
+ HEADER
 */
 
 xml +=
@@ -3107,7 +3643,12 @@ c[0],
 
 
 /*
- Data
+ DATA ROWS
+
+ IMPORTANT FIX:
+ এখানে আর Height="30" নেই।
+
+ Excel নিজে row height AutoFit করবে।
 */
 
 data.forEach(
@@ -3115,79 +3656,118 @@ data.forEach(
 
 const row =
 cols.map(
-c => {
+c =>
 
-if(
 c[1] === 'auto'
-){
 
-return n+1;
+?
+n+1
 
-}
+:
 
-if(
 c[1] === 'mouza'
-){
 
-return String(
+?
+String(
 x[c[1]] ||
 ''
 )
-.toUpperCase();
+.toUpperCase()
 
-}
+:
 
-return x[c[1]] ||
-'';
-
-}
+x[c[1]] ||
+''
 );
 
 
 xml +=
 
-'<Row ss:AutoFitHeight="1" ss:Height="30">' +
+'<Row ' +
+'ss:AutoFitHeight="1">' +
 
 row
 .map(
 v =>
-excelCell(v)
+excelCell(
+v,
+'Cell'
+)
 )
 .join('') +
 
 '</Row>';
 
-});
+}
+);
 
 
 /*
- আগের Export-এর
- Landscape + Freeze + Fit
+ PAGE SETUP
+
+ A4
+ LANDSCAPE
+ FIT TO PAPER
+ FIT WIDTH 1
+ HEIGHT AUTO
+
+ সব Export Sheet-এ একই থাকবে।
 */
 
 xml +=
 
 '</Table>' +
 
-'<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">' +
+'<WorksheetOptions ' +
+'xmlns="urn:schemas-microsoft-com:office:excel">' +
+
 
 '<PageSetup>' +
 
-'<Layout x:Orientation="Landscape" x:CenterHorizontal="1"/>' +
+'<Layout ' +
+'x:Orientation="Landscape" ' +
+'x:CenterHorizontal="1" ' +
+'x:CenterVertical="0"/>' +
 
-'<PageMargins x:Bottom="0.20" x:Left="0.15" x:Right="0.15" x:Top="0.20"/>' +
+'<PageMargins ' +
+'x:Bottom="0.20" ' +
+'x:Left="0.15" ' +
+'x:Right="0.15" ' +
+'x:Top="0.20"/>' +
 
 '</PageSetup>' +
 
+
 '<FitToPage/>' +
 
+
 '<Print>' +
+
+/*
+ A4 PAPER
+ Excel PaperSizeIndex 9 = A4
+*/
+
+'<PaperSizeIndex>9</PaperSizeIndex>' +
+
+/*
+ FIT TO PAPER WIDTH
+*/
+
+'<FitWidth>1</FitWidth>' +
+
+/*
+ HEIGHT AUTO / UNLIMITED
+*/
+
+'<FitHeight>0</FitHeight>' +
 
 '<Gridlines>False</Gridlines>' +
 
 '<HorizontalCentered>1</HorizontalCentered>' +
 
 '</Print>' +
+
 
 '<FreezePanes/>' +
 
@@ -3196,6 +3776,11 @@ xml +=
 '<SplitHorizontal>2</SplitHorizontal>' +
 
 '<TopRowBottom>2</TopRowBottom>' +
+
+
+/*
+ একই fit setting Worksheet level-এও রাখা হলো
+*/
 
 '<FitToWidth>1</FitToWidth>' +
 
@@ -3219,12 +3804,11 @@ type:
 ),
 
 formName()
-.replace(/\s+/g,'_') +
-
+.replace(
+(/\s+/g,'_')
+) +
 '_' +
-
 state.year +
-
 '.xls'
 
 );
@@ -3233,9 +3817,9 @@ state.year +
 
 
 
-/* =========================================
-DOWNLOAD
-========================================= */
+/* ================================
+   DOWNLOAD
+================================ */
 
 function download(
 blob,
@@ -3245,21 +3829,34 @@ name
 const a =
 document.createElement('a');
 
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
 a.href =
-URL.createObjectURL(blob);
+url;
+
 
 a.download =
 name;
 
-document.body.appendChild(a);
+
+document.body.appendChild(
+a
+);
+
 
 a.click();
+
 
 setTimeout(
 () => {
 
 URL.revokeObjectURL(
-a.href
+url
 );
 
 a.remove();
@@ -3272,15 +3869,15 @@ a.remove();
 
 
 
-/* =========================================
-BACKUP
-========================================= */
+/* ================================
+   BACKUP
+================================ */
 
 function backup(){
 
 const b = {
 
-backupVersion:8,
+backupVersion:7,
 
 app:
 'A.A.P Offline Data Entry',
@@ -3321,14 +3918,15 @@ type:
 
 
 
-/* =========================================
-RESTORE
-========================================= */
+/* ================================
+   RESTORE
+================================ */
 
 function restore(e){
 
 const f =
 e.target.files[0];
+
 
 if(!f)
 return;
@@ -3338,8 +3936,7 @@ const r =
 new FileReader();
 
 
-r.onload =
-() => {
+r.onload = () => {
 
 try{
 
@@ -3348,6 +3945,7 @@ JSON.parse(
 r.result
 );
 
+
 const restored =
 normalizeState(
 parsed
@@ -3355,8 +3953,9 @@ parsed
 
 
 const total =
-Object
-.values(restored.forms)
+Object.values(
+restored.forms
+)
 .reduce(
 (s,a) =>
 s+a.length,
@@ -3445,9 +4044,12 @@ alert(
 
 }
 
-e.target.value = '';
+
+e.target.value =
+'';
 
 };
+
 
 r.readAsText(f);
 
@@ -3455,12 +4057,9 @@ r.readAsText(f);
 
 
 
-/* =========================================
-START
-========================================= */
-
-$('entryDate').value =
-todayISO();
+/* ================================
+   START
+================================ */
 
 load();
 
