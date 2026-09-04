@@ -326,7 +326,6 @@ td{
 
 <header>
 
-  <!-- REGULAR FORM-এ এই Heading কখনো পরিবর্তন হবে না -->
   <h1 id="appHeading">A.A.P Format of V.B.G.R.A.M.G</h1>
 
   <p>Mahishbathani Gram Panchayat Scheme</p>
@@ -340,9 +339,7 @@ td{
 
 <div class="container">
 
-  <!-- =====================================================
-       FORM SELECT
-       ====================================================== -->
+  <!-- FORM SELECT -->
 
   <div class="card">
 
@@ -372,7 +369,6 @@ td{
     </div>
 
 
-    <!-- MAIN 4 BUTTON -->
     <div class="formnav">
 
       <button
@@ -406,7 +402,6 @@ td{
     </div>
 
 
-    <!-- MODEL VILLAGE-এর আলাদা STAGE -->
     <div id="modelStageBar" class="stagebar">
 
       <button
@@ -448,15 +443,11 @@ td{
 
 
 
-  <!-- =====================================================
-       DATA ENTRY FORM
-       ====================================================== -->
+  <!-- DATA ENTRY FORM -->
 
   <div class="card">
 
-    <div
-      class="title"
-      id="formTitle">
+    <div class="title" id="formTitle">
       ➕ Approach Scheme — নতুন Data Entry
     </div>
 
@@ -465,33 +456,22 @@ td{
 
       <div class="field">
         <label>Scheme Name</label>
-        <input
-          id="scheme"
-          placeholder="Scheme Name">
+        <input id="scheme" placeholder="Scheme Name">
       </div>
-
 
       <div class="field">
         <label>Nature of Work</label>
-        <input
-          id="nature"
-          placeholder="Nature of Work">
+        <input id="nature" placeholder="Nature of Work">
       </div>
-
 
       <div class="field">
         <label>Length or Area</label>
-        <input
-          id="lengthArea"
-          placeholder="যেমন 150 m">
+        <input id="lengthArea" placeholder="যেমন 150 m">
       </div>
-
 
       <div class="field">
         <label>Mouja</label>
-
         <select id="mouza">
-
           <option value="Sahara">SAHARA</option>
           <option value="Aihorani">AIHORANI</option>
           <option value="Badanpur">BADANPUR</option>
@@ -519,191 +499,101 @@ td{
           <option value="Sultandighi">SULTANDIGHI</option>
           <option value="Tutkhan">TUTKHAN</option>
           <option value="Uttar Bhatra">UTTAR BHATRA</option>
-
         </select>
       </div>
 
-
       <div class="field">
         <label>Starting Dag No.</label>
-        <input
-          id="startDag"
-          placeholder="যেমন 202/1423">
+        <input id="startDag" placeholder="যেমন 202/1423">
       </div>
-
 
       <div class="field">
         <label>End Dag No.</label>
-        <input
-          id="endDag"
-          placeholder="যেমন 205/1424">
+        <input id="endDag" placeholder="যেমন 205/1424">
       </div>
-
 
       <div class="field">
         <label>I.B.S. Job Card No.</label>
-        <input
-          id="jobCard"
-          placeholder="Job Card No.">
+        <input id="jobCard" placeholder="Job Card No.">
       </div>
-
 
       <div class="field">
         <label>Latitude</label>
-        <input
-          id="lat1"
-          inputmode="decimal"
-          placeholder="Latitude">
+        <input id="lat1" inputmode="decimal" placeholder="Latitude">
       </div>
-
 
       <div class="field">
         <label>Longitude</label>
-        <input
-          id="long1"
-          inputmode="decimal"
-          placeholder="Longitude">
+        <input id="long1" inputmode="decimal" placeholder="Longitude">
       </div>
-
 
       <div class="field">
         <label>Latitude (2)</label>
-        <input
-          id="lat2"
-          inputmode="decimal"
-          placeholder="Latitude">
+        <input id="lat2" inputmode="decimal" placeholder="Latitude">
       </div>
-
 
       <div class="field">
         <label>Longitude (2)</label>
-        <input
-          id="long2"
-          inputmode="decimal"
-          placeholder="Longitude">
+        <input id="long2" inputmode="decimal" placeholder="Longitude">
       </div>
 
     </div>
 
 
     <div class="actions">
-
-      <button
-        class="primary"
-        onclick="saveEntry()">
-        💾 Save Entry
-      </button>
-
-      <button
-        class="gray"
-        onclick="clearForm()">
-        ↩ Clear
-      </button>
-
+      <button class="primary" onclick="saveEntry()">💾 Save Entry</button>
+      <button class="gray" onclick="clearForm()">↩ Clear</button>
     </div>
 
   </div>
 
 
 
-  <!-- =====================================================
-       SAVED DATA
-       ====================================================== -->
+  <!-- SAVED DATA -->
 
   <div class="card">
 
-    <div
-      class="title"
-      id="savedTitle">
+    <div class="title" id="savedTitle">
       📋 Approach Scheme — Saved Data
     </div>
 
 
     <div class="toolbar">
 
-      <input
-        class="search"
-        id="search"
-        oninput="render()"
-        placeholder="🔎 Scheme / Dag / Mouja দিয়ে Search করুন">
+      <input class="search" id="search" oninput="render()" placeholder="🔎 Scheme / Dag / Mouja দিয়ে Search করুন">
 
+      <button class="success" onclick="exportExcel()">📊 Export Excel</button>
+      <button class="gray" onclick="backup()">💾 Backup All</button>
+      <button class="gray" onclick="document.getElementById('restore').click()">♻ Restore</button>
+      
+      <!-- নতুন ডিলিট বাটন -->
+      <button class="danger" onclick="deleteSelected()">🗑 Delete Selected</button>
+      <button class="danger" onclick="deleteCurrentForm()">🗑 Clear This Stage</button>
 
-      <button
-        class="success"
-        onclick="exportExcel()">
-        📊 Export Excel
-      </button>
-
-
-      <button
-        class="gray"
-        onclick="backup()">
-        💾 Backup All
-      </button>
-
-
-      <button
-        class="gray"
-        onclick="document.getElementById('restore').click()">
-        ♻ Restore
-      </button>
-
-      <input
-        id="restore"
-        type="file"
-        accept=".json,application/json"
-        hidden
-        onchange="restore(event)">
-
-
-      <button
-        class="danger"
-        onclick="deleteCurrentForm()">
-        🗑 Delete This Form
-      </button>
-
-
-      <button
-        class="danger"
-        onclick="deleteAll()">
-        🗑 Delete ALL Forms
-      </button>
+      <input id="restore" type="file" accept=".json,application/json" hidden onchange="restore(event)">
 
     </div>
 
 
-    <!-- TRANSFER BUTTON -->
-    <div
-      id="transferBar"
-      class="transferbar">
+    <div id="transferBar" class="transferbar">
 
-      <button
-        id="nextTransferBtn"
-        class="success"
-        onclick="transferNext()">
+      <button id="nextTransferBtn" class="success" onclick="transferNext()">
         ➡ পরের Stage-এ Transfer
       </button>
 
-      <button
-        id="backTransferBtn"
-        class="gray"
-        onclick="transferBack()">
+      <button id="backTransferBtn" class="gray" onclick="transferBack()">
         ⬅ আগের Stage-এ Back
       </button>
 
     </div>
 
 
-    <div
-      id="selectedInfo"
-      class="selectedInfo">
+    <div id="selectedInfo" class="selectedInfo">
       কোনো Project Select করা হয়নি
     </div>
 
 
-    <div
-      class="count"
-      id="count">
+    <div class="count" id="count">
       0 entries
     </div>
 
@@ -713,53 +603,28 @@ td{
       <table>
 
         <thead>
-
           <tr>
-
             <th>
-              <input
-                type="checkbox"
-                class="selectAll"
-                id="selectAll"
-                onchange="toggleAll(this)">
-              <br>
-              Select
+              <input type="checkbox" class="selectAll" id="selectAll" onchange="toggleAll(this)">
+              <br>Select
             </th>
-
             <th>S.L. No.<br>(Auto)</th>
-
             <th>Date</th>
-
             <th>Financial<br>Year</th>
-
             <th>Scheme Name</th>
-
             <th>Nature of Work</th>
-
             <th>Length / Area</th>
-
             <th>Mouja</th>
-
             <th>Starting Dag No.</th>
-
             <th>End Dag No.</th>
-
             <th>In Case I.B.S<br>Job Card No.</th>
-
             <th>Lat</th>
-
             <th>Long</th>
-
             <th>Lat</th>
-
             <th>Long</th>
-
             <th>Action</th>
-
           </tr>
-
         </thead>
-
 
         <tbody id="tbody"></tbody>
 
@@ -775,13 +640,7 @@ td{
 
 <script>
 
-/* =========================================================
-   STORAGE
-   ========================================================= */
-
-const STORAGE_KEY =
-  'AAP_OFFLINE_DATA_MOBILE_V5';
-
+const STORAGE_KEY = 'AAP_OFFLINE_DATA_MOBILE_V5';
 
 const OLD_KEYS = [
   'AAP_OFFLINE_DATA_MOBILE_V4',
@@ -794,2495 +653,634 @@ const OLD_KEYS = [
 ];
 
 
-/* =========================================================
-   FORM NAMES
-   ========================================================= */
-
 const FORM_NAMES = {
-
-  approach:
-    'Approach Scheme',
-
-  approve:
-    'Approve Scheme',
-
-  tender:
-    'Tender Scheme',
-
-  modelVillage:
-    'Model Village Approach',
-
-  modelApprove:
-    'Model Village Approve',
-
-  modelTender:
-    'Model Village Tender'
-
+  approach: 'Approach Scheme',
+  approve: 'Approve Scheme',
+  tender: 'Tender Scheme',
+  modelVillage: 'Model Village Approach',
+  modelApprove: 'Model Village Approve',
+  modelTender: 'Model Village Tender'
 };
 
-
-/* =========================================================
-   FLOW
-   ========================================================= */
 
 const FLOW = {
-
-  approach:{
-    next:'approve',
-    back:null
-  },
-
-  approve:{
-    next:'tender',
-    back:'approach'
-  },
-
-  tender:{
-    next:null,
-    back:'approve'
-  },
-
-  modelVillage:{
-    next:'modelApprove',
-    back:null
-  },
-
-  modelApprove:{
-    next:'modelTender',
-    back:'modelVillage'
-  },
-
-  modelTender:{
-    next:null,
-    back:'modelApprove'
-  }
-
+  approach:{next:'approve',back:null},
+  approve:{next:'tender',back:'approach'},
+  tender:{next:null,back:'approve'},
+  modelVillage:{next:'modelApprove',back:null},
+  modelApprove:{next:'modelTender',back:'modelVillage'},
+  modelTender:{next:null,back:'modelApprove'}
 };
 
 
-/* =========================================================
-   FORM IDs
-   ========================================================= */
-
 const ids = [
-
-  'scheme',
-  'nature',
-  'lengthArea',
-  'mouza',
-  'startDag',
-  'endDag',
-  'jobCard',
-  'lat1',
-  'long1',
-  'lat2',
-  'long2'
-
+  'scheme','nature','lengthArea','mouza',
+  'startDag','endDag','jobCard','lat1',
+  'long1','lat2','long2'
 ];
 
 
-/* =========================================================
-   STATE
-   ========================================================= */
-
 let state = {
-
   version:5,
-
   year:'2026-27',
-
   forms:{
-
     approach:[],
-
     approve:[],
-
     tender:[],
-
     modelVillage:[],
-
     modelApprove:[],
-
     modelTender:[]
-
   }
-
 };
 
 
-let currentForm =
-  'approach';
+let currentForm = 'approach';
+let editIndex = -1;
 
-
-let editIndex =
-  -1;
-
-
-/* =========================================================
-   BASIC HELPERS
-   ========================================================= */
-
-const $ =
-  id => document.getElementById(id);
-
+const $ = id => document.getElementById(id);
 
 function val(id){
-
   const el = $(id);
-
-  return el
-    ? el.value.trim()
-    : '';
-
+  return el ? el.value.trim() : '';
 }
-
 
 function todayISO(){
-
   const d = new Date();
-
-  const local =
-    new Date(
-      d.getTime() -
-      d.getTimezoneOffset() * 60000
-    );
-
-  return local
-    .toISOString()
-    .slice(0,10);
-
+  const local = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
+  return local.toISOString().slice(0,10);
 }
-
 
 function esc(s){
-
-  return String(s ?? '')
-    .replace(
-      /[&<>"']/g,
-      c => ({
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#39;'
-      }[c])
-    );
-
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
-
 
 function currentData(){
-
   return state.forms[currentForm];
-
 }
-
 
 function formName(){
-
   return FORM_NAMES[currentForm];
-
 }
-
-
-/* =========================================================
-   MAIN HEADING
-   ========================================================= */
-
-/*
-   IMPORTANT:
-
-   Approach / Approve / Tender
-   = A.A.P Format of V.B.G.R.A.M.G
-
-   Model Village-এর সব stage
-   = MODEL VILLAGE
-*/
 
 function updateMainHeading(){
-
-  const heading =
-    $('appHeading');
-
-  if(
-    currentForm === 'modelVillage' ||
-    currentForm === 'modelApprove' ||
-    currentForm === 'modelTender'
-  ){
-
-    heading.textContent =
-      'MODEL VILLAGE';
-
+  const heading = $('appHeading');
+  if(currentForm === 'modelVillage' || currentForm === 'modelApprove' || currentForm === 'modelTender'){
+    heading.textContent = 'MODEL VILLAGE';
   }else{
-
-    heading.textContent =
-      'A.A.P Format of V.B.G.R.A.M.G';
-
+    heading.textContent = 'A.A.P Format of V.B.G.R.A.M.G';
   }
-
 }
-
-
-/* =========================================================
-   NORMALIZE STATE
-   ========================================================= */
 
 function normalizeState(input){
-
   const result = {
-
     version:5,
-
     year:'2026-27',
-
     forms:{
-
       approach:[],
-
       approve:[],
-
       tender:[],
-
       modelVillage:[],
-
       modelApprove:[],
-
       modelTender:[]
-
     }
-
   };
-
-
-  /* OLD ARRAY BACKUP */
 
   if(Array.isArray(input)){
-
-    result.forms.approach =
-      input.map(normalizeEntry);
-
+    result.forms.approach = input.map(normalizeEntry);
     return result;
-
   }
 
-
-  if(
-    input &&
-    typeof input === 'object'
-  ){
-
+  if(input && typeof input === 'object'){
     if(input.year){
-
-      result.year =
-        String(input.year);
-
+      result.year = String(input.year);
     }
-
-
-    if(
-      input.forms &&
-      typeof input.forms === 'object'
-    ){
-
-      Object.keys(result.forms)
-        .forEach(key => {
-
-          if(
-            Array.isArray(
-              input.forms[key]
-            )
-          ){
-
-            result.forms[key] =
-              input.forms[key]
-                .map(normalizeEntry);
-
-          }
-
-        });
-
+    if(input.forms && typeof input.forms === 'object'){
+      Object.keys(result.forms).forEach(key => {
+        if(Array.isArray(input.forms[key])){
+          result.forms[key] = input.forms[key].map(normalizeEntry);
+        }
+      });
     }
-
-    else if(
-      Array.isArray(input.data)
-    ){
-
-      result.forms.approach =
-        input.data.map(normalizeEntry);
-
+    else if(Array.isArray(input.data)){
+      result.forms.approach = input.data.map(normalizeEntry);
     }
-
   }
-
-
   return result;
-
 }
-
-
-/* =========================================================
-   NORMALIZE ENTRY
-   ========================================================= */
 
 function normalizeEntry(x){
-
   x = x || {};
-
-
   return {
-
-    id:
-      String(
-        x.id ||
-        (
-          Date.now() +
-          '_' +
-          Math.random()
-            .toString(36)
-            .slice(2)
-        )
-      ),
-
-    scheme:
-      String(x.scheme ?? ''),
-
-    nature:
-      String(x.nature ?? ''),
-
-    lengthArea:
-      String(x.lengthArea ?? ''),
-
-    mouza:
-      String(x.mouza ?? 'Sahara'),
-
-    startDag:
-      String(x.startDag ?? ''),
-
-    endDag:
-      String(x.endDag ?? ''),
-
-    jobCard:
-      String(x.jobCard ?? ''),
-
-    lat1:
-      String(x.lat1 ?? ''),
-
-    long1:
-      String(x.long1 ?? ''),
-
-    lat2:
-      String(x.lat2 ?? ''),
-
-    long2:
-      String(x.long2 ?? ''),
-
-    date:
-      String(x.date ?? ''),
-
-    year:
-      String(x.year ?? '')
-
+    id: String(x.id || (Date.now() + '_' + Math.random().toString(36).slice(2))),
+    scheme: String(x.scheme ?? ''),
+    nature: String(x.nature ?? ''),
+    lengthArea: String(x.lengthArea ?? ''),
+    mouza: String(x.mouza ?? 'Sahara'),
+    startDag: String(x.startDag ?? ''),
+    endDag: String(x.endDag ?? ''),
+    jobCard: String(x.jobCard ?? ''),
+    lat1: String(x.lat1 ?? ''),
+    long1: String(x.long1 ?? ''),
+    lat2: String(x.lat2 ?? ''),
+    long2: String(x.long2 ?? ''),
+    date: String(x.date ?? ''),
+    year: String(x.year ?? '')
   };
-
 }
-
-
-/* =========================================================
-   STORAGE SAVE
-   ========================================================= */
 
 function persist(){
-
   try{
-
     state.version = 5;
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(state)
-    );
-
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     return true;
-
   }catch(e){
-
-    alert(
-      'Browser Storage unavailable। Backup file ব্যবহার করুন।'
-    );
-
+    alert('Browser Storage unavailable। Backup file ব্যবহার করুন।');
     return false;
-
   }
-
 }
-
-
-/* =========================================================
-   LOAD
-   ========================================================= */
 
 function load(){
-
   let loaded = false;
-
-
   try{
-
-    const raw =
-      localStorage.getItem(
-        STORAGE_KEY
-      );
-
-
+    const raw = localStorage.getItem(STORAGE_KEY);
     if(raw){
-
-      state =
-        normalizeState(
-          JSON.parse(raw)
-        );
-
+      state = normalizeState(JSON.parse(raw));
       loaded = true;
-
     }
-
     else{
-
-      for(
-        const key of OLD_KEYS
-      ){
-
-        const oldRaw =
-          localStorage.getItem(key);
-
+      for(const key of OLD_KEYS){
+        const oldRaw = localStorage.getItem(key);
         if(!oldRaw) continue;
-
-
         try{
-
-          const oldParsed =
-            JSON.parse(oldRaw);
-
-          state =
-            normalizeState(
-              oldParsed
-            );
-
+          const oldParsed = JSON.parse(oldRaw);
+          state = normalizeState(oldParsed);
           persist();
-
           loaded = true;
-
           break;
-
         }catch(e){}
-
       }
-
     }
-
   }catch(e){
-
-    state =
-      normalizeState([]);
-
+    state = normalizeState([]);
   }
-
 
   if(!loaded){
-
-    state =
-      normalizeState([]);
-
+    state = normalizeState([]);
   }
 
-
-  $('year').value =
-    state.year || '2026-27';
-
-
-  $('entryDate').value =
-    todayISO();
-
-
+  $('year').value = state.year || '2026-27';
+  $('entryDate').value = todayISO();
   updateUI();
-
 }
-
-
-/* =========================================================
-   SWITCH FORM
-   ========================================================= */
 
 function switchForm(form){
+  if(!FORM_NAMES[form]) return;
+  currentForm = form;
+  editIndex = -1;
 
-  if(
-    !FORM_NAMES[form]
-  ) return;
-
-
-  currentForm =
-    form;
-
-  editIndex =
-    -1;
-
-
-  /* MAIN BUTTON ACTIVE */
-
-  document
-    .querySelectorAll('.formnav button')
-    .forEach(b => {
-
-      b.classList.remove('active');
-
-      b.classList.add('secondary');
-
-    });
-
+  document.querySelectorAll('.formnav button').forEach(b => {
+    b.classList.remove('active');
+    b.classList.add('secondary');
+  });
 
   let mainButtonId;
-
-
-  if(
-    form === 'modelVillage' ||
-    form === 'modelApprove' ||
-    form === 'modelTender'
-  ){
-
-    mainButtonId =
-      'nav-model';
-
+  if(form === 'modelVillage' || form === 'modelApprove' || form === 'modelTender'){
+    mainButtonId = 'nav-model';
+  } else{
+    mainButtonId = 'nav-' + form;
   }
 
-  else{
-
-    mainButtonId =
-      'nav-' + form;
-
-  }
-
-
-  const active =
-    $(mainButtonId);
-
-
+  const active = $(mainButtonId);
   if(active){
-
     active.classList.add('active');
-
     active.classList.remove('secondary');
-
   }
 
-
-  /* MODEL STAGE BAR */
-
-  const modelBar =
-    $('modelStageBar');
-
-
-  if(
-    form === 'modelVillage' ||
-    form === 'modelApprove' ||
-    form === 'modelTender'
-  ){
-
+  const modelBar = $('modelStageBar');
+  if(form === 'modelVillage' || form === 'modelApprove' || form === 'modelTender'){
     modelBar.classList.add('show');
-
   }else{
-
     modelBar.classList.remove('show');
-
   }
 
+  document.querySelectorAll('#modelStageBar button').forEach(b => {
+    b.classList.remove('active');
+    b.classList.add('secondary');
+  });
 
-  document
-    .querySelectorAll('#modelStageBar button')
-    .forEach(b => {
-
-      b.classList.remove('active');
-
-      b.classList.add('secondary');
-
-    });
-
-
-  if(
-    form === 'modelVillage'
-  ){
-
-    $('stage-modelVillage')
-      .classList.add('active');
-
-    $('stage-modelVillage')
-      .classList.remove('secondary');
-
+  if(form === 'modelVillage'){
+    $('stage-modelVillage').classList.add('active');
+    $('stage-modelVillage').classList.remove('secondary');
   }
-
-
-  if(
-    form === 'modelApprove'
-  ){
-
-    $('stage-modelApprove')
-      .classList.add('active');
-
-    $('stage-modelApprove')
-      .classList.remove('secondary');
-
+  if(form === 'modelApprove'){
+    $('stage-modelApprove').classList.add('active');
+    $('stage-modelApprove').classList.remove('secondary');
   }
-
-
-  if(
-    form === 'modelTender'
-  ){
-
-    $('stage-modelTender')
-      .classList.add('active');
-
-    $('stage-modelTender')
-      .classList.remove('secondary');
-
+  if(form === 'modelTender'){
+    $('stage-modelTender').classList.add('active');
+    $('stage-modelTender').classList.remove('secondary');
   }
-
 
   updateMainHeading();
-
-
-  $('currentFormName')
-    .textContent =
-      formName();
-
-
-  $('formTitle')
-    .textContent =
-      '➕ ' +
-      formName() +
-      ' — নতুন Data Entry';
-
-
-  $('savedTitle')
-    .textContent =
-      '📋 ' +
-      formName() +
-      ' — Saved Data';
-
-
+  $('currentFormName').textContent = formName();
+  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
+  $('savedTitle').textContent = '📋 ' + formName() + ' — Saved Data';
   $('search').value = '';
-
-
   clearForm(false);
-
-
   updateTransferButtons();
-
-
   render();
-
 }
-
-
-/* =========================================================
-   UPDATE UI
-   ========================================================= */
 
 function updateUI(){
-
-  $('headerYear')
-    .textContent =
-      String(state.year)
-        .replace('-', ' - ');
-
-
-  $('year').value =
-    state.year;
-
-
-  $('currentFormName')
-    .textContent =
-      formName();
-
-
-  $('formTitle')
-    .textContent =
-      '➕ ' +
-      formName() +
-      ' — নতুন Data Entry';
-
-
-  $('savedTitle')
-    .textContent =
-      '📋 ' +
-      formName() +
-      ' — Saved Data';
-
-
+  $('headerYear').textContent = String(state.year).replace('-', ' - ');
+  $('year').value = state.year;
+  $('currentFormName').textContent = formName();
+  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
+  $('savedTitle').textContent = '📋 ' + formName() + ' — Saved Data';
   updateMainHeading();
-
-
   updateTransferButtons();
-
-
   render();
-
 }
-
-
-/* =========================================================
-   YEAR
-   ========================================================= */
 
 function changeYear(){
-
-  state.year =
-    $('year').value;
-
-
-  $('headerYear')
-    .textContent =
-      state.year
-        .replace('-', ' - ');
-
-
+  state.year = $('year').value;
+  $('headerYear').textContent = state.year.replace('-', ' - ');
   persist();
-
   render();
-
 }
-
-
-/* =========================================================
-   SAVE
-   ========================================================= */
 
 function saveEntry(){
-
   const x = {};
+  ids.forEach(id => { x[id] = val(id); });
+  x.date = val('entryDate') || todayISO();
+  x.year = state.year;
 
-
-  ids.forEach(id => {
-
-    x[id] =
-      val(id);
-
-  });
-
-
-  x.date =
-    val('entryDate') ||
-    todayISO();
-
-
-  x.year =
-    state.year;
-
-
-  if(
-    !x.scheme &&
-    !x.startDag
-  ){
-
-    alert(
-      'Scheme Name অথবা Starting Dag No. দিন।'
-    );
-
+  if(!x.scheme && !x.startDag){
+    alert('Scheme Name অথবা Starting Dag No. দিন।');
     return;
-
   }
 
-
-  const arr =
-    currentData();
-
-
+  const arr = currentData();
   if(editIndex >= 0){
-
-    /*
-      Edit করার সময় পুরনো ID
-      অবশ্যই রেখে দেওয়া হবে
-    */
-
-    x.id =
-      arr[editIndex].id ||
-      createId();
-
-
-    arr[editIndex] =
-      x;
-
-  }
-
-  else{
-
-    x.id =
-      createId();
-
+    x.id = arr[editIndex].id || createId();
+    arr[editIndex] = x;
+  } else{
+    x.id = createId();
     arr.push(x);
-
   }
-
 
   if(!persist()) return;
-
-
   render();
-
   clearForm();
-
-
-  alert(
-    formName() +
-    ' Entry Save হয়েছে ✓'
-  );
-
+  alert(formName() + ' Entry Save হয়েছে ✓');
 }
-
-
-/* =========================================================
-   CREATE ID
-   ========================================================= */
 
 function createId(){
-
-  return (
-    Date.now() +
-    '_' +
-    Math.random()
-      .toString(36)
-      .slice(2)
-  );
-
+  return (Date.now() + '_' + Math.random().toString(36).slice(2));
 }
-
-
-/* =========================================================
-   CLEAR
-   ========================================================= */
 
 function clearForm(resetDate=true){
-
   ids.forEach(id => {
-
-    if($(id))
-      $(id).value = '';
-
+    if($(id)) $(id).value = '';
   });
-
-
-  $('mouza').value =
-    'Sahara';
-
-
+  $('mouza').value = 'Sahara';
   editIndex = -1;
-
-
-  $('formTitle')
-    .textContent =
-      '➕ ' +
-      formName() +
-      ' — নতুন Data Entry';
-
-
+  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
   if(resetDate){
-
-    $('entryDate').value =
-      todayISO();
-
+    $('entryDate').value = todayISO();
   }
-
 }
-
-
-/* =========================================================
-   EDIT
-   ========================================================= */
 
 function edit(i){
-
-  const x =
-    currentData()[i];
-
-
+  const x = currentData()[i];
   if(!x) return;
+  ids.forEach(id => { $(id).value = x[id] || ''; });
+  $('entryDate').value = x.date || todayISO();
 
-
-  ids.forEach(id => {
-
-    $(id).value =
-      x[id] || '';
-
-  });
-
-
-  $('entryDate').value =
-    x.date ||
-    todayISO();
-
-
-  if(
-    x.year &&
-    x.year !== state.year
-  ){
-
-    state.year =
-      x.year;
-
-    $('year').value =
-      x.year;
-
-    $('headerYear')
-      .textContent =
-        x.year
-          .replace('-', ' - ');
-
+  if(x.year && x.year !== state.year){
+    state.year = x.year;
+    $('year').value = x.year;
+    $('headerYear').textContent = x.year.replace('-', ' - ');
     persist();
-
   }
-
-
   editIndex = i;
-
-
-  $('formTitle')
-    .textContent =
-      '✏️ ' +
-      formName() +
-      ' — Data Entry Edit করুন';
-
-
-  window.scrollTo({
-
-    top:0,
-
-    behavior:'smooth'
-
-  });
-
+  $('formTitle').textContent = '✏️ ' + formName() + ' — Data Entry Edit করুন';
+  window.scrollTo({top:0, behavior:'smooth'});
 }
-
-
-/* =========================================================
-   DELETE ONE
-   ========================================================= */
 
 function del(i){
-
-  if(
-    confirm(
-      formName() +
-      ' এর এই Entry মুছে ফেলবেন?'
-    )
-  ){
-
-    currentData()
-      .splice(i,1);
-
+  if(confirm(formName() + ' এর এই Entry মুছে ফেলবেন?')){
+    currentData().splice(i,1);
     persist();
-
     render();
-
   }
-
 }
 
-
-/* =========================================================
-   DELETE CURRENT FORM
-   ========================================================= */
-
-function deleteCurrentForm(){
-
-  const arr =
-    currentData();
-
-
-  if(!arr.length){
-
-    alert(
-      formName() +
-      ' এ কোনো data নেই।'
-    );
-
+// ---------------- NEW DELETE SELECTED FUNCTION ----------------
+function deleteSelected(){
+  const selected = getSelectedIndexes();
+  if(!selected.length){
+    alert('আগে অন্তত ১টি Project Select করুন।');
     return;
-
   }
-
-
-  if(
-    confirm(
-      formName() +
-      ' এর সব data মুছে ফেলবেন?'
-    )
-  ){
-
-    state.forms[currentForm] =
-      [];
-
-    editIndex = -1;
-
-    persist();
-
-    clearForm();
-
-    render();
-
-  }
-
-}
-
-
-/* =========================================================
-   DELETE ALL
-   ========================================================= */
-
-function deleteAll(){
-
-  const total =
-    Object.values(
-      state.forms
-    )
-    .reduce(
-      (sum,arr) =>
-        sum + arr.length,
-      0
-    );
-
-
-  if(!total){
-
-    alert(
-      'কোনো Data নেই।'
-    );
-
-    return;
-
-  }
-
-
-  if(
-    confirm(
-      'সব Form-এর সব Data একসাথে মুছে ফেলবেন?'
-    )
-  ){
-
-    Object.keys(
-      state.forms
-    ).forEach(key => {
-
-      state.forms[key] = [];
-
+  if(confirm(selected.length + ' টি Select করা Project মুছে ফেলবেন?')){
+    const arr = currentData();
+    selected.sort((a,b) => b-a).forEach(i => {
+      arr.splice(i,1);
     });
-
-
     editIndex = -1;
-
     persist();
-
-    clearForm();
-
     render();
-
+    alert('সফলভাবে মুছে ফেলা হয়েছে ✓');
   }
-
 }
 
-
-/* =========================================================
-   SELECTED ROWS
-   ========================================================= */
+// ---------------- FIXED: ONLY CLEAR CURRENT STAGE ----------------
+function deleteCurrentForm(){
+  const arr = currentData();
+  if(!arr.length){
+    alert(formName() + ' এ কোনো data নেই।');
+    return;
+  }
+  if(confirm('সতর্কতা: ' + formName() + ' এর সব data মুছে ফেলবেন?')){
+    state.forms[currentForm] = [];
+    editIndex = -1;
+    persist();
+    clearForm();
+    render();
+  }
+}
 
 function getSelectedIndexes(){
-
-  return Array.from(
-    document.querySelectorAll(
-      '.rowcheck:checked'
-    )
-  )
-  .map(
-    el =>
-      Number(
-        el.dataset.index
-      )
-  );
-
+  return Array.from(document.querySelectorAll('.rowcheck:checked')).map(el => Number(el.dataset.index));
 }
-
-
-/* =========================================================
-   SELECT ALL
-   ========================================================= */
 
 function toggleAll(box){
-
-  document
-    .querySelectorAll('.rowcheck')
-    .forEach(cb => {
-
-      cb.checked =
-        box.checked;
-
-    });
-
-
+  document.querySelectorAll('.rowcheck').forEach(cb => { cb.checked = box.checked; });
   updateSelectedInfo();
-
 }
-
-
-/* =========================================================
-   SELECT INFO
-   ========================================================= */
 
 function updateSelectedInfo(){
-
-  const selected =
-    getSelectedIndexes();
-
-
-  $('selectedInfo')
-    .textContent =
-      selected.length
-      ? selected.length +
-        ' টি Project Select করা হয়েছে'
-      : 'কোনো Project Select করা হয়নি';
-
+  const selected = getSelectedIndexes();
+  $('selectedInfo').textContent = selected.length ? selected.length + ' টি Project Select করা হয়েছে' : 'কোনো Project Select করা হয়নি';
 }
-
-
-/* =========================================================
-   UPDATE TRANSFER BUTTON
-   ========================================================= */
 
 function updateTransferButtons(){
-
-  const flow =
-    FLOW[currentForm];
-
-
-  const bar =
-    $('transferBar');
-
-
-  if(
-    flow.next ||
-    flow.back
-  ){
-
+  const flow = FLOW[currentForm];
+  const bar = $('transferBar');
+  if(flow.next || flow.back){
     bar.classList.add('show');
-
   }else{
-
     bar.classList.remove('show');
-
   }
-
-
-  const nextBtn =
-    $('nextTransferBtn');
-
-
-  const backBtn =
-    $('backTransferBtn');
-
+  const nextBtn = $('nextTransferBtn');
+  const backBtn = $('backTransferBtn');
 
   if(flow.next){
-
-    nextBtn.style.display =
-      'block';
-
-
-    nextBtn.textContent =
-      '➡ ' +
-      FORM_NAMES[flow.next] +
-      ' -এ Transfer';
-
+    nextBtn.style.display = 'block';
+    nextBtn.textContent = '➡ ' + FORM_NAMES[flow.next] + ' -এ Transfer';
   }else{
-
-    nextBtn.style.display =
-      'none';
-
+    nextBtn.style.display = 'none';
   }
-
 
   if(flow.back){
-
-    backBtn.style.display =
-      'block';
-
-
-    backBtn.textContent =
-      '⬅ ' +
-      FORM_NAMES[flow.back] +
-      ' -এ Back';
-
+    backBtn.style.display = 'block';
+    backBtn.textContent = '⬅ ' + FORM_NAMES[flow.back] + ' -এ Back';
   }else{
-
-    backBtn.style.display =
-      'none';
-
+    backBtn.style.display = 'none';
   }
-
 }
-
-
-/* =========================================================
-   TRANSFER NEXT
-   ========================================================= */
 
 function transferNext(){
-
-  const flow =
-    FLOW[currentForm];
-
-
+  const flow = FLOW[currentForm];
   if(!flow.next){
-
-    alert(
-      'এই Stage-এর পরে আর কোনো Stage নেই।'
-    );
-
+    alert('এই Stage-এর পরে আর কোনো Stage নেই।');
     return;
-
   }
-
-
-  const selected =
-    getSelectedIndexes();
-
-
+  const selected = getSelectedIndexes();
   if(!selected.length){
-
-    alert(
-      'আগে অন্তত ১টি Project Select করুন।'
-    );
-
+    alert('আগে অন্তত ১টি Project Select করুন।');
     return;
-
   }
+  const target = state.forms[flow.next];
+  const source = state.forms[currentForm];
+  const selectedRecords = selected.map(i => source[i]).filter(Boolean);
 
-
-  const target =
-    state.forms[flow.next];
-
-
-  const source =
-    state.forms[currentForm];
-
-
-  const selectedRecords =
-    selected.map(
-      i => source[i]
-    )
-    .filter(Boolean);
-
-
-  if(
-    !confirm(
-      selectedRecords.length +
-      ' টি Project\n' +
-      formName() +
-      ' থেকে\n' +
-      FORM_NAMES[flow.next] +
-      ' -এ Transfer করবেন?'
-    )
-  ){
-
+  if(!confirm(selectedRecords.length + ' টি Project\n' + formName() + ' থেকে\n' + FORM_NAMES[flow.next] + ' -এ Transfer (Move) করবেন?')){
     return;
-
   }
-
 
   selectedRecords.forEach(record => {
-
-    /*
-      একই ID থাকলে duplicate হবে না
-    */
-
-    const already =
-      target.some(
-        x =>
-          x.id &&
-          x.id === record.id
-      );
-
-
-    if(!already){
-
-      target.push(
-        normalizeEntry(record)
-      );
-
-    }
-
+    const already = target.some(x => x.id && x.id === record.id);
+    if(!already){ target.push(normalizeEntry(record)); }
   });
 
-
-  /*
-    Source থেকে selected records remove
-  */
-
-  selected
-    .sort(
-      (a,b) => b-a
-    )
-    .forEach(i => {
-
-      source.splice(i,1);
-
-    });
-
+  selected.sort((a,b) => b-a).forEach(i => {
+    source.splice(i,1);
+  });
 
   editIndex = -1;
-
-
   persist();
-
   render();
-
-
-  alert(
-    selectedRecords.length +
-    ' টি Project সফলভাবে\n' +
-    FORM_NAMES[flow.next] +
-    ' -এ Transfer হয়েছে ✓'
-  );
-
+  alert(selectedRecords.length + ' টি Project সফলভাবে\n' + FORM_NAMES[flow.next] + ' -এ Transfer হয়েছে ✓');
 }
-
-
-/* =========================================================
-   TRANSFER BACK
-   ========================================================= */
 
 function transferBack(){
-
-  const flow =
-    FLOW[currentForm];
-
-
+  const flow = FLOW[currentForm];
   if(!flow.back){
-
-    alert(
-      'এই Stage-এর আগে আর কোনো Stage নেই।'
-    );
-
+    alert('এই Stage-এর আগে আর কোনো Stage নেই।');
     return;
-
   }
-
-
-  const selected =
-    getSelectedIndexes();
-
-
+  const selected = getSelectedIndexes();
   if(!selected.length){
-
-    alert(
-      'আগে অন্তত ১টি Project Select করুন।'
-    );
-
+    alert('আগে অন্তত ১টি Project Select করুন।');
     return;
-
   }
+  const target = state.forms[flow.back];
+  const source = state.forms[currentForm];
+  const selectedRecords = selected.map(i => source[i]).filter(Boolean);
 
-
-  const target =
-    state.forms[flow.back];
-
-
-  const source =
-    state.forms[currentForm];
-
-
-  const selectedRecords =
-    selected.map(
-      i => source[i]
-    )
-    .filter(Boolean);
-
-
-  if(
-    !confirm(
-      selectedRecords.length +
-      ' টি Project\n' +
-      formName() +
-      ' থেকে\n' +
-      FORM_NAMES[flow.back] +
-      ' -এ Back করবেন?'
-    )
-  ){
-
+  if(!confirm(selectedRecords.length + ' টি Project\n' + formName() + ' থেকে\n' + FORM_NAMES[flow.back] + ' -এ Back (Move) করবেন?')){
     return;
-
   }
-
 
   selectedRecords.forEach(record => {
-
-    const already =
-      target.some(
-        x =>
-          x.id &&
-          x.id === record.id
-      );
-
-
-    if(!already){
-
-      target.push(
-        normalizeEntry(record)
-      );
-
-    }
-
+    const already = target.some(x => x.id && x.id === record.id);
+    if(!already){ target.push(normalizeEntry(record)); }
   });
 
-
-  selected
-    .sort(
-      (a,b) => b-a
-    )
-    .forEach(i => {
-
-      source.splice(i,1);
-
-    });
-
+  selected.sort((a,b) => b-a).forEach(i => {
+    source.splice(i,1);
+  });
 
   editIndex = -1;
-
-
   persist();
-
   render();
-
-
-  alert(
-    selectedRecords.length +
-    ' টি Project সফলভাবে\n' +
-    FORM_NAMES[flow.back] +
-    ' -এ Back হয়েছে ✓'
-  );
-
+  alert(selectedRecords.length + ' টি Project সফলভাবে\n' + FORM_NAMES[flow.back] + ' -এ Back হয়েছে ✓');
 }
-
-
-/* =========================================================
-   RENDER TABLE
-   ========================================================= */
-
-function render(){
-
-  const q =
-    val('search')
-      .toLowerCase();
-
-
-  const list =
-    currentData()
-      .map(
-        (x,i) => ({
-          x:x,
-          i:i
-        })
-      )
-      .filter(
-        o =>
-          JSON.stringify(
-            o.x
-          )
-          .toLowerCase()
-          .includes(q)
-      );
-
-
-  $('count')
-    .textContent =
-      list.length +
-      ' entries — ' +
-      formName();
-
-
-  $('tbody').innerHTML =
-
-    list.length
-
-    ?
-
-    list.map(
-      (o,n) => {
-
-        const x =
-          o.x;
-
-        const i =
-          o.i;
-
-
-        return (
-
-          '<tr>' +
-
-          '<td class="selectCell">' +
-
-          '<input ' +
-          'type="checkbox" ' +
-          'class="rowcheck" ' +
-          'data-index="' +
-          i +
-          '" ' +
-          'onchange="updateSelectedInfo()">' +
-
-          '</td>' +
-
-          '<td>' +
-          (n+1) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.date) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.year) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.scheme) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.nature) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.lengthArea) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.mouza)
-            .toUpperCase() +
-          '</td>' +
-
-          '<td>' +
-          esc(x.startDag) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.endDag) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.jobCard) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.lat1) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.long1) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.lat2) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.long2) +
-          '</td>' +
-
-          '<td>' +
-
-          '<button ' +
-          'class="actionbtn primary" ' +
-          'onclick="edit(' +
-          i +
-          ')">' +
-          'Edit' +
-          '</button>' +
-
-          '<button ' +
-          'class="actionbtn danger" ' +
-          'onclick="del(' +
-          i +
-          ')">' +
-          'Delete' +
-          '</button>' +
-
-          '</td>' +
-
-          '</tr>'
-
-        );
-
-      }
-    ).join('')
-
-    :
-
-    '<tr>' +
-
-    '<td colspan="16" class="empty">' +
-
-    formName() +
-    ' এ কোনো Data Entry নেই।' +
-
-    '</td>' +
-
-    '</tr>';
-
-
-  /*
-    Select All reset
-  */
-
-  $('selectAll').checked =
-    false;
-
-
-  updateSelectedInfo();
-
-}
-
-
-/* =========================================================
-   EXCEL ESCAPE
-   ========================================================= */
-
-function excelEsc(s){
-
-  return String(s ?? '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&apos;');
-
-}
-
-
-function excelCell(
-  s,
-  style='Cell',
-  merge=''
-){
-
-  return (
-
-    '<Cell ss:StyleID="' +
-    style +
-    '"' +
-
-    (
-      merge !== ''
-      ?
-      ' ss:MergeAcross="' +
-      merge +
-      '"'
-      :
-      ''
-    ) +
-
-    '>' +
-
-    '<Data ss:Type="String">' +
-
-    excelEsc(s)
-      .replace(
-        /\n/g,
-        '&#10;'
-      ) +
-
-    '</Data></Cell>'
-
-  );
-
-}
-
-
-/* =========================================================
-   EXCEL EXPORT
-   ========================================================= */
-
-function exportExcel(){
-
-  const data =
-    currentData();
-
-
-  if(!data.length){
-
-    alert(
-      formName() +
-      ' এ Export করার মতো Data নেই।'
-    );
-
-    return;
-
-  }
-
-
-  const headers = [
-
-    'S.L.\nNo.',
-
-    'Date',
-
-    'Financial\nYear',
-
-    'Scheme Name',
-
-    'Nature of\nWork',
-
-    'Length /\nArea',
-
-    'Mouja',
-
-    'Starting\nDag No.',
-
-    'End Dag\nNo.',
-
-    'In Case I.B.S\nJob Card\nNo.',
-
-    'Lat',
-
-    'Long',
-
-    'Lat',
-
-    'Long'
-
-  ];
-
-
-  const widths = [
-
-    40,
-    70,
-    65,
-    125,
-    72,
-    55,
-    70,
-    65,
-    65,
-    78,
-    48,
-    48,
-    48,
-    48
-
-  ];
-
-
-  let xml =
-
-    '<?xml version="1.0" encoding="UTF-8"?>' +
-
-    '<?mso-application progid="Excel.Sheet"?>' +
-
-    '<Workbook ' +
-
-    'xmlns="urn:schemas-microsoft-com:office:spreadsheet" ' +
-
-    'xmlns:o="urn:schemas-microsoft-com:office:office" ' +
-
-    'xmlns:x="urn:schemas-microsoft-com:office:excel" ' +
-
-    'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
-
-
-  xml +=
-
-    '<Styles>' +
-
-    '<Style ss:ID="Default" ss:Name="Normal">' +
-
-    '<Alignment ss:Vertical="Center"/>' +
-
-    '<Font ss:FontName="Arial" ss:Size="9"/>' +
-
-    '</Style>' +
-
-
-    '<Style ss:ID="Title">' +
-
-    '<Alignment ' +
-    'ss:Horizontal="Center" ' +
-    'ss:Vertical="Center" ' +
-    'ss:WrapText="1"/>' +
-
-    '<Font ' +
-    'ss:FontName="Arial" ' +
-    'ss:Size="14" ' +
-    'ss:Bold="1"/>' +
-
-    '</Style>' +
-
-
-    '<Style ss:ID="Header">' +
-
-    '<Alignment ' +
-    'ss:Horizontal="Center" ' +
-    'ss:Vertical="Center" ' +
-    'ss:WrapText="1"/>' +
-
-    '<Font ' +
-    'ss:FontName="Arial" ' +
-    'ss:Size="10" ' +
-    'ss:Bold="1"/>' +
-
-    '<Borders>' +
-
-    '<Border ' +
-    'ss:Position="Bottom" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Left" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Right" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Top" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '</Borders>' +
-
-    '</Style>' +
-
-
-    '<Style ss:ID="Cell">' +
-
-    '<Alignment ' +
-    'ss:Horizontal="Center" ' +
-    'ss:Vertical="Center" ' +
-    'ss:WrapText="1"/>' +
-
-    '<Font ' +
-    'ss:FontName="Arial" ' +
-    'ss:Size="9"/>' +
-
-    '<Borders>' +
-
-    '<Border ' +
-    'ss:Position="Bottom" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Left" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Right" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Top" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '</Borders>' +
-
-    '</Style>' +
-
-    '</Styles>';
-
-
-  /*
-    Excel sheet name
-  */
-
-  xml +=
-
-    '<Worksheet ss:Name="' +
-
-    excelEsc(
-      formName()
-        .slice(0,31)
-    ) +
-
-    '">' +
-
-
-    '<Table ' +
-
-    'ss:ExpandedColumnCount="14" ' +
-
-    'ss:ExpandedRowCount="' +
-    (data.length + 2) +
-    '" ' +
-
-    'x:FullColumns="1" ' +
-
-    'x:FullRows="1">';
-
-
-  xml +=
-    widths.map(
-      w =>
-        '<Column ss:Width="' +
-        w +
-        '" ss:AutoFitWidth="1"/>'
-    ).join('');
-
-
-  /*
-    IMPORTANT:
-    Regular form = A.A.P heading
-    Model Village = MODEL VILLAGE
-  */
-
-  const excelHeading =
-
-    (
-      currentForm === 'modelVillage' ||
-      currentForm === 'modelApprove' ||
-      currentForm === 'modelTender'
-    )
-
-    ?
-
-    'MODEL VILLAGE'
-
-    :
-
-    'A. A. P Format of V. B. G. R. A. M. G';
-
-
-  xml +=
-
-    '<Row ss:Height="32">' +
-
-    excelCell(
-      excelHeading,
-      'Title',
-      '13'
-    ) +
-
-    '</Row>';
-
-
-  /*
-    এখানে আর
-    Approach Scheme 2026-27
-    টাইপ আলাদা দ্বিতীয় heading নেই।
-  */
-
-
-  xml +=
-
-    '<Row ss:Height="62">' +
-
-    headers
-      .map(
-        h =>
-          excelCell(
-            h,
-            'Header'
-          )
-      )
-      .join('') +
-
-    '</Row>';
-
-
-  data.forEach(
-    (x,n) => {
-
-      const row = [
-
-        n+1,
-
-        x.date || '',
-
-        x.year || state.year,
-
-        x.scheme || '',
-
-        x.nature || '',
-
-        x.lengthArea || '',
-
-        String(
-          x.mouza || ''
-        ).toUpperCase(),
-
-        x.startDag || '',
-
-        x.endDag || '',
-
-        x.jobCard || '',
-
-        x.lat1 || '',
-
-        x.long1 || '',
-
-        x.lat2 || '',
-
-        x.long2 || ''
-
-      ];
-
-
-      let maxLines = 1;
-
-
-      row.forEach(
-        (value,index) => {
-
-          const text =
-            String(
-              value ?? ''
-            );
-
-
-          let charsPerLine = 8;
-
-
-          if(index === 3)
-            charsPerLine = 17;
-
-          else if(index === 4)
-            charsPerLine = 10;
-
-          else if(index === 5)
-            charsPerLine = 8;
-
-          else if(index === 6)
-            charsPerLine = 9;
-
-          else if(
-            index === 7 ||
-            index === 8
-          )
-            charsPerLine = 8;
-
-          else if(index === 9)
-            charsPerLine = 11;
-
-
-          maxLines =
-            Math.max(
-
-              maxLines,
-
-              Math.ceil(
-                text.length /
-                charsPerLine
-              ),
-
-              text
-                .split(/\n/)
-                .length
-
-            );
-
-        }
-      );
-
-
-      const rowHeight =
-        Math.max(
-          20,
-          Math.min(
-            75,
-            14 +
-            maxLines * 9
-          )
-        );
-
-
-      xml +=
-
-        '<Row ' +
-        'ss:AutoFitHeight="1" ' +
-        'ss:Height="' +
-        rowHeight +
-        '">' +
-
-        row
-          .map(
-            v =>
-              excelCell(
-                v,
-                'Cell'
-              )
-          )
-          .join('') +
-
-        '</Row>';
-
-    }
-  );
-
-
-  xml +=
-
-    '</Table>' +
-
-    '<WorksheetOptions ' +
-    'xmlns="urn:schemas-microsoft-com:office:excel">' +
-
-    '<PageSetup>' +
-
-    '<Layout ' +
-    'x:Orientation="Landscape" ' +
-    'x:CenterHorizontal="1" ' +
-    'x:CenterVertical="0"/>' +
-
-    '<PageMargins ' +
-    'x:Bottom="0.20" ' +
-    'x:Left="0.15" ' +
-    'x:Right="0.15" ' +
-    'x:Top="0.20"/>' +
-
-    '</PageSetup>' +
-
-    '<FitToPage/>' +
-
-    '<Print>' +
-
-    '<ValidPrinterInfo/>' +
-
-    '<Gridlines>False</Gridlines>' +
-
-    '<HorizontalCentered>1</HorizontalCentered>' +
-
-    '</Print>' +
-
-    '<Selected/>' +
-
-    '<FreezePanes>' +
-
-    '<FrozenNoSplit/>' +
-
-    '<SplitHorizontal>2</SplitHorizontal>' +
-
-    '<TopRowBottom>2</TopRowBottom>' +
-
-    '</FreezePanes>' +
-
-    '<FitToWidth>1</FitToWidth>' +
-
-    '<FitToHeight>0</FitToHeight>' +
-
-    '</WorksheetOptions>' +
-
-    '</Worksheet>' +
-
-    '</Workbook>';
-
-
-  download(
-
-    new Blob(
-      [xml],
-      {
-        type:
-        'application/vnd.ms-excel'
-      }
-    ),
-
-    formName()
-      .replace(/\s+/g,'_') +
-    '_' +
-    state.year +
-    '.xls'
-
-  );
-
-}
-
-
-/* =========================================================
-   BACKUP
-   ========================================================= */
 
 function backup(){
-
-  const backupObject = {
-
-    backupVersion:5,
-
-    app:
-      'A.A.P Offline Data Entry',
-
-    createdAt:
-      new Date().toISOString(),
-
-    year:
-      state.year,
-
-    forms:{
-
-      approach:
-        state.forms.approach,
-
-      approve:
-        state.forms.approve,
-
-      tender:
-        state.forms.tender,
-
-      modelVillage:
-        state.forms.modelVillage,
-
-      modelApprove:
-        state.forms.modelApprove,
-
-      modelTender:
-        state.forms.modelTender
-
-    }
-
-  };
-
-
-  download(
-
-    new Blob(
-
-      [
-        JSON.stringify(
-          backupObject,
-          null,
-          2
-        )
-      ],
-
-      {
-        type:
-          'application/json'
-      }
-
-    ),
-
-    'AAP_All_Forms_Backup.json'
-
-  );
-
+  if(!currentData().length && !confirm('কোনো Data নেই, ফাঁকা Backup নেবেন?')) return;
+  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(state));
+  const el = document.createElement('a');
+  el.setAttribute('href', dataStr);
+  const d = new Date();
+  const ds = d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+  el.setAttribute('download', 'AAP_Backup_ALL_' + ds + '.json');
+  document.body.appendChild(el);
+  el.click();
+  el.remove();
 }
-
-
-/* =========================================================
-   RESTORE
-   ========================================================= */
 
 function restore(e){
-
-  const f =
-    e.target.files[0];
-
-
-  if(!f) return;
-
-
-  const reader =
-    new FileReader();
-
-
-  reader.onload = () => {
-
+  const file = e.target.files[0];
+  if(!file){ e.target.value = ''; return; }
+  const reader = new FileReader();
+  reader.onload = function(ev){
     try{
-
-      const parsed =
-        JSON.parse(
-          reader.result
-        );
-
-
-      const restored =
-        normalizeState(
-          parsed
-        );
-
-
-      const total =
-        Object.values(
-          restored.forms
-        )
-        .reduce(
-          (sum,arr) =>
-            sum + arr.length,
-          0
-        );
-
-
-      if(
-        !total &&
-        !Array.isArray(parsed) &&
-        !(
-          parsed &&
-          parsed.forms
-        )
-      ){
-
-        throw new Error(
-          'Invalid backup structure'
-        );
-
-      }
-
-
-      state =
-        restored;
-
-
-      $('year').value =
-        state.year ||
-        '2026-27';
-
-
-      $('headerYear')
-        .textContent =
-          state.year
-            .replace(
-              '-',
-              ' - '
-            );
-
-
-      if(!persist()){
-
-        throw new Error(
-          'Storage failed'
-        );
-
-      }
-
-
-      clearForm();
-
-      render();
-
-
-      alert(
-
-        'Backup Restore হয়েছে ✓\n\n' +
-
-        'Approach Scheme: ' +
-        state.forms.approach.length +
-
-        '\nApprove Scheme: ' +
-        state.forms.approve.length +
-
-        '\nTender Scheme: ' +
-        state.forms.tender.length +
-
-        '\nModel Village Approach: ' +
-        state.forms.modelVillage.length +
-
-        '\nModel Village Approve: ' +
-        state.forms.modelApprove.length +
-
-        '\nModel Village Tender: ' +
-        state.forms.modelTender.length
-
-      );
-
-
+      const parsed = JSON.parse(ev.target.result);
+      const restored = normalizeState(parsed);
+      state = restored;
+      persist();
+      alert('সফলভাবে Backup Restore হয়েছে ✓');
+      $('year').value = state.year || '2026-27';
+      switchForm('approach');
     }catch(err){
-
-      console.error(err);
-
-
-      alert(
-
-        'Backup Restore হয়নি।\n' +
-
-        'সঠিক AAP backup JSON file নির্বাচন করুন।'
-
-      );
-
+      alert('File সঠিক নয় বা নষ্ট হয়ে গেছে।');
     }
-
+    e.target.value = '';
   };
-
-
-  reader.onerror = () => {
-
-    alert(
-      'JSON file পড়া যায়নি। আবার চেষ্টা করুন।'
-    );
-
-  };
-
-
-  reader.readAsText(f);
-
-
-  e.target.value = '';
-
+  reader.readAsText(file);
 }
 
+function exportExcel(){
+  const arr = currentData();
+  if(!arr.length){
+    alert('Export করার মতো কোনো Data নেই।');
+    return;
+  }
+  let tableHTML = `
+  <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+  <head>
+  <meta charset="utf-8">
+  <style>
+    table { border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size:12px; }
+    th, td { border: 1px solid #000; padding: 5px; text-align: left; vertical-align: top; }
+    th { background-color: #f2f2f2; font-weight: bold; text-align: center; }
+  </style>
+  </head>
+  <body>
+  <h2>A.A.P Format of V.B.G.R.A.M.G (Mahishbathani Gram Panchayat Scheme)</h2>
+  <h3>Stage: ${formName()} | Financial Year: ${state.year}</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>S.L. No.</th>
+        <th>Date</th>
+        <th>Financial Year</th>
+        <th>Scheme Name</th>
+        <th>Nature of Work</th>
+        <th>Length / Area</th>
+        <th>Mouja</th>
+        <th>Starting Dag No.</th>
+        <th>End Dag No.</th>
+        <th>In Case I.B.S Job Card No.</th>
+        <th>Lat (1)</th>
+        <th>Long (1)</th>
+        <th>Lat (2)</th>
+        <th>Long (2)</th>
+      </tr>
+    </thead>
+    <tbody>
+  `;
+  arr.forEach((row, idx) => {
+    tableHTML += `
+      <tr>
+        <td style="text-align:center">${idx+1}</td>
+        <td>${esc(row.date)}</td>
+        <td>${esc(row.year)}</td>
+        <td>${esc(row.scheme)}</td>
+        <td>${esc(row.nature)}</td>
+        <td>${esc(row.lengthArea)}</td>
+        <td>${esc(row.mouza)}</td>
+        <td>${esc(row.startDag)}</td>
+        <td>${esc(row.endDag)}</td>
+        <td>${esc(row.jobCard)}</td>
+        <td>${esc(row.lat1)}</td>
+        <td>${esc(row.long1)}</td>
+        <td>${esc(row.lat2)}</td>
+        <td>${esc(row.long2)}</td>
+      </tr>
+    `;
+  });
+  tableHTML += `</tbody></table></body></html>`;
 
-/* =========================================================
-   DOWNLOAD
-   ========================================================= */
-
-function download(
-  blob,
-  name
-){
-
-  const a =
-    document.createElement('a');
-
-
-  const url =
-    URL.createObjectURL(blob);
-
-
-  a.href =
-    url;
-
-
-  a.download =
-    name;
-
-
-  document
-    .body
-    .appendChild(a);
-
-
-  a.click();
-
-
-  setTimeout(
-    () => {
-
-      URL.revokeObjectURL(
-        url
-      );
-
-      a.remove();
-
-    },
-    1000
-  );
-
+  const blob = new Blob([tableHTML], { type: 'application/vnd.ms-excel' });
+  const url = URL.createObjectURL(blob);
+  const el = document.createElement('a');
+  el.href = url;
+  el.download = formName().replace(/ /g, '_') + '.xls';
+  document.body.appendChild(el);
+  el.click();
+  document.body.removeChild(el);
+  URL.revokeObjectURL(url);
 }
 
+function render(){
+  const tbody = $('tbody');
+  const q = val('search').toLowerCase();
 
-/* =========================================================
-   START
-   ========================================================= */
+  const list = currentData()
+    .map((x,i) => ({x:x, i:i}))
+    .filter(o => JSON.stringify(o.x).toLowerCase().includes(q));
 
-load();
+  $('count').textContent = list.length + ' entries (' + formName() + ')';
+
+  if(!list.length){
+    tbody.innerHTML = '<tr><td colspan="16" class="empty">কোনো Data পাওয়া যায়নি</td></tr>';
+    $('selectAll').checked = false;
+    updateSelectedInfo();
+    return;
+  }
+
+  const h = list.map((o, displayIndex) => {
+    const i = o.i;
+    const x = o.x;
+
+    return `
+      <tr>
+        <td class="selectCell">
+          <input type="checkbox" class="rowcheck" data-index="${i}" onchange="updateSelectedInfo()">
+        </td>
+        <td style="text-align:center; font-weight:bold">${displayIndex + 1}</td>
+        <td>${esc(x.date)}</td>
+        <td>${esc(x.year)}</td>
+        <td>${esc(x.scheme)}</td>
+        <td>${esc(x.nature)}</td>
+        <td>${esc(x.lengthArea)}</td>
+        <td>${esc(x.mouza)}</td>
+        <td>${esc(x.startDag)}</td>
+        <td>${esc(x.endDag)}</td>
+        <td>${esc(x.jobCard)}</td>
+        <td>${esc(x.lat1)}</td>
+        <td>${esc(x.long1)}</td>
+        <td>${esc(x.lat2)}</td>
+        <td>${esc(x.long2)}</td>
+        <td>
+          <button class="actionbtn secondary" onclick="edit(${i})">Edit</button>
+          <button class="actionbtn danger" onclick="del(${i})">Delete</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  tbody.innerHTML = h;
+  $('selectAll').checked = false;
+  updateSelectedInfo();
+}
+
+window.onload = load;
 
 </script>
-
 </body>
 </html>
