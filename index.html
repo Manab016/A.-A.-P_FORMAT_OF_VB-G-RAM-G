@@ -2,772 +2,997 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>A.A.P Offline Data Entry</title>
 
 <style>
+
 *{
-  box-sizing:border-box
+    box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  background:#f1f5f9;
-  color:#17212b;
-  font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
-  font-size:15px
+    margin:0;
+    background:#f1f5f9;
+    color:#17212b;
+    font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
+    font-size:15px;
 }
 
 header{
-  background:#17324d;
-  color:#fff;
-  padding:18px 12px;
-  text-align:center
+    background:#17324d;
+    color:white;
+    padding:18px 12px;
+    text-align:center;
 }
 
 header h1{
-  font-size:20px;
-  margin:0;
-  font-weight:800
+    margin:0;
+    font-size:21px;
+    font-weight:800;
 }
 
 header p{
-  font-size:12px;
-  margin:4px 0 0
+    margin:5px 0 0;
+    font-size:12px;
 }
 
-header .yearText{
-  font-size:12px;
-  margin:5px 0 0;
-  font-weight:700
+.yearText{
+    margin-top:5px;
+    font-size:12px;
+    font-weight:700;
 }
 
 .container{
-  max-width:1100px;
-  margin:auto;
-  padding:10px
+    max-width:1100px;
+    margin:auto;
+    padding:10px;
 }
 
 .card{
-  background:#fff;
-  border:1px solid #d8e0e7;
-  border-radius:12px;
-  margin-bottom:12px;
-  overflow:hidden
+    background:white;
+    border:1px solid #d6dee6;
+    border-radius:12px;
+    margin-bottom:12px;
+    overflow:hidden;
 }
 
 .title{
-  font-size:17px;
-  font-weight:800;
-  padding:14px;
-  border-bottom:1px solid #e4e9ee
-}
-
-.form{
-  padding:12px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px
-}
-
-.field label{
-  display:block;
-  font-weight:800;
-  font-size:13px;
-  margin-bottom:5px
-}
-
-input,select{
-  width:100%;
-  font:inherit;
-  border:1px solid #bdc9d4;
-  border-radius:9px;
-  padding:12px;
-  background:#fff;
-  outline:none
-}
-
-input:focus,select:focus{
-  border-color:#1769aa
-}
-
-button{
-  font:inherit;
-  font-weight:800;
-  border:0;
-  border-radius:9px;
-  padding:12px 14px;
-  cursor:pointer;
-  min-height:46px
-}
-
-.primary{
-  background:#1769aa;
-  color:#fff
-}
-
-.success{
-  background:#198754;
-  color:#fff
-}
-
-.danger{
-  background:#c0392b;
-  color:#fff
-}
-
-.gray{
-  background:#e8edf2;
-  color:#203040
-}
-
-.secondary{
-  background:#eef4f8;
-  color:#17324d;
-  border:1px solid #cbd7e1
-}
-
-.actions,
-.toolbar{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  padding:12px
-}
-
-.toolbar .search{
-  grid-column:1/-1
-}
-
-.count{
-  text-align:center;
-  font-weight:800;
-  color:#198754;
-  padding:0 10px 10px
-}
-
-.tablebox{
-  overflow:auto;
-  padding:0 8px 12px
-}
-
-table{
-  border-collapse:collapse;
-  width:100%;
-  min-width:1450px;
-  font-size:12px
-}
-
-th,td{
-  border:1px solid #aeb8c2;
-  padding:7px;
-  vertical-align:top
-}
-
-th{
-  background:#e9eff4;
-  text-align:center;
-  white-space:nowrap;
-  font-weight:800
-}
-
-td{
-  white-space:normal;
-  overflow-wrap:anywhere;
-  word-break:break-word
-}
-
-.actionbtn{
-  padding:7px 9px;
-  min-height:34px;
-  font-size:12px;
-  margin:2px
-}
-
-.empty{
-  text-align:center;
-  padding:30px;
-  color:#65717d
-}
-
-.formnav{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  padding:10px 12px 4px
-}
-
-.formnav button{
-  min-height:44px;
-  font-size:13px
-}
-
-.formnav button.active{
-  background:#1769aa;
-  color:#fff
+    font-size:17px;
+    font-weight:800;
+    padding:14px;
+    border-bottom:1px solid #e1e7ec;
 }
 
 .topbar{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  padding:10px 12px
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    padding:12px;
 }
 
-.notice{
-  margin:10px 12px;
-  padding:10px;
-  border-radius:9px;
-  background:#eaf5ff;
-  border:1px solid #c9e2f8;
-  color:#174d73;
-  font-size:13px;
-  font-weight:700
+.topbar label{
+    display:block;
+    font-weight:800;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+.formnav{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    padding:10px 12px;
+}
+
+.formnav button{
+    min-height:45px;
+}
+
+button{
+    font:inherit;
+    font-weight:800;
+    border:0;
+    border-radius:9px;
+    padding:11px 13px;
+    cursor:pointer;
+    min-height:44px;
+}
+
+.primary{
+    background:#1769aa;
+    color:white;
+}
+
+.success{
+    background:#198754;
+    color:white;
+}
+
+.danger{
+    background:#c0392b;
+    color:white;
+}
+
+.gray{
+    background:#e8edf2;
+    color:#17212b;
+}
+
+.secondary{
+    background:#eef4f8;
+    color:#17324d;
+    border:1px solid #ccd8e2;
+}
+
+.formnav button.active,
+.stagebar button.active{
+    background:#1769aa;
+    color:white;
 }
 
 .stagebar{
-  display:none;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:8px;
-  padding:8px 12px 12px;
-  background:#f8fbfd;
-  border-top:1px solid #e4e9ee
+    display:none;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    padding:0 12px 10px;
 }
 
 .stagebar.show{
-  display:grid
+    display:grid;
 }
 
-.stagebar button{
-  min-height:42px;
-  font-size:12px
+.notice{
+    margin:0 12px 12px;
+    padding:10px;
+    background:#eaf5ff;
+    border:1px solid #c8e1f5;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:700;
+    color:#174d73;
 }
 
-.stagebar button.active{
-  background:#198754;
-  color:#fff
+.form{
+    padding:12px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.field{
+    width:100%;
+}
+
+.field label{
+    display:block;
+    font-weight:800;
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #bdc8d2;
+    border-radius:9px;
+    background:white;
+    font:inherit;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:#1769aa;
+}
+
+.hint{
+    font-size:11px;
+    color:#777;
+    font-weight:500;
+}
+
+.approveSection{
+    grid-column:1/-1;
+    margin-top:4px;
+    padding:12px;
+    border:2px solid #1769aa;
+    border-radius:10px;
+    background:#f7fbff;
+}
+
+.approveSectionTitle{
+    font-size:16px;
+    font-weight:900;
+    color:#1769aa;
+    margin-bottom:10px;
+}
+
+.approveGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    padding:12px;
+}
+
+.toolbar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    padding:12px;
+}
+
+.search{
+    grid-column:1/-1;
 }
 
 .transferbar{
-  display:none;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  padding:10px 12px;
-  background:#fff8e8;
-  border-top:1px solid #ead9ad
+    display:none;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    padding:10px 12px;
+    background:#fff8e6;
+    border-top:1px solid #ead8a8;
 }
 
 .transferbar.show{
-  display:grid
-}
-
-.transferbar button{
-  font-size:12px;
-  min-height:42px
-}
-
-.selectCell{
-  text-align:center
-}
-
-.rowcheck{
-  width:20px;
-  height:20px;
-  cursor:pointer
-}
-
-.selectAll{
-  width:18px;
-  height:18px;
-  cursor:pointer
+    display:grid;
 }
 
 .selectedInfo{
-  padding:5px 12px 10px;
-  text-align:center;
-  color:#b26b00;
-  font-weight:800;
-  font-size:13px
+    padding:8px 12px;
+    text-align:center;
+    font-weight:800;
+    color:#a56800;
+    font-size:13px;
+}
+
+.count{
+    text-align:center;
+    font-weight:800;
+    color:#198754;
+    padding:8px;
+}
+
+.tablebox{
+    overflow:auto;
+    padding:0 8px 12px;
+}
+
+table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:1500px;
+    font-size:12px;
+}
+
+th,
+td{
+    border:1px solid #aeb8c2;
+    padding:7px;
+    vertical-align:top;
+}
+
+th{
+    background:#e8eef3;
+    text-align:center;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+td{
+    overflow-wrap:anywhere;
+    word-break:break-word;
+}
+
+.selectCell{
+    text-align:center;
+}
+
+.rowcheck,
+.selectAll{
+    width:20px;
+    height:20px;
+    cursor:pointer;
+}
+
+.actionbtn{
+    padding:7px 9px;
+    min-height:34px;
+    font-size:12px;
+    margin:2px;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#687681;
 }
 
 @media(max-width:700px){
 
-  .form{
-    grid-template-columns:1fr
-  }
+    .form{
+        grid-template-columns:1fr;
+    }
 
-  .actions,
-  .toolbar,
-  .topbar{
-    grid-template-columns:1fr 1fr
-  }
+    .topbar{
+        grid-template-columns:1fr;
+    }
 
-  .formnav{
-    grid-template-columns:1fr 1fr
-  }
+    .formnav{
+        grid-template-columns:1fr 1fr;
+    }
 
-  .stagebar{
-    grid-template-columns:1fr
-  }
+    .stagebar{
+        grid-template-columns:1fr;
+    }
 
-  .transferbar{
-    grid-template-columns:1fr
-  }
+    .approveGrid{
+        grid-template-columns:1fr;
+    }
 
-  input{
-    font-size:16px
-  }
+    .actions,
+    .toolbar{
+        grid-template-columns:1fr 1fr;
+    }
+
+    input,
+    select{
+        font-size:16px;
+    }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <header>
 
-  <!-- REGULAR FORM-এ এই Heading কখনো পরিবর্তন হবে না -->
-  <h1 id="appHeading">A.A.P Format of V.B.G.R.A.M.G</h1>
+<h1 id="appHeading">
+A.A.P Offline Data Entry
+</h1>
 
-  <p>Mahishbathani Gram Panchayat Scheme</p>
+<p>
+Mahishbathani Gram Panchayat Scheme
+</p>
 
-  <div class="yearText">
-    Data Entry Form — <span id="headerYear">2026 - 27</span>
-  </div>
+<div class="yearText">
+Data Entry Form —
+<span id="headerYear">2026 - 27</span>
+</div>
 
 </header>
 
 
 <div class="container">
 
-  <!-- =====================================================
-       FORM SELECT
-       ====================================================== -->
 
-  <div class="card">
+<!-- =========================
+     FORM SELECT
+========================= -->
 
-    <div class="title">📁 Form Select</div>
+<div class="card">
 
-    <div class="topbar">
+<div class="title">
+📁 Form Select
+</div>
 
-      <div>
-        <label for="year"><b>Financial Year</b></label>
+<div class="topbar">
 
-        <select id="year" onchange="changeYear()">
-          <option value="2025-26">2025-26</option>
-          <option value="2026-27" selected>2026-27</option>
-          <option value="2027-28">2027-28</option>
-          <option value="2028-29">2028-29</option>
-          <option value="2029-30">2029-30</option>
-          <option value="2030-31">2030-31</option>
-        </select>
-      </div>
+<div>
 
+<label>Financial Year</label>
 
-      <div>
-        <label for="entryDate"><b>Date</b></label>
-        <input id="entryDate" type="date">
-      </div>
+<select id="year" onchange="changeYear()">
 
-    </div>
+<option>2025-26</option>
+<option selected>2026-27</option>
+<option>2027-28</option>
+<option>2028-29</option>
+<option>2029-30</option>
+<option>2030-31</option>
 
+</select>
 
-    <!-- MAIN 4 BUTTON -->
-    <div class="formnav">
+</div>
 
-      <button
-        id="nav-approach"
-        class="active"
-        onclick="switchForm('approach')">
-        ➕ Approach Scheme
-      </button>
 
-      <button
-        id="nav-approve"
-        class="secondary"
-        onclick="switchForm('approve')">
-        Approve Scheme
-      </button>
+<div>
 
-      <button
-        id="nav-tender"
-        class="secondary"
-        onclick="switchForm('tender')">
-        Tender Scheme
-      </button>
+<label>Date</label>
 
-      <button
-        id="nav-model"
-        class="secondary"
-        onclick="switchForm('modelVillage')">
-        Model Village
-      </button>
+<input
+type="date"
+id="entryDate">
 
-    </div>
+</div>
 
+</div>
 
-    <!-- MODEL VILLAGE-এর আলাদা STAGE -->
-    <div id="modelStageBar" class="stagebar">
 
-      <button
-        id="stage-modelVillage"
-        class="active"
-        onclick="switchForm('modelVillage')">
-        Model Village Approach
-      </button>
-
-      <button
-        id="stage-modelApprove"
-        class="secondary"
-        onclick="switchForm('modelApprove')">
-        Model Village Approve
-      </button>
-
-      <button
-        id="stage-modelTender"
-        class="secondary"
-        onclick="switchForm('modelTender')">
-        Model Village Tender
-      </button>
-
-    </div>
-
+<div class="formnav">
 
-    <div class="notice">
-
-      বর্তমানে:
-      <span id="currentFormName">
-        Approach Scheme
-      </span>
-
-      — এই form-এর data অন্য form-এর data থেকে সম্পূর্ণ আলাদা থাকবে।
-
-    </div>
-
-  </div>
-
-
-
-  <!-- =====================================================
-       DATA ENTRY FORM
-       ====================================================== -->
-
-  <div class="card">
-
-    <div
-      class="title"
-      id="formTitle">
-      ➕ Approach Scheme — নতুন Data Entry
-    </div>
-
-
-    <div class="form">
-
-      <div class="field">
-        <label>Scheme Name</label>
-        <input
-          id="scheme"
-          placeholder="Scheme Name">
-      </div>
-
-
-      <div class="field">
-        <label>Nature of Work</label>
-        <input
-          id="nature"
-          placeholder="Nature of Work">
-      </div>
-
-
-      <div class="field">
-        <label>Length or Area</label>
-        <input
-          id="lengthArea"
-          placeholder="যেমন 150 m">
-      </div>
-
-
-      <div class="field">
-        <label>Mouja</label>
-
-        <select id="mouza">
-
-          <option value="Sahara">SAHARA</option>
-          <option value="Aihorani">AIHORANI</option>
-          <option value="Badanpur">BADANPUR</option>
-          <option value="Balarampur">BALARAMPUR</option>
-          <option value="Bangabari">BANGABARI</option>
-          <option value="Barkol">BARKOL</option>
-          <option value="Belahar">BELAHAR</option>
-          <option value="Chhotapara">CHHOTAPARA</option>
-          <option value="Goalpara">GOALPARA</option>
-          <option value="Gotpara">GOTPARA</option>
-          <option value="Harirampur">HARIRAMPUR</option>
-          <option value="Kadamtali">KADAMTALI</option>
-          <option value="Kesrail Pirgain">KESRAIL PIRGAIN</option>
-          <option value="Lakshmi Kandar">LAKSHMI KANDAR</option>
-          <option value="Maheshkuri">MAHESHKURI</option>
-          <option value="Mahish Bathani">MAHISH BATHANI</option>
-          <option value="Mekpur">MEKPUR</option>
-          <option value="Muralighat">MURALIGHAT</option>
-          <option value="Paiti">PAITI</option>
-          <option value="Patamari">PATAMARI</option>
-          <option value="Rahutgaon">RAHUTGAON</option>
-          <option value="Sabdalkhani">SABDALKHANI</option>
-          <option value="Samsabad">SAMSABAD</option>
-          <option value="Sanjail">SANJAIL</option>
-          <option value="Sultandighi">SULTANDIGHI</option>
-          <option value="Tutkhan">TUTKHAN</option>
-          <option value="Uttar Bhatra">UTTAR BHATRA</option>
+<button
+id="nav-approach"
+class="active"
+onclick="switchForm('approach')">
 
-        </select>
-      </div>
+➕ Approach Scheme
 
+</button>
 
-      <div class="field">
-        <label>Starting Dag No.</label>
-        <input
-          id="startDag"
-          placeholder="যেমন 202/1423">
-      </div>
 
+<button
+id="nav-approve"
+class="secondary"
+onclick="switchForm('approve')">
 
-      <div class="field">
-        <label>End Dag No.</label>
-        <input
-          id="endDag"
-          placeholder="যেমন 205/1424">
-      </div>
+✅ Approve Scheme
 
+</button>
 
-      <div class="field">
-        <label>I.B.S. Job Card No.</label>
-        <input
-          id="jobCard"
-          placeholder="Job Card No.">
-      </div>
 
+<button
+id="nav-tender"
+class="secondary"
+onclick="switchForm('tender')">
 
-      <div class="field">
-        <label>Latitude</label>
-        <input
-          id="lat1"
-          inputmode="decimal"
-          placeholder="Latitude">
-      </div>
+📄 Tender Scheme
 
+</button>
 
-      <div class="field">
-        <label>Longitude</label>
-        <input
-          id="long1"
-          inputmode="decimal"
-          placeholder="Longitude">
-      </div>
 
+<button
+id="nav-model"
+class="secondary"
+onclick="switchForm('modelVillage')">
 
-      <div class="field">
-        <label>Latitude (2)</label>
-        <input
-          id="lat2"
-          inputmode="decimal"
-          placeholder="Latitude">
-      </div>
+🏘️ Model Village
 
+</button>
 
-      <div class="field">
-        <label>Longitude (2)</label>
-        <input
-          id="long2"
-          inputmode="decimal"
-          placeholder="Longitude">
-      </div>
+</div>
 
-    </div>
 
+<div
+id="modelStageBar"
+class="stagebar">
 
-    <div class="actions">
+<button
+id="stage-modelVillage"
+class="active"
+onclick="switchForm('modelVillage')">
 
-      <button
-        class="primary"
-        onclick="saveEntry()">
-        💾 Save Entry
-      </button>
+Model Village Approach
 
-      <button
-        class="gray"
-        onclick="clearForm()">
-        ↩ Clear
-      </button>
+</button>
 
-    </div>
 
-  </div>
+<button
+id="stage-modelApprove"
+class="secondary"
+onclick="switchForm('modelApprove')">
 
+Model Village Approve
 
+</button>
 
-  <!-- =====================================================
-       SAVED DATA
-       ====================================================== -->
 
-  <div class="card">
+<button
+id="stage-modelTender"
+class="secondary"
+onclick="switchForm('modelTender')">
 
-    <div
-      class="title"
-      id="savedTitle">
-      📋 Approach Scheme — Saved Data
-    </div>
+Model Village Tender
 
+</button>
 
-    <div class="toolbar">
+</div>
 
-      <input
-        class="search"
-        id="search"
-        oninput="render()"
-        placeholder="🔎 Scheme / Dag / Mouja দিয়ে Search করুন">
 
+<div class="notice">
 
-      <button
-        class="success"
-        onclick="exportExcel()">
-        📊 Export Excel
-      </button>
+বর্তমান Form:
+<span id="currentFormName">
+Approach Scheme
+</span>
 
+</div>
 
-      <button
-        class="gray"
-        onclick="backup()">
-        💾 Backup All
-      </button>
+</div>
 
 
-      <button
-        class="gray"
-        onclick="document.getElementById('restore').click()">
-        ♻ Restore
-      </button>
 
-      <input
-        id="restore"
-        type="file"
-        accept=".json,application/json"
-        hidden
-        onchange="restore(event)">
+<!-- =========================
+     ENTRY FORM
+========================= -->
 
+<div class="card">
 
-      <button
-        class="danger"
-        onclick="deleteCurrentForm()">
-        🗑 Delete This Form
-      </button>
+<div
+class="title"
+id="formTitle">
 
+➕ Approach Scheme — নতুন Data Entry
 
-      <button
-        class="danger"
-        onclick="deleteAll()">
-        🗑 Delete ALL Forms
-      </button>
+</div>
 
-    </div>
 
+<div class="form">
 
-    <!-- TRANSFER BUTTON -->
-    <div
-      id="transferBar"
-      class="transferbar">
 
-      <button
-        id="nextTransferBtn"
-        class="success"
-        onclick="transferNext()">
-        ➡ পরের Stage-এ Transfer
-      </button>
+<div class="field">
 
-      <button
-        id="backTransferBtn"
-        class="gray"
-        onclick="transferBack()">
-        ⬅ আগের Stage-এ Back
-      </button>
+<label>
+Scheme Name
+</label>
 
-    </div>
+<input
+id="scheme"
+placeholder="Scheme Name">
 
+</div>
 
-    <div
-      id="selectedInfo"
-      class="selectedInfo">
-      কোনো Project Select করা হয়নি
-    </div>
 
+<div class="field">
 
-    <div
-      class="count"
-      id="count">
-      0 entries
-    </div>
+<label>
+Nature of Work
+</label>
 
+<input
+id="nature"
+placeholder="Nature of Work">
 
-    <div class="tablebox">
+</div>
 
-      <table>
 
-        <thead>
+<div class="field">
 
-          <tr>
+<label>
+Length or Area
+</label>
 
-            <th>
-              <input
-                type="checkbox"
-                class="selectAll"
-                id="selectAll"
-                onchange="toggleAll(this)">
-              <br>
-              Select
-            </th>
+<input
+id="lengthArea"
+placeholder="যেমন 150 m">
 
-            <th>S.L. No.<br>(Auto)</th>
+</div>
 
-            <th>Date</th>
 
-            <th>Financial<br>Year</th>
+<div class="field">
 
-            <th>Scheme Name</th>
+<label>
+Mouja
+</label>
 
-            <th>Nature of Work</th>
+<select id="mouza">
 
-            <th>Length / Area</th>
+<option>Sahara</option>
+<option>Aihorani</option>
+<option>Badanpur</option>
+<option>Balarampur</option>
+<option>Bangabari</option>
+<option>Barkol</option>
+<option>Belahar</option>
+<option>Chhotapara</option>
+<option>Goalpara</option>
+<option>Gotpara</option>
+<option>Harirampur</option>
+<option>Kadamtali</option>
+<option>Kesrail Pirgain</option>
+<option>Lakshmi Kandar</option>
+<option>Maheshkuri</option>
+<option>Mahish Bathani</option>
+<option>Mekpur</option>
+<option>Muralighat</option>
+<option>Paiti</option>
+<option>Patamari</option>
+<option>Rahutgaon</option>
+<option>Sabdalkhani</option>
+<option>Samsabad</option>
+<option>Sanjail</option>
+<option>Sultandighi</option>
+<option>Tutkhan</option>
+<option>Uttar Bhatra</option>
 
-            <th>Mouja</th>
+</select>
 
-            <th>Starting Dag No.</th>
+</div>
 
-            <th>End Dag No.</th>
 
-            <th>In Case I.B.S<br>Job Card No.</th>
+<div class="field">
 
-            <th>Lat</th>
+<label>
+Starting Dag No.
+</label>
 
-            <th>Long</th>
+<input
+id="startDag"
+placeholder="যেমন 202/1423">
 
-            <th>Lat</th>
+</div>
 
-            <th>Long</th>
 
-            <th>Action</th>
+<div class="field">
 
-          </tr>
+<label>
+End Dag No.
+</label>
 
-        </thead>
+<input
+id="endDag"
+placeholder="যেমন 205/1424">
 
+</div>
 
-        <tbody id="tbody"></tbody>
 
-      </table>
+<div class="field">
 
-    </div>
+<label>
+I.B.S. Job Card No.
+</label>
 
-  </div>
+<input
+id="jobCard"
+placeholder="Job Card No.">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Latitude
+</label>
+
+<input
+id="lat1"
+inputmode="decimal"
+placeholder="Latitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Longitude
+</label>
+
+<input
+id="long1"
+inputmode="decimal"
+placeholder="Longitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Latitude (2)
+</label>
+
+<input
+id="lat2"
+inputmode="decimal"
+placeholder="Latitude">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Longitude (2)
+</label>
+
+<input
+id="long2"
+inputmode="decimal"
+placeholder="Longitude">
+
+</div>
+
+
+
+<!-- =========================
+     APPROVE ONLY
+========================= -->
+
+<div
+id="approvalSection"
+class="approveSection hidden">
+
+<div class="approveSectionTitle">
+
+✅ Approve Scheme Information
+
+</div>
+
+
+<div class="approveGrid">
+
+
+<div class="field">
+
+<label>
+Sector
+</label>
+
+<input
+id="sector"
+placeholder="Sector লিখুন">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Estimated Cost
+</label>
+
+<input
+id="estimateCost"
+inputmode="decimal"
+placeholder="Estimated Cost লিখুন">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Fund
+</label>
+
+<input
+id="fund"
+placeholder="যেমন 16th Untied / 5TH Theme 3">
+
+</div>
+
+
+<div class="field">
+
+<label>
+New S.L. No.
+<span class="hint">
+(ম্যানুয়ালি লিখবেন)
+</span>
+</label>
+
+<input
+id="newSL"
+placeholder="যেমন SL-86">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     TENDER ONLY
+========================= -->
+
+<div
+id="tenderSection"
+class="approveSection hidden">
+
+<div class="approveSectionTitle">
+
+📄 Tender Information
+
+</div>
+
+
+<div class="field">
+
+<label>
+Estimated Cost
+</label>
+
+<input
+id="tenderEstimateCost"
+inputmode="decimal"
+placeholder="Estimated Cost">
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="primary"
+onclick="saveEntry()">
+
+💾 Save Entry
+
+</button>
+
+
+<button
+class="gray"
+onclick="clearForm()">
+
+↩ Clear
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     SAVED DATA
+========================= -->
+
+<div class="card">
+
+<div
+class="title"
+id="savedTitle">
+
+📋 Approach Scheme — Saved Data
+
+</div>
+
+
+<div class="toolbar">
+
+<input
+class="search"
+id="search"
+oninput="render()"
+placeholder="🔎 Scheme / Dag / Mouja / Sector / Fund দিয়ে Search করুন">
+
+
+<button
+class="success"
+onclick="exportExcel()">
+
+📊 Export Excel
+
+</button>
+
+
+<button
+class="gray"
+onclick="backup()">
+
+💾 Backup All
+
+</button>
+
+
+<button
+class="gray"
+onclick="document.getElementById('restore').click()">
+
+♻ Restore
+
+</button>
+
+
+<input
+id="restore"
+type="file"
+accept=".json,application/json"
+hidden
+onchange="restore(event)">
+
+
+<button
+class="danger"
+onclick="deleteCurrentForm()">
+
+🗑 Delete This Form
+
+</button>
+
+
+<button
+class="danger"
+onclick="deleteAll()">
+
+🗑 Delete ALL Forms
+
+</button>
+
+</div>
+
+
+
+<!-- =========================
+     TRANSFER BAR
+========================= -->
+
+<div
+id="transferBar"
+class="transferbar">
+
+<button
+id="nextTransferBtn"
+class="success"
+onclick="transferNext()">
+
+➡ Transfer
+
+</button>
+
+
+<button
+id="backTransferBtn"
+class="gray"
+onclick="transferBack()">
+
+⬅ Back
+
+</button>
+
+</div>
+
+
+<div
+id="selectedInfo"
+class="selectedInfo">
+
+কোনো Project Select করা হয়নি
+
+</div>
+
+
+<div
+class="count"
+id="count">
+
+0 entries
+
+</div>
+
+
+<div class="tablebox">
+
+<table>
+
+<thead id="thead"></thead>
+
+<tbody id="tbody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -775,2512 +1000,2772 @@ td{
 
 <script>
 
-/* =========================================================
+
+/* =========================================
    STORAGE
-   ========================================================= */
+========================================= */
 
 const STORAGE_KEY =
-  'AAP_OFFLINE_DATA_MOBILE_V5';
+"AAP_OFFLINE_DATA_MOBILE_V9";
 
 
 const OLD_KEYS = [
-  'AAP_OFFLINE_DATA_MOBILE_V4',
-  'AAP_OFFLINE_DATA_MOBILE_V3',
-  'AAP_OFFLINE_DATA_MOBILE_V2',
-  'AAP_OFFLINE_DATA',
-  'AAP_DATA',
-  'AAP_OFFLINE_DATA_MOBILE',
-  'AAP_OFFLINE_DATA_MOBILE_V1'
+
+"AAP_OFFLINE_DATA_MOBILE_V8",
+"AAP_OFFLINE_DATA_MOBILE_V7",
+"AAP_OFFLINE_DATA_MOBILE_V6",
+"AAP_OFFLINE_DATA_MOBILE_V5",
+"AAP_OFFLINE_DATA_MOBILE_V4",
+"AAP_OFFLINE_DATA_MOBILE_V3",
+"AAP_OFFLINE_DATA_MOBILE_V2",
+"AAP_OFFLINE_DATA",
+"AAP_DATA",
+"AAP_OFFLINE_DATA_MOBILE",
+"AAP_OFFLINE_DATA_MOBILE_V1"
+
 ];
 
 
-/* =========================================================
+
+/* =========================================
    FORM NAMES
-   ========================================================= */
+========================================= */
 
 const FORM_NAMES = {
 
-  approach:
-    'Approach Scheme',
+approach:
+"Approach Scheme",
 
-  approve:
-    'Approve Scheme',
+approve:
+"Approve Scheme",
 
-  tender:
-    'Tender Scheme',
+tender:
+"Tender Scheme",
 
-  modelVillage:
-    'Model Village Approach',
+modelVillage:
+"Model Village Approach",
 
-  modelApprove:
-    'Model Village Approve',
+modelApprove:
+"Model Village Approve",
 
-  modelTender:
-    'Model Village Tender'
+modelTender:
+"Model Village Tender"
 
 };
 
 
-/* =========================================================
+
+/* =========================================
    FLOW
-   ========================================================= */
+========================================= */
 
 const FLOW = {
 
-  approach:{
-    next:'approve',
-    back:null
-  },
+approach:{
+next:"approve",
+back:null
+},
 
-  approve:{
-    next:'tender',
-    back:'approach'
-  },
+approve:{
+next:"tender",
+back:"approach"
+},
 
-  tender:{
-    next:null,
-    back:'approve'
-  },
+tender:{
+next:null,
+back:"approve"
+},
 
-  modelVillage:{
-    next:'modelApprove',
-    back:null
-  },
+modelVillage:{
+next:"modelApprove",
+back:null
+},
 
-  modelApprove:{
-    next:'modelTender',
-    back:'modelVillage'
-  },
+modelApprove:{
+next:"modelTender",
+back:"modelVillage"
+},
 
-  modelTender:{
-    next:null,
-    back:'modelApprove'
-  }
+modelTender:{
+next:null,
+back:"modelApprove"
+}
 
 };
 
 
-/* =========================================================
-   FORM IDs
-   ========================================================= */
 
-const ids = [
+/* =========================================
+   BASE FIELDS
+========================================= */
 
-  'scheme',
-  'nature',
-  'lengthArea',
-  'mouza',
-  'startDag',
-  'endDag',
-  'jobCard',
-  'lat1',
-  'long1',
-  'lat2',
-  'long2'
+const BASE_IDS = [
+
+"scheme",
+"nature",
+"lengthArea",
+"mouza",
+"startDag",
+"endDag",
+"jobCard",
+"lat1",
+"long1",
+"lat2",
+"long2"
 
 ];
 
 
-/* =========================================================
+
+/* =========================================
    STATE
-   ========================================================= */
+========================================= */
 
-let state = {
+function defaultState(){
 
-  version:5,
+return {
 
-  year:'2026-27',
+version:9,
 
-  forms:{
+year:"2026-27",
 
-    approach:[],
+forms:{
 
-    approve:[],
+approach:[],
+approve:[],
+tender:[],
 
-    tender:[],
+modelVillage:[],
+modelApprove:[],
+modelTender:[]
 
-    modelVillage:[],
-
-    modelApprove:[],
-
-    modelTender:[]
-
-  }
+}
 
 };
 
+}
+
+
+let state =
+defaultState();
+
 
 let currentForm =
-  'approach';
+"approach";
 
 
 let editIndex =
-  -1;
+-1;
 
 
-/* =========================================================
-   BASIC HELPERS
-   ========================================================= */
 
-const $ =
-  id => document.getElementById(id);
+/* =========================================
+   HELPER
+========================================= */
+
+function $(id){
+
+return document.getElementById(id);
+
+}
 
 
 function val(id){
 
-  const el = $(id);
+const e =
+$(id);
 
-  return el
-    ? el.value.trim()
-    : '';
+return e
+?
+e.value.trim()
+:
+"";
 
 }
 
 
 function todayISO(){
 
-  const d = new Date();
+const d =
+new Date();
 
-  const local =
-    new Date(
-      d.getTime() -
-      d.getTimezoneOffset() * 60000
-    );
+return new Date(
+d.getTime() -
+d.getTimezoneOffset()*60000
+)
+.toISOString()
+.slice(0,10);
 
-  return local
-    .toISOString()
-    .slice(0,10);
+}
+
+
+function createId(){
+
+return Date.now() +
+"_" +
+Math.random()
+.toString(36)
+.substring(2);
 
 }
 
 
 function esc(s){
 
-  return String(s ?? '')
-    .replace(
-      /[&<>"']/g,
-      c => ({
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#39;'
-      }[c])
-    );
+return String(s ?? "")
+.replace(
+/[&<>"']/g,
+
+function(c){
+
+return {
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+
+}[c];
+
+});
+
+}
+
+
+function isApproval(form){
+
+return (
+form === "approve" ||
+form === "modelApprove"
+);
+
+}
+
+
+function isTender(form){
+
+return (
+form === "tender" ||
+form === "modelTender"
+);
+}
+
+
+function isModel(form){
+
+return form.indexOf("model") === 0;
 
 }
 
 
 function currentData(){
 
-  return state.forms[currentForm];
+return state.forms[currentForm];
 
 }
 
 
 function formName(){
 
-  return FORM_NAMES[currentForm];
+return FORM_NAMES[currentForm];
 
 }
 
 
-/* =========================================================
-   MAIN HEADING
-   ========================================================= */
 
-/*
-   IMPORTANT:
-
-   Approach / Approve / Tender
-   = A.A.P Format of V.B.G.R.A.M.G
-
-   Model Village-এর সব stage
-   = MODEL VILLAGE
-*/
-
-function updateMainHeading(){
-
-  const heading =
-    $('appHeading');
-
-  if(
-    currentForm === 'modelVillage' ||
-    currentForm === 'modelApprove' ||
-    currentForm === 'modelTender'
-  ){
-
-    heading.textContent =
-      'MODEL VILLAGE';
-
-  }else{
-
-    heading.textContent =
-      'A.A.P Format of V.B.G.R.A.M.G';
-
-  }
-
-}
-
-
-/* =========================================================
-   NORMALIZE STATE
-   ========================================================= */
-
-function normalizeState(input){
-
-  const result = {
-
-    version:5,
-
-    year:'2026-27',
-
-    forms:{
-
-      approach:[],
-
-      approve:[],
-
-      tender:[],
-
-      modelVillage:[],
-
-      modelApprove:[],
-
-      modelTender:[]
-
-    }
-
-  };
-
-
-  /* OLD ARRAY BACKUP */
-
-  if(Array.isArray(input)){
-
-    result.forms.approach =
-      input.map(normalizeEntry);
-
-    return result;
-
-  }
-
-
-  if(
-    input &&
-    typeof input === 'object'
-  ){
-
-    if(input.year){
-
-      result.year =
-        String(input.year);
-
-    }
-
-
-    if(
-      input.forms &&
-      typeof input.forms === 'object'
-    ){
-
-      Object.keys(result.forms)
-        .forEach(key => {
-
-          if(
-            Array.isArray(
-              input.forms[key]
-            )
-          ){
-
-            result.forms[key] =
-              input.forms[key]
-                .map(normalizeEntry);
-
-          }
-
-        });
-
-    }
-
-    else if(
-      Array.isArray(input.data)
-    ){
-
-      result.forms.approach =
-        input.data.map(normalizeEntry);
-
-    }
-
-  }
-
-
-  return result;
-
-}
-
-
-/* =========================================================
+/* =========================================
    NORMALIZE ENTRY
-   ========================================================= */
+========================================= */
 
 function normalizeEntry(x){
 
-  x = x || {};
+x = x || {};
 
+return {
 
-  return {
+id:
+String(
+x.id ||
+createId()
+),
 
-    id:
-      String(
-        x.id ||
-        (
-          Date.now() +
-          '_' +
-          Math.random()
-            .toString(36)
-            .slice(2)
-        )
-      ),
+scheme:
+String(
+x.scheme ||
+""
+),
 
-    scheme:
-      String(x.scheme ?? ''),
+nature:
+String(
+x.nature ||
+""
+),
 
-    nature:
-      String(x.nature ?? ''),
+lengthArea:
+String(
+x.lengthArea ||
+""
+),
 
-    lengthArea:
-      String(x.lengthArea ?? ''),
+mouza:
+String(
+x.mouza ||
+"Sahara"
+),
 
-    mouza:
-      String(x.mouza ?? 'Sahara'),
+startDag:
+String(
+x.startDag ||
+""
+),
 
-    startDag:
-      String(x.startDag ?? ''),
+endDag:
+String(
+x.endDag ||
+""
+),
 
-    endDag:
-      String(x.endDag ?? ''),
+jobCard:
+String(
+x.jobCard ||
+""
+),
 
-    jobCard:
-      String(x.jobCard ?? ''),
+lat1:
+String(
+x.lat1 ||
+""
+),
 
-    lat1:
-      String(x.lat1 ?? ''),
+long1:
+String(
+x.long1 ||
+""
+),
 
-    long1:
-      String(x.long1 ?? ''),
+lat2:
+String(
+x.lat2 ||
+""
+),
 
-    lat2:
-      String(x.lat2 ?? ''),
+long2:
+String(
+x.long2 ||
+""
+),
 
-    long2:
-      String(x.long2 ?? ''),
+date:
+String(
+x.date ||
+""
+),
 
-    date:
-      String(x.date ?? ''),
+year:
+String(
+x.year ||
+""
+),
 
-    year:
-      String(x.year ?? '')
+sector:
+String(
+x.sector ||
+""
+),
 
-  };
+estimateCost:
+String(
+x.estimateCost ||
+""
+),
+
+fund:
+String(
+x.fund ||
+""
+),
+
+newSL:
+String(
+x.newSL ||
+""
+),
+
+_backSnapshot:
+x._backSnapshot ||
+null
+
+};
 
 }
 
 
-/* =========================================================
-   STORAGE SAVE
-   ========================================================= */
+
+/* =========================================
+   NORMALIZE STATE
+========================================= */
+
+function normalizeState(input){
+
+const result =
+defaultState();
+
+
+if(
+Array.isArray(input)
+){
+
+result.forms.approach =
+input.map(
+normalizeEntry
+);
+
+return result;
+
+}
+
+
+if(
+input &&
+typeof input === "object"
+){
+
+result.year =
+String(
+input.year ||
+"2026-27"
+);
+
+
+if(
+input.forms &&
+typeof input.forms === "object"
+){
+
+Object.keys(
+result.forms
+)
+.forEach(
+function(k){
+
+if(
+Array.isArray(
+input.forms[k]
+)
+){
+
+result.forms[k] =
+input.forms[k]
+.map(
+normalizeEntry
+);
+
+}
+
+});
+
+}
+
+else if(
+Array.isArray(input.data)
+){
+
+result.forms.approach =
+input.data.map(
+normalizeEntry
+);
+
+}
+
+}
+
+
+return result;
+
+}
+
+
+
+/* =========================================
+   SAVE STORAGE
+========================================= */
 
 function persist(){
 
-  try{
+try{
 
-    state.version = 5;
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(state)
+);
 
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(state)
-    );
+return true;
 
-    return true;
+}
 
-  }catch(e){
+catch(e){
 
-    alert(
-      'Browser Storage unavailable। Backup file ব্যবহার করুন।'
-    );
+alert(
+"Browser Storage unavailable. Backup ব্যবহার করুন।"
+);
 
-    return false;
+return false;
 
-  }
+}
 
 }
 
 
-/* =========================================================
+
+/* =========================================
    LOAD
-   ========================================================= */
+========================================= */
 
 function load(){
 
-  let loaded = false;
+let found =
+false;
 
 
-  try{
+try{
 
-    const raw =
-      localStorage.getItem(
-        STORAGE_KEY
-      );
-
-
-    if(raw){
-
-      state =
-        normalizeState(
-          JSON.parse(raw)
-        );
-
-      loaded = true;
-
-    }
-
-    else{
-
-      for(
-        const key of OLD_KEYS
-      ){
-
-        const oldRaw =
-          localStorage.getItem(key);
-
-        if(!oldRaw) continue;
+const raw =
+localStorage.getItem(
+STORAGE_KEY
+);
 
 
-        try{
+if(raw){
 
-          const oldParsed =
-            JSON.parse(oldRaw);
+state =
+normalizeState(
+JSON.parse(raw)
+);
 
-          state =
-            normalizeState(
-              oldParsed
-            );
+found =
+true;
 
-          persist();
+}
 
-          loaded = true;
+else{
 
-          break;
+for(
+let i=0;
+i<OLD_KEYS.length;
+i++
+){
 
-        }catch(e){}
+const old =
+localStorage.getItem(
+OLD_KEYS[i]
+);
 
-      }
+if(old){
 
-    }
+try{
 
-  }catch(e){
+state =
+normalizeState(
+JSON.parse(old)
+);
 
-    state =
-      normalizeState([]);
+persist();
 
-  }
+found =
+true;
+
+break;
+
+}
+
+catch(e){}
+
+}
+
+}
+
+}
+
+}
+
+catch(e){}
 
 
-  if(!loaded){
+if(!found){
 
-    state =
-      normalizeState([]);
-
-  }
-
-
-  $('year').value =
-    state.year || '2026-27';
-
-
-  $('entryDate').value =
-    todayISO();
-
-
-  updateUI();
+state =
+defaultState();
 
 }
 
 
-/* =========================================================
+$("year").value =
+state.year ||
+"2026-27";
+
+
+$("entryDate").value =
+todayISO();
+
+
+updateUI();
+
+}
+
+
+
+/* =========================================
    SWITCH FORM
-   ========================================================= */
+========================================= */
 
 function switchForm(form){
 
-  if(
-    !FORM_NAMES[form]
-  ) return;
+if(!FORM_NAMES[form])
+return;
 
 
-  currentForm =
-    form;
+currentForm =
+form;
 
-  editIndex =
-    -1;
 
+editIndex =
+-1;
 
-  /* MAIN BUTTON ACTIVE */
 
-  document
-    .querySelectorAll('.formnav button')
-    .forEach(b => {
+document
+.querySelectorAll(
+".formnav button"
+)
+.forEach(
+function(b){
 
-      b.classList.remove('active');
+b.classList.remove("active");
 
-      b.classList.add('secondary');
+b.classList.add("secondary");
 
-    });
+});
 
 
-  let mainButtonId;
+let mainButton =
+null;
 
 
-  if(
-    form === 'modelVillage' ||
-    form === 'modelApprove' ||
-    form === 'modelTender'
-  ){
+if(form === "approach")
+mainButton =
+$("nav-approach");
 
-    mainButtonId =
-      'nav-model';
 
-  }
+if(form === "approve")
+mainButton =
+$("nav-approve");
 
-  else{
 
-    mainButtonId =
-      'nav-' + form;
+if(form === "tender")
+mainButton =
+$("nav-tender");
 
-  }
 
+if(isModel(form))
+mainButton =
+$("nav-model");
 
-  const active =
-    $(mainButtonId);
 
+if(mainButton){
 
-  if(active){
+mainButton.classList.add("active");
 
-    active.classList.add('active');
-
-    active.classList.remove('secondary');
-
-  }
-
-
-  /* MODEL STAGE BAR */
-
-  const modelBar =
-    $('modelStageBar');
-
-
-  if(
-    form === 'modelVillage' ||
-    form === 'modelApprove' ||
-    form === 'modelTender'
-  ){
-
-    modelBar.classList.add('show');
-
-  }else{
-
-    modelBar.classList.remove('show');
-
-  }
-
-
-  document
-    .querySelectorAll('#modelStageBar button')
-    .forEach(b => {
-
-      b.classList.remove('active');
-
-      b.classList.add('secondary');
-
-    });
-
-
-  if(
-    form === 'modelVillage'
-  ){
-
-    $('stage-modelVillage')
-      .classList.add('active');
-
-    $('stage-modelVillage')
-      .classList.remove('secondary');
-
-  }
-
-
-  if(
-    form === 'modelApprove'
-  ){
-
-    $('stage-modelApprove')
-      .classList.add('active');
-
-    $('stage-modelApprove')
-      .classList.remove('secondary');
-
-  }
-
-
-  if(
-    form === 'modelTender'
-  ){
-
-    $('stage-modelTender')
-      .classList.add('active');
-
-    $('stage-modelTender')
-      .classList.remove('secondary');
-
-  }
-
-
-  updateMainHeading();
-
-
-  $('currentFormName')
-    .textContent =
-      formName();
-
-
-  $('formTitle')
-    .textContent =
-      '➕ ' +
-      formName() +
-      ' — নতুন Data Entry';
-
-
-  $('savedTitle')
-    .textContent =
-      '📋 ' +
-      formName() +
-      ' — Saved Data';
-
-
-  $('search').value = '';
-
-
-  clearForm(false);
-
-
-  updateTransferButtons();
-
-
-  render();
+mainButton.classList.remove("secondary");
 
 }
 
 
-/* =========================================================
+$("modelStageBar")
+.classList.toggle(
+"show",
+isModel(form)
+);
+
+
+document
+.querySelectorAll(
+"#modelStageBar button"
+)
+.forEach(
+function(b){
+
+b.classList.remove("active");
+
+b.classList.add("secondary");
+
+});
+
+
+if(isModel(form)){
+
+let id =
+"stage-modelVillage";
+
+
+if(form === "modelApprove")
+id =
+"stage-modelApprove";
+
+
+if(form === "modelTender")
+id =
+"stage-modelTender";
+
+
+$(id).classList.add("active");
+
+$(id).classList.remove("secondary");
+
+}
+
+
+updateUI();
+
+clearForm(false);
+
+render();
+
+}
+
+
+
+/* =========================================
    UPDATE UI
-   ========================================================= */
+========================================= */
 
 function updateUI(){
 
-  $('headerYear')
-    .textContent =
-      String(state.year)
-        .replace('-', ' - ');
+$("headerYear")
+.textContent =
+String(state.year)
+.replace("-"," - ");
 
 
-  $('year').value =
-    state.year;
+$("currentFormName")
+.textContent =
+formName();
 
 
-  $('currentFormName')
-    .textContent =
-      formName();
+$("formTitle")
+.textContent =
+"➕ " +
+formName() +
+" — নতুন Data Entry";
 
 
-  $('formTitle')
-    .textContent =
-      '➕ ' +
-      formName() +
-      ' — নতুন Data Entry';
+$("savedTitle")
+.textContent =
+"📋 " +
+formName() +
+" — Saved Data";
 
 
-  $('savedTitle')
-    .textContent =
-      '📋 ' +
-      formName() +
-      ' — Saved Data';
+$("appHeading")
+.textContent =
+isModel(currentForm)
+?
+"MODEL VILLAGE"
+:
+"A.A.P Offline Data Entry";
 
 
-  updateMainHeading();
+$("approvalSection")
+.classList.toggle(
+"hidden",
+!isApproval(currentForm)
+);
 
 
-  updateTransferButtons();
+$("tenderSection")
+.classList.toggle(
+"hidden",
+!isTender(currentForm)
+);
 
 
-  render();
+updateTransferButtons();
 
 }
 
 
-/* =========================================================
+
+/* =========================================
    YEAR
-   ========================================================= */
+========================================= */
 
 function changeYear(){
 
-  state.year =
-    $('year').value;
+state.year =
+$("year").value;
 
 
-  $('headerYear')
-    .textContent =
-      state.year
-        .replace('-', ' - ');
+$("headerYear")
+.textContent =
+state.year.replace(
+"-",
+" - "
+);
 
 
-  persist();
+persist();
 
-  render();
+render();
 
 }
 
 
-/* =========================================================
-   SAVE
-   ========================================================= */
+
+/* =========================================
+   CLEAR
+========================================= */
+
+function clearForm(
+resetDate=true
+){
+
+BASE_IDS.forEach(
+function(id){
+
+$(id).value = "";
+
+});
+
+
+$("sector").value = "";
+
+$("estimateCost").value = "";
+
+$("fund").value = "";
+
+$("newSL").value = "";
+
+$("tenderEstimateCost").value = "";
+
+
+$("mouza").value =
+"Sahara";
+
+
+editIndex =
+-1;
+
+
+$("formTitle")
+.textContent =
+"➕ " +
+formName() +
+" — নতুন Data Entry";
+
+
+if(resetDate){
+
+$("entryDate").value =
+todayISO();
+
+}
+
+}
+
+
+
+/* =========================================
+   SAVE ENTRY
+========================================= */
 
 function saveEntry(){
 
-  const x = {};
+const x = {};
 
 
-  ids.forEach(id => {
+BASE_IDS.forEach(
+function(id){
 
-    x[id] =
-      val(id);
+x[id] =
+val(id);
 
-  });
-
-
-  x.date =
-    val('entryDate') ||
-    todayISO();
+});
 
 
-  x.year =
-    state.year;
+x.date =
+val("entryDate") ||
+todayISO();
 
 
-  if(
-    !x.scheme &&
-    !x.startDag
-  ){
-
-    alert(
-      'Scheme Name অথবা Starting Dag No. দিন।'
-    );
-
-    return;
-
-  }
+x.year =
+state.year;
 
 
-  const arr =
-    currentData();
+/*
+ APPROVE
+*/
 
+if(
+isApproval(currentForm)
+){
 
-  if(editIndex >= 0){
+x.sector =
+val("sector");
 
-    /*
-      Edit করার সময় পুরনো ID
-      অবশ্যই রেখে দেওয়া হবে
-    */
+x.estimateCost =
+val("estimateCost");
 
-    x.id =
-      arr[editIndex].id ||
-      createId();
+x.fund =
+val("fund");
 
-
-    arr[editIndex] =
-      x;
-
-  }
-
-  else{
-
-    x.id =
-      createId();
-
-    arr.push(x);
-
-  }
-
-
-  if(!persist()) return;
-
-
-  render();
-
-  clearForm();
-
-
-  alert(
-    formName() +
-    ' Entry Save হয়েছে ✓'
-  );
+x.newSL =
+val("newSL");
 
 }
 
 
-/* =========================================================
-   CREATE ID
-   ========================================================= */
+/*
+ TENDER
+*/
 
-function createId(){
+else if(
+isTender(currentForm)
+){
 
-  return (
-    Date.now() +
-    '_' +
-    Math.random()
-      .toString(36)
-      .slice(2)
-  );
+x.sector = "";
 
-}
+x.fund = "";
 
+x.newSL = "";
 
-/* =========================================================
-   CLEAR
-   ========================================================= */
-
-function clearForm(resetDate=true){
-
-  ids.forEach(id => {
-
-    if($(id))
-      $(id).value = '';
-
-  });
-
-
-  $('mouza').value =
-    'Sahara';
-
-
-  editIndex = -1;
-
-
-  $('formTitle')
-    .textContent =
-      '➕ ' +
-      formName() +
-      ' — নতুন Data Entry';
-
-
-  if(resetDate){
-
-    $('entryDate').value =
-      todayISO();
-
-  }
+x.estimateCost =
+val("tenderEstimateCost");
 
 }
 
 
-/* =========================================================
+/*
+ APPROACH
+*/
+
+else{
+
+x.sector = "";
+
+x.estimateCost = "";
+
+x.fund = "";
+
+x.newSL = "";
+
+}
+
+
+if(
+!x.scheme &&
+!x.startDag
+){
+
+alert(
+"Scheme Name অথবা Starting Dag No. দিন।"
+);
+
+return;
+
+}
+
+
+const arr =
+currentData();
+
+
+if(editIndex >= 0){
+
+x.id =
+arr[editIndex].id ||
+createId();
+
+
+x._backSnapshot =
+arr[editIndex]._backSnapshot ||
+null;
+
+
+arr[editIndex] =
+normalizeEntry(x);
+
+}
+
+else{
+
+x.id =
+createId();
+
+x._backSnapshot =
+null;
+
+
+arr.push(
+normalizeEntry(x)
+);
+
+}
+
+
+if(!persist())
+return;
+
+
+render();
+
+clearForm();
+
+alert(
+formName() +
+" Entry Save হয়েছে ✓"
+);
+
+}
+
+
+
+/* =========================================
    EDIT
-   ========================================================= */
+========================================= */
 
 function edit(i){
 
-  const x =
-    currentData()[i];
+const x =
+currentData()[i];
 
 
-  if(!x) return;
+if(!x)
+return;
 
 
-  ids.forEach(id => {
+BASE_IDS.forEach(
+function(id){
 
-    $(id).value =
-      x[id] || '';
+$(id).value =
+x[id] || "";
 
-  });
-
-
-  $('entryDate').value =
-    x.date ||
-    todayISO();
+});
 
 
-  if(
-    x.year &&
-    x.year !== state.year
-  ){
-
-    state.year =
-      x.year;
-
-    $('year').value =
-      x.year;
-
-    $('headerYear')
-      .textContent =
-        x.year
-          .replace('-', ' - ');
-
-    persist();
-
-  }
+$("entryDate").value =
+x.date ||
+todayISO();
 
 
-  editIndex = i;
+$("sector").value =
+x.sector ||
+"";
 
 
-  $('formTitle')
-    .textContent =
-      '✏️ ' +
-      formName() +
-      ' — Data Entry Edit করুন';
+$("estimateCost").value =
+x.estimateCost ||
+"";
 
 
-  window.scrollTo({
+$("fund").value =
+x.fund ||
+"";
 
-    top:0,
 
-    behavior:'smooth'
+$("newSL").value =
+x.newSL ||
+"";
 
-  });
+
+$("tenderEstimateCost").value =
+x.estimateCost ||
+"";
+
+
+editIndex =
+i;
+
+
+updateUI();
+
+
+$("formTitle")
+.textContent =
+"✏️ " +
+formName() +
+" — Data Entry Edit করুন";
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 
-/* =========================================================
-   DELETE ONE
-   ========================================================= */
+
+/* =========================================
+   DELETE ROW
+========================================= */
 
 function del(i){
 
-  if(
-    confirm(
-      formName() +
-      ' এর এই Entry মুছে ফেলবেন?'
-    )
-  ){
+if(
+confirm(
+formName() +
+" এর এই Entry মুছে ফেলবেন?"
+)
+){
 
-    currentData()
-      .splice(i,1);
+currentData()
+.splice(i,1);
 
-    persist();
+persist();
 
-    render();
+render();
 
-  }
+}
 
 }
 
 
-/* =========================================================
-   DELETE CURRENT FORM
-   ========================================================= */
+
+/* =========================================
+   DELETE CURRENT
+========================================= */
 
 function deleteCurrentForm(){
 
-  const arr =
-    currentData();
+if(!currentData().length){
 
+alert(
+formName() +
+" এ কোনো data নেই।"
+);
 
-  if(!arr.length){
-
-    alert(
-      formName() +
-      ' এ কোনো data নেই।'
-    );
-
-    return;
-
-  }
-
-
-  if(
-    confirm(
-      formName() +
-      ' এর সব data মুছে ফেলবেন?'
-    )
-  ){
-
-    state.forms[currentForm] =
-      [];
-
-    editIndex = -1;
-
-    persist();
-
-    clearForm();
-
-    render();
-
-  }
+return;
 
 }
 
 
-/* =========================================================
+if(
+confirm(
+formName() +
+" এর সব data মুছে ফেলবেন?"
+)
+){
+
+state.forms[currentForm] = [];
+
+editIndex =
+-1;
+
+persist();
+
+clearForm();
+
+render();
+
+}
+
+}
+
+
+
+/* =========================================
    DELETE ALL
-   ========================================================= */
+========================================= */
 
 function deleteAll(){
 
-  const total =
-    Object.values(
-      state.forms
-    )
-    .reduce(
-      (sum,arr) =>
-        sum + arr.length,
-      0
-    );
+let total = 0;
 
 
-  if(!total){
+Object
+.values(state.forms)
+.forEach(
+function(a){
 
-    alert(
-      'কোনো Data নেই।'
-    );
+total +=
+a.length;
 
-    return;
-
-  }
-
-
-  if(
-    confirm(
-      'সব Form-এর সব Data একসাথে মুছে ফেলবেন?'
-    )
-  ){
-
-    Object.keys(
-      state.forms
-    ).forEach(key => {
-
-      state.forms[key] = [];
-
-    });
+});
 
 
-    editIndex = -1;
+if(!total){
 
-    persist();
+alert(
+"কোনো Data নেই।"
+);
 
-    clearForm();
-
-    render();
-
-  }
+return;
 
 }
 
 
-/* =========================================================
-   SELECTED ROWS
-   ========================================================= */
+if(
+confirm(
+"সব Form-এর সব Data একসাথে মুছে ফেলবেন?"
+)
+){
+
+Object.keys(
+state.forms
+)
+.forEach(
+function(k){
+
+state.forms[k] = [];
+
+});
+
+
+persist();
+
+clearForm();
+
+render();
+
+}
+
+}
+
+
+
+/* =========================================
+   SELECTED INDEXES
+========================================= */
 
 function getSelectedIndexes(){
 
-  return Array.from(
-    document.querySelectorAll(
-      '.rowcheck:checked'
-    )
-  )
-  .map(
-    el =>
-      Number(
-        el.dataset.index
-      )
-  );
+return Array
+.from(
+document.querySelectorAll(
+".rowcheck:checked"
+)
+)
+.map(
+function(e){
+
+return Number(
+e.dataset.index
+);
+
+});
 
 }
 
 
-/* =========================================================
-   SELECT ALL
-   ========================================================= */
 
 function toggleAll(box){
 
-  document
-    .querySelectorAll('.rowcheck')
-    .forEach(cb => {
+document
+.querySelectorAll(
+".rowcheck"
+)
+.forEach(
+function(cb){
 
-      cb.checked =
-        box.checked;
+cb.checked =
+box.checked;
 
-    });
+});
 
 
-  updateSelectedInfo();
+updateSelectedInfo();
 
 }
 
 
-/* =========================================================
-   SELECT INFO
-   ========================================================= */
 
 function updateSelectedInfo(){
 
-  const selected =
-    getSelectedIndexes();
+const n =
+getSelectedIndexes()
+.length;
 
 
-  $('selectedInfo')
-    .textContent =
-      selected.length
-      ? selected.length +
-        ' টি Project Select করা হয়েছে'
-      : 'কোনো Project Select করা হয়নি';
+$("selectedInfo")
+.textContent =
+n
+?
+n +
+" টি Project Select করা হয়েছে"
+:
+"কোনো Project Select করা হয়নি";
 
 }
 
 
-/* =========================================================
-   UPDATE TRANSFER BUTTON
-   ========================================================= */
+
+/* =========================================
+   TRANSFER BUTTON UPDATE
+========================================= */
 
 function updateTransferButtons(){
 
-  const flow =
-    FLOW[currentForm];
+const flow =
+FLOW[currentForm];
 
 
-  const bar =
-    $('transferBar');
+const bar =
+$("transferBar");
 
 
-  if(
-    flow.next ||
-    flow.back
-  ){
-
-    bar.classList.add('show');
-
-  }else{
-
-    bar.classList.remove('show');
-
-  }
+bar.classList.toggle(
+"show",
+!!(
+flow.next ||
+flow.back
+)
+);
 
 
-  const nextBtn =
-    $('nextTransferBtn');
+const next =
+$("nextTransferBtn");
 
 
-  const backBtn =
-    $('backTransferBtn');
+const back =
+$("backTransferBtn");
 
 
-  if(flow.next){
+if(flow.next){
 
-    nextBtn.style.display =
-      'block';
-
-
-    nextBtn.textContent =
-      '➡ ' +
-      FORM_NAMES[flow.next] +
-      ' -এ Transfer';
-
-  }else{
-
-    nextBtn.style.display =
-      'none';
-
-  }
+next.style.display =
+"block";
 
 
-  if(flow.back){
+next.textContent =
+"➡ " +
+FORM_NAMES[flow.next] +
+" -এ Transfer";
 
-    backBtn.style.display =
-      'block';
+}
 
+else{
 
-    backBtn.textContent =
-      '⬅ ' +
-      FORM_NAMES[flow.back] +
-      ' -এ Back';
-
-  }else{
-
-    backBtn.style.display =
-      'none';
-
-  }
+next.style.display =
+"none";
 
 }
 
 
-/* =========================================================
+if(flow.back){
+
+back.style.display =
+"block";
+
+
+back.textContent =
+"⬅ " +
+FORM_NAMES[flow.back] +
+" -এ Back";
+
+}
+
+else{
+
+back.style.display =
+"none";
+
+}
+
+}
+
+
+
+/* =========================================
+   APPROACH -> APPROVE
+========================================= */
+
+function copyToApprove(r){
+
+const x =
+normalizeEntry(r);
+
+
+/*
+ Approach-এর data যাবে।
+ Approve-এর নতুন চারটি field
+ blank থাকবে।
+*/
+
+x.sector = "";
+
+x.estimateCost = "";
+
+x.fund = "";
+
+x.newSL = "";
+
+x._backSnapshot = null;
+
+
+return x;
+
+}
+
+
+
+/* =========================================
+   APPROVE -> TENDER
+========================================= */
+
+function copyApproveToTender(r){
+
+const x =
+normalizeEntry(r);
+
+
+/*
+ Approve-এর সব data snapshot
+ হিসেবে সংরক্ষণ করছি।
+*/
+
+const snapshot = {
+
+id:x.id,
+
+scheme:x.scheme,
+
+nature:x.nature,
+
+lengthArea:x.lengthArea,
+
+mouza:x.mouza,
+
+startDag:x.startDag,
+
+endDag:x.endDag,
+
+jobCard:x.jobCard,
+
+lat1:x.lat1,
+
+long1:x.long1,
+
+lat2:x.lat2,
+
+long2:x.long2,
+
+date:x.date,
+
+year:x.year,
+
+sector:x.sector,
+
+estimateCost:x.estimateCost,
+
+fund:x.fund,
+
+newSL:x.newSL
+
+};
+
+
+/*
+ Tender-এ শুধু Estimated Cost থাকবে।
+*/
+
+x.sector = "";
+
+x.fund = "";
+
+x.newSL = "";
+
+x.estimateCost =
+r.estimateCost || "";
+
+
+/*
+ Back করার সময় এই snapshot
+ ব্যবহার হবে।
+*/
+
+x._backSnapshot =
+snapshot;
+
+
+return x;
+
+}
+
+
+
+/* =========================================
+   TENDER -> APPROVE
+========================================= */
+
+function copyTenderToApprove(r){
+
+if(r._backSnapshot){
+
+const x =
+normalizeEntry(
+r._backSnapshot
+);
+
+
+/*
+ Tender-এ Estimated Cost পরিবর্তন
+ হয়ে থাকলে সেটা Approve-এও থাকবে।
+*/
+
+x.estimateCost =
+r.estimateCost ||
+x.estimateCost ||
+"";
+
+
+return x;
+
+}
+
+
+/*
+ পুরনো data-এর জন্য fallback
+*/
+
+const x =
+normalizeEntry(r);
+
+x.sector = "";
+
+x.fund = "";
+
+x.newSL = "";
+
+
+return x;
+
+}
+
+
+
+/* =========================================
+   APPROVE -> APPROACH BACK
+========================================= */
+
+function copyApproveToApproach(r){
+
+const x =
+normalizeEntry(r);
+
+
+/*
+ Approach-এ approval-এর
+ নতুন fields থাকবে না।
+*/
+
+x.sector = "";
+
+x.estimateCost = "";
+
+x.fund = "";
+
+x.newSL = "";
+
+x._backSnapshot = null;
+
+
+return x;
+
+}
+
+
+
+/* =========================================
    TRANSFER NEXT
-   ========================================================= */
+========================================= */
 
 function transferNext(){
 
-  const flow =
-    FLOW[currentForm];
+const flow =
+FLOW[currentForm];
 
 
-  if(!flow.next){
+if(
+!flow ||
+!flow.next
+){
 
-    alert(
-      'এই Stage-এর পরে আর কোনো Stage নেই।'
-    );
+alert(
+"এই Stage-এর পরে আর কোনো Stage নেই।"
+);
 
-    return;
-
-  }
-
-
-  const selected =
-    getSelectedIndexes();
-
-
-  if(!selected.length){
-
-    alert(
-      'আগে অন্তত ১টি Project Select করুন।'
-    );
-
-    return;
-
-  }
-
-
-  const target =
-    state.forms[flow.next];
-
-
-  const source =
-    state.forms[currentForm];
-
-
-  const selectedRecords =
-    selected.map(
-      i => source[i]
-    )
-    .filter(Boolean);
-
-
-  if(
-    !confirm(
-      selectedRecords.length +
-      ' টি Project\n' +
-      formName() +
-      ' থেকে\n' +
-      FORM_NAMES[flow.next] +
-      ' -এ Transfer করবেন?'
-    )
-  ){
-
-    return;
-
-  }
-
-
-  selectedRecords.forEach(record => {
-
-    /*
-      একই ID থাকলে duplicate হবে না
-    */
-
-    const already =
-      target.some(
-        x =>
-          x.id &&
-          x.id === record.id
-      );
-
-
-    if(!already){
-
-      target.push(
-        normalizeEntry(record)
-      );
-
-    }
-
-  });
-
-
-  /*
-    Source থেকে selected records remove
-  */
-
-  selected
-    .sort(
-      (a,b) => b-a
-    )
-    .forEach(i => {
-
-      source.splice(i,1);
-
-    });
-
-
-  editIndex = -1;
-
-
-  persist();
-
-  render();
-
-
-  alert(
-    selectedRecords.length +
-    ' টি Project সফলভাবে\n' +
-    FORM_NAMES[flow.next] +
-    ' -এ Transfer হয়েছে ✓'
-  );
+return;
 
 }
 
 
-/* =========================================================
+const selected =
+getSelectedIndexes();
+
+
+if(!selected.length){
+
+alert(
+"আগে অন্তত ১টি Project Select করুন।"
+);
+
+return;
+
+}
+
+
+const source =
+state.forms[currentForm];
+
+
+const target =
+state.forms[flow.next];
+
+
+const records =
+selected
+.map(
+function(i){
+
+return source[i];
+
+})
+.filter(Boolean);
+
+
+if(!records.length){
+
+alert(
+"Selected data পাওয়া যায়নি।"
+);
+
+return;
+
+}
+
+
+if(
+!confirm(
+records.length +
+" টি Project\n\n" +
+formName() +
+" থেকে\n" +
+FORM_NAMES[flow.next] +
+" -এ Transfer করবেন?"
+)
+){
+
+return;
+
+}
+
+
+records.forEach(
+function(r){
+
+let x;
+
+
+/*
+ ========================================
+ APPROACH -> APPROVE
+ ========================================
+*/
+
+if(
+currentForm === "approach" &&
+flow.next === "approve"
+){
+
+x =
+copyToApprove(r);
+
+}
+
+
+/*
+ ========================================
+ APPROVE -> TENDER
+ ========================================
+*/
+
+else if(
+currentForm === "approve" &&
+flow.next === "tender"
+){
+
+x =
+copyApproveToTender(r);
+
+}
+
+
+/*
+ ========================================
+ MODEL APPROACH -> MODEL APPROVE
+ ========================================
+*/
+
+else if(
+currentForm === "modelVillage" &&
+flow.next === "modelApprove"
+){
+
+x =
+copyToApprove(r);
+
+}
+
+
+/*
+ ========================================
+ MODEL APPROVE -> MODEL TENDER
+ ========================================
+*/
+
+else if(
+currentForm === "modelApprove" &&
+flow.next === "modelTender"
+){
+
+x =
+copyApproveToTender(r);
+
+}
+
+else{
+
+x =
+normalizeEntry(r);
+
+}
+
+
+/*
+ Target-এ একই ID আগে থাকলে
+ duplicate করবে না।
+*/
+
+const exists =
+target.some(
+function(t){
+
+return t.id === x.id;
+
+});
+
+
+if(!exists){
+
+target.push(x);
+
+}
+
+});
+
+
+/*
+ Source থেকে selected data remove
+*/
+
+selected
+.sort(
+function(a,b){
+
+return b-a;
+
+})
+.forEach(
+function(i){
+
+source.splice(i,1);
+
+});
+
+
+editIndex =
+-1;
+
+
+persist();
+
+render();
+
+
+alert(
+records.length +
+" টি Project সফলভাবে\n" +
+FORM_NAMES[flow.next] +
+" -এ Transfer হয়েছে ✓"
+);
+
+}
+
+
+
+/* =========================================
    TRANSFER BACK
-   ========================================================= */
+========================================= */
 
 function transferBack(){
 
-  const flow =
-    FLOW[currentForm];
+const flow =
+FLOW[currentForm];
 
 
-  if(!flow.back){
+if(
+!flow ||
+!flow.back
+){
 
-    alert(
-      'এই Stage-এর আগে আর কোনো Stage নেই।'
-    );
+alert(
+"এই Stage-এর আগে আর কোনো Stage নেই।"
+);
 
-    return;
-
-  }
-
-
-  const selected =
-    getSelectedIndexes();
-
-
-  if(!selected.length){
-
-    alert(
-      'আগে অন্তত ১টি Project Select করুন।'
-    );
-
-    return;
-
-  }
-
-
-  const target =
-    state.forms[flow.back];
-
-
-  const source =
-    state.forms[currentForm];
-
-
-  const selectedRecords =
-    selected.map(
-      i => source[i]
-    )
-    .filter(Boolean);
-
-
-  if(
-    !confirm(
-      selectedRecords.length +
-      ' টি Project\n' +
-      formName() +
-      ' থেকে\n' +
-      FORM_NAMES[flow.back] +
-      ' -এ Back করবেন?'
-    )
-  ){
-
-    return;
-
-  }
-
-
-  selectedRecords.forEach(record => {
-
-    const already =
-      target.some(
-        x =>
-          x.id &&
-          x.id === record.id
-      );
-
-
-    if(!already){
-
-      target.push(
-        normalizeEntry(record)
-      );
-
-    }
-
-  });
-
-
-  selected
-    .sort(
-      (a,b) => b-a
-    )
-    .forEach(i => {
-
-      source.splice(i,1);
-
-    });
-
-
-  editIndex = -1;
-
-
-  persist();
-
-  render();
-
-
-  alert(
-    selectedRecords.length +
-    ' টি Project সফলভাবে\n' +
-    FORM_NAMES[flow.back] +
-    ' -এ Back হয়েছে ✓'
-  );
+return;
 
 }
 
 
-/* =========================================================
+const selected =
+getSelectedIndexes();
+
+
+if(!selected.length){
+
+alert(
+"আগে অন্তত ১টি Project Select করুন।"
+);
+
+return;
+
+}
+
+
+const source =
+state.forms[currentForm];
+
+
+const target =
+state.forms[flow.back];
+
+
+const records =
+selected
+.map(
+function(i){
+
+return source[i];
+
+})
+.filter(Boolean);
+
+
+if(!records.length){
+
+alert(
+"Selected data পাওয়া যায়নি।"
+);
+
+return;
+
+}
+
+
+if(
+!confirm(
+records.length +
+" টি Project\n\n" +
+formName() +
+" থেকে\n" +
+FORM_NAMES[flow.back] +
+" -এ Back করবেন?"
+)
+){
+
+return;
+
+}
+
+
+records.forEach(
+function(r){
+
+let x;
+
+
+/*
+ ========================================
+ TENDER -> APPROVE
+ ========================================
+*/
+
+if(
+currentForm === "tender" &&
+flow.back === "approve"
+){
+
+x =
+copyTenderToApprove(r);
+
+}
+
+
+/*
+ ========================================
+ MODEL TENDER -> MODEL APPROVE
+ ========================================
+*/
+
+else if(
+currentForm === "modelTender" &&
+flow.back === "modelApprove"
+){
+
+x =
+copyTenderToApprove(r);
+
+}
+
+
+/*
+ ========================================
+ APPROVE -> APPROACH
+ ========================================
+*/
+
+else if(
+currentForm === "approve" &&
+flow.back === "approach"
+){
+
+x =
+copyApproveToApproach(r);
+
+}
+
+
+/*
+ ========================================
+ MODEL APPROVE -> MODEL VILLAGE
+ ========================================
+*/
+
+else if(
+currentForm === "modelApprove" &&
+flow.back === "modelVillage"
+){
+
+x =
+copyApproveToApproach(r);
+
+}
+
+else{
+
+x =
+normalizeEntry(r);
+
+}
+
+
+/*
+ Target-এ একই ID থাকলে duplicate করবে না।
+*/
+
+const exists =
+target.some(
+function(t){
+
+return t.id === x.id;
+
+});
+
+
+if(!exists){
+
+target.push(x);
+
+}
+
+});
+
+
+/*
+ Source থেকে remove
+*/
+
+selected
+.sort(
+function(a,b){
+
+return b-a;
+
+})
+.forEach(
+function(i){
+
+source.splice(i,1);
+
+});
+
+
+editIndex =
+-1;
+
+
+persist();
+
+render();
+
+
+alert(
+records.length +
+" টি Project সফলভাবে\n" +
+FORM_NAMES[flow.back] +
+" -এ Back হয়েছে ✓"
+);
+
+}
+
+
+
+/* =========================================
+   TABLE COLUMNS
+========================================= */
+
+function columns(){
+
+const base = [
+
+["S.L. No.","auto"],
+
+["Date","date"],
+
+["Financial Year","year"],
+
+["Scheme Name","scheme"],
+
+["Nature of Work","nature"],
+
+["Length / Area","lengthArea"],
+
+["Mouja","mouza"],
+
+["Starting Dag No.","startDag"],
+
+["End Dag No.","endDag"],
+
+["In Case I.B.S Job Card No.","jobCard"],
+
+["Lat","lat1"],
+
+["Long","long1"],
+
+["Lat","lat2"],
+
+["Long","long2"]
+
+];
+
+
+/*
+ Approve list-এ চারটি field
+*/
+
+if(
+isApproval(currentForm)
+){
+
+base.push(
+
+["Sector","sector"],
+
+["Estimated Cost","estimateCost"],
+
+["Fund","fund"],
+
+["New S.L. No.","newSL"]
+
+);
+
+}
+
+
+/*
+ Tender list-এ শুধু Estimated Cost
+*/
+
+if(
+isTender(currentForm)
+){
+
+base.push(
+
+["Estimated Cost","estimateCost"]
+
+);
+
+}
+
+
+return base;
+
+}
+
+
+
+/* =========================================
    RENDER TABLE
-   ========================================================= */
+========================================= */
 
 function render(){
 
-  const q =
-    val('search')
-      .toLowerCase();
+const q =
+val("search")
+.toLowerCase();
 
 
-  const list =
-    currentData()
-      .map(
-        (x,i) => ({
-          x:x,
-          i:i
-        })
-      )
-      .filter(
-        o =>
-          JSON.stringify(
-            o.x
-          )
-          .toLowerCase()
-          .includes(q)
-      );
+const list =
+currentData()
+.map(
+function(x,i){
+
+return {
+
+x:x,
+
+i:i
+
+};
+
+})
+.filter(
+function(o){
+
+return JSON.stringify(
+o.x
+)
+.toLowerCase()
+.includes(q);
+
+});
 
 
-  $('count')
-    .textContent =
-      list.length +
-      ' entries — ' +
-      formName();
+const cols =
+columns();
 
 
-  $('tbody').innerHTML =
-
-    list.length
-
-    ?
-
-    list.map(
-      (o,n) => {
-
-        const x =
-          o.x;
-
-        const i =
-          o.i;
+$("count")
+.textContent =
+list.length +
+" entries — " +
+formName();
 
 
-        return (
+$("thead").innerHTML =
 
-          '<tr>' +
+"<tr>" +
 
-          '<td class="selectCell">' +
+"<th>" +
 
-          '<input ' +
-          'type="checkbox" ' +
-          'class="rowcheck" ' +
-          'data-index="' +
-          i +
-          '" ' +
-          'onchange="updateSelectedInfo()">' +
+'<input type="checkbox" class="selectAll" onchange="toggleAll(this)">' +
 
-          '</td>' +
+"<br>Select" +
 
-          '<td>' +
-          (n+1) +
-          '</td>' +
+"</th>" +
 
-          '<td>' +
-          esc(x.date) +
-          '</td>' +
+cols
+.map(
+function(c){
 
-          '<td>' +
-          esc(x.year) +
-          '</td>' +
+return "<th>" +
+esc(c[0]) +
+"</th>";
 
-          '<td>' +
-          esc(x.scheme) +
-          '</td>' +
+})
+.join("") +
 
-          '<td>' +
-          esc(x.nature) +
-          '</td>' +
+"<th>Action</th>" +
 
-          '<td>' +
-          esc(x.lengthArea) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.mouza)
-            .toUpperCase() +
-          '</td>' +
-
-          '<td>' +
-          esc(x.startDag) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.endDag) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.jobCard) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.lat1) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.long1) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.lat2) +
-          '</td>' +
-
-          '<td>' +
-          esc(x.long2) +
-          '</td>' +
-
-          '<td>' +
-
-          '<button ' +
-          'class="actionbtn primary" ' +
-          'onclick="edit(' +
-          i +
-          ')">' +
-          'Edit' +
-          '</button>' +
-
-          '<button ' +
-          'class="actionbtn danger" ' +
-          'onclick="del(' +
-          i +
-          ')">' +
-          'Delete' +
-          '</button>' +
-
-          '</td>' +
-
-          '</tr>'
-
-        );
-
-      }
-    ).join('')
-
-    :
-
-    '<tr>' +
-
-    '<td colspan="16" class="empty">' +
-
-    formName() +
-    ' এ কোনো Data Entry নেই।' +
-
-    '</td>' +
-
-    '</tr>';
+"</tr>";
 
 
-  /*
-    Select All reset
-  */
+if(!list.length){
 
-  $('selectAll').checked =
-    false;
+$("tbody").innerHTML =
+
+"<tr>" +
+
+'<td colspan="' +
+(cols.length+2) +
+'" class="empty">' +
+
+esc(formName()) +
+
+" এ কোনো Data Entry নেই।" +
+
+"</td>" +
+
+"</tr>";
 
 
-  updateSelectedInfo();
+updateSelectedInfo();
+
+return;
 
 }
 
 
-/* =========================================================
+$("tbody").innerHTML =
+
+list
+.map(
+function(o,n){
+
+const x =
+o.x;
+
+
+return (
+
+"<tr>" +
+
+'<td class="selectCell">' +
+
+'<input type="checkbox" class="rowcheck" data-index="' +
+o.i +
+'" onchange="updateSelectedInfo()">' +
+
+"</td>" +
+
+
+cols
+.map(
+function(c){
+
+let value;
+
+
+if(
+c[1] === "auto"
+){
+
+value =
+n+1;
+
+}
+
+else if(
+c[1] === "mouza"
+){
+
+value =
+String(
+x[c[1]] ||
+""
+)
+.toUpperCase();
+
+}
+
+else{
+
+value =
+x[c[1]] ||
+"";
+
+}
+
+
+return "<td>" +
+esc(value) +
+"</td>";
+
+})
+.join("") +
+
+
+"<td>" +
+
+'<button class="actionbtn primary" onclick="edit(' +
+o.i +
+')">Edit</button>' +
+
+'<button class="actionbtn danger" onclick="del(' +
+o.i +
+')">Delete</button>' +
+
+"</td>" +
+
+"</tr>"
+
+);
+
+})
+.join("");
+
+
+updateSelectedInfo();
+
+}
+
+
+
+/* =========================================
    EXCEL ESCAPE
-   ========================================================= */
+========================================= */
 
 function excelEsc(s){
 
-  return String(s ?? '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&apos;');
+return String(s ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&apos;");
 
 }
 
 
-function excelCell(
-  s,
-  style='Cell',
-  merge=''
-){
 
-  return (
-
-    '<Cell ss:StyleID="' +
-    style +
-    '"' +
-
-    (
-      merge !== ''
-      ?
-      ' ss:MergeAcross="' +
-      merge +
-      '"'
-      :
-      ''
-    ) +
-
-    '>' +
-
-    '<Data ss:Type="String">' +
-
-    excelEsc(s)
-      .replace(
-        /\n/g,
-        '&#10;'
-      ) +
-
-    '</Data></Cell>'
-
-  );
-
-}
-
-
-/* =========================================================
+/* =========================================
    EXCEL EXPORT
-   ========================================================= */
+========================================= */
 
 function exportExcel(){
 
-  const data =
-    currentData();
+const data =
+currentData();
 
 
-  if(!data.length){
+if(!data.length){
 
-    alert(
-      formName() +
-      ' এ Export করার মতো Data নেই।'
-    );
+alert(
+formName() +
+" এ Export করার মতো Data নেই।"
+);
 
-    return;
-
-  }
-
-
-  const headers = [
-
-    'S.L.\nNo.',
-
-    'Date',
-
-    'Financial\nYear',
-
-    'Scheme Name',
-
-    'Nature of\nWork',
-
-    'Length /\nArea',
-
-    'Mouja',
-
-    'Starting\nDag No.',
-
-    'End Dag\nNo.',
-
-    'In Case I.B.S\nJob Card\nNo.',
-
-    'Lat',
-
-    'Long',
-
-    'Lat',
-
-    'Long'
-
-  ];
-
-
-  const widths = [
-
-    40,
-    70,
-    65,
-    125,
-    72,
-    55,
-    70,
-    65,
-    65,
-    78,
-    48,
-    48,
-    48,
-    48
-
-  ];
-
-
-  let xml =
-
-    '<?xml version="1.0" encoding="UTF-8"?>' +
-
-    '<?mso-application progid="Excel.Sheet"?>' +
-
-    '<Workbook ' +
-
-    'xmlns="urn:schemas-microsoft-com:office:spreadsheet" ' +
-
-    'xmlns:o="urn:schemas-microsoft-com:office:office" ' +
-
-    'xmlns:x="urn:schemas-microsoft-com:office:excel" ' +
-
-    'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
-
-
-  xml +=
-
-    '<Styles>' +
-
-    '<Style ss:ID="Default" ss:Name="Normal">' +
-
-    '<Alignment ss:Vertical="Center"/>' +
-
-    '<Font ss:FontName="Arial" ss:Size="9"/>' +
-
-    '</Style>' +
-
-
-    '<Style ss:ID="Title">' +
-
-    '<Alignment ' +
-    'ss:Horizontal="Center" ' +
-    'ss:Vertical="Center" ' +
-    'ss:WrapText="1"/>' +
-
-    '<Font ' +
-    'ss:FontName="Arial" ' +
-    'ss:Size="14" ' +
-    'ss:Bold="1"/>' +
-
-    '</Style>' +
-
-
-    '<Style ss:ID="Header">' +
-
-    '<Alignment ' +
-    'ss:Horizontal="Center" ' +
-    'ss:Vertical="Center" ' +
-    'ss:WrapText="1"/>' +
-
-    '<Font ' +
-    'ss:FontName="Arial" ' +
-    'ss:Size="10" ' +
-    'ss:Bold="1"/>' +
-
-    '<Borders>' +
-
-    '<Border ' +
-    'ss:Position="Bottom" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Left" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Right" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Top" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '</Borders>' +
-
-    '</Style>' +
-
-
-    '<Style ss:ID="Cell">' +
-
-    '<Alignment ' +
-    'ss:Horizontal="Center" ' +
-    'ss:Vertical="Center" ' +
-    'ss:WrapText="1"/>' +
-
-    '<Font ' +
-    'ss:FontName="Arial" ' +
-    'ss:Size="9"/>' +
-
-    '<Borders>' +
-
-    '<Border ' +
-    'ss:Position="Bottom" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Left" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Right" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '<Border ' +
-    'ss:Position="Top" ' +
-    'ss:LineStyle="Continuous" ' +
-    'ss:Weight="1"/>' +
-
-    '</Borders>' +
-
-    '</Style>' +
-
-    '</Styles>';
-
-
-  /*
-    Excel sheet name
-  */
-
-  xml +=
-
-    '<Worksheet ss:Name="' +
-
-    excelEsc(
-      formName()
-        .slice(0,31)
-    ) +
-
-    '">' +
-
-
-    '<Table ' +
-
-    'ss:ExpandedColumnCount="14" ' +
-
-    'ss:ExpandedRowCount="' +
-    (data.length + 2) +
-    '" ' +
-
-    'x:FullColumns="1" ' +
-
-    'x:FullRows="1">';
-
-
-  xml +=
-    widths.map(
-      w =>
-        '<Column ss:Width="' +
-        w +
-        '" ss:AutoFitWidth="1"/>'
-    ).join('');
-
-
-  /*
-    IMPORTANT:
-    Regular form = A.A.P heading
-    Model Village = MODEL VILLAGE
-  */
-
-  const excelHeading =
-
-    (
-      currentForm === 'modelVillage' ||
-      currentForm === 'modelApprove' ||
-      currentForm === 'modelTender'
-    )
-
-    ?
-
-    'MODEL VILLAGE'
-
-    :
-
-    'A. A. P Format of V. B. G. R. A. M. G';
-
-
-  xml +=
-
-    '<Row ss:Height="32">' +
-
-    excelCell(
-      excelHeading,
-      'Title',
-      '13'
-    ) +
-
-    '</Row>';
-
-
-  /*
-    এখানে আর
-    Approach Scheme 2026-27
-    টাইপ আলাদা দ্বিতীয় heading নেই।
-  */
-
-
-  xml +=
-
-    '<Row ss:Height="62">' +
-
-    headers
-      .map(
-        h =>
-          excelCell(
-            h,
-            'Header'
-          )
-      )
-      .join('') +
-
-    '</Row>';
-
-
-  data.forEach(
-    (x,n) => {
-
-      const row = [
-
-        n+1,
-
-        x.date || '',
-
-        x.year || state.year,
-
-        x.scheme || '',
-
-        x.nature || '',
-
-        x.lengthArea || '',
-
-        String(
-          x.mouza || ''
-        ).toUpperCase(),
-
-        x.startDag || '',
-
-        x.endDag || '',
-
-        x.jobCard || '',
-
-        x.lat1 || '',
-
-        x.long1 || '',
-
-        x.lat2 || '',
-
-        x.long2 || ''
-
-      ];
-
-
-      let maxLines = 1;
-
-
-      row.forEach(
-        (value,index) => {
-
-          const text =
-            String(
-              value ?? ''
-            );
-
-
-          let charsPerLine = 8;
-
-
-          if(index === 3)
-            charsPerLine = 17;
-
-          else if(index === 4)
-            charsPerLine = 10;
-
-          else if(index === 5)
-            charsPerLine = 8;
-
-          else if(index === 6)
-            charsPerLine = 9;
-
-          else if(
-            index === 7 ||
-            index === 8
-          )
-            charsPerLine = 8;
-
-          else if(index === 9)
-            charsPerLine = 11;
-
-
-          maxLines =
-            Math.max(
-
-              maxLines,
-
-              Math.ceil(
-                text.length /
-                charsPerLine
-              ),
-
-              text
-                .split(/\n/)
-                .length
-
-            );
-
-        }
-      );
-
-
-      const rowHeight =
-        Math.max(
-          20,
-          Math.min(
-            75,
-            14 +
-            maxLines * 9
-          )
-        );
-
-
-      xml +=
-
-        '<Row ' +
-        'ss:AutoFitHeight="1" ' +
-        'ss:Height="' +
-        rowHeight +
-        '">' +
-
-        row
-          .map(
-            v =>
-              excelCell(
-                v,
-                'Cell'
-              )
-          )
-          .join('') +
-
-        '</Row>';
-
-    }
-  );
-
-
-  xml +=
-
-    '</Table>' +
-
-    '<WorksheetOptions ' +
-    'xmlns="urn:schemas-microsoft-com:office:excel">' +
-
-    '<PageSetup>' +
-
-    '<Layout ' +
-    'x:Orientation="Landscape" ' +
-    'x:CenterHorizontal="1" ' +
-    'x:CenterVertical="0"/>' +
-
-    '<PageMargins ' +
-    'x:Bottom="0.20" ' +
-    'x:Left="0.15" ' +
-    'x:Right="0.15" ' +
-    'x:Top="0.20"/>' +
-
-    '</PageSetup>' +
-
-    '<FitToPage/>' +
-
-    '<Print>' +
-
-    '<ValidPrinterInfo/>' +
-
-    '<Gridlines>False</Gridlines>' +
-
-    '<HorizontalCentered>1</HorizontalCentered>' +
-
-    '</Print>' +
-
-    '<Selected/>' +
-
-    '<FreezePanes>' +
-
-    '<FrozenNoSplit/>' +
-
-    '<SplitHorizontal>2</SplitHorizontal>' +
-
-    '<TopRowBottom>2</TopRowBottom>' +
-
-    '</FreezePanes>' +
-
-    '<FitToWidth>1</FitToWidth>' +
-
-    '<FitToHeight>0</FitToHeight>' +
-
-    '</WorksheetOptions>' +
-
-    '</Worksheet>' +
-
-    '</Workbook>';
-
-
-  download(
-
-    new Blob(
-      [xml],
-      {
-        type:
-        'application/vnd.ms-excel'
-      }
-    ),
-
-    formName()
-      .replace(/\s+/g,'_') +
-    '_' +
-    state.year +
-    '.xls'
-
-  );
+return;
 
 }
 
 
-/* =========================================================
+const cols =
+columns();
+
+
+let xml =
+
+'<?xml version="1.0" encoding="UTF-8"?>' +
+
+'<?mso-application progid="Excel.Sheet"?>' +
+
+'<Workbook ' +
+
+'xmlns="urn:schemas-microsoft-com:office:spreadsheet" ' +
+
+'xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+
+'xmlns:x="urn:schemas-microsoft-com:office:excel" ' +
+
+'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
+
+
+"<Styles>" +
+
+'<Style ss:ID="Default" ss:Name="Normal">' +
+
+'<Alignment ss:Vertical="Center"/>' +
+
+'<Font ss:FontName="Arial" ss:Size="9"/>' +
+
+"</Style>" +
+
+
+'<Style ss:ID="Title">' +
+
+'<Alignment ss:Horizontal="Center" ss:Vertical="Center"/>' +
+
+'<Font ss:FontName="Arial" ss:Size="14" ss:Bold="1"/>' +
+
+"</Style>" +
+
+
+'<Style ss:ID="Header">' +
+
+'<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>' +
+
+'<Font ss:FontName="Arial" ss:Size="10" ss:Bold="1"/>' +
+
+"</Style>" +
+
+
+'<Style ss:ID="Cell">' +
+
+'<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>' +
+
+'<Font ss:FontName="Arial" ss:Size="9"/>' +
+
+"</Style>" +
+
+"</Styles>" +
+
+
+'<Worksheet ss:Name="' +
+excelEsc(
+formName().substring(0,31)
+) +
+'">' +
+
+
+'<Table ss:ExpandedColumnCount="' +
+cols.length +
+'">';
+
+
+/*
+ TITLE
+*/
+
+xml +=
+
+"<Row>" +
+
+"<Cell ss:MergeAcross=\"" +
+(cols.length-1) +
+"\" ss:StyleID=\"Title\">" +
+
+"<Data ss:Type=\"String\">" +
+
+excelEsc(
+formName()
+) +
+
+"</Data>" +
+
+"</Cell>" +
+
+"</Row>";
+
+
+
+/*
+ HEADERS
+*/
+
+xml += "<Row>";
+
+cols.forEach(
+function(c){
+
+xml +=
+
+'<Cell ss:StyleID="Header">' +
+
+'<Data ss:Type="String">' +
+
+excelEsc(c[0]) +
+
+"</Data>" +
+
+"</Cell>";
+
+});
+
+
+xml += "</Row>";
+
+
+
+/*
+ DATA
+*/
+
+data.forEach(
+function(x,n){
+
+xml += "<Row>";
+
+
+cols.forEach(
+function(c){
+
+let v;
+
+
+if(
+c[1] === "auto"
+){
+
+v =
+n+1;
+
+}
+
+else if(
+c[1] === "mouza"
+){
+
+v =
+String(
+x[c[1]] ||
+""
+)
+.toUpperCase();
+
+}
+
+else{
+
+v =
+x[c[1]] ||
+"";
+
+}
+
+
+xml +=
+
+'<Cell ss:StyleID="Cell">' +
+
+'<Data ss:Type="String">' +
+
+excelEsc(v) +
+
+"</Data>" +
+
+"</Cell>";
+
+});
+
+
+xml += "</Row>";
+
+});
+
+
+xml +=
+
+"</Table>" +
+
+"</Worksheet>" +
+
+"</Workbook>";
+
+
+download(
+
+new Blob(
+[xml],
+{
+type:
+"application/vnd.ms-excel"
+}
+),
+
+formName()
+.replace(/\s+/g,"_") +
+"_" +
+state.year +
+".xls"
+
+);
+
+}
+
+
+
+/* =========================================
+   DOWNLOAD
+========================================= */
+
+function download(
+blob,
+name
+){
+
+const a =
+document.createElement("a");
+
+
+a.href =
+URL.createObjectURL(blob);
+
+
+a.download =
+name;
+
+
+document.body.appendChild(a);
+
+
+a.click();
+
+
+setTimeout(
+function(){
+
+URL.revokeObjectURL(
+a.href
+);
+
+a.remove();
+
+},
+1000
+);
+
+}
+
+
+
+/* =========================================
    BACKUP
-   ========================================================= */
+========================================= */
 
 function backup(){
 
-  const backupObject = {
+const backupData = {
 
-    backupVersion:5,
+backupVersion:9,
 
-    app:
-      'A.A.P Offline Data Entry',
+app:
+"A.A.P Offline Data Entry",
 
-    createdAt:
-      new Date().toISOString(),
+createdAt:
+new Date().toISOString(),
 
-    year:
-      state.year,
+year:
+state.year,
 
-    forms:{
+forms:
+state.forms
 
-      approach:
-        state.forms.approach,
-
-      approve:
-        state.forms.approve,
-
-      tender:
-        state.forms.tender,
-
-      modelVillage:
-        state.forms.modelVillage,
-
-      modelApprove:
-        state.forms.modelApprove,
-
-      modelTender:
-        state.forms.modelTender
-
-    }
-
-  };
+};
 
 
-  download(
+download(
 
-    new Blob(
+new Blob(
+[
+JSON.stringify(
+backupData,
+null,
+2
+)
+],
+{
+type:
+"application/json"
+}
+),
 
-      [
-        JSON.stringify(
-          backupObject,
-          null,
-          2
-        )
-      ],
+"AAP_All_Forms_Backup.json"
 
-      {
-        type:
-          'application/json'
-      }
-
-    ),
-
-    'AAP_All_Forms_Backup.json'
-
-  );
+);
 
 }
 
 
-/* =========================================================
+
+/* =========================================
    RESTORE
-   ========================================================= */
+========================================= */
 
-function restore(e){
+function restore(event){
 
-  const f =
-    e.target.files[0];
-
-
-  if(!f) return;
+const file =
+event.target.files[0];
 
 
-  const reader =
-    new FileReader();
+if(!file)
+return;
 
 
-  reader.onload = () => {
-
-    try{
-
-      const parsed =
-        JSON.parse(
-          reader.result
-        );
+const reader =
+new FileReader();
 
 
-      const restored =
-        normalizeState(
-          parsed
-        );
+reader.onload =
+function(){
+
+try{
+
+const parsed =
+JSON.parse(
+reader.result
+);
 
 
-      const total =
-        Object.values(
-          restored.forms
-        )
-        .reduce(
-          (sum,arr) =>
-            sum + arr.length,
-          0
-        );
+state =
+normalizeState(
+parsed
+);
 
 
-      if(
-        !total &&
-        !Array.isArray(parsed) &&
-        !(
-          parsed &&
-          parsed.forms
-        )
-      ){
+if(!persist()){
 
-        throw new Error(
-          'Invalid backup structure'
-        );
-
-      }
-
-
-      state =
-        restored;
-
-
-      $('year').value =
-        state.year ||
-        '2026-27';
-
-
-      $('headerYear')
-        .textContent =
-          state.year
-            .replace(
-              '-',
-              ' - '
-            );
-
-
-      if(!persist()){
-
-        throw new Error(
-          'Storage failed'
-        );
-
-      }
-
-
-      clearForm();
-
-      render();
-
-
-      alert(
-
-        'Backup Restore হয়েছে ✓\n\n' +
-
-        'Approach Scheme: ' +
-        state.forms.approach.length +
-
-        '\nApprove Scheme: ' +
-        state.forms.approve.length +
-
-        '\nTender Scheme: ' +
-        state.forms.tender.length +
-
-        '\nModel Village Approach: ' +
-        state.forms.modelVillage.length +
-
-        '\nModel Village Approve: ' +
-        state.forms.modelApprove.length +
-
-        '\nModel Village Tender: ' +
-        state.forms.modelTender.length
-
-      );
-
-
-    }catch(err){
-
-      console.error(err);
-
-
-      alert(
-
-        'Backup Restore হয়নি।\n' +
-
-        'সঠিক AAP backup JSON file নির্বাচন করুন।'
-
-      );
-
-    }
-
-  };
-
-
-  reader.onerror = () => {
-
-    alert(
-      'JSON file পড়া যায়নি। আবার চেষ্টা করুন।'
-    );
-
-  };
-
-
-  reader.readAsText(f);
-
-
-  e.target.value = '';
+throw new Error(
+"Storage failed"
+);
 
 }
 
 
-/* =========================================================
-   DOWNLOAD
-   ========================================================= */
-
-function download(
-  blob,
-  name
-){
-
-  const a =
-    document.createElement('a');
+$("year").value =
+state.year;
 
 
-  const url =
-    URL.createObjectURL(blob);
+$("headerYear")
+.textContent =
+state.year.replace(
+"-",
+" - "
+);
 
 
-  a.href =
-    url;
+clearForm();
+
+render();
 
 
-  a.download =
-    name;
+alert(
+"Backup Restore হয়েছে ✓"
+);
 
+}
 
-  document
-    .body
-    .appendChild(a);
+catch(e){
 
-
-  a.click();
-
-
-  setTimeout(
-    () => {
-
-      URL.revokeObjectURL(
-        url
-      );
-
-      a.remove();
-
-    },
-    1000
-  );
+alert(
+"Restore failed: Invalid backup file."
+);
 
 }
 
 
-/* =========================================================
+event.target.value =
+"";
+
+};
+
+
+reader.readAsText(file);
+
+}
+
+
+
+/* =========================================
    START
-   ========================================================= */
+========================================= */
+
+$("entryDate").value =
+todayISO();
+
 
 load();
+
 
 </script>
 
