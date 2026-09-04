@@ -31,7 +31,7 @@ button{ font:inherit; font-weight:800; border:0; border-radius:9px; padding:12px
 .count{ text-align:center; font-weight:800; color:#198754; padding:0 10px 10px }
 .tablebox{ overflow:auto; padding:0 8px 12px }
 table{ border-collapse:collapse; width:100%; min-width:1450px; font-size:12px }
-th,td{ border:1px solid #aeb8c2; padding:7px; vertical-align:top }
+th,td{ border:1px solid #aeb8c2; padding:7px; vertical-align:middle; text-align:center }
 th{ background:#e9eff4; text-align:center; white-space:nowrap; font-weight:800 }
 td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
 .actionbtn{ padding:7px 9px; min-height:34px; font-size:12px; margin:2px }
@@ -279,7 +279,7 @@ td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
       <button id="backTransferBtn" class="gray" onclick="transferBack()">⬅ আগের Stage-এ Back</button>
     </div>
 
-    <div id="selectedInfo" class="selectedInfo">কোনো Project Select করা হয়নি</div>
+    <div id="selectedInfo" class="selectedInfo">কোনo Project Select করা হয়নি</div>
     <div class="count" id="count">0 entries</div>
 
     <div class="tablebox">
@@ -347,6 +347,20 @@ function todayISO(){
   return local.toISOString().slice(0,10);
 }
 
+function toDDMMYYYY(isoStr){
+  if(!isoStr) return '';
+  const p = isoStr.split('-');
+  if(p.length === 3 && p[0].length === 4) return p[2] + '-' + p[1] + '-' + p[0];
+  return isoStr;
+}
+
+function toISO(dStr){
+  if(!dStr) return todayISO();
+  const p = dStr.split('-');
+  if(p.length === 3 && p[0].length === 2) return p[2] + '-' + p[1] + '-' + p[0];
+  return dStr;
+}
+
 function esc(s){
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 }
@@ -374,6 +388,10 @@ function normalizeEntry(x, index = 0, formKey = 'approach'){
   x = x || {};
   let baseIndex = Number(x.sortIndex ?? (globalSortCounter + index));
   let defaultPhase = (formKey === 'modelVillage' || formKey === 'modelApprove' || formKey === 'modelTender') ? 'Phase 1' : 'Phase 2';
+  
+  let rawDate = String(x.date || todayISO());
+  let formattedDate = (rawDate.includes('-') && rawDate.split('-')[0].length === 4) ? toDDMMYYYY(rawDate) : rawDate;
+
   return {
     id: String(x.id || (Date.now() + '_' + Math.random().toString(36).slice(2))),
     sortIndex: baseIndex,
@@ -396,7 +414,9 @@ function normalizeEntry(x, index = 0, formKey = 'approach'){
     lat1: String(x.lat1 ?? ''),
     long1: String(x.long1 ?? ''),
     lat2: String(x.lat2 ?? ''),
-    long2: String(x.long2 ?? '')
+    long2: String(x.long2 ?? ''),
+    date: formattedDate,
+    year: String(x.year || state.year || '2026-27')
   };
 }
 
@@ -526,7 +546,7 @@ function saveEntry(){
     x.phase = val('phase') || 'Phase 1';
   }
 
-  x.date = val('entryDate') || todayISO();
+  x.date = toDDMMYYYY(val('entryDate')) || toDDMMYYYY(todayISO());
   x.year = state.year;
   
   if(!x.scheme && !x.startDag){ alert('Scheme Name অথবা Starting Dag No. দিন।'); return; }
@@ -576,7 +596,7 @@ function edit(i){
   ids.forEach(id => { $(id).value = x[id] || ''; });
   if(x.phase && $('phase')) $('phase').value = x.phase;
   if($('estimateCostTender')) $('estimateCostTender').value = x.estimateCost || '';
-  $('entryDate').value = x.date || todayISO();
+  $('entryDate').value = toISO(x.date) || todayISO();
   
   if(x.year && x.year !== state.year){
     state.year = x.year; $('year').value = x.year;
@@ -796,37 +816,35 @@ function render(){
 
   $('tbody').innerHTML = list.length ? list.map((o,n) => {
     const x = o.x; const i = o.i;
-    let dynamicTds = '';
+    let phaseTd = isApproachStage ? ('<td style="white-space:nowrap;">' + esc(x.phase || (currentForm === 'modelVillage' ? 'Phase 1' : 'Phase 2')) + '</td>') : '';
     
-    if(isApproachStage){
-      dynamicTds += '<td>' + esc(x.phase || (currentForm === 'modelVillage' ? 'Phase 1' : 'Phase 2')) + '</td>';
-    }
-
+    let extraTds = '';
     if(isApprove){
-      dynamicTds += '<td>' + esc(x.sector) + '</td><td>' + esc(x.estimateCost) + '</td><td>' + esc(x.fund) + '</td><td>' + esc(x.fNewSl) + '</td>';
+      extraTds = '<td style="white-space:normal;">' + esc(x.sector) + '</td><td style="white-space:normal;">' + esc(x.estimateCost) + '</td><td style="white-space:normal;">' + esc(x.fund) + '</td><td style="white-space:normal;">' + esc(x.fNewSl) + '</td>';
     } else if(isTender){
-      dynamicTds += '<td>' + esc(x.estimateCost) + '</td>';
+      extraTds = '<td style="white-space:normal;">' + esc(x.estimateCost) + '</td>';
     }
     
     return (
       '<tr>' +
-      '<td class="selectCell"><input type="checkbox" class="rowcheck" data-index="' + i + '" onchange="updateSelectedInfo()"></td>' +
-      '<td>' + (n+1) + '</td>' +
-      '<td>' + esc(x.date) + '</td>' +
-      '<td>' + esc(x.year) + '</td>' +
-      dynamicTds +
-      '<td>' + esc(x.scheme) + '</td>' +
-      '<td>' + esc(x.nature) + '</td>' +
-      '<td>' + esc(x.lengthArea) + '</td>' +
-      '<td>' + esc(x.mouza).toUpperCase() + '</td>' +
-      '<td>' + esc(x.startDag) + '</td>' +
-      '<td>' + esc(x.endDag) + '</td>' +
-      '<td>' + esc(x.jobCard) + '</td>' +
-      '<td>' + esc(x.lat1) + '</td>' +
-      '<td>' + esc(x.long1) + '</td>' +
-      '<td>' + esc(x.lat2) + '</td>' +
-      '<td>' + esc(x.long2) + '</td>' +
-      '<td><button class="actionbtn primary" onclick="edit(' + i + ')">Edit</button><button class="actionbtn danger" onclick="del(' + i + ')">Delete</button></td>' +
+      '<td class="selectCell" style="white-space:nowrap;"><input type="checkbox" class="rowcheck" data-index="' + i + '" onchange="updateSelectedInfo()"></td>' +
+      '<td style="white-space:nowrap;">' + (n+1) + '</td>' +
+      '<td style="white-space:nowrap;">' + esc(x.date) + '</td>' +
+      '<td style="white-space:nowrap;">' + esc(x.year) + '</td>' +
+      phaseTd +
+      '<td style="white-space:normal;">' + esc(x.scheme) + '</td>' +
+      '<td style="white-space:normal;">' + esc(x.nature) + '</td>' +
+      '<td style="white-space:normal;">' + esc(x.lengthArea) + '</td>' +
+      '<td style="white-space:nowrap;">' + esc(x.mouza).toUpperCase() + '</td>' +
+      '<td style="white-space:normal;">' + esc(x.startDag) + '</td>' +
+      '<td style="white-space:normal;">' + esc(x.endDag) + '</td>' +
+      '<td style="white-space:normal;">' + esc(x.jobCard) + '</td>' +
+      '<td style="white-space:nowrap;">' + esc(x.lat1) + '</td>' +
+      '<td style="white-space:nowrap;">' + esc(x.long1) + '</td>' +
+      '<td style="white-space:nowrap;">' + esc(x.lat2) + '</td>' +
+      '<td style="white-space:nowrap;">' + esc(x.long2) + '</td>' +
+      extraTds +
+      '<td style="white-space:nowrap;"><button class="actionbtn primary" onclick="edit(' + i + ')">✏️ Edit</button><button class="actionbtn danger" onclick="del(' + i + ')">🗑️ Delete</button></td>' +
       '</tr>'
     );
   }).join('') : '<tr><td colspan="25" class="empty">' + formName() + ' এ কোনো Data Entry নেই।</td></tr>';
@@ -848,7 +866,7 @@ function exportExcel(){
   const isTender = (currentForm === 'tender' || currentForm === 'modelTender');
 
   const headers = ['S.L.\nNo.', 'Date', 'Financial\nYear'];
-  const widths = [40, 70, 65];
+  const widths = [40, 68, 65];
 
   if(isApproachStage){
     headers.push('Phase');
@@ -856,7 +874,9 @@ function exportExcel(){
   }
 
   headers.push('Scheme Name', 'Nature of\nWork', 'Length /\nArea', 'Mouja', 'Starting\nDag No.', 'End Dag\nNo.', 'In Case I.B.S\nJob Card\nNo.', 'Lat', 'Long', 'Lat', 'Long');
-  widths.push(125, 72, 55, 70, 65, 65, 78, 48, 48, 48, 48);
+  
+  let schemeWidth = isTender ? 100 : 125;
+  widths.push(schemeWidth, 72, 55, 80, 68, 68, 78, 55, 55, 55, 55);
 
   if(isApprove){
     headers.push('Sector', 'Estimate\nCost', 'Fund', 'New S.L.');
@@ -867,7 +887,7 @@ function exportExcel(){
   }
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
-  xml += '<Styles><Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Center"/><Font ss:FontName="Arial" ss:Size="9"/></Style><Style ss:ID="Title"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="14" ss:Bold="1"/></Style><Style ss:ID="Header"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="10" ss:Bold="1"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/></Borders></Style><Style ss:ID="Cell"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="9"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/></Borders></Style></Styles>';
+  xml += '<Styles><Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Center"/><Font ss:FontName="Arial" ss:Size="9"/></Style><Style ss:ID="Title"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="14" ss:Bold="1"/></Style><Style ss:ID="Header"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="10" ss:Bold="1"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/></Borders></Style><Style ss:ID="Cell"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="9"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/></Borders></Style><Style ss:ID="CellNoWrap"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="0"/><Font ss:FontName="Arial" ss:Size="9"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/></Borders></Style></Styles>';
   
   xml += '<Worksheet ss:Name="' + excelEsc(formName().slice(0,31)) + '"><Table ss:ExpandedColumnCount="' + widths.length + '" ss:ExpandedRowCount="' + (data.length + 2) + '" x:FullColumns="1" x:FullRows="1">';
   xml += widths.map(w => '<Column ss:Width="' + w + '" ss:AutoFitWidth="1"/>').join('');
@@ -896,16 +916,17 @@ function exportExcel(){
     let maxLines = 1;
     row.forEach((value,index) => {
       const text = String(value ?? '');
-      let charsPerLine = 8;
-      if(index === (isApproachStage ? 4 : 3)) charsPerLine = 17;
-      else if(index === (isApproachStage ? 5 : 4)) charsPerLine = 10;
-      else if(index === (isApproachStage ? 6 : 5)) charsPerLine = 8;
-      else if(index === (isApproachStage ? 7 : 6)) charsPerLine = 9;
+      let charsPerLine = 12;
+      if(index === (isApproachStage ? 4 : 3)) charsPerLine = isTender ? 14 : 18;
+      else if(index === (isApproachStage ? 5 : 4)) charsPerLine = 12;
+      else if(index === (isApproachStage ? 6 : 5)) charsPerLine = 10;
+      else if(index === (isApproachStage ? 7 : 6)) charsPerLine = 15;
       maxLines = Math.max(maxLines, Math.ceil(text.length / charsPerLine), text.split(/\n/).length);
     });
     
     const rowHeight = Math.max(20, Math.min(75, 14 + maxLines * 9));
-    xml += '<Row ss:AutoFitHeight="1" ss:Height="' + rowHeight + '">' + row.map(v => excelCell(v, 'Cell')).join('') + '</Row>';
+    let moujaIndex = isApproachStage ? 7 : 6;
+    xml += '<Row ss:AutoFitHeight="1" ss:Height="' + rowHeight + '">' + row.map((v, index) => excelCell(v, index === moujaIndex ? 'CellNoWrap' : 'Cell')).join('') + '</Row>';
   });
   
   xml += '</Table><WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel"><PageSetup><Layout ss:Orientation="Landscape" ss:CenterHorizontal="1" ss:CenterVertical="0"/><PageMargins ss:Bottom="0.20" ss:Left="0.15" ss:Right="0.15" ss:Top="0.20"/></PageSetup><FitToPage/><Print><ValidPrinterInfo/><Gridlines>False</Gridlines><HorizontalCentered>1</HorizontalCentered></Print><Selected/><FreezePanes><FrozenNoSplit/><SplitHorizontal>2</SplitHorizontal><TopRowBottom>2</TopRowBottom></FreezePanes><FitToWidth>1</FitToWidth><FitToHeight>0</FitToHeight></WorksheetOptions></Worksheet></Workbook>';
