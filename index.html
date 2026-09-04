@@ -1338,19 +1338,6 @@ String(
 x.newSL ?? ''
 ),
 
-
-/*
- =========================================
- IMPORTANT ORDER FIX
- =========================================
-
- এই _order-ই entry-র original position
- ধরে রাখবে।
-
- Back transfer-এর সময় এই number
- দেখে entry আবার আগের জায়গায় বসবে।
-*/
-
 _order:
 
 Number.isFinite(
@@ -1364,7 +1351,6 @@ Number(x._order)
 :
 
 null,
-
 
 _backSnapshot:
 x._backSnapshot || null
@@ -1390,16 +1376,8 @@ input.map(
 const n =
 normalizeEntry(x);
 
-
-/*
- পুরনো data-তে _order না থাকলে
- বর্তমানে যে order আছে সেটাই
- original order হিসেবে নেওয়া হচ্ছে।
-*/
-
 if(n._order === null)
 n._order = i;
-
 
 return n;
 
@@ -2000,11 +1978,6 @@ arr[editIndex]
 null;
 
 
-/*
- Edit করলে আগের _order
- একদম একই থাকবে।
-*/
-
 x._order =
 
 Number.isFinite(
@@ -2033,11 +2006,6 @@ normalizeEntry(x);
 x.id =
 createId();
 
-
-/*
- নতুন entry-র জন্য
- সবসময় নতুন সর্বোচ্চ order।
-*/
 
 x._order =
 
@@ -2445,11 +2413,6 @@ const snap = {
 id:
 x.id,
 
-/*
- APPROVE-এর original order
- snapshot-এর মধ্যেও রাখা হচ্ছে।
-*/
-
 _order:
 x._order,
 
@@ -2574,48 +2537,10 @@ return x;
 
 
 
-/*
- ==================================================
- MAIN FIX
- ==================================================
-
- Back transfer আর target.push(x) ব্যবহার করবে না।
-
- _order অনুযায়ী entry-কে সঠিক জায়গায় insert করবে।
-
- যেমন:
-
-1
-2
-3
-4
-5
-
-1 যদি Tender-এ যায়,
-
-তারপর Approve-এ Back করলে
-
-1
-2
-3
-4
-5
-
-এর জায়গাতেই থাকবে।
-
-5-এর পরে যাবে না।
-*/
-
 function insertByOrder(
 target,
 x
 ){
-
-/*
- যদি পুরনো কোনো record-এ
- _order না থাকে,
-তাহলে নতুন order দেওয়া হবে।
-*/
 
 if(
 !Number.isFinite(
@@ -2649,11 +2574,6 @@ Number(r._order)
 }
 
 
-/*
- x-এর _order-এর থেকে
- বড় প্রথম record খুঁজছি।
-*/
-
 let pos =
 target.findIndex(
 t =>
@@ -2667,26 +2587,10 @@ Number(x._order)
 );
 
 
-/*
- যদি তার থেকে বড় কোনো order
- না থাকে, তাহলে শেষেই যাবে।
-
- কিন্তু normal Back transfer-এ
- original _order থাকার কারণে
- সঠিক position পাওয়া যাবে।
-*/
-
 if(pos < 0)
 pos =
 target.length;
 
-
-/*
- push নয়।
-
- splice দিয়ে exact original
- order-এর জায়গায় বসানো হচ্ছে।
-*/
 
 target.splice(
 pos,
@@ -2773,10 +2677,6 @@ r => {
 let x;
 
 
-/*
- APPROVE -> TENDER
-*/
-
 if(
 currentForm === 'approve' &&
 flow.next === 'tender'
@@ -2787,10 +2687,6 @@ copyApproveToTender(r);
 
 }
 
-
-/*
- MODEL APPROVE -> MODEL TENDER
-*/
 
 else if(
 currentForm === 'modelApprove' &&
@@ -2803,10 +2699,6 @@ copyApproveToTender(r);
 }
 
 
-/*
- APPROACH -> APPROVE
-*/
-
 else if(
 currentForm === 'approach' &&
 flow.next === 'approve'
@@ -2817,10 +2709,6 @@ copyBase(r);
 
 }
 
-
-/*
- MODEL APPROACH -> MODEL APPROVE
-*/
 
 else if(
 currentForm === 'modelVillage' &&
@@ -2840,23 +2728,12 @@ normalizeEntry(r);
 }
 
 
-/*
- Duplicate prevent
-*/
-
 if(
 !target.some(
 t =>
 t.id === x.id
 )
 ){
-
-/*
- IMPORTANT:
- target.push(x) নয়।
-
- _order অনুযায়ী insert।
-*/
 
 insertByOrder(
 target,
@@ -2867,10 +2744,6 @@ x
 
 });
 
-
-/*
- Source থেকে selected record remove
-*/
 
 selected
 .sort(
@@ -2981,10 +2854,6 @@ r => {
 let x;
 
 
-/*
- TENDER -> APPROVE
-*/
-
 if(
 currentForm === 'tender' &&
 flow.back === 'approve'
@@ -2995,10 +2864,6 @@ copyTenderToApprove(r);
 
 }
 
-
-/*
- MODEL TENDER -> MODEL APPROVE
-*/
 
 else if(
 currentForm === 'modelTender' &&
@@ -3011,10 +2876,6 @@ copyTenderToApprove(r);
 }
 
 
-/*
- APPROVE -> APPROACH
-*/
-
 else if(
 currentForm === 'approve' &&
 flow.back === 'approach'
@@ -3025,10 +2886,6 @@ copyBase(r);
 
 }
 
-
-/*
- MODEL APPROVE -> MODEL VILLAGE
-*/
 
 else if(
 currentForm === 'modelApprove' &&
@@ -3048,27 +2905,6 @@ normalizeEntry(r);
 }
 
 
-/*
- =========================================
- IMPORTANT FIX
- =========================================
-
- এখানে আগে target.push(x) হলে
- Back করা entry একদম শেষে চলে যেত।
-
- এখন insertByOrder() ব্যবহার হচ্ছে।
-
- তাই:
-
-1,2,3,4,5...
-
-এর মধ্যে 1 Back করলে
-
-1,2,3,4,5...
-
-এই order-এই থাকবে।
-*/
-
 if(
 !target.some(
 t =>
@@ -3085,10 +2921,6 @@ x
 
 });
 
-
-/*
- Source থেকে selected record remove
-*/
 
 selected
 .sort(
@@ -3277,7 +3109,6 @@ $('tbody')
 '" class="empty">' +
 
 formName() +
-
 ' এ কোনো Data Entry নেই।' +
 
 '</td>' +
@@ -3483,48 +3314,71 @@ const cols =
 columns();
 
 
-const originalWidths = [
+/*
+=========================================================
+EXCEL DESIGN — VBGRAMG.xlsx অনুযায়ী
+=========================================================
 
-40,
+Base design:
+A  = 8
+B  = 25
+C  = 14.4
+D  = 11
+E  = 14
+F  = 13
+G  = 13
+H  = 15.6
+I  = 9.6
+J  = 13
+K  = 13
+L  = 13
 
-70,
+Additional form columns-এর জন্য একই design style রাখা হয়েছে।
+=========================================================
+*/
 
-65,
+const baseWidths = [
 
-125,
+8,
 
-72,
+25,
 
-55,
+14.4,
 
-70,
+11,
 
-65,
+14,
 
-65,
+13,
 
-78,
+13,
 
-48,
+15.6,
 
-48,
+9.6,
 
-48,
+13,
 
-48
+13,
+
+13
 
 ];
 
 
 const extraWidths = {
 
-sector:80,
+date:10,
 
-estimateCost:85,
+year:11,
 
-fund:100,
+sector:12,
 
-newSL:75
+estimateCost:14,
+
+fund:18,
+
+newSL:12
 
 };
 
@@ -3532,14 +3386,13 @@ newSL:75
 const widths =
 cols.map(
 (c,i)=>
-i <
-originalWidths.length
+i < baseWidths.length
 ?
-originalWidths[i]
+baseWidths[i]
 :
 (
 extraWidths[c[1]] ||
-60
+12
 )
 );
 
@@ -3561,42 +3414,104 @@ let xml =
 'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
 
 
+/* =================================================
+STYLES
+================================================= */
+
 '<Styles>' +
 
 
 '<Style ss:ID="Default" ss:Name="Normal">' +
 
-'<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>' +
+'<Alignment ' +
 
-'<Font ss:FontName="Arial" ss:Size="9"/>' +
+'ss:Horizontal="Center" ' +
+
+'ss:Vertical="Center" ' +
+
+'ss:WrapText="1"/>' +
+
+'<Font ' +
+
+'ss:FontName="Arial" ' +
+
+'ss:Size="9"/>' +
 
 '</Style>' +
 
 
 '<Style ss:ID="Title">' +
 
-'<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>' +
+'<Alignment ' +
 
-'<Font ss:FontName="Arial" ss:Size="14" ss:Bold="1"/>' +
+'ss:Horizontal="Center" ' +
+
+'ss:Vertical="Center" ' +
+
+'ss:WrapText="1"/>' +
+
+'<Font ' +
+
+'ss:FontName="Arial" ' +
+
+'ss:Size="14" ' +
+
+'ss:Bold="1"/>' +
 
 '</Style>' +
 
 
 '<Style ss:ID="Header">' +
 
-'<Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>' +
+'<Alignment ' +
 
-'<Font ss:FontName="Arial" ss:Size="10" ss:Bold="1"/>' +
+'ss:Horizontal="Center" ' +
+
+'ss:Vertical="Center" ' +
+
+'ss:WrapText="1"/>' +
+
+'<Font ' +
+
+'ss:FontName="Arial" ' +
+
+'ss:Size="10" ' +
+
+'ss:Bold="1"/>' +
 
 '<Borders>' +
 
-'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
 
-'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'ss:Position="Bottom" ' +
 
-'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'ss:LineStyle="Continuous" ' +
 
-'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'ss:Weight="1"/>' +
+
+'<Border ' +
+
+'ss:Position="Left" ' +
+
+'ss:LineStyle="Continuous" ' +
+
+'ss:Weight="1"/>' +
+
+'<Border ' +
+
+'ss:Position="Right" ' +
+
+'ss:LineStyle="Continuous" ' +
+
+'ss:Weight="1"/>' +
+
+'<Border ' +
+
+'ss:Position="Top" ' +
+
+'ss:LineStyle="Continuous" ' +
+
+'ss:Weight="1"/>' +
 
 '</Borders>' +
 
@@ -3611,21 +3526,47 @@ let xml =
 
 'ss:Vertical="Center" ' +
 
-'ss:WrapText="1" ' +
+'ss:WrapText="1"/>' +
 
-'ss:ShrinkToFit="0"/>' +
+'<Font ' +
 
-'<Font ss:FontName="Arial" ss:Size="9"/>' +
+'ss:FontName="Arial" ' +
+
+'ss:Size="9"/>' +
 
 '<Borders>' +
 
-'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'<Border ' +
 
-'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'ss:Position="Bottom" ' +
 
-'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'ss:LineStyle="Continuous" ' +
 
-'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+'ss:Weight="1"/>' +
+
+'<Border ' +
+
+'ss:Position="Left" ' +
+
+'ss:LineStyle="Continuous" ' +
+
+'ss:Weight="1"/>' +
+
+'<Border ' +
+
+'ss:Position="Right" ' +
+
+'ss:LineStyle="Continuous" ' +
+
+'ss:Weight="1"/>' +
+
+'<Border ' +
+
+'ss:Position="Top" ' +
+
+'ss:LineStyle="Continuous" ' +
+
+'ss:Weight="1"/>' +
 
 '</Borders>' +
 
@@ -3634,6 +3575,10 @@ let xml =
 
 '</Styles>' +
 
+
+/* =================================================
+WORKSHEET
+================================================= */
 
 '<Worksheet ss:Name="' +
 
@@ -3651,7 +3596,7 @@ cols.length +
 '" ' +
 
 'ss:ExpandedRowCount="' +
-(data.length+2) +
+(data.length + 2) +
 '" ' +
 
 'x:FullColumns="1" ' +
@@ -3661,12 +3606,18 @@ cols.length +
 
 widths.map(
 w =>
-'<Column ss:Width="' +
+'<Column ' +
+'ss:Width="' +
 w +
-'" ss:AutoFitWidth="0"/>'
+'" ' +
+'ss:AutoFitWidth="0"/>' 
 )
 .join('');
 
+
+/* =================================================
+TITLE
+================================================= */
 
 const heading =
 
@@ -3688,11 +3639,15 @@ xml +=
 excelCell(
 heading,
 'Title',
-String(cols.length-1)
+String(cols.length - 1)
 ) +
 
 '</Row>';
 
+
+/* =================================================
+HEADER
+================================================= */
 
 xml +=
 
@@ -3710,16 +3665,19 @@ c[0],
 '</Row>';
 
 
+/* =================================================
+DATA ROWS
+================================================= */
+
 data.forEach(
 (x,n)=>{
 
 const row =
 cols.map(
-c => {
+c=>{
 
 if(c[1] === 'auto')
-
-return n+1;
+return n + 1;
 
 
 if(c[1] === 'mouza')
@@ -3732,13 +3690,215 @@ x[c[1]] || ''
 
 return x[c[1]] || '';
 
+});
+
+
+/*
+=========================================================
+AUTO FIT ROW HEIGHT
+=========================================================
+*/
+
+let maxLines = 1;
+
+
+row.forEach(
+(value,index)=>{
+
+const text =
+String(
+value ?? ''
+);
+
+
+let charsPerLine = 10;
+
+
+if(index === 0){
+
+charsPerLine = 6;
+
 }
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'scheme'
+){
+
+charsPerLine = 28;
+
+}
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'nature'
+){
+
+charsPerLine = 17;
+
+}
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'lengthArea'
+){
+
+charsPerLine = 13;
+
+}
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'mouza'
+){
+
+charsPerLine = 14;
+
+}
+
+
+else if(
+cols[index] &&
+(
+cols[index][1] === 'startDag' ||
+cols[index][1] === 'endDag'
+)
+){
+
+charsPerLine = 14;
+
+}
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'jobCard'
+){
+
+charsPerLine = 17;
+
+}
+
+
+else if(
+cols[index] &&
+(
+cols[index][1] === 'lat1' ||
+cols[index][1] === 'long1' ||
+cols[index][1] === 'lat2' ||
+cols[index][1] === 'long2'
+)
+){
+
+charsPerLine = 13;
+
+}
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'sector'
+){
+
+charsPerLine = 14;
+
+}
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'estimateCost'
+){
+
+charsPerLine = 13;
+
+}
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'fund'
+){
+
+charsPerLine = 18;
+
+}
+
+
+else if(
+cols[index] &&
+cols[index][1] === 'newSL'
+){
+
+charsPerLine = 12;
+
+}
+
+
+else if(
+cols[index] &&
+(
+cols[index][1] === 'date' ||
+cols[index][1] === 'year'
+)
+){
+
+charsPerLine = 11;
+
+}
+
+
+maxLines =
+
+Math.max(
+
+maxLines,
+
+Math.ceil(
+text.length /
+charsPerLine
+),
+
+text
+.split(/\n/)
+.length
+
+);
+
+});
+
+
+const rowHeight =
+
+Math.max(
+
+22,
+
+Math.min(
+
+95,
+
+18 +
+maxLines * 10
+
+)
+
 );
 
 
 xml +=
 
-'<Row ss:AutoFitHeight="1">' +
+'<Row ' +
+
+'ss:AutoFitHeight="1" ' +
+
+'ss:Height="' +
+rowHeight +
+'">' +
 
 row.map(
 v =>
@@ -3754,31 +3914,111 @@ v,
 });
 
 
+/* =================================================
+PAGE BREAK — প্রতি 10 PROJECT
+================================================= */
+
+let pageBreakXml = '';
+
+
+if(data.length > 10){
+
+const breaks = [];
+
+
+for(
+let i = 10;
+i < data.length;
+i += 10
+){
+
+/*
+Title = Row 1
+Header = Row 2
+Data 1-10 = Row 3-12
+*/
+
+breaks.push(
+12 + (i - 10)
+);
+
+}
+
+
+if(breaks.length){
+
+pageBreakXml =
+
+'<PageBreaks>' +
+
+'<RowBreaks>' +
+
+breaks.map(
+r =>
+'<RowBreak>' +
+'<Row>' +
+r +
+'</Row>' +
+'</RowBreak>'
+)
+.join('') +
+
+'</RowBreaks>' +
+
+'</PageBreaks>';
+
+}
+
+}
+
+
+/* =================================================
+PAGE SETUP
+================================================= */
+
 xml +=
 
 '</Table>' +
 
-'<WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">' +
+'<WorksheetOptions ' +
+
+'xmlns="urn:schemas-microsoft-com:office:excel">' +
+
 
 '<PageSetup>' +
 
-'<Layout x:Orientation="Landscape" x:CenterHorizontal="1"/>' +
+/*
+A4 = PaperSizeIndex 9
+Landscape
+*/
+
+'<Layout ' +
+
+'x:Orientation="Landscape" ' +
+
+'x:CenterHorizontal="1" ' +
+
+'x:CenterVertical="0"/>' +
 
 '<PageMargins ' +
 
-'x:Bottom="0.20" ' +
+'x:Bottom="0.35" ' +
 
-'x:Left="0.15" ' +
+'x:Left="0.25" ' +
 
-'x:Right="0.15" ' +
+'x:Right="0.25" ' +
 
-'x:Top="0.20"/>' +
+'x:Top="0.35"/>' +
 
 '</PageSetup>' +
 
+
 '<FitToPage/>' +
 
+
 '<Print>' +
+
+'<ValidPrinterInfo/>' +
 
 '<PaperSizeIndex>9</PaperSizeIndex>' +
 
@@ -3788,7 +4028,11 @@ xml +=
 
 '</Print>' +
 
-'<FreezePanes/>' +
+
+'<Selected/>' +
+
+
+'<FreezePanes>' +
 
 '<FrozenNoSplit/>' +
 
@@ -3796,9 +4040,16 @@ xml +=
 
 '<TopRowBottom>2</TopRowBottom>' +
 
+'</FreezePanes>' +
+
+
 '<FitToWidth>1</FitToWidth>' +
 
 '<FitToHeight>0</FitToHeight>' +
+
+
+pageBreakXml +
+
 
 '</WorksheetOptions>' +
 
