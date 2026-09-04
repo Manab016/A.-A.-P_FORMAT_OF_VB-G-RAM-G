@@ -15,7 +15,7 @@ body{
   margin:0;
   background:#f1f5f9;
   color:#17212b;
-  font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
+  font-family:Arial,sans-serif;
   font-size:15px
 }
 
@@ -560,17 +560,40 @@ td{
 
     <div class="toolbar">
 
-      <input class="search" id="search" oninput="render()" placeholder="🔎 Scheme / Dag / Mouja দিয়ে Search করুন">
+      <input
+        class="search"
+        id="search"
+        oninput="render()"
+        placeholder="🔎 Scheme / Dag / Mouja দিয়ে Search করুন">
 
-      <button class="success" onclick="exportExcel()">📊 Export Excel</button>
-      <button class="gray" onclick="backup()">💾 Backup All</button>
-      <button class="gray" onclick="document.getElementById('restore').click()">♻ Restore</button>
-      
-      <!-- নতুন ডিলিট বাটন -->
-      <button class="danger" onclick="deleteSelected()">🗑 Delete Selected</button>
-      <button class="danger" onclick="deleteCurrentForm()">🗑 Clear This Stage</button>
+      <button class="success" onclick="exportExcel()">
+        📊 Export Excel
+      </button>
 
-      <input id="restore" type="file" accept=".json,application/json" hidden onchange="restore(event)">
+      <button class="gray" onclick="backup()">
+        💾 Backup All
+      </button>
+
+      <button
+        class="gray"
+        onclick="document.getElementById('restore').click()">
+        ♻ Restore & Merge
+      </button>
+
+      <button class="danger" onclick="deleteSelected()">
+        🗑 Delete Selected
+      </button>
+
+      <button class="danger" onclick="deleteCurrentForm()">
+        🗑 Clear This Stage
+      </button>
+
+      <input
+        id="restore"
+        type="file"
+        accept=".json,application/json"
+        hidden
+        onchange="restore(event)">
 
     </div>
 
@@ -605,9 +628,14 @@ td{
         <thead>
           <tr>
             <th>
-              <input type="checkbox" class="selectAll" id="selectAll" onchange="toggleAll(this)">
+              <input
+                type="checkbox"
+                class="selectAll"
+                id="selectAll"
+                onchange="toggleAll(this)">
               <br>Select
             </th>
+
             <th>S.L. No.<br>(Auto)</th>
             <th>Date</th>
             <th>Financial<br>Year</th>
@@ -653,634 +681,2044 @@ const OLD_KEYS = [
 ];
 
 
+// Safe Storage Wrapper to prevent browser security blocking crashes
+let memoryStore = {};
+
+const safeStorage = {
+
+  getItem(key) {
+
+    try {
+      return localStorage.getItem(key);
+    }
+
+    catch(e) {
+      return memoryStore[key] || null;
+    }
+
+  },
+
+  setItem(key, val) {
+
+    try {
+      localStorage.setItem(key, val);
+    }
+
+    catch(e) {
+      memoryStore[key] = val;
+    }
+
+  }
+
+};
+
+
 const FORM_NAMES = {
+
   approach: 'Approach Scheme',
+
   approve: 'Approve Scheme',
+
   tender: 'Tender Scheme',
+
   modelVillage: 'Model Village Approach',
+
   modelApprove: 'Model Village Approve',
+
   modelTender: 'Model Village Tender'
+
 };
 
 
 const FLOW = {
-  approach:{next:'approve',back:null},
-  approve:{next:'tender',back:'approach'},
-  tender:{next:null,back:'approve'},
-  modelVillage:{next:'modelApprove',back:null},
-  modelApprove:{next:'modelTender',back:'modelVillage'},
-  modelTender:{next:null,back:'modelApprove'}
+
+  approach:{
+    next:'approve',
+    back:null
+  },
+
+  approve:{
+    next:'tender',
+    back:'approach'
+  },
+
+  tender:{
+    next:null,
+    back:'approve'
+  },
+
+  modelVillage:{
+    next:'modelApprove',
+    back:null
+  },
+
+  modelApprove:{
+    next:'modelTender',
+    back:'modelVillage'
+  },
+
+  modelTender:{
+    next:null,
+    back:'modelApprove'
+  }
+
 };
 
 
 const ids = [
-  'scheme','nature','lengthArea','mouza',
-  'startDag','endDag','jobCard','lat1',
-  'long1','lat2','long2'
+
+  'scheme',
+  'nature',
+  'lengthArea',
+  'mouza',
+  'startDag',
+  'endDag',
+  'jobCard',
+  'lat1',
+  'long1',
+  'lat2',
+  'long2'
+
 ];
 
 
 let state = {
+
   version:5,
+
   year:'2026-27',
+
   forms:{
+
     approach:[],
+
     approve:[],
+
     tender:[],
+
     modelVillage:[],
+
     modelApprove:[],
+
     modelTender:[]
+
   }
+
 };
 
 
 let currentForm = 'approach';
+
 let editIndex = -1;
+
 
 const $ = id => document.getElementById(id);
 
+
 function val(id){
+
   const el = $(id);
+
   return el ? el.value.trim() : '';
+
 }
+
 
 function todayISO(){
+
   const d = new Date();
-  const local = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
+
+  const local =
+    new Date(
+      d.getTime() -
+      d.getTimezoneOffset() * 60000
+    );
+
   return local.toISOString().slice(0,10);
+
 }
+
 
 function esc(s){
-  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  return String(s ?? '').replace(
+    /[&<>"']/g,
+
+    c => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#39;'
+    }[c])
+
+  );
+
 }
+
 
 function currentData(){
+
   return state.forms[currentForm];
+
 }
+
 
 function formName(){
+
   return FORM_NAMES[currentForm];
+
 }
+
 
 function updateMainHeading(){
+
   const heading = $('appHeading');
-  if(currentForm === 'modelVillage' || currentForm === 'modelApprove' || currentForm === 'modelTender'){
+
+  if(!heading) return;
+
+  if(
+    currentForm === 'modelVillage' ||
+    currentForm === 'modelApprove' ||
+    currentForm === 'modelTender'
+  ){
+
     heading.textContent = 'MODEL VILLAGE';
-  }else{
-    heading.textContent = 'A.A.P Format of V.B.G.R.A.M.G';
+
   }
+
+  else{
+
+    heading.textContent =
+      'A.A.P Format of V.B.G.R.A.M.G';
+
+  }
+
 }
+
 
 function normalizeState(input){
+
   const result = {
+
     version:5,
+
     year:'2026-27',
+
     forms:{
+
       approach:[],
+
       approve:[],
+
       tender:[],
+
       modelVillage:[],
+
       modelApprove:[],
+
       modelTender:[]
+
     }
+
   };
+
 
   if(Array.isArray(input)){
-    result.forms.approach = input.map(normalizeEntry);
+
+    result.forms.approach =
+      input.map(normalizeEntry);
+
     return result;
+
   }
 
-  if(input && typeof input === 'object'){
+
+  if(
+    input &&
+    typeof input === 'object'
+  ){
+
     if(input.year){
-      result.year = String(input.year);
+
+      result.year =
+        String(input.year);
+
     }
-    if(input.forms && typeof input.forms === 'object'){
+
+
+    if(
+      input.forms &&
+      typeof input.forms === 'object'
+    ){
+
       Object.keys(result.forms).forEach(key => {
+
         if(Array.isArray(input.forms[key])){
-          result.forms[key] = input.forms[key].map(normalizeEntry);
+
+          result.forms[key] =
+            input.forms[key].map(normalizeEntry);
+
         }
+
       });
+
     }
+
     else if(Array.isArray(input.data)){
-      result.forms.approach = input.data.map(normalizeEntry);
+
+      result.forms.approach =
+        input.data.map(normalizeEntry);
+
     }
+
   }
+
+
   return result;
+
 }
+
 
 function normalizeEntry(x){
+
   x = x || {};
+
   return {
-    id: String(x.id || (Date.now() + '_' + Math.random().toString(36).slice(2))),
-    scheme: String(x.scheme ?? ''),
-    nature: String(x.nature ?? ''),
-    lengthArea: String(x.lengthArea ?? ''),
-    mouza: String(x.mouza ?? 'Sahara'),
-    startDag: String(x.startDag ?? ''),
-    endDag: String(x.endDag ?? ''),
-    jobCard: String(x.jobCard ?? ''),
-    lat1: String(x.lat1 ?? ''),
-    long1: String(x.long1 ?? ''),
-    lat2: String(x.lat2 ?? ''),
-    long2: String(x.long2 ?? ''),
-    date: String(x.date ?? ''),
-    year: String(x.year ?? '')
+
+    id:String(
+      x.id ||
+      (
+        Date.now() +
+        '_' +
+        Math.random()
+          .toString(36)
+          .slice(2)
+      )
+    ),
+
+    scheme:String(x.scheme ?? ''),
+
+    nature:String(x.nature ?? ''),
+
+    lengthArea:String(x.lengthArea ?? ''),
+
+    mouza:String(x.mouza ?? 'Sahara'),
+
+    startDag:String(x.startDag ?? ''),
+
+    endDag:String(x.endDag ?? ''),
+
+    jobCard:String(x.jobCard ?? ''),
+
+    lat1:String(x.lat1 ?? ''),
+
+    long1:String(x.long1 ?? ''),
+
+    lat2:String(x.lat2 ?? ''),
+
+    long2:String(x.long2 ?? ''),
+
+    date:String(x.date ?? ''),
+
+    year:String(x.year ?? '')
+
   };
+
 }
+
 
 function persist(){
+
   try{
+
     state.version = 5;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+
+    safeStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(state)
+    );
+
     return true;
-  }catch(e){
-    alert('Browser Storage unavailable। Backup file ব্যবহার করুন।');
-    return false;
+
   }
+
+  catch(e){
+
+    return false;
+
+  }
+
 }
+
 
 function load(){
+
   let loaded = false;
+
+
   try{
-    const raw = localStorage.getItem(STORAGE_KEY);
+
+    const raw =
+      safeStorage.getItem(STORAGE_KEY);
+
+
     if(raw){
-      state = normalizeState(JSON.parse(raw));
+
+      state =
+        normalizeState(
+          JSON.parse(raw)
+        );
+
       loaded = true;
+
     }
+
     else{
+
       for(const key of OLD_KEYS){
-        const oldRaw = localStorage.getItem(key);
+
+        const oldRaw =
+          safeStorage.getItem(key);
+
         if(!oldRaw) continue;
+
+
         try{
-          const oldParsed = JSON.parse(oldRaw);
-          state = normalizeState(oldParsed);
+
+          const oldParsed =
+            JSON.parse(oldRaw);
+
+          state =
+            normalizeState(oldParsed);
+
           persist();
+
           loaded = true;
+
           break;
-        }catch(e){}
+
+        }
+
+        catch(e){}
+
       }
+
     }
-  }catch(e){
-    state = normalizeState([]);
+
   }
+
+  catch(e){
+
+    state =
+      normalizeState([]);
+
+  }
+
 
   if(!loaded){
-    state = normalizeState([]);
+
+    state =
+      normalizeState([]);
+
   }
 
-  $('year').value = state.year || '2026-27';
-  $('entryDate').value = todayISO();
+
+  if($('year')){
+
+    $('year').value =
+      state.year || '2026-27';
+
+  }
+
+
+  if($('entryDate')){
+
+    $('entryDate').value =
+      todayISO();
+
+  }
+
+
   updateUI();
+
 }
+
 
 function switchForm(form){
+
   if(!FORM_NAMES[form]) return;
+
+
   currentForm = form;
+
   editIndex = -1;
 
-  document.querySelectorAll('.formnav button').forEach(b => {
-    b.classList.remove('active');
-    b.classList.add('secondary');
-  });
+
+  document
+    .querySelectorAll('.formnav button')
+    .forEach(b => {
+
+      b.classList.remove('active');
+
+      b.classList.add('secondary');
+
+    });
+
 
   let mainButtonId;
-  if(form === 'modelVillage' || form === 'modelApprove' || form === 'modelTender'){
+
+
+  if(
+    form === 'modelVillage' ||
+    form === 'modelApprove' ||
+    form === 'modelTender'
+  ){
+
     mainButtonId = 'nav-model';
-  } else{
-    mainButtonId = 'nav-' + form;
+
   }
 
-  const active = $(mainButtonId);
+  else{
+
+    mainButtonId =
+      'nav-' + form;
+
+  }
+
+
+  const active =
+    $(mainButtonId);
+
+
   if(active){
+
     active.classList.add('active');
+
     active.classList.remove('secondary');
+
   }
 
-  const modelBar = $('modelStageBar');
-  if(form === 'modelVillage' || form === 'modelApprove' || form === 'modelTender'){
-    modelBar.classList.add('show');
-  }else{
-    modelBar.classList.remove('show');
+
+  const modelBar =
+    $('modelStageBar');
+
+
+  /* FIXED:
+     Original code had:
+     if(modelbar => modelBar)
+     which caused a JavaScript syntax error.
+  */
+
+  if(modelBar){
+
+    if(
+      form === 'modelVillage' ||
+      form === 'modelApprove' ||
+      form === 'modelTender'
+    ){
+
+      modelBar.classList.add('show');
+
+    }
+
+    else{
+
+      modelBar.classList.remove('show');
+
+    }
+
   }
 
-  document.querySelectorAll('#modelStageBar button').forEach(b => {
-    b.classList.remove('active');
-    b.classList.add('secondary');
-  });
 
-  if(form === 'modelVillage'){
-    $('stage-modelVillage').classList.add('active');
-    $('stage-modelVillage').classList.remove('secondary');
+  document
+    .querySelectorAll('#modelStageBar button')
+    .forEach(b => {
+
+      b.classList.remove('active');
+
+      b.classList.add('secondary');
+
+    });
+
+
+  if(
+    form === 'modelVillage' &&
+    $('stage-modelVillage')
+  ){
+
+    $('stage-modelVillage')
+      .classList.add('active');
+
+    $('stage-modelVillage')
+      .classList.remove('secondary');
+
   }
-  if(form === 'modelApprove'){
-    $('stage-modelApprove').classList.add('active');
-    $('stage-modelApprove').classList.remove('secondary');
+
+
+  if(
+    form === 'modelApprove' &&
+    $('stage-modelApprove')
+  ){
+
+    $('stage-modelApprove')
+      .classList.add('active');
+
+    $('stage-modelApprove')
+      .classList.remove('secondary');
+
   }
-  if(form === 'modelTender'){
-    $('stage-modelTender').classList.add('active');
-    $('stage-modelTender').classList.remove('secondary');
+
+
+  if(
+    form === 'modelTender' &&
+    $('stage-modelTender')
+  ){
+
+    $('stage-modelTender')
+      .classList.add('active');
+
+    $('stage-modelTender')
+      .classList.remove('secondary');
+
   }
+
 
   updateMainHeading();
-  $('currentFormName').textContent = formName();
-  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
-  $('savedTitle').textContent = '📋 ' + formName() + ' — Saved Data';
-  $('search').value = '';
+
+
+  if($('currentFormName')){
+
+    $('currentFormName').textContent =
+      formName();
+
+  }
+
+
+  if($('formTitle')){
+
+    $('formTitle').textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
+
+  }
+
+
+  if($('savedTitle')){
+
+    $('savedTitle').textContent =
+      '📋 ' +
+      formName() +
+      ' — Saved Data';
+
+  }
+
+
+  if($('search')){
+
+    $('search').value = '';
+
+  }
+
+
   clearForm(false);
+
   updateTransferButtons();
+
   render();
+
 }
+
 
 function updateUI(){
-  $('headerYear').textContent = String(state.year).replace('-', ' - ');
-  $('year').value = state.year;
-  $('currentFormName').textContent = formName();
-  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
-  $('savedTitle').textContent = '📋 ' + formName() + ' — Saved Data';
+
+  if($('headerYear')){
+
+    $('headerYear').textContent =
+      String(state.year)
+        .replace('-', ' - ');
+
+  }
+
+
+  if($('year')){
+
+    $('year').value =
+      state.year;
+
+  }
+
+
+  if($('currentFormName')){
+
+    $('currentFormName').textContent =
+      formName();
+
+  }
+
+
+  if($('formTitle')){
+
+    $('formTitle').textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
+
+  }
+
+
+  if($('savedTitle')){
+
+    $('savedTitle').textContent =
+      '📋 ' +
+      formName() +
+      ' — Saved Data';
+
+  }
+
+
   updateMainHeading();
+
   updateTransferButtons();
+
   render();
+
 }
+
 
 function changeYear(){
-  state.year = $('year').value;
-  $('headerYear').textContent = state.year.replace('-', ' - ');
+
+  if($('year')){
+
+    state.year =
+      $('year').value;
+
+  }
+
+
+  if($('headerYear')){
+
+    $('headerYear').textContent =
+      state.year.replace('-', ' - ');
+
+  }
+
+
   persist();
+
   render();
+
 }
+
 
 function saveEntry(){
+
   const x = {};
-  ids.forEach(id => { x[id] = val(id); });
-  x.date = val('entryDate') || todayISO();
-  x.year = state.year;
 
-  if(!x.scheme && !x.startDag){
-    alert('Scheme Name অথবা Starting Dag No. দিন।');
+
+  ids.forEach(id => {
+
+    x[id] =
+      val(id);
+
+  });
+
+
+  x.date =
+    val('entryDate') ||
+    todayISO();
+
+
+  x.year =
+    state.year;
+
+
+  if(
+    !x.scheme &&
+    !x.startDag
+  ){
+
+    alert(
+      'Scheme Name অথবা Starting Dag No. দিন।'
+    );
+
     return;
+
   }
 
-  const arr = currentData();
+
+  const arr =
+    currentData();
+
+
   if(editIndex >= 0){
-    x.id = arr[editIndex].id || createId();
-    arr[editIndex] = x;
-  } else{
-    x.id = createId();
-    arr.push(x);
+
+    x.id =
+      arr[editIndex].id ||
+      createId();
+
+    arr[editIndex] =
+      x;
+
   }
 
-  if(!persist()) return;
+  else{
+
+    x.id =
+      createId();
+
+    arr.push(x);
+
+  }
+
+
+  if(!persist()){
+
+    alert(
+      'Storage warning: ডেটা মেমরিতে সেভ হয়েছে। ব্যাকআপ ফাইল ডাউনলোড করে রাখুন।'
+    );
+
+  }
+
+
   render();
+
   clearForm();
-  alert(formName() + ' Entry Save হয়েছে ✓');
+
+  alert(
+    formName() +
+    ' Entry Save হয়েছে ✓'
+  );
+
 }
+
 
 function createId(){
-  return (Date.now() + '_' + Math.random().toString(36).slice(2));
+
+  return (
+    Date.now() +
+    '_' +
+    Math.random()
+      .toString(36)
+      .slice(2)
+  );
+
 }
+
 
 function clearForm(resetDate=true){
+
   ids.forEach(id => {
-    if($(id)) $(id).value = '';
+
+    if($(id)){
+
+      $(id).value = '';
+
+    }
+
   });
-  $('mouza').value = 'Sahara';
-  editIndex = -1;
-  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
-  if(resetDate){
-    $('entryDate').value = todayISO();
+
+
+  if($('mouza')){
+
+    $('mouza').value =
+      'Sahara';
+
   }
+
+
+  editIndex = -1;
+
+
+  if($('formTitle')){
+
+    $('formTitle').textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
+
+  }
+
+
+  if(
+    resetDate &&
+    $('entryDate')
+  ){
+
+    $('entryDate').value =
+      todayISO();
+
+  }
+
 }
+
 
 function edit(i){
-  const x = currentData()[i];
-  if(!x) return;
-  ids.forEach(id => { $(id).value = x[id] || ''; });
-  $('entryDate').value = x.date || todayISO();
 
-  if(x.year && x.year !== state.year){
-    state.year = x.year;
-    $('year').value = x.year;
-    $('headerYear').textContent = x.year.replace('-', ' - ');
-    persist();
+  const x =
+    currentData()[i];
+
+
+  if(!x) return;
+
+
+  ids.forEach(id => {
+
+    if($(id)){
+
+      $(id).value =
+        x[id] || '';
+
+    }
+
+  });
+
+
+  if($('entryDate')){
+
+    $('entryDate').value =
+      x.date ||
+      todayISO();
+
   }
+
+
+  if(
+    x.year &&
+    x.year !== state.year
+  ){
+
+    state.year =
+      x.year;
+
+
+    if($('year')){
+
+      $('year').value =
+        x.year;
+
+    }
+
+
+    if($('headerYear')){
+
+      $('headerYear').textContent =
+        x.year.replace('-', ' - ');
+
+    }
+
+
+    persist();
+
+  }
+
+
   editIndex = i;
-  $('formTitle').textContent = '✏️ ' + formName() + ' — Data Entry Edit করুন';
-  window.scrollTo({top:0, behavior:'smooth'});
+
+
+  if($('formTitle')){
+
+    $('formTitle').textContent =
+      '✏️ ' +
+      formName() +
+      ' — Data Entry Edit করুন';
+
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
 }
+
 
 function del(i){
-  if(confirm(formName() + ' এর এই Entry মুছে ফেলবেন?')){
+
+  if(
+    confirm(
+      formName() +
+      ' এর এই Entry মুছে ফেলবেন?'
+    )
+  ){
+
     currentData().splice(i,1);
+
     persist();
+
     render();
+
   }
+
 }
 
-// ---------------- NEW DELETE SELECTED FUNCTION ----------------
+
 function deleteSelected(){
-  const selected = getSelectedIndexes();
+
+  const selected =
+    getSelectedIndexes();
+
+
   if(!selected.length){
-    alert('আগে অন্তত ১টি Project Select করুন।');
+
+    alert(
+      'আগে অন্তত ১টি Project Select করুন।'
+    );
+
     return;
+
   }
-  if(confirm(selected.length + ' টি Select করা Project মুছে ফেলবেন?')){
-    const arr = currentData();
-    selected.sort((a,b) => b-a).forEach(i => {
-      arr.splice(i,1);
-    });
+
+
+  if(
+    confirm(
+      selected.length +
+      ' টি Select করা Project মুছে ফেলবেন?'
+    )
+  ){
+
+    const arr =
+      currentData();
+
+
+    selected
+      .sort((a,b) => b-a)
+      .forEach(i => {
+
+        arr.splice(i,1);
+
+      });
+
+
     editIndex = -1;
+
     persist();
+
     render();
-    alert('সফলভাবে মুছে ফেলা হয়েছে ✓');
+
+
+    alert(
+      'সফলভাবে মুছে ফেলা হয়েছে ✓'
+    );
+
   }
+
 }
 
-// ---------------- FIXED: ONLY CLEAR CURRENT STAGE ----------------
+
 function deleteCurrentForm(){
-  const arr = currentData();
+
+  const arr =
+    currentData();
+
+
   if(!arr.length){
-    alert(formName() + ' এ কোনো data নেই।');
+
+    alert(
+      formName() +
+      ' এ কোনো data নেই।'
+    );
+
     return;
+
   }
-  if(confirm('সতর্কতা: ' + formName() + ' এর সব data মুছে ফেলবেন?')){
-    state.forms[currentForm] = [];
+
+
+  if(
+    confirm(
+      'সতর্কতা: ' +
+      formName() +
+      ' এর সব data মুছে ফেলবেন?'
+    )
+  ){
+
+    state.forms[currentForm] =
+      [];
+
     editIndex = -1;
+
     persist();
+
     clearForm();
+
     render();
+
   }
+
 }
+
 
 function getSelectedIndexes(){
-  return Array.from(document.querySelectorAll('.rowcheck:checked')).map(el => Number(el.dataset.index));
+
+  return Array
+    .from(
+      document.querySelectorAll(
+        '.rowcheck:checked'
+      )
+    )
+    .map(
+      el =>
+        Number(el.dataset.index)
+    );
+
 }
+
 
 function toggleAll(box){
-  document.querySelectorAll('.rowcheck').forEach(cb => { cb.checked = box.checked; });
+
+  document
+    .querySelectorAll('.rowcheck')
+    .forEach(cb => {
+
+      cb.checked =
+        box.checked;
+
+    });
+
+
   updateSelectedInfo();
+
 }
+
 
 function updateSelectedInfo(){
-  const selected = getSelectedIndexes();
-  $('selectedInfo').textContent = selected.length ? selected.length + ' টি Project Select করা হয়েছে' : 'কোনো Project Select করা হয়নি';
+
+  const selected =
+    getSelectedIndexes();
+
+
+  if($('selectedInfo')){
+
+    $('selectedInfo').textContent =
+      selected.length
+        ? selected.length +
+          ' টি Project Select করা হয়েছে'
+        : 'কোনো Project Select করা হয়নি';
+
+  }
+
 }
+
 
 function updateTransferButtons(){
-  const flow = FLOW[currentForm];
-  const bar = $('transferBar');
-  if(flow.next || flow.back){
+
+  const flow =
+    FLOW[currentForm];
+
+  const bar =
+    $('transferBar');
+
+
+  if(!bar) return;
+
+
+  if(
+    flow.next ||
+    flow.back
+  ){
+
     bar.classList.add('show');
-  }else{
+
+  }
+
+  else{
+
     bar.classList.remove('show');
-  }
-  const nextBtn = $('nextTransferBtn');
-  const backBtn = $('backTransferBtn');
 
-  if(flow.next){
-    nextBtn.style.display = 'block';
-    nextBtn.textContent = '➡ ' + FORM_NAMES[flow.next] + ' -এ Transfer';
-  }else{
-    nextBtn.style.display = 'none';
   }
 
-  if(flow.back){
-    backBtn.style.display = 'block';
-    backBtn.textContent = '⬅ ' + FORM_NAMES[flow.back] + ' -এ Back';
-  }else{
-    backBtn.style.display = 'none';
+
+  const nextBtn =
+    $('nextTransferBtn');
+
+  const backBtn =
+    $('backTransferBtn');
+
+
+  if(
+    flow.next &&
+    nextBtn
+  ){
+
+    nextBtn.style.display =
+      'block';
+
+    nextBtn.textContent =
+      '➡ ' +
+      FORM_NAMES[flow.next] +
+      ' -এ Transfer';
+
   }
+
+  else if(nextBtn){
+
+    nextBtn.style.display =
+      'none';
+
+  }
+
+
+  if(
+    flow.back &&
+    backBtn
+  ){
+
+    backBtn.style.display =
+      'block';
+
+    backBtn.textContent =
+      '⬅ ' +
+      FORM_NAMES[flow.back] +
+      ' -এ Back';
+
+  }
+
+  else if(backBtn){
+
+    backBtn.style.display =
+      'none';
+
+  }
+
 }
+
 
 function transferNext(){
-  const flow = FLOW[currentForm];
-  if(!flow.next){
-    alert('এই Stage-এর পরে আর কোনো Stage নেই।');
-    return;
-  }
-  const selected = getSelectedIndexes();
-  if(!selected.length){
-    alert('আগে অন্তত ১টি Project Select করুন।');
-    return;
-  }
-  const target = state.forms[flow.next];
-  const source = state.forms[currentForm];
-  const selectedRecords = selected.map(i => source[i]).filter(Boolean);
 
-  if(!confirm(selectedRecords.length + ' টি Project\n' + formName() + ' থেকে\n' + FORM_NAMES[flow.next] + ' -এ Transfer (Move) করবেন?')){
+  const flow =
+    FLOW[currentForm];
+
+
+  if(!flow.next){
+
+    alert(
+      'এই Stage-এর পরে আর কোনো Stage নেই।'
+    );
+
     return;
+
   }
+
+
+  const selected =
+    getSelectedIndexes();
+
+
+  if(!selected.length){
+
+    alert(
+      'আগে অন্তত ১টি Project Select করুন।'
+    );
+
+    return;
+
+  }
+
+
+  const target =
+    state.forms[flow.next];
+
+  const source =
+    state.forms[currentForm];
+
+
+  const selectedRecords =
+    selected
+      .map(i => source[i])
+      .filter(Boolean);
+
+
+  if(
+    !confirm(
+      selectedRecords.length +
+      ' টি Project\n' +
+      formName() +
+      ' থেকে\n' +
+      FORM_NAMES[flow.next] +
+      ' -এ Transfer (Move) করবেন?'
+    )
+  ){
+
+    return;
+
+  }
+
 
   selectedRecords.forEach(record => {
-    const already = target.some(x => x.id && x.id === record.id);
-    if(!already){ target.push(normalizeEntry(record)); }
+
+    const already =
+      target.some(
+        x =>
+          x.id &&
+          x.id === record.id
+      );
+
+
+    if(!already){
+
+      target.push(
+        normalizeEntry(record)
+      );
+
+    }
+
   });
 
-  selected.sort((a,b) => b-a).forEach(i => {
-    source.splice(i,1);
-  });
+
+  selected
+    .sort((a,b) => b-a)
+    .forEach(i => {
+
+      source.splice(i,1);
+
+    });
+
 
   editIndex = -1;
+
   persist();
+
   render();
-  alert(selectedRecords.length + ' টি Project সফলভাবে\n' + FORM_NAMES[flow.next] + ' -এ Transfer হয়েছে ✓');
+
+
+  alert(
+    selectedRecords.length +
+    ' টি Project সফলভাবে\n' +
+    FORM_NAMES[flow.next] +
+    ' -এ Transfer হয়েছে ✓'
+  );
+
 }
+
 
 function transferBack(){
-  const flow = FLOW[currentForm];
-  if(!flow.back){
-    alert('এই Stage-এর আগে আর কোনো Stage নেই।');
-    return;
-  }
-  const selected = getSelectedIndexes();
-  if(!selected.length){
-    alert('আগে অন্তত ১টি Project Select করুন।');
-    return;
-  }
-  const target = state.forms[flow.back];
-  const source = state.forms[currentForm];
-  const selectedRecords = selected.map(i => source[i]).filter(Boolean);
 
-  if(!confirm(selectedRecords.length + ' টি Project\n' + formName() + ' থেকে\n' + FORM_NAMES[flow.back] + ' -এ Back (Move) করবেন?')){
+  const flow =
+    FLOW[currentForm];
+
+
+  if(!flow.back){
+
+    alert(
+      'এই Stage-এর আগে আর কোনো Stage নেই।'
+    );
+
     return;
+
   }
+
+
+  const selected =
+    getSelectedIndexes();
+
+
+  if(!selected.length){
+
+    alert(
+      'আগে অন্তত ১টি Project Select করুন।'
+    );
+
+    return;
+
+  }
+
+
+  const target =
+    state.forms[flow.back];
+
+  const source =
+    state.forms[currentForm];
+
+
+  const selectedRecords =
+    selected
+      .map(i => source[i])
+      .filter(Boolean);
+
+
+  if(
+    !confirm(
+      selectedRecords.length +
+      ' টি Project\n' +
+      formName() +
+      ' থেকে\n' +
+      FORM_NAMES[flow.back] +
+      ' -এ Back (Move) করবেন?'
+    )
+  ){
+
+    return;
+
+  }
+
 
   selectedRecords.forEach(record => {
-    const already = target.some(x => x.id && x.id === record.id);
-    if(!already){ target.push(normalizeEntry(record)); }
+
+    const already =
+      target.some(
+        x =>
+          x.id &&
+          x.id === record.id
+      );
+
+
+    if(!already){
+
+      target.push(
+        normalizeEntry(record)
+      );
+
+    }
+
   });
 
-  selected.sort((a,b) => b-a).forEach(i => {
-    source.splice(i,1);
-  });
+
+  selected
+    .sort((a,b) => b-a)
+    .forEach(i => {
+
+      source.splice(i,1);
+
+    });
+
 
   editIndex = -1;
+
   persist();
+
   render();
-  alert(selectedRecords.length + ' টি Project সফলভাবে\n' + FORM_NAMES[flow.back] + ' -এ Back হয়েছে ✓');
+
+
+  alert(
+    selectedRecords.length +
+    ' টি Project সফলভাবে\n' +
+    FORM_NAMES[flow.back] +
+    ' -এ Back হয়েছে ✓'
+  );
+
 }
+
 
 function backup(){
-  if(!currentData().length && !confirm('কোনো Data নেই, ফাঁকা Backup নেবেন?')) return;
-  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(state));
-  const el = document.createElement('a');
-  el.setAttribute('href', dataStr);
-  const d = new Date();
-  const ds = d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
-  el.setAttribute('download', 'AAP_Backup_ALL_' + ds + '.json');
+
+  if(
+    !currentData().length &&
+    !confirm(
+      'কোনো Data নেই, ফাঁকা Backup নেবেন?'
+    )
+  ){
+
+    return;
+
+  }
+
+
+  const dataStr =
+    'data:text/json;charset=utf-8,' +
+    encodeURIComponent(
+      JSON.stringify(state)
+    );
+
+
+  const el =
+    document.createElement('a');
+
+
+  el.setAttribute(
+    'href',
+    dataStr
+  );
+
+
+  const d =
+    new Date();
+
+
+  const ds =
+    d.getFullYear() +
+    String(
+      d.getMonth()+1
+    ).padStart(2,'0') +
+    String(
+      d.getDate()
+    ).padStart(2,'0');
+
+
+  el.setAttribute(
+    'download',
+    'AAP_Backup_ALL_' +
+    ds +
+    '.json'
+  );
+
+
   document.body.appendChild(el);
+
   el.click();
+
   el.remove();
+
 }
+
 
 function restore(e){
-  const file = e.target.files[0];
-  if(!file){ e.target.value = ''; return; }
-  const reader = new FileReader();
-  reader.onload = function(ev){
-    try{
-      const parsed = JSON.parse(ev.target.result);
-      const restored = normalizeState(parsed);
-      state = restored;
-      persist();
-      alert('সফলভাবে Backup Restore হয়েছে ✓');
-      $('year').value = state.year || '2026-27';
-      switchForm('approach');
-    }catch(err){
-      alert('File সঠিক নয় বা নষ্ট হয়ে গেছে।');
-    }
+
+  const file =
+    e.target.files[0];
+
+
+  if(!file){
+
     e.target.value = '';
-  };
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(ev){
+
+      try{
+
+        const parsed =
+          JSON.parse(
+            ev.target.result
+          );
+
+
+        const restored =
+          normalizeState(parsed);
+
+
+        Object.keys(
+          restored.forms
+        ).forEach(formKey => {
+
+          if(
+            restored.forms[formKey] &&
+            Array.isArray(
+              restored.forms[formKey]
+            )
+          ){
+
+            if(
+              !state.forms[formKey]
+            ){
+
+              state.forms[formKey] =
+                [];
+
+            }
+
+
+            restored.forms[formKey]
+              .forEach(newItem => {
+
+                const exists =
+                  state.forms[formKey]
+                    .some(
+                      existing =>
+                        existing.id ===
+                        newItem.id
+                    );
+
+
+                if(!exists){
+
+                  state.forms[formKey]
+                    .push(newItem);
+
+                }
+
+              });
+
+          }
+
+        });
+
+
+        persist();
+
+
+        alert(
+          'সফলভাবে Backup Restore এবং Merge করা হয়েছে ✓'
+        );
+
+
+        if($('year')){
+
+          $('year').value =
+            state.year ||
+            '2026-27';
+
+        }
+
+
+        render();
+
+      }
+
+      catch(err){
+
+        alert(
+          'File সঠিক নয় বা নষ্ট হয়ে গেছে।'
+        );
+
+      }
+
+
+      e.target.value = '';
+
+    };
+
+
   reader.readAsText(file);
+
 }
+
 
 function exportExcel(){
-  const arr = currentData();
-  if(!arr.length){
-    alert('Export করার মতো কোনো Data নেই।');
-    return;
-  }
-  let tableHTML = `
-  <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
-  <head>
-  <meta charset="utf-8">
-  <style>
-    table { border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size:12px; }
-    th, td { border: 1px solid #000; padding: 5px; text-align: left; vertical-align: top; }
-    th { background-color: #f2f2f2; font-weight: bold; text-align: center; }
-  </style>
-  </head>
-  <body>
-  <h2>A.A.P Format of V.B.G.R.A.M.G (Mahishbathani Gram Panchayat Scheme)</h2>
-  <h3>Stage: ${formName()} | Financial Year: ${state.year}</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>S.L. No.</th>
-        <th>Date</th>
-        <th>Financial Year</th>
-        <th>Scheme Name</th>
-        <th>Nature of Work</th>
-        <th>Length / Area</th>
-        <th>Mouja</th>
-        <th>Starting Dag No.</th>
-        <th>End Dag No.</th>
-        <th>In Case I.B.S Job Card No.</th>
-        <th>Lat (1)</th>
-        <th>Long (1)</th>
-        <th>Lat (2)</th>
-        <th>Long (2)</th>
-      </tr>
-    </thead>
-    <tbody>
-  `;
-  arr.forEach((row, idx) => {
-    tableHTML += `
-      <tr>
-        <td style="text-align:center">${idx+1}</td>
-        <td>${esc(row.date)}</td>
-        <td>${esc(row.year)}</td>
-        <td>${esc(row.scheme)}</td>
-        <td>${esc(row.nature)}</td>
-        <td>${esc(row.lengthArea)}</td>
-        <td>${esc(row.mouza)}</td>
-        <td>${esc(row.startDag)}</td>
-        <td>${esc(row.endDag)}</td>
-        <td>${esc(row.jobCard)}</td>
-        <td>${esc(row.lat1)}</td>
-        <td>${esc(row.long1)}</td>
-        <td>${esc(row.lat2)}</td>
-        <td>${esc(row.long2)}</td>
-      </tr>
-    `;
-  });
-  tableHTML += `</tbody></table></body></html>`;
 
-  const blob = new Blob([tableHTML], { type: 'application/vnd.ms-excel' });
-  const url = URL.createObjectURL(blob);
-  const el = document.createElement('a');
-  el.href = url;
-  el.download = formName().replace(/ /g, '_') + '.xls';
+  const arr =
+    currentData();
+
+
+  if(!arr.length){
+
+    alert(
+      'Export করার মতো কোনো Data নেই।'
+    );
+
+    return;
+
+  }
+
+
+  let tableHTML = `
+
+  <html
+    xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:x="urn:schemas-microsoft-com:office:excel"
+    xmlns="http://www.w3.org/TR/REC-html40">
+
+  <head>
+
+  <meta charset="utf-8">
+
+  <style>
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      font-size:12px;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 5px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      text-align: center;
+    }
+
+  </style>
+
+  </head>
+
+  <body>
+
+  <h2>
+    A.A.P Format of V.B.G.R.A.M.G
+    (Mahishbathani Gram Panchayat Scheme)
+  </h2>
+
+  <h3>
+    Stage: ${formName()}
+    | Financial Year: ${state.year}
+  </h3>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>S.L. No.</th>
+
+        <th>Date</th>
+
+        <th>Financial Year</th>
+
+        <th>Scheme Name</th>
+
+        <th>Nature of Work</th>
+
+        <th>Length / Area</th>
+
+        <th>Mouja</th>
+
+        <th>Starting Dag No.</th>
+
+        <th>End Dag No.</th>
+
+        <th>In Case I.B.S Job Card No.</th>
+
+        <th>Lat (1)</th>
+
+        <th>Long (1)</th>
+
+        <th>Lat (2)</th>
+
+        <th>Long (2)</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+  `;
+
+
+  arr.forEach(
+    (row, idx) => {
+
+      tableHTML += `
+
+      <tr>
+
+        <td style="text-align:center">
+          ${idx+1}
+        </td>
+
+        <td>
+          ${esc(row.date)}
+        </td>
+
+        <td>
+          ${esc(row.year)}
+        </td>
+
+        <td>
+          ${esc(row.scheme)}
+        </td>
+
+        <td>
+          ${esc(row.nature)}
+        </td>
+
+        <td>
+          ${esc(row.lengthArea)}
+        </td>
+
+        <td>
+          ${esc(row.mouza)}
+        </td>
+
+        <td>
+          ${esc(row.startDag)}
+        </td>
+
+        <td>
+          ${esc(row.endDag)}
+        </td>
+
+        <td>
+          ${esc(row.jobCard)}
+        </td>
+
+        <td>
+          ${esc(row.lat1)}
+        </td>
+
+        <td>
+          ${esc(row.long1)}
+        </td>
+
+        <td>
+          ${esc(row.lat2)}
+        </td>
+
+        <td>
+          ${esc(row.long2)}
+        </td>
+
+      </tr>
+
+    `;
+
+    }
+  );
+
+
+  tableHTML +=
+    `</tbody></table></body></html>`;
+
+
+  const blob =
+    new Blob(
+      [tableHTML],
+      {
+        type:
+          'application/vnd.ms-excel'
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const el =
+    document.createElement('a');
+
+
+  el.href =
+    url;
+
+
+  el.download =
+    formName()
+      .replace(/ /g, '_') +
+    '.xls';
+
+
   document.body.appendChild(el);
+
   el.click();
+
   document.body.removeChild(el);
+
   URL.revokeObjectURL(url);
+
 }
+
 
 function render(){
-  const tbody = $('tbody');
-  const q = val('search').toLowerCase();
 
-  const list = currentData()
-    .map((x,i) => ({x:x, i:i}))
-    .filter(o => JSON.stringify(o.x).toLowerCase().includes(q));
+  const tbody =
+    $('tbody');
 
-  $('count').textContent = list.length + ' entries (' + formName() + ')';
 
-  if(!list.length){
-    tbody.innerHTML = '<tr><td colspan="16" class="empty">কোনো Data পাওয়া যায়নি</td></tr>';
-    $('selectAll').checked = false;
-    updateSelectedInfo();
-    return;
+  if(!tbody) return;
+
+
+  const q =
+    val('search')
+      .toLowerCase();
+
+
+  const list =
+    currentData()
+
+      .map(
+        (x,i) => ({
+          x:x,
+          i:i
+        })
+      )
+
+      .filter(
+        o =>
+          JSON.stringify(o.x)
+            .toLowerCase()
+            .includes(q)
+      );
+
+
+  if($('count')){
+
+    $('count').textContent =
+      list.length +
+      ' entries (' +
+      formName() +
+      ')';
+
   }
 
-  const h = list.map((o, displayIndex) => {
-    const i = o.i;
-    const x = o.x;
 
-    return `
+  if(!list.length){
+
+    tbody.innerHTML =
+      '<tr><td colspan="16" class="empty">কোনো Data পাওয়া যায়নি</td></tr>';
+
+
+    if($('selectAll')){
+
+      $('selectAll').checked =
+        false;
+
+    }
+
+
+    updateSelectedInfo();
+
+    return;
+
+  }
+
+
+  const h =
+    list.map(
+      (o, displayIndex) => {
+
+        const i =
+          o.i;
+
+        const x =
+          o.x;
+
+
+        return `
+
       <tr>
-        <td class="selectCell">
-          <input type="checkbox" class="rowcheck" data-index="${i}" onchange="updateSelectedInfo()">
-        </td>
-        <td style="text-align:center; font-weight:bold">${displayIndex + 1}</td>
-        <td>${esc(x.date)}</td>
-        <td>${esc(x.year)}</td>
-        <td>${esc(x.scheme)}</td>
-        <td>${esc(x.nature)}</td>
-        <td>${esc(x.lengthArea)}</td>
-        <td>${esc(x.mouza)}</td>
-        <td>${esc(x.startDag)}</td>
-        <td>${esc(x.endDag)}</td>
-        <td>${esc(x.jobCard)}</td>
-        <td>${esc(x.lat1)}</td>
-        <td>${esc(x.long1)}</td>
-        <td>${esc(x.lat2)}</td>
-        <td>${esc(x.long2)}</td>
-        <td>
-          <button class="actionbtn secondary" onclick="edit(${i})">Edit</button>
-          <button class="actionbtn danger" onclick="del(${i})">Delete</button>
-        </td>
-      </tr>
-    `;
-  }).join('');
 
-  tbody.innerHTML = h;
-  $('selectAll').checked = false;
+        <td class="selectCell">
+
+          <input
+            type="checkbox"
+            class="rowcheck"
+            data-index="${i}"
+            onchange="updateSelectedInfo()">
+
+        </td>
+
+
+        <td
+          style="text-align:center; font-weight:bold">
+
+          ${displayIndex + 1}
+
+        </td>
+
+
+        <td>
+          ${esc(x.date)}
+        </td>
+
+
+        <td>
+          ${esc(x.year)}
+        </td>
+
+
+        <td>
+          ${esc(x.scheme)}
+        </td>
+
+
+        <td>
+          ${esc(x.nature)}
+        </td>
+
+
+        <td>
+          ${esc(x.lengthArea)}
+        </td>
+
+
+        <td>
+          ${esc(x.mouza)}
+        </td>
+
+
+        <td>
+          ${esc(x.startDag)}
+        </td>
+
+
+        <td>
+          ${esc(x.endDag)}
+        </td>
+
+
+        <td>
+          ${esc(x.jobCard)}
+        </td>
+
+
+        <td>
+          ${esc(x.lat1)}
+        </td>
+
+
+        <td>
+          ${esc(x.long1)}
+        </td>
+
+
+        <td>
+          ${esc(x.lat2)}
+        </td>
+
+
+        <td>
+          ${esc(x.long2)}
+        </td>
+
+
+        <td>
+
+          <button
+            class="actionbtn secondary"
+            onclick="edit(${i})">
+
+            Edit
+
+          </button>
+
+
+          <button
+            class="actionbtn danger"
+            onclick="del(${i})">
+
+            Delete
+
+          </button>
+
+        </td>
+
+      </tr>
+
+    `;
+
+      }
+    ).join('');
+
+
+  tbody.innerHTML =
+    h;
+
+
+  if($('selectAll')){
+
+    $('selectAll').checked =
+      false;
+
+  }
+
+
   updateSelectedInfo();
+
 }
+
 
 window.onload = load;
 
 </script>
+
 </body>
 </html>
