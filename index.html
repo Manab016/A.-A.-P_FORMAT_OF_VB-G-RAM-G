@@ -95,15 +95,15 @@ td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
 
     <div class="formnav">
       <button id="nav-approach" class="active" onclick="switchForm('approach')">➕ Approach Scheme</button>
-      <button id="nav-approve" class="secondary" onclick="switchForm('approve')">Approve Scheme</button>
-      <button id="nav-tender" class="secondary" onclick="switchForm('tender')">Tender Scheme</button>
-      <button id="nav-model" class="secondary" onclick="switchForm('modelVillage')">Model Village</button>
+      <button id="nav-approve" class="secondary" onclick="switchForm('approve')">✅ Approve Scheme</button>
+      <button id="nav-tender" class="secondary" onclick="switchForm('tender')">📄 Tender Scheme</button>
+      <button id="nav-model" class="secondary" onclick="switchForm('modelVillage')">🏘️ Model Village</button>
     </div>
 
     <div id="modelStageBar" class="stagebar">
-      <button id="stage-modelVillage" class="active" onclick="switchForm('modelVillage')">Model Village Approach</button>
-      <button id="stage-modelApprove" class="secondary" onclick="switchForm('modelApprove')">Model Village Approve</button>
-      <button id="stage-modelTender" class="secondary" onclick="switchForm('modelTender')">Model Village Tender</button>
+      <button id="stage-modelVillage" class="active" onclick="switchForm('modelVillage')">➕ Model Village Approach</button>
+      <button id="stage-modelApprove" class="secondary" onclick="switchForm('modelApprove')">✅ Model Village Approve</button>
+      <button id="stage-modelTender" class="secondary" onclick="switchForm('modelTender')">📄 Model Village Tender</button>
     </div>
 
     <div class="notice">
@@ -169,7 +169,7 @@ td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
         <input id="endDag" placeholder="যেমন 205/1424">
       </div>
 
-      <!-- New Dynamic Fields -->
+      <!-- New Dynamic Fields (Shown in Approve / Tender) -->
       <div class="field" id="wrap-sector" style="display:none;">
         <label>Sector</label>
         <input id="sector" placeholder="Sector">
@@ -270,7 +270,6 @@ const FLOW = {
   modelTender:{ next:null, back:'modelApprove' }
 };
 
-// Added new dynamic fields
 const ids = [
   'scheme', 'nature', 'lengthArea', 'mouza', 'startDag', 'endDag',
   'sector', 'estimateCost', 'fund', 'fNewSl',
@@ -288,6 +287,7 @@ let state = {
 
 let currentForm = 'approach';
 let editIndex = -1;
+let globalSortCounter = Date.now(); // Used to guarantee strict sorting order
 
 const $ = id => document.getElementById(id);
 function val(id){ const el = $(id); return el ? el.value.trim() : ''; }
@@ -314,26 +314,12 @@ function updateMainHeading(){
   }
 }
 
-function normalizeState(input){
-  const result = { version:5, year:'2026-27', forms:{ approach:[], approve:[], tender:[], modelVillage:[], modelApprove:[], modelTender:[] }};
-  if(Array.isArray(input)){ result.forms.approach = input.map(normalizeEntry); return result; }
-  if(input && typeof input === 'object'){
-    if(input.year) result.year = String(input.year);
-    if(input.forms && typeof input.forms === 'object'){
-      Object.keys(result.forms).forEach(key => {
-        if(Array.isArray(input.forms[key])) result.forms[key] = input.forms[key].map(normalizeEntry);
-      });
-    } else if(Array.isArray(input.data)){
-      result.forms.approach = input.data.map(normalizeEntry);
-    }
-  }
-  return result;
-}
-
-function normalizeEntry(x){
+// Ensure every entry has a strictly sequential sortIndex based on its array position
+function normalizeEntry(x, index = 0){
   x = x || {};
   return {
     id: String(x.id || (Date.now() + '_' + Math.random().toString(36).slice(2))),
+    sortIndex: Number(x.sortIndex ?? (globalSortCounter + index)),
     scheme: String(x.scheme ?? ''),
     nature: String(x.nature ?? ''),
     lengthArea: String(x.lengthArea ?? ''),
@@ -352,6 +338,27 @@ function normalizeEntry(x){
     date: String(x.date ?? ''),
     year: String(x.year ?? '')
   };
+}
+
+function normalizeState(input){
+  const result = { version:5, year:'2026-27', forms:{ approach:[], approve:[], tender:[], modelVillage:[], modelApprove:[], modelTender:[] }};
+  if(Array.isArray(input)){ 
+    result.forms.approach = input.map((x, i) => normalizeEntry(x, i)); 
+    return result; 
+  }
+  if(input && typeof input === 'object'){
+    if(input.year) result.year = String(input.year);
+    if(input.forms && typeof input.forms === 'object'){
+      Object.keys(result.forms).forEach(key => {
+        if(Array.isArray(input.forms[key])){
+          result.forms[key] = input.forms[key].map((x, i) => normalizeEntry(x, i));
+        }
+      });
+    } else if(Array.isArray(input.data)){
+      result.forms.approach = input.data.map((x, i) => normalizeEntry(x, i));
+    }
+  }
+  return result;
 }
 
 function persist(){
@@ -446,9 +453,11 @@ function saveEntry(){
   
   if(editIndex >= 0){
     x.id = arr[editIndex].id || createId();
+    x.sortIndex = arr[editIndex].sortIndex; // Preserve original position when edited
     arr[editIndex] = x;
   } else {
     x.id = createId();
+    x.sortIndex = Date.now(); // Put new items at the bottom
     arr.push(x);
   }
   
@@ -548,7 +557,7 @@ function transferNext(){
   selectedRecords.forEach(record => {
     let newRecord = JSON.parse(JSON.stringify(record));
     
-    // Tender scheme-e sudhu estimateCost transfer hobe
+    // Tender transfer logic: Keep Estimate Cost, delete others
     if(flow.next === 'tender' || flow.next === 'modelTender'){
       newRecord.sector = '';
       newRecord.fund = '';
@@ -556,13 +565,14 @@ function transferNext(){
     }
     
     const already = target.some(x => x.id && x.id === newRecord.id);
-    if(!already){ target.push(normalizeEntry(newRecord)); }
+    if(!already){ target.push(normalizeEntry(newRecord, target.length)); }
   });
   
+  // Sort from last to first so splicing doesn't mess up the indices during removal
   selected.sort((a,b) => b-a).forEach(i => { source.splice(i,1); });
   
-  // Sort target based on original ID to maintain accurate S.L / Order
-  target.sort((a,b) => (parseInt(a.id) || 0) - (parseInt(b.id) || 0));
+  // Guarantee exact sequential order matching the original S.L array
+  target.sort((a,b) => a.sortIndex - b.sortIndex);
   
   editIndex = -1; persist(); render();
   alert(selectedRecords.length + ' টি Project সফলভাবে\n' + FORM_NAMES[flow.next] + ' -এ Transfer হয়েছে ✓');
@@ -584,7 +594,7 @@ function transferBack(){
   selectedRecords.forEach(record => {
     let newRecord = JSON.parse(JSON.stringify(record));
     
-    // Approach scheme-e back korle extra field blank hobe (Ager moto)
+    // Approach scheme back transfer logic: clear all newly added fields
     if(flow.back === 'approach' || flow.back === 'modelVillage'){
       newRecord.sector = '';
       newRecord.estimateCost = '';
@@ -593,13 +603,13 @@ function transferBack(){
     }
     
     const already = target.some(x => x.id && x.id === newRecord.id);
-    if(!already){ target.push(normalizeEntry(newRecord)); }
+    if(!already){ target.push(normalizeEntry(newRecord, target.length)); }
   });
   
   selected.sort((a,b) => b-a).forEach(i => { source.splice(i,1); });
   
-  // Sort target based on original ID to maintain accurate S.L / Order
-  target.sort((a,b) => (parseInt(a.id) || 0) - (parseInt(b.id) || 0));
+  // Guarantee exact sequential order matching the original S.L array
+  target.sort((a,b) => a.sortIndex - b.sortIndex);
   
   editIndex = -1; persist(); render();
   alert(selectedRecords.length + ' টি Project সফলভাবে\n' + FORM_NAMES[flow.back] + ' -এ Back হয়েছে ✓');
@@ -740,7 +750,7 @@ function exportExcel(){
       else if(index === 5) charsPerLine = 8;
       else if(index === 6) charsPerLine = 9;
       else if(index === 7 || index === 8) charsPerLine = 8;
-      else if(index === (row.length - 5)) charsPerLine = 11; // Job Card index calculation updated 
+      else if(index === (row.length - 5)) charsPerLine = 11; 
       maxLines = Math.max(maxLines, Math.ceil(text.length / charsPerLine), text.split(/\n/).length);
     });
     
