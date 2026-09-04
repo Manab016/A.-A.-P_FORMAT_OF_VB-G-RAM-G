@@ -15,7 +15,7 @@ body{
   margin:0;
   background:#f1f5f9;
   color:#17212b;
-  font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
+  font-family:Arial,sans-serif;
   font-size:15px
 }
 
@@ -566,7 +566,6 @@ td{
       <button class="gray" onclick="backup()">💾 Backup All</button>
       <button class="gray" onclick="document.getElementById('restore').click()">♻ Restore</button>
       
-      <!-- নতুন ডিলিট বাটন -->
       <button class="danger" onclick="deleteSelected()">🗑 Delete Selected</button>
       <button class="danger" onclick="deleteCurrentForm()">🗑 Clear This Stage</button>
 
@@ -976,7 +975,6 @@ function del(i){
   }
 }
 
-// ---------------- NEW DELETE SELECTED FUNCTION ----------------
 function deleteSelected(){
   const selected = getSelectedIndexes();
   if(!selected.length){
@@ -995,7 +993,6 @@ function deleteSelected(){
   }
 }
 
-// ---------------- FIXED: ONLY CLEAR CURRENT STAGE ----------------
 function deleteCurrentForm(){
   const arr = currentData();
   if(!arr.length){
@@ -1206,7 +1203,7 @@ function exportExcel(){
         <td>${esc(row.startDag)}</td>
         <td>${esc(row.endDag)}</td>
         <td>${esc(row.jobCard)}</td>
-        <td>${esc(row.lat1)}</td>
+        -><td>${esc(row.lat1)}</td>
         <td>${esc(row.long1)}</td>
         <td>${esc(row.lat2)}</td>
         <td>${esc(row.long2)}</td>
