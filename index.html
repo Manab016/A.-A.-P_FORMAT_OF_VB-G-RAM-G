@@ -53,8 +53,13 @@ td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
 .selectAll{ width:18px; height:18px; cursor:pointer }
 .selectedInfo{ padding:5px 12px 10px; text-align:center; color:#b26b00; font-weight:800; font-size:13px }
 
+.stage-box{ border:1px solid #1769aa; border-radius:12px; padding:12px; margin-top:5px; background:#f8fbff; grid-column:1/-1 }
+.stage-box-title{ font-weight:800; font-size:13px; color:#1769aa; margin-bottom:10px; display:flex; align-items:center; gap:6px }
+.stage-box-grid{ display:grid; grid-template-columns:1fr 1fr; gap:11px }
+
 @media(max-width:700px){
   .form{ grid-template-columns:1fr }
+  .stage-box-grid{ grid-template-columns:1fr }
   .actions, .toolbar, .topbar{ grid-template-columns:1fr 1fr }
   .formnav{ grid-template-columns:1fr 1fr }
   .stagebar, .transferbar{ grid-template-columns:1fr }
@@ -168,24 +173,6 @@ td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
         <label>End Dag No.</label>
         <input id="endDag" placeholder="যেমন 205/1424">
       </div>
-
-      <div class="field" id="wrap-sector" style="display:none;">
-        <label>Sector</label>
-        <input id="sector" placeholder="Sector">
-      </div>
-      <div class="field" id="wrap-estimateCost" style="display:none;">
-        <label>Estimate Cost</label>
-        <input id="estimateCost" placeholder="Estimate Cost">
-      </div>
-      <div class="field" id="wrap-fund" style="display:none;">
-        <label>Fund</label>
-        <input id="fund" placeholder="Fund">
-      </div>
-      <div class="field" id="wrap-fNewSl" style="display:none;">
-        <label>New S.L.</label>
-        <input id="fNewSl" placeholder="F New S.L.">
-      </div>
-
       <div class="field">
         <label>I.B.S. Job Card No.</label>
         <input id="jobCard" placeholder="Job Card No.">
@@ -206,6 +193,41 @@ td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
         <label>Longitude (2)</label>
         <input id="long2" inputmode="decimal" placeholder="Longitude">
       </div>
+
+      <!-- Approve Scheme Bottom Box -->
+      <div id="wrap-approveBox" class="stage-box" style="display:none;">
+        <div class="stage-box-title">✅ Approve Scheme Information</div>
+        <div class="stage-box-grid">
+          <div class="field">
+            <label>Sector</label>
+            <input id="sector" placeholder="Sector">
+          </div>
+          <div class="field">
+            <label>Estimated Cost</label>
+            <input id="estimateCost" placeholder="Estimated Cost">
+          </div>
+          <div class="field">
+            <label>Fund</label>
+            <input id="fund" placeholder="যেমন 16th Untied / 5TH Theme 3">
+          </div>
+          <div class="field">
+            <label>New S.L. No. (ম্যানুয়ালি লিখবেন)</label>
+            <input id="fNewSl" placeholder="যেমন SL-86">
+          </div>
+        </div>
+      </div>
+
+      <!-- Tender Scheme Bottom Box -->
+      <div id="wrap-tenderBox" class="stage-box" style="display:none;">
+        <div class="stage-box-title">📄 Tender Scheme Information</div>
+        <div class="stage-box-grid" style="grid-template-columns: 1fr;">
+          <div class="field">
+            <label>Estimated Cost</label>
+            <input id="estimateCostTender" placeholder="Estimated Cost">
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="actions">
@@ -289,7 +311,10 @@ let editIndex = -1;
 let globalSortCounter = Date.now();
 
 const $ = id => document.getElementById(id);
-function val(id){ const el = $(id); return el ? el.value.trim() : ''; }
+function val(id){ 
+  const el = $(id); 
+  return el ? el.value.trim() : ''; 
+}
 
 function todayISO(){
   const d = new Date();
@@ -337,9 +362,7 @@ function normalizeEntry(x, index = 0){
     lat1: String(x.lat1 ?? ''),
     long1: String(x.long1 ?? ''),
     lat2: String(x.lat2 ?? ''),
-    long2: String(x.long2 ?? ''),
-    date: String(x.date ?? ''),
-    year: String(x.year ?? '')
+    long2: String(x.long2 ?? '')
   };
 }
 
@@ -395,10 +418,8 @@ function updateFieldVisibility(){
   const isApprove = (currentForm === 'approve' || currentForm === 'modelApprove');
   const isTender = (currentForm === 'tender' || currentForm === 'modelTender');
   
-  $('wrap-sector').style.display = isApprove ? 'block' : 'none';
-  $('wrap-estimateCost').style.display = (isApprove || isTender) ? 'block' : 'none';
-  $('wrap-fund').style.display = isApprove ? 'block' : 'none';
-  $('wrap-fNewSl').style.display = isApprove ? 'block' : 'none';
+  $('wrap-approveBox').style.display = isApprove ? 'block' : 'none';
+  $('wrap-tenderBox').style.display = isTender ? 'block' : 'none';
 }
 
 function switchForm(form){
@@ -448,6 +469,12 @@ function changeYear(){ state.year = $('year').value; $('headerYear').textContent
 function saveEntry(){
   const x = {};
   ids.forEach(id => { x[id] = val(id); });
+  
+  // Handle estimateCost synchronization between normal box and tender box
+  if(currentForm === 'tender' || currentForm === 'modelTender'){
+    x.estimateCost = val('estimateCostTender');
+  }
+
   x.date = val('entryDate') || todayISO();
   x.year = state.year;
   
@@ -482,6 +509,7 @@ function createId(){ return (Date.now() + '_' + Math.random().toString(36).slice
 
 function clearForm(resetDate=true){
   ids.forEach(id => { if($(id)) $(id).value = ''; });
+  if($('estimateCostTender')) $('estimateCostTender').value = '';
   $('mouza').value = 'Sahara';
   editIndex = -1;
   $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
@@ -492,6 +520,7 @@ function edit(i){
   const x = currentData()[i];
   if(!x) return;
   ids.forEach(id => { $(id).value = x[id] || ''; });
+  if($('estimateCostTender')) $('estimateCostTender').value = x.estimateCost || '';
   $('entryDate').value = x.date || todayISO();
   
   if(x.year && x.year !== state.year){
@@ -569,14 +598,12 @@ function transferNext(){
   selectedRecords.forEach((record, idx) => {
     let newRecord = JSON.parse(JSON.stringify(record));
     
-    // Tender transfer logic: Keep Estimate Cost, delete others
     if(flow.next === 'tender' || flow.next === 'modelTender'){
       newRecord.sector = '';
       newRecord.fund = '';
       newRecord.fNewSl = '';
     }
     
-    // নতুন Stage-এর জন্য নির্দিষ্ট Index সেট করা হচ্ছে
     newRecord[flow.next + 'Index'] = Date.now() + idx;
     
     const already = target.some(x => x.id && x.id === newRecord.id);
@@ -605,7 +632,6 @@ function transferBack(){
   selectedRecords.forEach(record => {
     let newRecord = JSON.parse(JSON.stringify(record));
     
-    // Approach scheme back transfer logic: clear all newly added fields
     if(flow.back === 'approach' || flow.back === 'modelVillage'){
       newRecord.sector = '';
       newRecord.estimateCost = '';
@@ -619,7 +645,6 @@ function transferBack(){
   
   selected.sort((a,b) => b-a).forEach(i => { source.splice(i,1); });
   
-  // Back Transfer-এর সময় অরিজিনাল Index অনুযায়ী Sort করা হলো
   if(flow.back === 'approach' || flow.back === 'modelVillage') {
       target.sort((a,b) => a.sortIndex - b.sortIndex);
   } else {
@@ -650,22 +675,20 @@ function render(){
       <th>Length / Area</th>
       <th>Mouja</th>
       <th>Starting Dag No.</th>
-      <th>End Dag No.</th>`;
-      
-  if(isApprove){
-    theadHTML += `<th>Sector</th><th>Estimate Cost</th><th>Fund</th><th>F New S.L.</th>`;
-  } else if(isTender) {
-    theadHTML += `<th>Estimate Cost</th>`;
-  }
-  
-  theadHTML += `
+      <th>End Dag No.</th>
       <th>In Case I.B.S<br>Job Card No.</th>
       <th>Lat</th>
       <th>Long</th>
       <th>Lat</th>
-      <th>Long</th>
-      <th>Action</th>
-    </tr>`;
+      <th>Long</th>`;
+      
+  if(isApprove){
+    theadHTML += `<th>Sector</th><th>Estimate Cost</th><th>Fund</th><th>New S.L.</th>`;
+  } else if(isTender) {
+    theadHTML += `<th>Estimate Cost</th>`;
+  }
+  
+  theadHTML += `<th>Action</th></tr>`;
     
   $('tableHead').innerHTML = theadHTML;
 
@@ -691,12 +714,12 @@ function render(){
       '<td>' + esc(x.mouza).toUpperCase() + '</td>' +
       '<td>' + esc(x.startDag) + '</td>' +
       '<td>' + esc(x.endDag) + '</td>' +
-      dynamicTds +
       '<td>' + esc(x.jobCard) + '</td>' +
       '<td>' + esc(x.lat1) + '</td>' +
       '<td>' + esc(x.long1) + '</td>' +
       '<td>' + esc(x.lat2) + '</td>' +
       '<td>' + esc(x.long2) + '</td>' +
+      dynamicTds +
       '<td><button class="actionbtn primary" onclick="edit(' + i + ')">Edit</button><button class="actionbtn danger" onclick="del(' + i + ')">Delete</button></td>' +
       '</tr>'
     );
@@ -717,19 +740,16 @@ function exportExcel(){
   const isApprove = (currentForm === 'approve' || currentForm === 'modelApprove');
   const isTender = (currentForm === 'tender' || currentForm === 'modelTender');
 
-  const headers = ['S.L.\nNo.', 'Date', 'Financial\nYear', 'Scheme Name', 'Nature of\nWork', 'Length /\nArea', 'Mouja', 'Starting\nDag No.', 'End Dag\nNo.'];
-  const widths = [40, 70, 65, 125, 72, 55, 70, 65, 65];
+  const headers = ['S.L.\nNo.', 'Date', 'Financial\nYear', 'Scheme Name', 'Nature of\nWork', 'Length /\nArea', 'Mouja', 'Starting\nDag No.', 'End Dag\nNo.', 'In Case I.B.S\nJob Card\nNo.', 'Lat', 'Long', 'Lat', 'Long'];
+  const widths = [40, 70, 65, 125, 72, 55, 70, 65, 65, 78, 48, 48, 48, 48];
 
   if(isApprove){
-    headers.push('Sector', 'Estimate\nCost', 'Fund', 'F New\nS.L.');
+    headers.push('Sector', 'Estimate\nCost', 'Fund', 'New S.L.');
     widths.push(70, 70, 70, 70);
   } else if(isTender){
     headers.push('Estimate\nCost');
     widths.push(70);
   }
-
-  headers.push('In Case I.B.S\nJob Card\nNo.', 'Lat', 'Long', 'Lat', 'Long');
-  widths.push(78, 48, 48, 48, 48);
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
   xml += '<Styles><Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Center"/><Font ss:FontName="Arial" ss:Size="9"/></Style><Style ss:ID="Title"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="14" ss:Bold="1"/></Style><Style ss:ID="Header"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="10" ss:Bold="1"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/></Borders></Style><Style ss:ID="Cell"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:FontName="Arial" ss:Size="9"/><Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/><Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/></Borders></Style></Styles>';
@@ -743,7 +763,7 @@ function exportExcel(){
   
   data.forEach((x,n) => {
     const row = [
-      n+1, x.date || '', x.year || state.year, x.scheme || '', x.nature || '', x.lengthArea || '', String(x.mouza || '').toUpperCase(), x.startDag || '', x.endDag || ''
+      n+1, x.date || '', x.year || state.year, x.scheme || '', x.nature || '', x.lengthArea || '', String(x.mouza || '').toUpperCase(), x.startDag || '', x.endDag || '', x.jobCard || '', x.lat1 || '', x.long1 || '', x.lat2 || '', x.long2 || ''
     ];
     
     if(isApprove){
@@ -751,8 +771,6 @@ function exportExcel(){
     } else if(isTender){
       row.push(x.estimateCost || '');
     }
-    
-    row.push(x.jobCard || '', x.lat1 || '', x.long1 || '', x.lat2 || '', x.long2 || '');
 
     let maxLines = 1;
     row.forEach((value,index) => {
@@ -763,7 +781,6 @@ function exportExcel(){
       else if(index === 5) charsPerLine = 8;
       else if(index === 6) charsPerLine = 9;
       else if(index === 7 || index === 8) charsPerLine = 8;
-      else if(index === (row.length - 5)) charsPerLine = 11; 
       maxLines = Math.max(maxLines, Math.ceil(text.length / charsPerLine), text.split(/\n/).length);
     });
     
