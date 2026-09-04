@@ -380,16 +380,13 @@ Data Entry Form —
 
 </header>
 
-
 <div class="container">
-
 
 <div class="card">
 
 <div class="title">
 📁 Form Select
 </div>
-
 
 <div class="topbar">
 
@@ -419,7 +416,6 @@ Data Entry Form —
 
 </div>
 
-
 <div>
 
 <label>
@@ -435,7 +431,6 @@ type="date"
 
 </div>
 
-
 <div class="formnav">
 
 <button
@@ -446,7 +441,6 @@ onclick="switchForm('approach')"
 ➕ Approach Scheme
 </button>
 
-
 <button
 id="nav-approve"
 class="secondary"
@@ -455,7 +449,6 @@ onclick="switchForm('approve')"
 ✅ Approve Scheme
 </button>
 
-
 <button
 id="nav-tender"
 class="secondary"
@@ -463,7 +456,6 @@ onclick="switchForm('tender')"
 >
 📄 Tender Scheme
 </button>
-
 
 <button
 id="nav-model"
@@ -474,7 +466,6 @@ onclick="switchForm('modelVillage')"
 </button>
 
 </div>
-
 
 <div
 id="modelStageBar"
@@ -489,7 +480,6 @@ onclick="switchForm('modelVillage')"
 ➕ Model Village Approach
 </button>
 
-
 <button
 id="stage-modelApprove"
 class="secondary"
@@ -497,7 +487,6 @@ onclick="switchForm('modelApprove')"
 >
 ✅ Model Village Approve
 </button>
-
 
 <button
 id="stage-modelTender"
@@ -508,7 +497,6 @@ onclick="switchForm('modelTender')"
 </button>
 
 </div>
-
 
 <div class="notice">
 
@@ -521,8 +509,6 @@ Approach Scheme
 
 </div>
 
-
-
 <div class="card">
 
 <div
@@ -532,9 +518,7 @@ id="formTitle"
 ➕ Approach Scheme — নতুন Data Entry
 </div>
 
-
 <div class="form">
-
 
 <div class="field">
 
@@ -549,7 +533,6 @@ placeholder="Scheme Name"
 
 </div>
 
-
 <div class="field">
 
 <label>
@@ -563,7 +546,6 @@ placeholder="Nature of Work"
 
 </div>
 
-
 <div class="field">
 
 <label>
@@ -576,7 +558,6 @@ placeholder="যেমন 150 m"
 >
 
 </div>
-
 
 <div class="field">
 
@@ -618,7 +599,6 @@ Mouja
 
 </div>
 
-
 <div class="field">
 
 <label>
@@ -631,7 +611,6 @@ placeholder="যেমন 202/1423"
 >
 
 </div>
-
 
 <div class="field">
 
@@ -646,7 +625,6 @@ placeholder="যেমন 205/1424"
 
 </div>
 
-
 <div class="field">
 
 <label>
@@ -659,7 +637,6 @@ placeholder="Job Card No."
 >
 
 </div>
-
 
 <div class="field">
 
@@ -675,7 +652,6 @@ placeholder="Latitude"
 
 </div>
 
-
 <div class="field">
 
 <label>
@@ -689,7 +665,6 @@ placeholder="Longitude"
 >
 
 </div>
-
 
 <div class="field">
 
@@ -705,7 +680,6 @@ placeholder="Latitude"
 
 </div>
 
-
 <div class="field">
 
 <label>
@@ -720,8 +694,6 @@ placeholder="Longitude"
 
 </div>
 
-
-
 <div
 id="approveBox"
 class="approveBox hidden"
@@ -731,9 +703,7 @@ class="approveBox hidden"
 ✅ Approve Scheme Information
 </div>
 
-
 <div class="approveGrid">
-
 
 <div class="field">
 
@@ -747,7 +717,6 @@ placeholder="Sector"
 >
 
 </div>
-
 
 <div class="field">
 
@@ -763,7 +732,6 @@ placeholder="Estimated Cost"
 
 </div>
 
-
 <div class="field">
 
 <label>
@@ -776,7 +744,6 @@ placeholder="যেমন 16th Untied / 5TH Theme 3"
 >
 
 </div>
-
 
 <div class="field">
 
@@ -798,8 +765,6 @@ placeholder="যেমন SL-86"
 
 </div>
 
-
-
 <div
 id="tenderBox"
 class="approveBox hidden"
@@ -808,7 +773,6 @@ class="approveBox hidden"
 <div class="approveTitle">
 📄 Tender Information
 </div>
-
 
 <div class="field">
 
@@ -826,10 +790,7 @@ placeholder="Estimated Cost"
 
 </div>
 
-
 </div>
-
-
 
 <div class="actions">
 
@@ -839,7 +800,6 @@ onclick="saveEntry()"
 >
 💾 Save Entry
 </button>
-
 
 <button
 class="gray"
@@ -852,8 +812,6 @@ onclick="clearForm()"
 
 </div>
 
-
-
 <div class="card">
 
 <div
@@ -862,7 +820,6 @@ id="savedTitle"
 >
 📋 Approach Scheme — Saved Data
 </div>
-
 
 <div class="toolbar">
 
@@ -873,14 +830,12 @@ oninput="render()"
 placeholder="🔎 Scheme / Dag / Mouja / Sector / Fund দিয়ে Search করুন"
 >
 
-
 <button
 class="success"
 onclick="exportExcel()"
 >
 📊 Export Excel
 </button>
-
 
 <button
 class="gray"
@@ -889,14 +844,12 @@ onclick="backup()"
 💾 Backup All
 </button>
 
-
 <button
 class="gray"
 onclick="document.getElementById('restore').click()"
 >
 ♻ Restore
 </button>
-
 
 <input
 id="restore"
@@ -906,14 +859,12 @@ hidden
 onchange="restore(event)"
 >
 
-
 <button
 class="danger"
 onclick="deleteCurrentForm()"
 >
 🗑 Delete This Form
 </button>
-
 
 <button
 class="danger"
@@ -923,8 +874,6 @@ onclick="deleteAll()"
 </button>
 
 </div>
-
-
 
 <div
 id="transferBar"
@@ -939,7 +888,6 @@ onclick="transferNext()"
 ➡ পরের Stage-এ Transfer
 </button>
 
-
 <button
 id="backTransferBtn"
 class="gray"
@@ -950,7 +898,6 @@ onclick="transferBack()"
 
 </div>
 
-
 <div
 id="selectedInfo"
 class="selectedInfo"
@@ -958,14 +905,12 @@ class="selectedInfo"
 কোনো Project Select করা হয়নি
 </div>
 
-
 <div
 class="count"
 id="count"
 >
 0 entries
 </div>
-
 
 <div class="tablebox">
 
@@ -983,13 +928,10 @@ id="count"
 
 </div>
 
-
-
 <script>
 
 const STORAGE_KEY =
 'AAP_OFFLINE_DATA_MOBILE_V8';
-
 
 const OLD_KEYS = [
 
@@ -1015,7 +957,6 @@ const OLD_KEYS = [
 
 ];
 
-
 const FORM_NAMES = {
 
 approach:'Approach Scheme',
@@ -1031,7 +972,6 @@ modelApprove:'Model Village Approve',
 modelTender:'Model Village Tender'
 
 };
-
 
 const FLOW = {
 
@@ -1067,7 +1007,6 @@ back:'modelApprove'
 
 };
 
-
 const BASE_IDS = [
 
 'scheme',
@@ -1093,7 +1032,6 @@ const BASE_IDS = [
 'long2'
 
 ];
-
 
 function stateDefault(){
 
@@ -1123,23 +1061,18 @@ modelTender:[]
 
 }
 
-
 let state =
 stateDefault();
-
 
 let currentForm =
 'approach';
 
-
 let editIndex =
 -1;
-
 
 const $ =
 id =>
 document.getElementById(id);
-
 
 const val =
 id =>
@@ -1148,7 +1081,6 @@ $(id)
 $(id).value.trim()
 :
 '';
-
 
 function todayISO(){
 
@@ -1163,7 +1095,6 @@ d.getTimezoneOffset()*60000
 .slice(0,10);
 
 }
-
 
 function esc(s){
 
@@ -1187,7 +1118,6 @@ c => ({
 
 }
 
-
 function createId(){
 
 return Date.now() +
@@ -1198,7 +1128,6 @@ Math.random()
 
 }
 
-
 function isApproval(f){
 
 return (
@@ -1207,7 +1136,6 @@ f === 'modelApprove'
 );
 
 }
-
 
 function isTender(f){
 
@@ -1218,13 +1146,11 @@ f === 'modelTender'
 
 }
 
-
 function isModel(f){
 
 return f.startsWith('model');
 
 }
-
 
 function formName(){
 
@@ -1232,14 +1158,11 @@ return FORM_NAMES[currentForm];
 
 }
 
-
 function currentData(){
 
 return state.forms[currentForm];
 
 }
-
-
 
 function normalizeEntry(x){
 
@@ -1359,13 +1282,10 @@ x._backSnapshot || null
 
 }
 
-
-
 function normalizeState(input){
 
 const r =
 stateDefault();
-
 
 if(Array.isArray(input)){
 
@@ -1387,7 +1307,6 @@ return r;
 
 }
 
-
 if(
 input &&
 typeof input === 'object'
@@ -1398,7 +1317,6 @@ String(
 input.year ||
 r.year
 );
-
 
 if(
 input.forms &&
@@ -1457,12 +1375,9 @@ return n;
 
 }
 
-
 return r;
 
 }
-
-
 
 function persist(){
 
@@ -1489,13 +1404,10 @@ return false;
 
 }
 
-
-
 function load(){
 
 let loaded =
 false;
-
 
 try{
 
@@ -1503,7 +1415,6 @@ const raw =
 localStorage.getItem(
 STORAGE_KEY
 );
-
 
 if(raw){
 
@@ -1523,7 +1434,6 @@ const k of OLD_KEYS
 
 const q =
 localStorage.getItem(k);
-
 
 if(q){
 
@@ -1551,26 +1461,20 @@ break;
 
 }catch(e){}
 
-
 if(!loaded)
 state =
 stateDefault();
-
 
 $('year').value =
 state.year ||
 '2026-27';
 
-
 $('entryDate').value =
 todayISO();
-
 
 updateUI();
 
 }
-
-
 
 function updateUI(){
 
@@ -1582,15 +1486,12 @@ String(state.year)
 ' - '
 );
 
-
 $('year').value =
 state.year;
-
 
 $('currentFormName')
 .textContent =
 formName();
-
 
 $('formTitle')
 .textContent =
@@ -1598,13 +1499,11 @@ $('formTitle')
 formName() +
 ' — নতুন Data Entry';
 
-
 $('savedTitle')
 .textContent =
 '📋 ' +
 formName() +
 ' — Saved Data';
-
 
 $('appHeading')
 .textContent =
@@ -1614,7 +1513,6 @@ isModel(currentForm)
 :
 'A.A.P Format of V.B.G.R.A.M.G';
 
-
 updateApprovalFields();
 
 updateTransferButtons();
@@ -1623,21 +1521,16 @@ render();
 
 }
 
-
-
 function switchForm(form){
 
 if(!FORM_NAMES[form])
 return;
 
-
 currentForm =
 form;
 
-
 editIndex =
 -1;
-
 
 document
 .querySelectorAll(
@@ -1655,7 +1548,6 @@ b.classList.add(
 
 });
 
-
 const main =
 $(
 isModel(form)
@@ -1664,7 +1556,6 @@ isModel(form)
 :
 'nav-'+form
 );
-
 
 if(main){
 
@@ -1678,16 +1569,13 @@ main.classList.remove(
 
 }
 
-
 const mb =
 $('modelStageBar');
-
 
 mb.classList.toggle(
 'show',
 isModel(form)
 );
-
 
 document
 .querySelectorAll(
@@ -1705,7 +1593,6 @@ b.classList.add(
 
 });
 
-
 if(isModel(form)){
 
 const id = {
@@ -1721,7 +1608,6 @@ modelTender:
 
 }[form];
 
-
 $(id)
 .classList.add(
 'active'
@@ -1734,11 +1620,9 @@ $(id)
 
 }
 
-
 $('currentFormName')
 .textContent =
 formName();
-
 
 $('formTitle')
 .textContent =
@@ -1746,17 +1630,14 @@ $('formTitle')
 formName() +
 ' — নতুন Data Entry';
 
-
 $('savedTitle')
 .textContent =
 '📋 ' +
 formName() +
 ' — Saved Data';
 
-
 $('search').value =
 '';
-
 
 clearForm(false);
 
@@ -1768,8 +1649,6 @@ render();
 
 }
 
-
-
 function updateApprovalFields(){
 
 const approval =
@@ -1778,13 +1657,11 @@ isApproval(currentForm);
 const tender =
 isTender(currentForm);
 
-
 $('approveBox')
 .classList.toggle(
 'hidden',
 !approval
 );
-
 
 $('tenderBox')
 .classList.toggle(
@@ -1794,13 +1671,10 @@ $('tenderBox')
 
 }
 
-
-
 function changeYear(){
 
 state.year =
 $('year').value;
-
 
 $('headerYear')
 .textContent =
@@ -1809,14 +1683,11 @@ state.year.replace(
 ' - '
 );
 
-
 persist();
 
 render();
 
 }
-
-
 
 function clearForm(
 resetDate=true
@@ -1828,7 +1699,6 @@ $(id).value =
 '';
 
 });
-
 
 [
 'sector',
@@ -1844,21 +1714,17 @@ $(id).value =
 
 });
 
-
 $('mouza').value =
 'Sahara';
 
-
 editIndex =
 -1;
-
 
 $('formTitle')
 .textContent =
 '➕ ' +
 formName() +
 ' — নতুন Data Entry';
-
 
 if(resetDate){
 
@@ -1870,12 +1736,9 @@ todayISO();
 
 }
 
-
-
 function saveEntry(){
 
 const x = {};
-
 
 BASE_IDS.forEach(id=>{
 
@@ -1884,15 +1747,12 @@ val(id);
 
 });
 
-
 x.date =
 val('entryDate') ||
 todayISO();
 
-
 x.year =
 state.year;
-
 
 if(
 isApproval(currentForm)
@@ -1909,7 +1769,6 @@ val('fund');
 
 x.newSL =
 val('newSL');
-
 
 }else if(
 isTender(currentForm)
@@ -1929,7 +1788,6 @@ val(
 'tenderEstimateCost'
 );
 
-
 }else{
 
 x.sector =
@@ -1946,7 +1804,6 @@ x.newSL =
 
 }
 
-
 if(
 !x.scheme &&
 !x.startDag
@@ -1960,10 +1817,8 @@ return;
 
 }
 
-
 const arr =
 currentData();
-
 
 if(editIndex >= 0){
 
@@ -1971,12 +1826,10 @@ x.id =
 arr[editIndex].id ||
 createId();
 
-
 x._backSnapshot =
 arr[editIndex]
 ._backSnapshot ||
 null;
-
 
 x._order =
 
@@ -1996,16 +1849,13 @@ arr[editIndex]._order
 
 editIndex;
 
-
 arr[editIndex] =
 normalizeEntry(x);
-
 
 }else{
 
 x.id =
 createId();
-
 
 x._order =
 
@@ -2030,10 +1880,8 @@ Number(r._order)
 
 0;
 
-
 x._backSnapshot =
 null;
-
 
 arr.push(
 normalizeEntry(x)
@@ -2041,15 +1889,12 @@ normalizeEntry(x)
 
 }
 
-
 if(!persist())
 return;
-
 
 render();
 
 clearForm();
-
 
 alert(
 formName() +
@@ -2058,17 +1903,13 @@ formName() +
 
 }
 
-
-
 function edit(i){
 
 const x =
 currentData()[i];
 
-
 if(!x)
 return;
-
 
 BASE_IDS.forEach(id=>{
 
@@ -2077,40 +1918,32 @@ x[id] || '';
 
 });
 
-
 $('entryDate').value =
 x.date ||
 todayISO();
-
 
 $('sector').value =
 x.sector ||
 '';
 
-
 $('estimateCost').value =
 x.estimateCost ||
 '';
-
 
 $('fund').value =
 x.fund ||
 '';
 
-
 $('newSL').value =
 x.newSL ||
 '';
-
 
 $('tenderEstimateCost').value =
 x.estimateCost ||
 '';
 
-
 editIndex =
 i;
-
 
 $('formTitle')
 .textContent =
@@ -2118,9 +1951,7 @@ $('formTitle')
 formName() +
 ' — Data Entry Edit করুন';
 
-
 updateApprovalFields();
-
 
 window.scrollTo({
 
@@ -2131,8 +1962,6 @@ behavior:'smooth'
 });
 
 }
-
-
 
 function del(i){
 
@@ -2154,8 +1983,6 @@ render();
 
 }
 
-
-
 function deleteCurrentForm(){
 
 if(!currentData().length){
@@ -2168,7 +1995,6 @@ formName() +
 return;
 
 }
-
 
 if(
 confirm(
@@ -2193,8 +2019,6 @@ render();
 
 }
 
-
-
 function deleteAll(){
 
 const total =
@@ -2206,7 +2030,6 @@ state.forms
 0
 );
 
-
 if(!total){
 
 alert(
@@ -2216,7 +2039,6 @@ alert(
 return;
 
 }
-
 
 if(
 confirm(
@@ -2231,7 +2053,6 @@ k =>
 state.forms[k]=[]
 );
 
-
 persist();
 
 clearForm();
@@ -2241,8 +2062,6 @@ render();
 }
 
 }
-
-
 
 function getSelectedIndexes(){
 
@@ -2260,8 +2079,6 @@ e.dataset.index
 
 }
 
-
-
 function toggleAll(box){
 
 document
@@ -2274,19 +2091,15 @@ cb.checked =
 box.checked
 );
 
-
 updateSelectedInfo();
 
 }
-
-
 
 function updateSelectedInfo(){
 
 const n =
 getSelectedIndexes()
 .length;
-
 
 $('selectedInfo')
 .textContent =
@@ -2304,17 +2117,13 @@ n +
 
 }
 
-
-
 function updateTransferButtons(){
 
 const f =
 FLOW[currentForm];
 
-
 const bar =
 $('transferBar');
-
 
 bar.classList.toggle(
 'show',
@@ -2324,20 +2133,16 @@ f.back
 )
 );
 
-
 const nb =
 $('nextTransferBtn');
 
-
 const bb =
 $('backTransferBtn');
-
 
 if(f.next){
 
 nb.style.display =
 'block';
-
 
 nb.textContent =
 '➡ ' +
@@ -2351,12 +2156,10 @@ nb.style.display =
 
 }
 
-
 if(f.back){
 
 bb.style.display =
 'block';
-
 
 bb.textContent =
 '⬅ ' +
@@ -2372,13 +2175,10 @@ bb.style.display =
 
 }
 
-
-
 function copyBase(r){
 
 const x =
 normalizeEntry(r);
-
 
 x.sector =
 '';
@@ -2395,18 +2195,14 @@ x.newSL =
 x._backSnapshot =
 null;
 
-
 return x;
 
 }
-
-
 
 function copyApproveToTender(r){
 
 const x =
 normalizeEntry(r);
-
 
 const snap = {
 
@@ -2469,7 +2265,6 @@ x.newSL
 
 };
 
-
 x.sector =
 '';
 
@@ -2487,12 +2282,9 @@ r.estimateCost || ''
 x._backSnapshot =
 snap;
 
-
 return x;
 
 }
-
-
 
 function copyTenderToApprove(r){
 
@@ -2503,7 +2295,6 @@ normalizeEntry(
 r._backSnapshot
 );
 
-
 x.estimateCost =
 String(
 r.estimateCost ||
@@ -2511,15 +2302,12 @@ x.estimateCost ||
 ''
 );
 
-
 return x;
 
 }
 
-
 const x =
 normalizeEntry(r);
-
 
 x.sector =
 '';
@@ -2530,12 +2318,14 @@ x.fund =
 x.newSL =
 '';
 
-
 return x;
 
 }
 
 
+/* =====================================================
+BACK TRANSFER ORDER FIX
+===================================================== */
 
 function insertByOrder(
 target,
@@ -2573,7 +2363,6 @@ Number(r._order)
 
 }
 
-
 let pos =
 target.findIndex(
 t =>
@@ -2586,11 +2375,9 @@ Number(t._order) >
 Number(x._order)
 );
 
-
 if(pos < 0)
 pos =
 target.length;
-
 
 target.splice(
 pos,
@@ -2601,16 +2388,14 @@ x
 }
 
 
-
-/* =========================================
+/* =====================================================
 TRANSFER NEXT
-========================================= */
+===================================================== */
 
 function transferNext(){
 
 const flow =
 FLOW[currentForm];
-
 
 if(!flow.next){
 
@@ -2622,10 +2407,8 @@ return;
 
 }
 
-
 const selected =
 getSelectedIndexes();
-
 
 if(!selected.length){
 
@@ -2637,14 +2420,11 @@ return;
 
 }
 
-
 const source =
 state.forms[currentForm];
 
-
 const target =
 state.forms[flow.next];
-
 
 const records =
 selected
@@ -2653,7 +2433,6 @@ i =>
 source[i]
 )
 .filter(Boolean);
-
 
 if(
 !confirm(
@@ -2670,12 +2449,10 @@ return;
 
 }
 
-
 records.forEach(
 r => {
 
 let x;
-
 
 if(
 currentForm === 'approve' &&
@@ -2687,7 +2464,6 @@ copyApproveToTender(r);
 
 }
 
-
 else if(
 currentForm === 'modelApprove' &&
 flow.next === 'modelTender'
@@ -2698,7 +2474,6 @@ copyApproveToTender(r);
 
 }
 
-
 else if(
 currentForm === 'approach' &&
 flow.next === 'approve'
@@ -2708,7 +2483,6 @@ x =
 copyBase(r);
 
 }
-
 
 else if(
 currentForm === 'modelVillage' &&
@@ -2727,7 +2501,6 @@ normalizeEntry(r);
 
 }
 
-
 if(
 !target.some(
 t =>
@@ -2744,7 +2517,6 @@ x
 
 });
 
-
 selected
 .sort(
 (a,b)=>
@@ -2758,15 +2530,12 @@ i,
 )
 );
 
-
 editIndex =
 -1;
-
 
 persist();
 
 render();
-
 
 alert(
 records.length +
@@ -2778,16 +2547,14 @@ FORM_NAMES[flow.next] +
 }
 
 
-
-/* =========================================
+/* =====================================================
 TRANSFER BACK
-========================================= */
+===================================================== */
 
 function transferBack(){
 
 const flow =
 FLOW[currentForm];
-
 
 if(!flow.back){
 
@@ -2799,10 +2566,8 @@ return;
 
 }
 
-
 const selected =
 getSelectedIndexes();
-
 
 if(!selected.length){
 
@@ -2814,14 +2579,11 @@ return;
 
 }
 
-
 const source =
 state.forms[currentForm];
 
-
 const target =
 state.forms[flow.back];
-
 
 const records =
 selected
@@ -2830,7 +2592,6 @@ i =>
 source[i]
 )
 .filter(Boolean);
-
 
 if(
 !confirm(
@@ -2847,12 +2608,10 @@ return;
 
 }
 
-
 records.forEach(
 r => {
 
 let x;
-
 
 if(
 currentForm === 'tender' &&
@@ -2864,7 +2623,6 @@ copyTenderToApprove(r);
 
 }
 
-
 else if(
 currentForm === 'modelTender' &&
 flow.back === 'modelApprove'
@@ -2875,7 +2633,6 @@ copyTenderToApprove(r);
 
 }
 
-
 else if(
 currentForm === 'approve' &&
 flow.back === 'approach'
@@ -2885,7 +2642,6 @@ x =
 copyBase(r);
 
 }
-
 
 else if(
 currentForm === 'modelApprove' &&
@@ -2904,13 +2660,19 @@ normalizeEntry(r);
 
 }
 
-
 if(
 !target.some(
 t =>
 t.id === x.id
 )
 ){
+
+/*
+IMPORTANT:
+আগের push() ব্যবহার করা হচ্ছে না।
+_original _order অনুযায়ী আবার সেই জায়গায় ঢুকবে।
+তাই 1 নম্বর → transfer → back করলে 16 নম্বরে যাবে না।
+*/
 
 insertByOrder(
 target,
@@ -2920,7 +2682,6 @@ x
 }
 
 });
-
 
 selected
 .sort(
@@ -2935,15 +2696,12 @@ i,
 )
 );
 
-
 editIndex =
 -1;
-
 
 persist();
 
 render();
-
 
 alert(
 records.length +
@@ -2955,10 +2713,9 @@ FORM_NAMES[flow.back] +
 }
 
 
-
-/* =========================================
-COLUMNS
-========================================= */
+/* =====================================================
+LIST COLUMNS
+===================================================== */
 
 function columns(){
 
@@ -2994,7 +2751,6 @@ const base = [
 
 ];
 
-
 if(
 isApproval(currentForm)
 ){
@@ -3013,7 +2769,6 @@ base.push(
 
 }
 
-
 if(
 isTender(currentForm)
 ){
@@ -3026,23 +2781,20 @@ base.push(
 
 }
 
-
 return base;
 
 }
 
 
-
-/* =========================================
-RENDER
-========================================= */
+/* =====================================================
+LIST RENDER
+===================================================== */
 
 function render(){
 
 const q =
 val('search')
 .toLowerCase();
-
 
 const list =
 currentData()
@@ -3059,17 +2811,14 @@ JSON.stringify(o.x)
 .includes(q)
 );
 
-
 const cols =
 columns();
-
 
 $('count')
 .textContent =
 list.length +
 ' entries — ' +
 formName();
-
 
 $('thead')
 .innerHTML =
@@ -3096,7 +2845,6 @@ esc(c[0]) +
 
 '</tr>';
 
-
 if(!list.length){
 
 $('tbody')
@@ -3115,13 +2863,11 @@ formName() +
 
 '</tr>';
 
-
 updateSelectedInfo();
 
 return;
 
 }
-
 
 $('tbody')
 .innerHTML =
@@ -3131,7 +2877,6 @@ list.map(
 
 const x =
 o.x;
-
 
 return (
 
@@ -3150,7 +2895,6 @@ c => {
 
 let v;
 
-
 if(c[1] === 'auto')
 
 v =
@@ -3168,7 +2912,6 @@ else
 
 v =
 x[c[1]] || '';
-
 
 return (
 '<td>' +
@@ -3208,21 +2951,117 @@ o.i +
 )
 .join('');
 
-
 $('selectAll')
 .checked =
 false;
-
 
 updateSelectedInfo();
 
 }
 
 
-
-/* =========================================
+/* =====================================================
 EXCEL EXPORT
-========================================= */
+===================================================== */
+
+/*
+REFERENCE FILE:
+VBGRAMG.xlsx
+
+EXACT BASE COLUMN ORDER:
+
+A  S.L. No.
+B  Scheme Name
+C  Nature of Work
+D  Length / Area
+E  Mouja
+F  Starting Dag No.
+G  End Dag No.
+H  In Case I.B.S Job Card No.
+I  Lat
+J  Long
+K  Lat
+L  Long
+
+Date এবং Financial Year এখানে export হবে না।
+এটাই reference Excel-এর মতো রাখার মূল fix।
+*/
+
+function exportColumns(){
+
+const base = [
+
+['S.L. No.','auto'],
+
+['Scheme Name','scheme'],
+
+['Nature of Work','nature'],
+
+['Length / Area','lengthArea'],
+
+['Mouja','mouza'],
+
+['Starting Dag No.','startDag'],
+
+['End Dag No.','endDag'],
+
+['In Case I.B.S Job Card No.','jobCard'],
+
+['Lat','lat1'],
+
+['Long','long1'],
+
+['Lat','lat2'],
+
+['Long','long2']
+
+];
+
+
+/*
+Approve-এর নিজের data দরকার হলে
+reference design-এর পরে extra columns থাকবে।
+*/
+
+if(
+isApproval(currentForm)
+){
+
+base.push(
+
+['Sector','sector'],
+
+['Estimated Cost','estimateCost'],
+
+['Fund','fund'],
+
+['New S.L. No.','newSL']
+
+);
+
+}
+
+
+/*
+Tender-এ শুধু Estimated Cost থাকবে।
+*/
+
+if(
+isTender(currentForm)
+){
+
+base.push(
+
+['Estimated Cost','estimateCost']
+
+);
+
+}
+
+return base;
+
+}
+
 
 function excelEsc(s){
 
@@ -3251,7 +3090,6 @@ s ?? ''
 );
 
 }
-
 
 
 function excelCell(
@@ -3291,12 +3129,10 @@ excelEsc(s)
 }
 
 
-
 function exportExcel(){
 
 const data =
 currentData();
-
 
 if(!data.length){
 
@@ -3309,31 +3145,28 @@ return;
 
 }
 
-
 const cols =
-columns();
+exportColumns();
 
 
 /*
 =========================================================
-EXCEL DESIGN — VBGRAMG.xlsx অনুযায়ী
+REFERENCE VBGRAMG.XLSX COLUMN WIDTH
 =========================================================
 
-Base design:
-A  = 8
-B  = 25
-C  = 14.4
-D  = 11
-E  = 14
-F  = 13
-G  = 13
-H  = 15.6
-I  = 9.6
-J  = 13
-K  = 13
-L  = 13
+A = 8
+B = 25
+C = 14.3984375
+D = 11
+E = 14
+F = 13
+G = 13
+H = 15.59765625
+I = 9.59765625
+J = 13
+K = 13
+L = 13
 
-Additional form columns-এর জন্য একই design style রাখা হয়েছে।
 =========================================================
 */
 
@@ -3343,7 +3176,7 @@ const baseWidths = [
 
 25,
 
-14.4,
+14.3984375,
 
 11,
 
@@ -3353,9 +3186,9 @@ const baseWidths = [
 
 13,
 
-15.6,
+15.59765625,
 
-9.6,
+9.59765625,
 
 13,
 
@@ -3367,10 +3200,6 @@ const baseWidths = [
 
 
 const extraWidths = {
-
-date:10,
-
-year:11,
 
 sector:12,
 
@@ -3411,15 +3240,16 @@ let xml =
 
 'xmlns:x="urn:schemas-microsoft-com:office:excel" ' +
 
-'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
+'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
 
 
-/* =================================================
+/* =====================================================
 STYLES
-================================================= */
+===================================================== */
+
+xml +=
 
 '<Styles>' +
-
 
 '<Style ss:ID="Default" ss:Name="Normal">' +
 
@@ -3458,6 +3288,18 @@ STYLES
 
 'ss:Bold="1"/>' +
 
+'<Borders>' +
+
+'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+
+'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+
+'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+
+'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+
+'</Borders>' +
+
 '</Style>' +
 
 
@@ -3481,37 +3323,13 @@ STYLES
 
 '<Borders>' +
 
-'<Border ' +
+'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'ss:Position="Bottom" ' +
+'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'ss:LineStyle="Continuous" ' +
+'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'ss:Weight="1"/>' +
-
-'<Border ' +
-
-'ss:Position="Left" ' +
-
-'ss:LineStyle="Continuous" ' +
-
-'ss:Weight="1"/>' +
-
-'<Border ' +
-
-'ss:Position="Right" ' +
-
-'ss:LineStyle="Continuous" ' +
-
-'ss:Weight="1"/>' +
-
-'<Border ' +
-
-'ss:Position="Top" ' +
-
-'ss:LineStyle="Continuous" ' +
-
-'ss:Weight="1"/>' +
+'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
 '</Borders>' +
 
@@ -3536,49 +3354,26 @@ STYLES
 
 '<Borders>' +
 
-'<Border ' +
+'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'ss:Position="Bottom" ' +
+'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'ss:LineStyle="Continuous" ' +
+'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'ss:Weight="1"/>' +
-
-'<Border ' +
-
-'ss:Position="Left" ' +
-
-'ss:LineStyle="Continuous" ' +
-
-'ss:Weight="1"/>' +
-
-'<Border ' +
-
-'ss:Position="Right" ' +
-
-'ss:LineStyle="Continuous" ' +
-
-'ss:Weight="1"/>' +
-
-'<Border ' +
-
-'ss:Position="Top" ' +
-
-'ss:LineStyle="Continuous" ' +
-
-'ss:Weight="1"/>' +
+'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
 '</Borders>' +
 
 '</Style>' +
 
+'</Styles>';
 
-'</Styles>' +
 
-
-/* =================================================
+/* =====================================================
 WORKSHEET
-================================================= */
+===================================================== */
+
+xml +=
 
 '<Worksheet ss:Name="' +
 
@@ -3587,7 +3382,6 @@ formName().slice(0,31)
 ) +
 
 '">' +
-
 
 '<Table ' +
 
@@ -3601,23 +3395,28 @@ cols.length +
 
 'x:FullColumns="1" ' +
 
-'x:FullRows="1">' +
+'x:FullRows="1">';
 
 
-widths.map(
-w =>
+widths.forEach(
+w=>{
+
+xml +=
+
 '<Column ' +
+
 'ss:Width="' +
 w +
 '" ' +
-'ss:AutoFitWidth="0"/>' 
-)
-.join('');
+
+'ss:AutoFitWidth="0"/>';
+
+});
 
 
-/* =================================================
+/* =====================================================
 TITLE
-================================================= */
+===================================================== */
 
 const heading =
 
@@ -3637,17 +3436,23 @@ xml +=
 '<Row ss:Height="32">' +
 
 excelCell(
+
 heading,
+
 'Title',
-String(cols.length - 1)
+
+String(
+cols.length - 1
+)
+
 ) +
 
 '</Row>';
 
 
-/* =================================================
+/* =====================================================
 HEADER
-================================================= */
+===================================================== */
 
 xml +=
 
@@ -3665,9 +3470,9 @@ c[0],
 '</Row>';
 
 
-/* =================================================
-DATA ROWS
-================================================= */
+/* =====================================================
+DATA ROW
+===================================================== */
 
 data.forEach(
 (x,n)=>{
@@ -3677,16 +3482,13 @@ cols.map(
 c=>{
 
 if(c[1] === 'auto')
-return n + 1;
-
+return n+1;
 
 if(c[1] === 'mouza')
-
 return String(
 x[c[1]] || ''
 )
 .toUpperCase();
-
 
 return x[c[1]] || '';
 
@@ -3695,7 +3497,11 @@ return x[c[1]] || '';
 
 /*
 =========================================================
-AUTO FIT ROW HEIGHT
+AUTO FIT DATA CELL / ROW HEIGHT
+=========================================================
+
+Long text হলে row নিজে বড় হবে।
+Text cell-এর ভিতরে wrap হবে।
 =========================================================
 */
 
@@ -3711,35 +3517,32 @@ value ?? ''
 );
 
 
-let charsPerLine = 10;
+let charsPerLine = 12;
 
 
 if(index === 0){
 
-charsPerLine = 6;
+charsPerLine = 5;
 
 }
-
 
 else if(
 cols[index] &&
 cols[index][1] === 'scheme'
 ){
 
-charsPerLine = 28;
+charsPerLine = 30;
 
 }
-
 
 else if(
 cols[index] &&
 cols[index][1] === 'nature'
 ){
 
-charsPerLine = 17;
+charsPerLine = 18;
 
 }
-
 
 else if(
 cols[index] &&
@@ -3750,7 +3553,6 @@ charsPerLine = 13;
 
 }
 
-
 else if(
 cols[index] &&
 cols[index][1] === 'mouza'
@@ -3760,7 +3562,6 @@ charsPerLine = 14;
 
 }
 
-
 else if(
 cols[index] &&
 (
@@ -3769,20 +3570,18 @@ cols[index][1] === 'endDag'
 )
 ){
 
-charsPerLine = 14;
+charsPerLine = 15;
 
 }
-
 
 else if(
 cols[index] &&
 cols[index][1] === 'jobCard'
 ){
 
-charsPerLine = 17;
+charsPerLine = 18;
 
 }
-
 
 else if(
 cols[index] &&
@@ -3794,10 +3593,9 @@ cols[index][1] === 'long2'
 )
 ){
 
-charsPerLine = 13;
+charsPerLine = 12;
 
 }
-
 
 else if(
 cols[index] &&
@@ -3808,16 +3606,14 @@ charsPerLine = 14;
 
 }
 
-
 else if(
 cols[index] &&
 cols[index][1] === 'estimateCost'
 ){
 
-charsPerLine = 13;
+charsPerLine = 14;
 
 }
-
 
 else if(
 cols[index] &&
@@ -3828,26 +3624,12 @@ charsPerLine = 18;
 
 }
 
-
 else if(
 cols[index] &&
 cols[index][1] === 'newSL'
 ){
 
 charsPerLine = 12;
-
-}
-
-
-else if(
-cols[index] &&
-(
-cols[index][1] === 'date' ||
-cols[index][1] === 'year'
-)
-){
-
-charsPerLine = 11;
 
 }
 
@@ -3872,18 +3654,23 @@ text
 });
 
 
+/*
+Reference file-এর মতো compact কিন্তু
+long text-এর জন্য যথেষ্ট height।
+*/
+
 const rowHeight =
 
 Math.max(
 
-22,
+20,
 
 Math.min(
 
-95,
+110,
 
-18 +
-maxLines * 10
+14 +
+maxLines * 9
 
 )
 
@@ -3914,9 +3701,10 @@ v,
 });
 
 
-/* =================================================
-PAGE BREAK — প্রতি 10 PROJECT
-================================================= */
+/* =====================================================
+PAGE BREAK
+10 PROJECT PER PAGE
+===================================================== */
 
 let pageBreakXml = '';
 
@@ -3927,19 +3715,22 @@ const breaks = [];
 
 
 for(
-let i = 10;
-i < data.length;
-i += 10
+let i=10;
+i<data.length;
+i+=10
 ){
 
 /*
-Title = Row 1
-Header = Row 2
-Data 1-10 = Row 3-12
+Row 1 = Title
+Row 2 = Header
+
+10 data = Row 3 থেকে Row 12
+
+তাই 10,20,30... data-এর পরে break।
 */
 
 breaks.push(
-12 + (i - 10)
+i+2
 );
 
 }
@@ -3955,11 +3746,15 @@ pageBreakXml =
 
 breaks.map(
 r =>
+
 '<RowBreak>' +
+
 '<Row>' +
 r +
 '</Row>' +
+
 '</RowBreak>'
+
 )
 .join('') +
 
@@ -3972,9 +3767,9 @@ r +
 }
 
 
-/* =================================================
-PAGE SETUP
-================================================= */
+/* =====================================================
+A4 PAGE SETUP + LANDSCAPE + FIT TO PAPER
+===================================================== */
 
 xml +=
 
@@ -3987,11 +3782,6 @@ xml +=
 
 '<PageSetup>' +
 
-/*
-A4 = PaperSizeIndex 9
-Landscape
-*/
-
 '<Layout ' +
 
 'x:Orientation="Landscape" ' +
@@ -4002,19 +3792,21 @@ Landscape
 
 '<PageMargins ' +
 
-'x:Bottom="0.35" ' +
+'x:Bottom="0.20" ' +
 
-'x:Left="0.25" ' +
+'x:Left="0.15" ' +
 
-'x:Right="0.25" ' +
+'x:Right="0.15" ' +
 
-'x:Top="0.35"/>' +
+'x:Top="0.20"/>' +
 
 '</PageSetup>' +
 
 
-'<FitToPage/>' +
-
+/*
+A4 paper
+PaperSizeIndex 9 = A4
+*/
 
 '<Print>' +
 
@@ -4029,8 +3821,9 @@ Landscape
 '</Print>' +
 
 
-'<Selected/>' +
-
+/*
+First two rows repeat/freeze concept
+*/
 
 '<FreezePanes>' +
 
@@ -4042,6 +3835,13 @@ Landscape
 
 '</FreezePanes>' +
 
+
+/*
+Fit to one page wide
+Height automatic
+*/
+
+'<FitToPage/>' +
 
 '<FitToWidth>1</FitToWidth>' +
 
@@ -4085,6 +3885,9 @@ state.year +
 }
 
 
+/* =====================================================
+DOWNLOAD
+===================================================== */
 
 function download(
 blob,
@@ -4094,22 +3897,17 @@ name
 const a =
 document.createElement('a');
 
-
 a.href =
 URL.createObjectURL(
 blob
 );
 
-
 a.download =
 name;
 
-
 document.body.appendChild(a);
 
-
 a.click();
-
 
 setTimeout(
 ()=>{
@@ -4127,6 +3925,9 @@ a.remove();
 }
 
 
+/* =====================================================
+BACKUP
+===================================================== */
 
 function backup(){
 
@@ -4147,7 +3948,6 @@ forms:
 state.forms
 
 };
-
 
 download(
 
@@ -4175,20 +3975,20 @@ type:
 }
 
 
+/* =====================================================
+RESTORE
+===================================================== */
 
 function restore(e){
 
 const f =
 e.target.files[0];
 
-
 if(!f)
 return;
 
-
 const r =
 new FileReader();
-
 
 r.onload =
 ()=>{
@@ -4200,12 +4000,10 @@ JSON.parse(
 r.result
 );
 
-
 const restored =
 normalizeState(
 parsed
 );
-
 
 const total =
 
@@ -4217,7 +4015,6 @@ restored.forms
 s+a.length,
 0
 );
-
 
 if(
 
@@ -4240,15 +4037,12 @@ throw Error(
 
 }
 
-
 state =
 restored;
-
 
 $('year').value =
 state.year ||
 '2026-27';
-
 
 $('headerYear')
 .textContent =
@@ -4257,17 +4051,14 @@ state.year.replace(
 ' - '
 );
 
-
 if(!persist())
 throw Error(
 'Storage failed'
 );
 
-
 clearForm();
 
 render();
-
 
 alert(
 
@@ -4293,7 +4084,6 @@ state.forms.modelTender.length
 
 );
 
-
 }catch(err){
 
 alert(
@@ -4302,23 +4092,23 @@ alert(
 
 }
 
-
 e.target.value =
 '';
 
 };
-
 
 r.readAsText(f);
 
 }
 
 
+/* =====================================================
+START
+===================================================== */
 
 $('entryDate')
 .value =
 todayISO();
-
 
 load();
 
