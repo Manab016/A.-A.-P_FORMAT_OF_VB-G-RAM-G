@@ -3,360 +3,321 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>A.A.P Offline Data Entry</title>
 
 <style>
 *{
-box-sizing:border-box
+  box-sizing:border-box
 }
 
 body{
-margin:0;
-background:#f1f5f9;
-color:#17212b;
-font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
-font-size:15px
+  margin:0;
+  background:#f1f5f9;
+  color:#17212b;
+  font-family:"Noto Sans Bengali","Nirmala UI",Arial,sans-serif;
+  font-size:15px
 }
 
 header{
-background:#17324d;
-color:#fff;
-padding:18px 12px;
-text-align:center
+  background:#17324d;
+  color:#fff;
+  padding:18px 12px;
+  text-align:center
 }
 
 header h1{
-font-size:20px;
-margin:0;
-font-weight:800
+  font-size:20px;
+  margin:0;
+  font-weight:800
 }
 
 header p{
-font-size:12px;
-margin:4px 0 0
+  font-size:12px;
+  margin:4px 0 0
 }
 
-.yearText{
-font-size:12px;
-margin:5px 0 0;
-font-weight:700
+header .yearText{
+  font-size:12px;
+  margin:5px 0 0;
+  font-weight:700
 }
 
 .container{
-max-width:1100px;
-margin:auto;
-padding:10px
+  max-width:1100px;
+  margin:auto;
+  padding:10px
 }
 
 .card{
-background:#fff;
-border:1px solid #d8e0e7;
-border-radius:12px;
-margin-bottom:12px;
-overflow:hidden
+  background:#fff;
+  border:1px solid #d8e0e7;
+  border-radius:12px;
+  margin-bottom:12px;
+  overflow:hidden
 }
 
 .title{
-font-size:17px;
-font-weight:800;
-padding:14px;
-border-bottom:1px solid #e4e9ee
+  font-size:17px;
+  font-weight:800;
+  padding:14px;
+  border-bottom:1px solid #e4e9ee
 }
 
 .form{
-padding:12px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:11px
+  padding:12px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px
 }
 
 .field label{
-display:block;
-font-weight:800;
-font-size:13px;
-margin-bottom:5px
+  display:block;
+  font-weight:800;
+  font-size:13px;
+  margin-bottom:5px
 }
 
-input,
-select{
-width:100%;
-font:inherit;
-border:1px solid #bdc9d4;
-border-radius:9px;
-padding:12px;
-background:#fff;
-outline:none
+input,select{
+  width:100%;
+  font:inherit;
+  border:1px solid #bdc9d4;
+  border-radius:9px;
+  padding:12px;
+  background:#fff;
+  outline:none
 }
 
-input:focus,
-select:focus{
-border-color:#1769aa
+input:focus,select:focus{
+  border-color:#1769aa
 }
 
 button{
-font:inherit;
-font-weight:800;
-border:0;
-border-radius:9px;
-padding:12px 14px;
-cursor:pointer;
-min-height:46px
+  font:inherit;
+  font-weight:800;
+  border:0;
+  border-radius:9px;
+  padding:12px 14px;
+  cursor:pointer;
+  min-height:46px
 }
 
 .primary{
-background:#1769aa;
-color:#fff
+  background:#1769aa;
+  color:#fff
 }
 
 .success{
-background:#198754;
-color:#fff
+  background:#198754;
+  color:#fff
 }
 
 .danger{
-background:#c0392b;
-color:#fff
+  background:#c0392b;
+  color:#fff
 }
 
 .gray{
-background:#e8edf2;
-color:#203040
+  background:#e8edf2;
+  color:#203040
 }
 
 .secondary{
-background:#eef4f8;
-color:#17324d;
-border:1px solid #cbd7e1
+  background:#eef4f8;
+  color:#17324d;
+  border:1px solid #cbd7e1
 }
 
 .actions,
 .toolbar{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
-padding:12px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  padding:12px
 }
 
 .toolbar .search{
-grid-column:1/-1
+  grid-column:1/-1
 }
 
 .count{
-text-align:center;
-font-weight:800;
-color:#198754;
-padding:0 10px 10px
+  text-align:center;
+  font-weight:800;
+  color:#198754;
+  padding:0 10px 10px
 }
 
 .tablebox{
-overflow:auto;
-padding:0 8px 12px
+  overflow:auto;
+  padding:0 8px 12px
 }
 
 table{
-border-collapse:collapse;
-width:100%;
-min-width:1450px;
-font-size:12px
+  border-collapse:collapse;
+  width:100%;
+  min-width:1450px;
+  font-size:12px
 }
 
-th,
-td{
-border:1px solid #aeb8c2;
-padding:7px;
-vertical-align:top
+th,td{
+  border:1px solid #aeb8c2;
+  padding:7px;
+  vertical-align:top
 }
 
 th{
-background:#e9eff4;
-text-align:center;
-white-space:nowrap;
-font-weight:800
+  background:#e9eff4;
+  text-align:center;
+  white-space:nowrap;
+  font-weight:800
 }
 
 td{
-white-space:normal;
-overflow-wrap:anywhere;
-word-break:break-word
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:break-word
 }
 
 .actionbtn{
-padding:7px 9px;
-min-height:34px;
-font-size:12px;
-margin:2px
+  padding:7px 9px;
+  min-height:34px;
+  font-size:12px;
+  margin:2px
 }
 
 .empty{
-text-align:center;
-padding:30px;
-color:#65717d
+  text-align:center;
+  padding:30px;
+  color:#65717d
 }
 
 .formnav{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:8px;
-padding:10px 12px 4px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  padding:10px 12px 4px
 }
 
 .formnav button{
-min-height:44px;
-font-size:13px
+  min-height:44px;
+  font-size:13px
 }
 
 .formnav button.active{
-background:#1769aa;
-color:#fff
+  background:#1769aa;
+  color:#fff
 }
 
 .topbar{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
-padding:10px 12px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  padding:10px 12px
 }
 
 .notice{
-margin:10px 12px;
-padding:10px;
-border-radius:9px;
-background:#eaf5ff;
-border:1px solid #c9e2f8;
-color:#174d73;
-font-size:13px;
-font-weight:700
+  margin:10px 12px;
+  padding:10px;
+  border-radius:9px;
+  background:#eaf5ff;
+  border:1px solid #c9e2f8;
+  color:#174d73;
+  font-size:13px;
+  font-weight:700
 }
 
 .stagebar{
-display:none;
-grid-template-columns:1fr 1fr 1fr;
-gap:8px;
-padding:8px 12px 12px;
-background:#f8fbfd;
-border-top:1px solid #e4e9ee
+  display:none;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  padding:8px 12px 12px;
+  background:#f8fbfd;
+  border-top:1px solid #e4e9ee
 }
 
 .stagebar.show{
-display:grid
+  display:grid
 }
 
 .stagebar button{
-min-height:42px;
-font-size:12px
+  min-height:42px;
+  font-size:12px
 }
 
 .stagebar button.active{
-background:#198754;
-color:#fff
+  background:#198754;
+  color:#fff
 }
 
 .transferbar{
-display:none;
-grid-template-columns:1fr 1fr;
-gap:8px;
-padding:10px 12px;
-background:#fff8e8;
-border-top:1px solid #ead9ad
+  display:none;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  padding:10px 12px;
+  background:#fff8e8;
+  border-top:1px solid #ead9ad
 }
 
 .transferbar.show{
-display:grid
+  display:grid
 }
 
 .transferbar button{
-font-size:12px;
-min-height:42px
+  font-size:12px;
+  min-height:42px
 }
 
 .selectCell{
-text-align:center
-}
-
-.rowcheck,
-.selectAll{
-cursor:pointer
+  text-align:center
 }
 
 .rowcheck{
-width:20px;
-height:20px
+  width:20px;
+  height:20px;
+  cursor:pointer
 }
 
 .selectAll{
-width:18px;
-height:18px
+  width:18px;
+  height:18px;
+  cursor:pointer
 }
 
 .selectedInfo{
-padding:5px 12px 10px;
-text-align:center;
-color:#b26b00;
-font-weight:800;
-font-size:13px
-}
-
-.hidden{
-display:none!important
-}
-
-.hint{
-font-size:12px;
-color:#667;
-margin-top:4px
-}
-
-.approveBox{
-grid-column:1/-1;
-border:2px solid #1769aa;
-border-radius:10px;
-padding:12px;
-background:#f7fbff;
-margin-top:4px
-}
-
-.approveTitle{
-font-weight:900;
-color:#1769aa;
-font-size:15px;
-margin-bottom:10px
-}
-
-.approveGrid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:11px
+  padding:5px 12px 10px;
+  text-align:center;
+  color:#b26b00;
+  font-weight:800;
+  font-size:13px
 }
 
 @media(max-width:700px){
 
-.form{
-grid-template-columns:1fr
-}
+  .form{
+    grid-template-columns:1fr
+  }
 
-.actions,
-.toolbar,
-.topbar{
-grid-template-columns:1fr 1fr
-}
+  .actions,
+  .toolbar,
+  .topbar{
+    grid-template-columns:1fr 1fr
+  }
 
-.formnav{
-grid-template-columns:1fr 1fr
-}
+  .formnav{
+    grid-template-columns:1fr 1fr
+  }
 
-.stagebar,
-.transferbar{
-grid-template-columns:1fr
-}
+  .stagebar{
+    grid-template-columns:1fr
+  }
 
-.approveGrid{
-grid-template-columns:1fr
-}
+  .transferbar{
+    grid-template-columns:1fr
+  }
 
-input{
-font-size:16px
-}
-
+  input{
+    font-size:16px
+  }
 }
 </style>
 </head>
@@ -365,3750 +326,2959 @@ font-size:16px
 
 <header>
 
-<h1 id="appHeading">
-A.A.P Format of V.B.G.R.A.M.G
-</h1>
+  <!-- REGULAR FORM-এ এই Heading কখনো পরিবর্তন হবে না -->
+  <h1 id="appHeading">A.A.P Format of V.B.G.R.A.M.G</h1>
 
-<p>
-Mahishbathani Gram Panchayat Scheme
-</p>
+  <p>Mahishbathani Gram Panchayat Scheme</p>
 
-<div class="yearText">
-Data Entry Form —
-<span id="headerYear">2026 - 27</span>
-</div>
+  <div class="yearText">
+    Data Entry Form — <span id="headerYear">2026 - 27</span>
+  </div>
 
 </header>
 
+
 <div class="container">
 
-<div class="card">
+  <!-- =====================================================
+       FORM SELECT
+       ====================================================== -->
 
-<div class="title">
-📁 Form Select
-</div>
+  <div class="card">
 
-<div class="topbar">
+    <div class="title">📁 Form Select</div>
 
-<div>
+    <div class="topbar">
 
-<label>
-<b>Financial Year</b>
-</label>
-
-<select id="year" onchange="changeYear()">
+      <div>
+        <label for="year"><b>Financial Year</b></label>
 
-<option>2025-26</option>
+        <select id="year" onchange="changeYear()">
+          <option value="2025-26">2025-26</option>
+          <option value="2026-27" selected>2026-27</option>
+          <option value="2027-28">2027-28</option>
+          <option value="2028-29">2028-29</option>
+          <option value="2029-30">2029-30</option>
+          <option value="2030-31">2030-31</option>
+        </select>
+      </div>
 
-<option selected>
-2026-27
-</option>
 
-<option>2027-28</option>
+      <div>
+        <label for="entryDate"><b>Date</b></label>
+        <input id="entryDate" type="date">
+      </div>
 
-<option>2028-29</option>
+    </div>
 
-<option>2029-30</option>
 
-<option>2030-31</option>
+    <!-- MAIN 4 BUTTON -->
+    <div class="formnav">
 
-</select>
+      <button
+        id="nav-approach"
+        class="active"
+        onclick="switchForm('approach')">
+        ➕ Approach Scheme
+      </button>
 
-</div>
+      <button
+        id="nav-approve"
+        class="secondary"
+        onclick="switchForm('approve')">
+        Approve Scheme
+      </button>
 
-<div>
+      <button
+        id="nav-tender"
+        class="secondary"
+        onclick="switchForm('tender')">
+        Tender Scheme
+      </button>
 
-<label>
-<b>Date</b>
-</label>
+      <button
+        id="nav-model"
+        class="secondary"
+        onclick="switchForm('modelVillage')">
+        Model Village
+      </button>
 
-<input
-id="entryDate"
-type="date"
->
+    </div>
 
-</div>
 
-</div>
+    <!-- MODEL VILLAGE-এর আলাদা STAGE -->
+    <div id="modelStageBar" class="stagebar">
 
-<div class="formnav">
+      <button
+        id="stage-modelVillage"
+        class="active"
+        onclick="switchForm('modelVillage')">
+        Model Village Approach
+      </button>
+
+      <button
+        id="stage-modelApprove"
+        class="secondary"
+        onclick="switchForm('modelApprove')">
+        Model Village Approve
+      </button>
+
+      <button
+        id="stage-modelTender"
+        class="secondary"
+        onclick="switchForm('modelTender')">
+        Model Village Tender
+      </button>
+
+    </div>
+
 
-<button
-id="nav-approach"
-class="active"
-onclick="switchForm('approach')"
->
-➕ Approach Scheme
-</button>
+    <div class="notice">
+
+      বর্তমানে:
+      <span id="currentFormName">
+        Approach Scheme
+      </span>
+
+      — এই form-এর data অন্য form-এর data থেকে সম্পূর্ণ আলাদা থাকবে।
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       DATA ENTRY FORM
+       ====================================================== -->
+
+  <div class="card">
+
+    <div
+      class="title"
+      id="formTitle">
+      ➕ Approach Scheme — নতুন Data Entry
+    </div>
+
+
+    <div class="form">
+
+      <div class="field">
+        <label>Scheme Name</label>
+        <input
+          id="scheme"
+          placeholder="Scheme Name">
+      </div>
+
+
+      <div class="field">
+        <label>Nature of Work</label>
+        <input
+          id="nature"
+          placeholder="Nature of Work">
+      </div>
+
+
+      <div class="field">
+        <label>Length or Area</label>
+        <input
+          id="lengthArea"
+          placeholder="যেমন 150 m">
+      </div>
+
+
+      <div class="field">
+        <label>Mouja</label>
+
+        <select id="mouza">
+
+          <option value="Sahara">SAHARA</option>
+          <option value="Aihorani">AIHORANI</option>
+          <option value="Badanpur">BADANPUR</option>
+          <option value="Balarampur">BALARAMPUR</option>
+          <option value="Bangabari">BANGABARI</option>
+          <option value="Barkol">BARKOL</option>
+          <option value="Belahar">BELAHAR</option>
+          <option value="Chhotapara">CHHOTAPARA</option>
+          <option value="Goalpara">GOALPARA</option>
+          <option value="Gotpara">GOTPARA</option>
+          <option value="Harirampur">HARIRAMPUR</option>
+          <option value="Kadamtali">KADAMTALI</option>
+          <option value="Kesrail Pirgain">KESRAIL PIRGAIN</option>
+          <option value="Lakshmi Kandar">LAKSHMI KANDAR</option>
+          <option value="Maheshkuri">MAHESHKURI</option>
+          <option value="Mahish Bathani">MAHISH BATHANI</option>
+          <option value="Mekpur">MEKPUR</option>
+          <option value="Muralighat">MURALIGHAT</option>
+          <option value="Paiti">PAITI</option>
+          <option value="Patamari">PATAMARI</option>
+          <option value="Rahutgaon">RAHUTGAON</option>
+          <option value="Sabdalkhani">SABDALKHANI</option>
+          <option value="Samsabad">SAMSABAD</option>
+          <option value="Sanjail">SANJAIL</option>
+          <option value="Sultandighi">SULTANDIGHI</option>
+          <option value="Tutkhan">TUTKHAN</option>
+          <option value="Uttar Bhatra">UTTAR BHATRA</option>
 
-<button
-id="nav-approve"
-class="secondary"
-onclick="switchForm('approve')"
->
-✅ Approve Scheme
-</button>
+        </select>
+      </div>
 
-<button
-id="nav-tender"
-class="secondary"
-onclick="switchForm('tender')"
->
-📄 Tender Scheme
-</button>
 
-<button
-id="nav-model"
-class="secondary"
-onclick="switchForm('modelVillage')"
->
-🏘️ Model Village
-</button>
+      <div class="field">
+        <label>Starting Dag No.</label>
+        <input
+          id="startDag"
+          placeholder="যেমন 202/1423">
+      </div>
 
-</div>
 
-<div
-id="modelStageBar"
-class="stagebar"
->
+      <div class="field">
+        <label>End Dag No.</label>
+        <input
+          id="endDag"
+          placeholder="যেমন 205/1424">
+      </div>
 
-<button
-id="stage-modelVillage"
-class="active"
-onclick="switchForm('modelVillage')"
->
-➕ Model Village Approach
-</button>
 
-<button
-id="stage-modelApprove"
-class="secondary"
-onclick="switchForm('modelApprove')"
->
-✅ Model Village Approve
-</button>
-
-<button
-id="stage-modelTender"
-class="secondary"
-onclick="switchForm('modelTender')"
->
-📄 Model Village Tender
-</button>
-
-</div>
-
-<div class="notice">
-
-বর্তমানে:
-<span id="currentFormName">
-Approach Scheme
-</span>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div
-class="title"
-id="formTitle"
->
-➕ Approach Scheme — নতুন Data Entry
-</div>
-
-<div class="form">
-
-<div class="field">
-
-<label>
-Scheme Name
-</label>
+      <div class="field">
+        <label>I.B.S. Job Card No.</label>
+        <input
+          id="jobCard"
+          placeholder="Job Card No.">
+      </div>
 
-<input
-id="scheme"
-placeholder="Scheme Name"
->
 
-</div>
+      <div class="field">
+        <label>Latitude</label>
+        <input
+          id="lat1"
+          inputmode="decimal"
+          placeholder="Latitude">
+      </div>
 
-<div class="field">
 
-<label>
-Nature of Work
-</label>
+      <div class="field">
+        <label>Longitude</label>
+        <input
+          id="long1"
+          inputmode="decimal"
+          placeholder="Longitude">
+      </div>
 
-<input
-id="nature"
-placeholder="Nature of Work"
->
 
-</div>
+      <div class="field">
+        <label>Latitude (2)</label>
+        <input
+          id="lat2"
+          inputmode="decimal"
+          placeholder="Latitude">
+      </div>
 
-<div class="field">
 
-<label>
-Length or Area
-</label>
+      <div class="field">
+        <label>Longitude (2)</label>
+        <input
+          id="long2"
+          inputmode="decimal"
+          placeholder="Longitude">
+      </div>
 
-<input
-id="lengthArea"
-placeholder="যেমন 150 m"
->
+    </div>
 
-</div>
 
-<div class="field">
+    <div class="actions">
 
-<label>
-Mouja
-</label>
+      <button
+        class="primary"
+        onclick="saveEntry()">
+        💾 Save Entry
+      </button>
 
-<select id="mouza">
+      <button
+        class="gray"
+        onclick="clearForm()">
+        ↩ Clear
+      </button>
 
-<option>Sahara</option>
-<option>Aihorani</option>
-<option>Badanpur</option>
-<option>Balarampur</option>
-<option>Bangabari</option>
-<option>Barkol</option>
-<option>Belahar</option>
-<option>Chhotapara</option>
-<option>Goalpara</option>
-<option>Gotpara</option>
-<option>Harirampur</option>
-<option>Kadamtali</option>
-<option>Kesrail Pirgain</option>
-<option>Lakshmi Kandar</option>
-<option>Maheshkuri</option>
-<option>Mahish Bathani</option>
-<option>Mekpur</option>
-<option>Muralighat</option>
-<option>Paiti</option>
-<option>Patamari</option>
-<option>Rahutgaon</option>
-<option>Sabdalkhani</option>
-<option>Samsabad</option>
-<option>Sanjail</option>
-<option>Sultandighi</option>
-<option>Tutkhan</option>
-<option>Uttar Bhatra</option>
+    </div>
 
-</select>
+  </div>
 
-</div>
 
-<div class="field">
 
-<label>
-Starting Dag No.
-</label>
+  <!-- =====================================================
+       SAVED DATA
+       ====================================================== -->
 
-<input
-id="startDag"
-placeholder="যেমন 202/1423"
->
+  <div class="card">
 
-</div>
+    <div
+      class="title"
+      id="savedTitle">
+      📋 Approach Scheme — Saved Data
+    </div>
 
-<div class="field">
 
-<label>
-End Dag No.
-</label>
+    <div class="toolbar">
 
-<input
-id="endDag"
-placeholder="যেমন 205/1424"
->
+      <input
+        class="search"
+        id="search"
+        oninput="render()"
+        placeholder="🔎 Scheme / Dag / Mouja দিয়ে Search করুন">
 
-</div>
 
-<div class="field">
+      <button
+        class="success"
+        onclick="exportExcel()">
+        📊 Export Excel
+      </button>
 
-<label>
-In Case I.B.S Job Card No.
-</label>
 
-<input
-id="jobCard"
-placeholder="Job Card No."
->
+      <button
+        class="gray"
+        onclick="backup()">
+        💾 Backup All
+      </button>
 
-</div>
 
-<div class="field">
+      <button
+        class="gray"
+        onclick="document.getElementById('restore').click()">
+        ♻ Restore
+      </button>
 
-<label>
-Latitude
-</label>
+      <input
+        id="restore"
+        type="file"
+        accept=".json,application/json"
+        hidden
+        onchange="restore(event)">
 
-<input
-id="lat1"
-inputmode="decimal"
-placeholder="Latitude"
->
 
-</div>
+      <button
+        class="danger"
+        onclick="deleteCurrentForm()">
+        🗑 Delete This Form
+      </button>
 
-<div class="field">
 
-<label>
-Longitude
-</label>
+      <button
+        class="danger"
+        onclick="deleteAll()">
+        🗑 Delete ALL Forms
+      </button>
 
-<input
-id="long1"
-inputmode="decimal"
-placeholder="Longitude"
->
+    </div>
 
-</div>
 
-<div class="field">
+    <!-- TRANSFER BUTTON -->
+    <div
+      id="transferBar"
+      class="transferbar">
 
-<label>
-Latitude
-</label>
+      <button
+        id="nextTransferBtn"
+        class="success"
+        onclick="transferNext()">
+        ➡ পরের Stage-এ Transfer
+      </button>
 
-<input
-id="lat2"
-inputmode="decimal"
-placeholder="Latitude"
->
+      <button
+        id="backTransferBtn"
+        class="gray"
+        onclick="transferBack()">
+        ⬅ আগের Stage-এ Back
+      </button>
 
-</div>
+    </div>
 
-<div class="field">
 
-<label>
-Longitude
-</label>
+    <div
+      id="selectedInfo"
+      class="selectedInfo">
+      কোনো Project Select করা হয়নি
+    </div>
 
-<input
-id="long2"
-inputmode="decimal"
-placeholder="Longitude"
->
 
-</div>
+    <div
+      class="count"
+      id="count">
+      0 entries
+    </div>
 
-<div
-id="approveBox"
-class="approveBox hidden"
->
 
-<div class="approveTitle">
-✅ Approve Scheme Information
-</div>
+    <div class="tablebox">
 
-<div class="approveGrid">
+      <table>
 
-<div class="field">
+        <thead>
 
-<label>
-Sector
-</label>
+          <tr>
 
-<input
-id="sector"
-placeholder="Sector"
->
+            <th>
+              <input
+                type="checkbox"
+                class="selectAll"
+                id="selectAll"
+                onchange="toggleAll(this)">
+              <br>
+              Select
+            </th>
 
-</div>
+            <th>S.L. No.<br>(Auto)</th>
 
-<div class="field">
+            <th>Date</th>
 
-<label>
-Estimated Cost
-</label>
+            <th>Financial<br>Year</th>
 
-<input
-id="estimateCost"
-inputmode="decimal"
-placeholder="Estimated Cost"
->
+            <th>Scheme Name</th>
 
-</div>
+            <th>Nature of Work</th>
 
-<div class="field">
+            <th>Length / Area</th>
 
-<label>
-Fund
-</label>
+            <th>Mouja</th>
 
-<input
-id="fund"
-placeholder="যেমন 16th Untied / 5TH Theme 3"
->
+            <th>Starting Dag No.</th>
 
-</div>
+            <th>End Dag No.</th>
 
-<div class="field">
+            <th>In Case I.B.S<br>Job Card No.</th>
 
-<label>
-New S.L. No.
-<span class="hint">
-(ম্যানুয়ালি লিখবেন)
-</span>
-</label>
+            <th>Lat</th>
 
-<input
-id="newSL"
-placeholder="যেমন SL-86"
->
+            <th>Long</th>
 
-</div>
+            <th>Lat</th>
 
-</div>
+            <th>Long</th>
 
-</div>
+            <th>Action</th>
 
-<div
-id="tenderBox"
-class="approveBox hidden"
->
+          </tr>
 
-<div class="approveTitle">
-📄 Tender Information
-</div>
+        </thead>
 
-<div class="field">
 
-<label>
-Estimated Cost
-</label>
+        <tbody id="tbody"></tbody>
 
-<input
-id="tenderEstimateCost"
-inputmode="decimal"
-placeholder="Estimated Cost"
->
+      </table>
 
-</div>
+    </div>
 
-</div>
-
-</div>
-
-<div class="actions">
-
-<button
-class="primary"
-onclick="saveEntry()"
->
-💾 Save Entry
-</button>
-
-<button
-class="gray"
-onclick="clearForm()"
->
-↩ Clear
-</button>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div
-class="title"
-id="savedTitle"
->
-📋 Approach Scheme — Saved Data
-</div>
-
-<div class="toolbar">
-
-<input
-class="search"
-id="search"
-oninput="render()"
-placeholder="🔎 Scheme / Dag / Mouja / Sector / Fund দিয়ে Search করুন"
->
-
-<button
-class="success"
-onclick="exportExcel()"
->
-📊 Export Excel
-</button>
-
-<button
-class="gray"
-onclick="backup()"
->
-💾 Backup All
-</button>
-
-<button
-class="gray"
-onclick="document.getElementById('restore').click()"
->
-♻ Restore
-</button>
-
-<input
-id="restore"
-type="file"
-accept=".json,application/json"
-hidden
-onchange="restore(event)"
->
-
-<button
-class="danger"
-onclick="deleteCurrentForm()"
->
-🗑 Delete This Form
-</button>
-
-<button
-class="danger"
-onclick="deleteAll()"
->
-🗑 Delete ALL Forms
-</button>
+  </div>
 
 </div>
 
-<div
-id="transferBar"
-class="transferbar"
->
 
-<button
-id="nextTransferBtn"
-class="success"
-onclick="transferNext()"
->
-➡ পরের Stage-এ Transfer
-</button>
-
-<button
-id="backTransferBtn"
-class="gray"
-onclick="transferBack()"
->
-⬅ আগের Stage-এ Back
-</button>
-
-</div>
-
-<div
-id="selectedInfo"
-class="selectedInfo"
->
-কোনো Project Select করা হয়নি
-</div>
-
-<div
-class="count"
-id="count"
->
-0 entries
-</div>
-
-<div class="tablebox">
-
-<table>
-
-<thead id="thead"></thead>
-
-<tbody id="tbody"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
 
 <script>
 
+/* =========================================================
+   STORAGE
+   ========================================================= */
+
 const STORAGE_KEY =
-'AAP_OFFLINE_DATA_MOBILE_V8';
+  'AAP_OFFLINE_DATA_MOBILE_V5';
+
 
 const OLD_KEYS = [
-
-'AAP_OFFLINE_DATA_MOBILE_V7',
-
-'AAP_OFFLINE_DATA_MOBILE_V6',
-
-'AAP_OFFLINE_DATA_MOBILE_V5',
-
-'AAP_OFFLINE_DATA_MOBILE_V4',
-
-'AAP_OFFLINE_DATA_MOBILE_V3',
-
-'AAP_OFFLINE_DATA_MOBILE_V2',
-
-'AAP_OFFLINE_DATA',
-
-'AAP_DATA',
-
-'AAP_OFFLINE_DATA_MOBILE',
-
-'AAP_OFFLINE_DATA_MOBILE_V1'
-
+  'AAP_OFFLINE_DATA_MOBILE_V4',
+  'AAP_OFFLINE_DATA_MOBILE_V3',
+  'AAP_OFFLINE_DATA_MOBILE_V2',
+  'AAP_OFFLINE_DATA',
+  'AAP_DATA',
+  'AAP_OFFLINE_DATA_MOBILE',
+  'AAP_OFFLINE_DATA_MOBILE_V1'
 ];
+
+
+/* =========================================================
+   FORM NAMES
+   ========================================================= */
 
 const FORM_NAMES = {
 
-approach:'Approach Scheme',
+  approach:
+    'Approach Scheme',
 
-approve:'Approve Scheme',
+  approve:
+    'Approve Scheme',
 
-tender:'Tender Scheme',
+  tender:
+    'Tender Scheme',
 
-modelVillage:'Model Village Approach',
+  modelVillage:
+    'Model Village Approach',
 
-modelApprove:'Model Village Approve',
+  modelApprove:
+    'Model Village Approve',
 
-modelTender:'Model Village Tender'
+  modelTender:
+    'Model Village Tender'
 
 };
+
+
+/* =========================================================
+   FLOW
+   ========================================================= */
 
 const FLOW = {
 
-approach:{
-next:'approve',
-back:null
-},
+  approach:{
+    next:'approve',
+    back:null
+  },
 
-approve:{
-next:'tender',
-back:'approach'
-},
+  approve:{
+    next:'tender',
+    back:'approach'
+  },
 
-tender:{
-next:null,
-back:'approve'
-},
+  tender:{
+    next:null,
+    back:'approve'
+  },
 
-modelVillage:{
-next:'modelApprove',
-back:null
-},
+  modelVillage:{
+    next:'modelApprove',
+    back:null
+  },
 
-modelApprove:{
-next:'modelTender',
-back:'modelVillage'
-},
+  modelApprove:{
+    next:'modelTender',
+    back:'modelVillage'
+  },
 
-modelTender:{
-next:null,
-back:'modelApprove'
-}
+  modelTender:{
+    next:null,
+    back:'modelApprove'
+  }
 
 };
 
-const BASE_IDS = [
 
-'scheme',
+/* =========================================================
+   FORM IDs
+   ========================================================= */
 
-'nature',
+const ids = [
 
-'lengthArea',
-
-'mouza',
-
-'startDag',
-
-'endDag',
-
-'jobCard',
-
-'lat1',
-
-'long1',
-
-'lat2',
-
-'long2'
+  'scheme',
+  'nature',
+  'lengthArea',
+  'mouza',
+  'startDag',
+  'endDag',
+  'jobCard',
+  'lat1',
+  'long1',
+  'lat2',
+  'long2'
 
 ];
 
-function stateDefault(){
 
-return {
+/* =========================================================
+   STATE
+   ========================================================= */
 
-version:8,
+let state = {
 
-year:'2026-27',
+  version:5,
 
-forms:{
+  year:'2026-27',
 
-approach:[],
+  forms:{
 
-approve:[],
+    approach:[],
 
-tender:[],
+    approve:[],
 
-modelVillage:[],
+    tender:[],
 
-modelApprove:[],
+    modelVillage:[],
 
-modelTender:[]
+    modelApprove:[],
 
-}
+    modelTender:[]
+
+  }
 
 };
 
-}
-
-let state =
-stateDefault();
 
 let currentForm =
-'approach';
+  'approach';
+
 
 let editIndex =
--1;
+  -1;
+
+
+/* =========================================================
+   BASIC HELPERS
+   ========================================================= */
 
 const $ =
-id =>
-document.getElementById(id);
+  id => document.getElementById(id);
 
-const val =
-id =>
-$(id)
-?
-$(id).value.trim()
-:
-'';
+
+function val(id){
+
+  const el = $(id);
+
+  return el
+    ? el.value.trim()
+    : '';
+
+}
+
 
 function todayISO(){
 
-const d =
-new Date();
+  const d = new Date();
 
-return new Date(
-d.getTime() -
-d.getTimezoneOffset()*60000
-)
-.toISOString()
-.slice(0,10);
+  const local =
+    new Date(
+      d.getTime() -
+      d.getTimezoneOffset() * 60000
+    );
+
+  return local
+    .toISOString()
+    .slice(0,10);
 
 }
+
 
 function esc(s){
 
-return String(s ?? '')
-.replace(
-/[&<>"']/g,
-c => ({
-
-'&':'&amp;',
-
-'<':'&lt;',
-
-'>':'&gt;',
-
-'"':'&quot;',
-
-"'":'&#39;'
-
-}[c])
-);
+  return String(s ?? '')
+    .replace(
+      /[&<>"']/g,
+      c => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[c])
+    );
 
 }
 
-function createId(){
-
-return Date.now() +
-'_' +
-Math.random()
-.toString(36)
-.slice(2);
-
-}
-
-function isApproval(f){
-
-return (
-f === 'approve' ||
-f === 'modelApprove'
-);
-
-}
-
-function isTender(f){
-
-return (
-f === 'tender' ||
-f === 'modelTender'
-);
-
-}
-
-function isModel(f){
-
-return f.startsWith('model');
-
-}
-
-function formName(){
-
-return FORM_NAMES[currentForm];
-
-}
 
 function currentData(){
 
-return state.forms[currentForm];
+  return state.forms[currentForm];
 
 }
 
-function normalizeEntry(x){
 
-x = x || {};
+function formName(){
 
-return {
-
-id:
-String(
-x.id ||
-createId()
-),
-
-scheme:
-String(
-x.scheme ?? ''
-),
-
-nature:
-String(
-x.nature ?? ''
-),
-
-lengthArea:
-String(
-x.lengthArea ?? ''
-),
-
-mouza:
-String(
-x.mouza ?? 'Sahara'
-),
-
-startDag:
-String(
-x.startDag ?? ''
-),
-
-endDag:
-String(
-x.endDag ?? ''
-),
-
-jobCard:
-String(
-x.jobCard ?? ''
-),
-
-lat1:
-String(
-x.lat1 ?? ''
-),
-
-long1:
-String(
-x.long1 ?? ''
-),
-
-lat2:
-String(
-x.lat2 ?? ''
-),
-
-long2:
-String(
-x.long2 ?? ''
-),
-
-date:
-String(
-x.date ?? ''
-),
-
-year:
-String(
-x.year ?? ''
-),
-
-sector:
-String(
-x.sector ?? ''
-),
-
-estimateCost:
-String(
-x.estimateCost ?? ''
-),
-
-fund:
-String(
-x.fund ?? ''
-),
-
-newSL:
-String(
-x.newSL ?? ''
-),
-
-_order:
-
-Number.isFinite(
-Number(x._order)
-)
-
-?
-
-Number(x._order)
-
-:
-
-null,
-
-_backSnapshot:
-x._backSnapshot || null
-
-};
+  return FORM_NAMES[currentForm];
 
 }
+
+
+/* =========================================================
+   MAIN HEADING
+   ========================================================= */
+
+/*
+   IMPORTANT:
+
+   Approach / Approve / Tender
+   = A.A.P Format of V.B.G.R.A.M.G
+
+   Model Village-এর সব stage
+   = MODEL VILLAGE
+*/
+
+function updateMainHeading(){
+
+  const heading =
+    $('appHeading');
+
+  if(
+    currentForm === 'modelVillage' ||
+    currentForm === 'modelApprove' ||
+    currentForm === 'modelTender'
+  ){
+
+    heading.textContent =
+      'MODEL VILLAGE';
+
+  }else{
+
+    heading.textContent =
+      'A.A.P Format of V.B.G.R.A.M.G';
+
+  }
+
+}
+
+
+/* =========================================================
+   NORMALIZE STATE
+   ========================================================= */
 
 function normalizeState(input){
 
-const r =
-stateDefault();
+  const result = {
 
-if(Array.isArray(input)){
+    version:5,
 
-r.forms.approach =
-input.map(
-(x,i)=>{
+    year:'2026-27',
 
-const n =
-normalizeEntry(x);
+    forms:{
 
-if(n._order === null)
-n._order = i;
+      approach:[],
 
-return n;
+      approve:[],
 
-});
+      tender:[],
 
-return r;
+      modelVillage:[],
+
+      modelApprove:[],
+
+      modelTender:[]
+
+    }
+
+  };
+
+
+  /* OLD ARRAY BACKUP */
+
+  if(Array.isArray(input)){
+
+    result.forms.approach =
+      input.map(normalizeEntry);
+
+    return result;
+
+  }
+
+
+  if(
+    input &&
+    typeof input === 'object'
+  ){
+
+    if(input.year){
+
+      result.year =
+        String(input.year);
+
+    }
+
+
+    if(
+      input.forms &&
+      typeof input.forms === 'object'
+    ){
+
+      Object.keys(result.forms)
+        .forEach(key => {
+
+          if(
+            Array.isArray(
+              input.forms[key]
+            )
+          ){
+
+            result.forms[key] =
+              input.forms[key]
+                .map(normalizeEntry);
+
+          }
+
+        });
+
+    }
+
+    else if(
+      Array.isArray(input.data)
+    ){
+
+      result.forms.approach =
+        input.data.map(normalizeEntry);
+
+    }
+
+  }
+
+
+  return result;
+
+}
+
+
+/* =========================================================
+   NORMALIZE ENTRY
+   ========================================================= */
+
+function normalizeEntry(x){
+
+  x = x || {};
+
+
+  return {
+
+    id:
+      String(
+        x.id ||
+        (
+          Date.now() +
+          '_' +
+          Math.random()
+            .toString(36)
+            .slice(2)
+        )
+      ),
+
+    scheme:
+      String(x.scheme ?? ''),
+
+    nature:
+      String(x.nature ?? ''),
+
+    lengthArea:
+      String(x.lengthArea ?? ''),
+
+    mouza:
+      String(x.mouza ?? 'Sahara'),
+
+    startDag:
+      String(x.startDag ?? ''),
+
+    endDag:
+      String(x.endDag ?? ''),
+
+    jobCard:
+      String(x.jobCard ?? ''),
+
+    lat1:
+      String(x.lat1 ?? ''),
+
+    long1:
+      String(x.long1 ?? ''),
+
+    lat2:
+      String(x.lat2 ?? ''),
+
+    long2:
+      String(x.long2 ?? ''),
+
+    date:
+      String(x.date ?? ''),
+
+    year:
+      String(x.year ?? '')
+
+  };
 
 }
 
-if(
-input &&
-typeof input === 'object'
-){
 
-r.year =
-String(
-input.year ||
-r.year
-);
-
-if(
-input.forms &&
-typeof input.forms === 'object'
-){
-
-Object.keys(r.forms)
-.forEach(k=>{
-
-if(
-Array.isArray(
-input.forms[k]
-)
-){
-
-r.forms[k] =
-input.forms[k]
-.map(
-(x,i)=>{
-
-const n =
-normalizeEntry(x);
-
-if(n._order === null)
-n._order = i;
-
-return n;
-
-}
-);
-
-}
-
-});
-
-}else if(
-Array.isArray(input.data)
-){
-
-r.forms.approach =
-input.data.map(
-(x,i)=>{
-
-const n =
-normalizeEntry(x);
-
-if(n._order === null)
-n._order = i;
-
-return n;
-
-}
-);
-
-}
-
-}
-
-return r;
-
-}
+/* =========================================================
+   STORAGE SAVE
+   ========================================================= */
 
 function persist(){
 
-try{
+  try{
 
-state.version = 8;
+    state.version = 5;
 
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(state)
-);
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(state)
+    );
 
-return true;
+    return true;
 
-}catch(e){
+  }catch(e){
 
-alert(
-'Browser Storage unavailable। Backup file ব্যবহার করুন।'
-);
+    alert(
+      'Browser Storage unavailable। Backup file ব্যবহার করুন।'
+    );
 
-return false;
+    return false;
+
+  }
 
 }
 
-}
+
+/* =========================================================
+   LOAD
+   ========================================================= */
 
 function load(){
 
-let loaded =
-false;
+  let loaded = false;
 
-try{
 
-const raw =
-localStorage.getItem(
-STORAGE_KEY
-);
+  try{
 
-if(raw){
+    const raw =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
 
-state =
-normalizeState(
-JSON.parse(raw)
-);
 
-loaded =
-true;
+    if(raw){
 
-}else{
+      state =
+        normalizeState(
+          JSON.parse(raw)
+        );
 
-for(
-const k of OLD_KEYS
-){
+      loaded = true;
 
-const q =
-localStorage.getItem(k);
+    }
 
-if(q){
+    else{
 
-try{
+      for(
+        const key of OLD_KEYS
+      ){
 
-state =
-normalizeState(
-JSON.parse(q)
-);
+        const oldRaw =
+          localStorage.getItem(key);
 
-persist();
+        if(!oldRaw) continue;
 
-loaded =
-true;
 
-break;
+        try{
 
-}catch(e){}
+          const oldParsed =
+            JSON.parse(oldRaw);
 
-}
+          state =
+            normalizeState(
+              oldParsed
+            );
 
-}
+          persist();
 
-}
+          loaded = true;
 
-}catch(e){}
+          break;
 
-if(!loaded)
-state =
-stateDefault();
+        }catch(e){}
 
-$('year').value =
-state.year ||
-'2026-27';
+      }
 
-$('entryDate').value =
-todayISO();
+    }
 
-updateUI();
+  }catch(e){
 
-}
+    state =
+      normalizeState([]);
 
-function updateUI(){
+  }
 
-$('headerYear')
-.textContent =
-String(state.year)
-.replace(
-'-',
-' - '
-);
 
-$('year').value =
-state.year;
+  if(!loaded){
 
-$('currentFormName')
-.textContent =
-formName();
+    state =
+      normalizeState([]);
 
-$('formTitle')
-.textContent =
-'➕ ' +
-formName() +
-' — নতুন Data Entry';
+  }
 
-$('savedTitle')
-.textContent =
-'📋 ' +
-formName() +
-' — Saved Data';
 
-$('appHeading')
-.textContent =
-isModel(currentForm)
-?
-'MODEL VILLAGE'
-:
-'A.A.P Format of V.B.G.R.A.M.G';
+  $('year').value =
+    state.year || '2026-27';
 
-updateApprovalFields();
 
-updateTransferButtons();
+  $('entryDate').value =
+    todayISO();
 
-render();
+
+  updateUI();
 
 }
+
+
+/* =========================================================
+   SWITCH FORM
+   ========================================================= */
 
 function switchForm(form){
 
-if(!FORM_NAMES[form])
-return;
+  if(
+    !FORM_NAMES[form]
+  ) return;
 
-currentForm =
-form;
 
-editIndex =
--1;
+  currentForm =
+    form;
 
-document
-.querySelectorAll(
-'.formnav button'
-)
-.forEach(b=>{
+  editIndex =
+    -1;
 
-b.classList.remove(
-'active'
-);
 
-b.classList.add(
-'secondary'
-);
+  /* MAIN BUTTON ACTIVE */
 
-});
+  document
+    .querySelectorAll('.formnav button')
+    .forEach(b => {
 
-const main =
-$(
-isModel(form)
-?
-'nav-model'
-:
-'nav-'+form
-);
+      b.classList.remove('active');
 
-if(main){
+      b.classList.add('secondary');
 
-main.classList.add(
-'active'
-);
+    });
 
-main.classList.remove(
-'secondary'
-);
+
+  let mainButtonId;
+
+
+  if(
+    form === 'modelVillage' ||
+    form === 'modelApprove' ||
+    form === 'modelTender'
+  ){
+
+    mainButtonId =
+      'nav-model';
+
+  }
+
+  else{
+
+    mainButtonId =
+      'nav-' + form;
+
+  }
+
+
+  const active =
+    $(mainButtonId);
+
+
+  if(active){
+
+    active.classList.add('active');
+
+    active.classList.remove('secondary');
+
+  }
+
+
+  /* MODEL STAGE BAR */
+
+  const modelBar =
+    $('modelStageBar');
+
+
+  if(
+    form === 'modelVillage' ||
+    form === 'modelApprove' ||
+    form === 'modelTender'
+  ){
+
+    modelBar.classList.add('show');
+
+  }else{
+
+    modelBar.classList.remove('show');
+
+  }
+
+
+  document
+    .querySelectorAll('#modelStageBar button')
+    .forEach(b => {
+
+      b.classList.remove('active');
+
+      b.classList.add('secondary');
+
+    });
+
+
+  if(
+    form === 'modelVillage'
+  ){
+
+    $('stage-modelVillage')
+      .classList.add('active');
+
+    $('stage-modelVillage')
+      .classList.remove('secondary');
+
+  }
+
+
+  if(
+    form === 'modelApprove'
+  ){
+
+    $('stage-modelApprove')
+      .classList.add('active');
+
+    $('stage-modelApprove')
+      .classList.remove('secondary');
+
+  }
+
+
+  if(
+    form === 'modelTender'
+  ){
+
+    $('stage-modelTender')
+      .classList.add('active');
+
+    $('stage-modelTender')
+      .classList.remove('secondary');
+
+  }
+
+
+  updateMainHeading();
+
+
+  $('currentFormName')
+    .textContent =
+      formName();
+
+
+  $('formTitle')
+    .textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
+
+
+  $('savedTitle')
+    .textContent =
+      '📋 ' +
+      formName() +
+      ' — Saved Data';
+
+
+  $('search').value = '';
+
+
+  clearForm(false);
+
+
+  updateTransferButtons();
+
+
+  render();
 
 }
 
-const mb =
-$('modelStageBar');
 
-mb.classList.toggle(
-'show',
-isModel(form)
-);
+/* =========================================================
+   UPDATE UI
+   ========================================================= */
 
-document
-.querySelectorAll(
-'#modelStageBar button'
-)
-.forEach(b=>{
+function updateUI(){
 
-b.classList.remove(
-'active'
-);
+  $('headerYear')
+    .textContent =
+      String(state.year)
+        .replace('-', ' - ');
 
-b.classList.add(
-'secondary'
-);
 
-});
+  $('year').value =
+    state.year;
 
-if(isModel(form)){
 
-const id = {
+  $('currentFormName')
+    .textContent =
+      formName();
 
-modelVillage:
-'stage-modelVillage',
 
-modelApprove:
-'stage-modelApprove',
+  $('formTitle')
+    .textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
 
-modelTender:
-'stage-modelTender'
 
-}[form];
+  $('savedTitle')
+    .textContent =
+      '📋 ' +
+      formName() +
+      ' — Saved Data';
 
-$(id)
-.classList.add(
-'active'
-);
 
-$(id)
-.classList.remove(
-'secondary'
-);
+  updateMainHeading();
+
+
+  updateTransferButtons();
+
+
+  render();
 
 }
 
-$('currentFormName')
-.textContent =
-formName();
 
-$('formTitle')
-.textContent =
-'➕ ' +
-formName() +
-' — নতুন Data Entry';
-
-$('savedTitle')
-.textContent =
-'📋 ' +
-formName() +
-' — Saved Data';
-
-$('search').value =
-'';
-
-clearForm(false);
-
-updateApprovalFields();
-
-updateTransferButtons();
-
-render();
-
-}
-
-function updateApprovalFields(){
-
-const approval =
-isApproval(currentForm);
-
-const tender =
-isTender(currentForm);
-
-$('approveBox')
-.classList.toggle(
-'hidden',
-!approval
-);
-
-$('tenderBox')
-.classList.toggle(
-'hidden',
-!tender
-);
-
-}
+/* =========================================================
+   YEAR
+   ========================================================= */
 
 function changeYear(){
 
-state.year =
-$('year').value;
+  state.year =
+    $('year').value;
 
-$('headerYear')
-.textContent =
-state.year.replace(
-'-',
-' - '
-);
 
-persist();
+  $('headerYear')
+    .textContent =
+      state.year
+        .replace('-', ' - ');
 
-render();
 
-}
+  persist();
 
-function clearForm(
-resetDate=true
-){
-
-BASE_IDS.forEach(id=>{
-
-$(id).value =
-'';
-
-});
-
-[
-'sector',
-'estimateCost',
-'fund',
-'newSL',
-'tenderEstimateCost'
-]
-.forEach(id=>{
-
-$(id).value =
-'';
-
-});
-
-$('mouza').value =
-'Sahara';
-
-editIndex =
--1;
-
-$('formTitle')
-.textContent =
-'➕ ' +
-formName() +
-' — নতুন Data Entry';
-
-if(resetDate){
-
-$('entryDate')
-.value =
-todayISO();
+  render();
 
 }
 
-}
+
+/* =========================================================
+   SAVE
+   ========================================================= */
 
 function saveEntry(){
 
-const x = {};
+  const x = {};
 
-BASE_IDS.forEach(id=>{
 
-x[id] =
-val(id);
+  ids.forEach(id => {
 
-});
+    x[id] =
+      val(id);
 
-x.date =
-val('entryDate') ||
-todayISO();
+  });
 
-x.year =
-state.year;
 
-if(
-isApproval(currentForm)
-){
+  x.date =
+    val('entryDate') ||
+    todayISO();
 
-x.sector =
-val('sector');
 
-x.estimateCost =
-val('estimateCost');
+  x.year =
+    state.year;
 
-x.fund =
-val('fund');
 
-x.newSL =
-val('newSL');
+  if(
+    !x.scheme &&
+    !x.startDag
+  ){
 
-}else if(
-isTender(currentForm)
-){
+    alert(
+      'Scheme Name অথবা Starting Dag No. দিন।'
+    );
 
-x.sector =
-'';
+    return;
 
-x.fund =
-'';
+  }
 
-x.newSL =
-'';
 
-x.estimateCost =
-val(
-'tenderEstimateCost'
-);
+  const arr =
+    currentData();
 
-}else{
 
-x.sector =
-'';
+  if(editIndex >= 0){
 
-x.estimateCost =
-'';
+    /*
+      Edit করার সময় পুরনো ID
+      অবশ্যই রেখে দেওয়া হবে
+    */
 
-x.fund =
-'';
+    x.id =
+      arr[editIndex].id ||
+      createId();
 
-x.newSL =
-'';
 
-}
+    arr[editIndex] =
+      x;
 
-if(
-!x.scheme &&
-!x.startDag
-){
+  }
 
-alert(
-'Scheme Name অথবা Starting Dag No. দিন।'
-);
+  else{
 
-return;
+    x.id =
+      createId();
 
-}
+    arr.push(x);
 
-const arr =
-currentData();
+  }
 
-if(editIndex >= 0){
 
-x.id =
-arr[editIndex].id ||
-createId();
+  if(!persist()) return;
 
-x._backSnapshot =
-arr[editIndex]
-._backSnapshot ||
-null;
 
-x._order =
+  render();
 
-Number.isFinite(
-Number(
-arr[editIndex]._order
-)
-)
+  clearForm();
 
-?
 
-Number(
-arr[editIndex]._order
-)
-
-:
-
-editIndex;
-
-arr[editIndex] =
-normalizeEntry(x);
-
-}else{
-
-x.id =
-createId();
-
-x._order =
-
-arr.length
-
-?
-
-Math.max(
-...arr.map(
-r =>
-Number.isFinite(
-Number(r._order)
-)
-?
-Number(r._order)
-:
--1
-)
-) + 1
-
-:
-
-0;
-
-x._backSnapshot =
-null;
-
-arr.push(
-normalizeEntry(x)
-);
+  alert(
+    formName() +
+    ' Entry Save হয়েছে ✓'
+  );
 
 }
 
-if(!persist())
-return;
 
-render();
+/* =========================================================
+   CREATE ID
+   ========================================================= */
 
-clearForm();
+function createId(){
 
-alert(
-formName() +
-' Entry Save হয়েছে ✓'
-);
+  return (
+    Date.now() +
+    '_' +
+    Math.random()
+      .toString(36)
+      .slice(2)
+  );
 
 }
+
+
+/* =========================================================
+   CLEAR
+   ========================================================= */
+
+function clearForm(resetDate=true){
+
+  ids.forEach(id => {
+
+    if($(id))
+      $(id).value = '';
+
+  });
+
+
+  $('mouza').value =
+    'Sahara';
+
+
+  editIndex = -1;
+
+
+  $('formTitle')
+    .textContent =
+      '➕ ' +
+      formName() +
+      ' — নতুন Data Entry';
+
+
+  if(resetDate){
+
+    $('entryDate').value =
+      todayISO();
+
+  }
+
+}
+
+
+/* =========================================================
+   EDIT
+   ========================================================= */
 
 function edit(i){
 
-const x =
-currentData()[i];
+  const x =
+    currentData()[i];
 
-if(!x)
-return;
 
-BASE_IDS.forEach(id=>{
+  if(!x) return;
 
-$(id).value =
-x[id] || '';
 
-});
+  ids.forEach(id => {
 
-$('entryDate').value =
-x.date ||
-todayISO();
+    $(id).value =
+      x[id] || '';
 
-$('sector').value =
-x.sector ||
-'';
+  });
 
-$('estimateCost').value =
-x.estimateCost ||
-'';
 
-$('fund').value =
-x.fund ||
-'';
+  $('entryDate').value =
+    x.date ||
+    todayISO();
 
-$('newSL').value =
-x.newSL ||
-'';
 
-$('tenderEstimateCost').value =
-x.estimateCost ||
-'';
+  if(
+    x.year &&
+    x.year !== state.year
+  ){
 
-editIndex =
-i;
+    state.year =
+      x.year;
 
-$('formTitle')
-.textContent =
-'✏️ ' +
-formName() +
-' — Data Entry Edit করুন';
+    $('year').value =
+      x.year;
 
-updateApprovalFields();
+    $('headerYear')
+      .textContent =
+        x.year
+          .replace('-', ' - ');
 
-window.scrollTo({
+    persist();
 
-top:0,
+  }
 
-behavior:'smooth'
 
-});
+  editIndex = i;
+
+
+  $('formTitle')
+    .textContent =
+      '✏️ ' +
+      formName() +
+      ' — Data Entry Edit করুন';
+
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:'smooth'
+
+  });
 
 }
+
+
+/* =========================================================
+   DELETE ONE
+   ========================================================= */
 
 function del(i){
 
-if(
-confirm(
-formName() +
-' এর এই Entry মুছে ফেলবেন?'
-)
-){
+  if(
+    confirm(
+      formName() +
+      ' এর এই Entry মুছে ফেলবেন?'
+    )
+  ){
 
-currentData()
-.splice(i,1);
+    currentData()
+      .splice(i,1);
 
-persist();
+    persist();
 
-render();
+    render();
+
+  }
 
 }
 
-}
+
+/* =========================================================
+   DELETE CURRENT FORM
+   ========================================================= */
 
 function deleteCurrentForm(){
 
-if(!currentData().length){
+  const arr =
+    currentData();
 
-alert(
-formName() +
-' এ কোনো data নেই।'
-);
 
-return;
+  if(!arr.length){
+
+    alert(
+      formName() +
+      ' এ কোনো data নেই।'
+    );
+
+    return;
+
+  }
+
+
+  if(
+    confirm(
+      formName() +
+      ' এর সব data মুছে ফেলবেন?'
+    )
+  ){
+
+    state.forms[currentForm] =
+      [];
+
+    editIndex = -1;
+
+    persist();
+
+    clearForm();
+
+    render();
+
+  }
 
 }
 
-if(
-confirm(
-formName() +
-' এর সব data মুছে ফেলবেন?'
-)
-){
 
-state.forms[currentForm] =
-[];
-
-editIndex =
--1;
-
-persist();
-
-clearForm();
-
-render();
-
-}
-
-}
+/* =========================================================
+   DELETE ALL
+   ========================================================= */
 
 function deleteAll(){
 
-const total =
-Object.values(
-state.forms
-)
-.reduce(
-(s,a)=>s+a.length,
-0
-);
+  const total =
+    Object.values(
+      state.forms
+    )
+    .reduce(
+      (sum,arr) =>
+        sum + arr.length,
+      0
+    );
 
-if(!total){
 
-alert(
-'কোনো Data নেই।'
-);
+  if(!total){
 
-return;
+    alert(
+      'কোনো Data নেই।'
+    );
+
+    return;
+
+  }
+
+
+  if(
+    confirm(
+      'সব Form-এর সব Data একসাথে মুছে ফেলবেন?'
+    )
+  ){
+
+    Object.keys(
+      state.forms
+    ).forEach(key => {
+
+      state.forms[key] = [];
+
+    });
+
+
+    editIndex = -1;
+
+    persist();
+
+    clearForm();
+
+    render();
+
+  }
 
 }
 
-if(
-confirm(
-'সব Form-এর সব Data একসাথে মুছে ফেলবেন?'
-)
-){
 
-Object.keys(
-state.forms
-).forEach(
-k =>
-state.forms[k]=[]
-);
-
-persist();
-
-clearForm();
-
-render();
-
-}
-
-}
+/* =========================================================
+   SELECTED ROWS
+   ========================================================= */
 
 function getSelectedIndexes(){
 
-return Array.from(
-document.querySelectorAll(
-'.rowcheck:checked'
-)
-)
-.map(
-e =>
-Number(
-e.dataset.index
-)
-);
+  return Array.from(
+    document.querySelectorAll(
+      '.rowcheck:checked'
+    )
+  )
+  .map(
+    el =>
+      Number(
+        el.dataset.index
+      )
+  );
 
 }
+
+
+/* =========================================================
+   SELECT ALL
+   ========================================================= */
 
 function toggleAll(box){
 
-document
-.querySelectorAll(
-'.rowcheck'
-)
-.forEach(
-cb =>
-cb.checked =
-box.checked
-);
+  document
+    .querySelectorAll('.rowcheck')
+    .forEach(cb => {
 
-updateSelectedInfo();
+      cb.checked =
+        box.checked;
+
+    });
+
+
+  updateSelectedInfo();
 
 }
+
+
+/* =========================================================
+   SELECT INFO
+   ========================================================= */
 
 function updateSelectedInfo(){
 
-const n =
-getSelectedIndexes()
-.length;
+  const selected =
+    getSelectedIndexes();
 
-$('selectedInfo')
-.textContent =
 
-n
-
-?
-
-n +
-' টি Project Select করা হয়েছে'
-
-:
-
-'কোনো Project Select করা হয়নি';
+  $('selectedInfo')
+    .textContent =
+      selected.length
+      ? selected.length +
+        ' টি Project Select করা হয়েছে'
+      : 'কোনো Project Select করা হয়নি';
 
 }
+
+
+/* =========================================================
+   UPDATE TRANSFER BUTTON
+   ========================================================= */
 
 function updateTransferButtons(){
 
-const f =
-FLOW[currentForm];
+  const flow =
+    FLOW[currentForm];
 
-const bar =
-$('transferBar');
 
-bar.classList.toggle(
-'show',
-!!(
-f.next ||
-f.back
-)
-);
+  const bar =
+    $('transferBar');
 
-const nb =
-$('nextTransferBtn');
 
-const bb =
-$('backTransferBtn');
+  if(
+    flow.next ||
+    flow.back
+  ){
 
-if(f.next){
+    bar.classList.add('show');
 
-nb.style.display =
-'block';
+  }else{
 
-nb.textContent =
-'➡ ' +
-FORM_NAMES[f.next] +
-' -এ Transfer';
+    bar.classList.remove('show');
 
-}else{
+  }
 
-nb.style.display =
-'none';
 
-}
+  const nextBtn =
+    $('nextTransferBtn');
 
-if(f.back){
 
-bb.style.display =
-'block';
+  const backBtn =
+    $('backTransferBtn');
 
-bb.textContent =
-'⬅ ' +
-FORM_NAMES[f.back] +
-' -এ Back';
 
-}else{
+  if(flow.next){
 
-bb.style.display =
-'none';
+    nextBtn.style.display =
+      'block';
 
-}
 
-}
+    nextBtn.textContent =
+      '➡ ' +
+      FORM_NAMES[flow.next] +
+      ' -এ Transfer';
 
-function copyBase(r){
+  }else{
 
-const x =
-normalizeEntry(r);
+    nextBtn.style.display =
+      'none';
 
-x.sector =
-'';
+  }
 
-x.estimateCost =
-'';
 
-x.fund =
-'';
+  if(flow.back){
 
-x.newSL =
-'';
+    backBtn.style.display =
+      'block';
 
-x._backSnapshot =
-null;
 
-return x;
+    backBtn.textContent =
+      '⬅ ' +
+      FORM_NAMES[flow.back] +
+      ' -এ Back';
+
+  }else{
+
+    backBtn.style.display =
+      'none';
+
+  }
 
 }
 
-function copyApproveToTender(r){
 
-const x =
-normalizeEntry(r);
-
-const snap = {
-
-id:
-x.id,
-
-_order:
-x._order,
-
-scheme:
-x.scheme,
-
-nature:
-x.nature,
-
-lengthArea:
-x.lengthArea,
-
-mouza:
-x.mouza,
-
-startDag:
-x.startDag,
-
-endDag:
-x.endDag,
-
-jobCard:
-x.jobCard,
-
-lat1:
-x.lat1,
-
-long1:
-x.long1,
-
-lat2:
-x.lat2,
-
-long2:
-x.long2,
-
-date:
-x.date,
-
-year:
-x.year,
-
-sector:
-x.sector,
-
-estimateCost:
-x.estimateCost,
-
-fund:
-x.fund,
-
-newSL:
-x.newSL
-
-};
-
-x.sector =
-'';
-
-x.fund =
-'';
-
-x.newSL =
-'';
-
-x.estimateCost =
-String(
-r.estimateCost || ''
-);
-
-x._backSnapshot =
-snap;
-
-return x;
-
-}
-
-function copyTenderToApprove(r){
-
-if(r._backSnapshot){
-
-const x =
-normalizeEntry(
-r._backSnapshot
-);
-
-x.estimateCost =
-String(
-r.estimateCost ||
-x.estimateCost ||
-''
-);
-
-return x;
-
-}
-
-const x =
-normalizeEntry(r);
-
-x.sector =
-'';
-
-x.fund =
-'';
-
-x.newSL =
-'';
-
-return x;
-
-}
-
-
-/* =====================================================
-BACK TRANSFER ORDER FIX
-===================================================== */
-
-function insertByOrder(
-target,
-x
-){
-
-if(
-!Number.isFinite(
-Number(x._order)
-)
-){
-
-x._order =
-
-target.length
-
-?
-
-Math.max(
-...target.map(
-r =>
-Number.isFinite(
-Number(r._order)
-)
-?
-Number(r._order)
-:
--1
-)
-) + 1
-
-:
-
-0;
-
-}
-
-let pos =
-target.findIndex(
-t =>
-
-Number.isFinite(
-Number(t._order)
-) &&
-
-Number(t._order) >
-Number(x._order)
-);
-
-if(pos < 0)
-pos =
-target.length;
-
-target.splice(
-pos,
-0,
-x
-);
-
-}
-
-
-/* =====================================================
-TRANSFER NEXT
-===================================================== */
+/* =========================================================
+   TRANSFER NEXT
+   ========================================================= */
 
 function transferNext(){
 
-const flow =
-FLOW[currentForm];
+  const flow =
+    FLOW[currentForm];
 
-if(!flow.next){
 
-alert(
-'এই Stage-এর পরে আর কোনো Stage নেই।'
-);
+  if(!flow.next){
 
-return;
+    alert(
+      'এই Stage-এর পরে আর কোনো Stage নেই।'
+    );
 
-}
+    return;
 
-const selected =
-getSelectedIndexes();
+  }
 
-if(!selected.length){
 
-alert(
-'আগে অন্তত ১টি Project Select করুন।'
-);
+  const selected =
+    getSelectedIndexes();
 
-return;
 
-}
+  if(!selected.length){
 
-const source =
-state.forms[currentForm];
+    alert(
+      'আগে অন্তত ১টি Project Select করুন।'
+    );
 
-const target =
-state.forms[flow.next];
+    return;
 
-const records =
-selected
-.map(
-i =>
-source[i]
-)
-.filter(Boolean);
+  }
 
-if(
-!confirm(
-records.length +
-' টি Project\n' +
-formName() +
-' থেকে\n' +
-FORM_NAMES[flow.next] +
-' -এ Transfer করবেন?'
-)
-){
 
-return;
+  const target =
+    state.forms[flow.next];
 
-}
 
-records.forEach(
-r => {
+  const source =
+    state.forms[currentForm];
 
-let x;
 
-if(
-currentForm === 'approve' &&
-flow.next === 'tender'
-){
+  const selectedRecords =
+    selected.map(
+      i => source[i]
+    )
+    .filter(Boolean);
 
-x =
-copyApproveToTender(r);
 
-}
+  if(
+    !confirm(
+      selectedRecords.length +
+      ' টি Project\n' +
+      formName() +
+      ' থেকে\n' +
+      FORM_NAMES[flow.next] +
+      ' -এ Transfer করবেন?'
+    )
+  ){
 
-else if(
-currentForm === 'modelApprove' &&
-flow.next === 'modelTender'
-){
+    return;
 
-x =
-copyApproveToTender(r);
+  }
 
-}
 
-else if(
-currentForm === 'approach' &&
-flow.next === 'approve'
-){
+  selectedRecords.forEach(record => {
 
-x =
-copyBase(r);
+    /*
+      একই ID থাকলে duplicate হবে না
+    */
 
-}
+    const already =
+      target.some(
+        x =>
+          x.id &&
+          x.id === record.id
+      );
 
-else if(
-currentForm === 'modelVillage' &&
-flow.next === 'modelApprove'
-){
 
-x =
-copyBase(r);
+    if(!already){
 
-}
+      target.push(
+        normalizeEntry(record)
+      );
 
-else{
+    }
 
-x =
-normalizeEntry(r);
+  });
 
-}
 
-if(
-!target.some(
-t =>
-t.id === x.id
-)
-){
+  /*
+    Source থেকে selected records remove
+  */
 
-insertByOrder(
-target,
-x
-);
+  selected
+    .sort(
+      (a,b) => b-a
+    )
+    .forEach(i => {
 
-}
+      source.splice(i,1);
 
-});
+    });
 
-selected
-.sort(
-(a,b)=>
-b-a
-)
-.forEach(
-i =>
-source.splice(
-i,
-1
-)
-);
 
-editIndex =
--1;
+  editIndex = -1;
 
-persist();
 
-render();
+  persist();
 
-alert(
-records.length +
-' টি Project সফলভাবে\n' +
-FORM_NAMES[flow.next] +
-' -এ Transfer হয়েছে ✓'
-);
+  render();
+
+
+  alert(
+    selectedRecords.length +
+    ' টি Project সফলভাবে\n' +
+    FORM_NAMES[flow.next] +
+    ' -এ Transfer হয়েছে ✓'
+  );
 
 }
 
 
-/* =====================================================
-TRANSFER BACK
-===================================================== */
+/* =========================================================
+   TRANSFER BACK
+   ========================================================= */
 
 function transferBack(){
 
-const flow =
-FLOW[currentForm];
+  const flow =
+    FLOW[currentForm];
 
-if(!flow.back){
 
-alert(
-'এই Stage-এর আগে আর কোনো Stage নেই।'
-);
+  if(!flow.back){
 
-return;
+    alert(
+      'এই Stage-এর আগে আর কোনো Stage নেই।'
+    );
 
-}
+    return;
 
-const selected =
-getSelectedIndexes();
+  }
 
-if(!selected.length){
 
-alert(
-'আগে অন্তত ১টি Project Select করুন।'
-);
+  const selected =
+    getSelectedIndexes();
 
-return;
 
-}
+  if(!selected.length){
 
-const source =
-state.forms[currentForm];
+    alert(
+      'আগে অন্তত ১টি Project Select করুন।'
+    );
 
-const target =
-state.forms[flow.back];
+    return;
 
-const records =
-selected
-.map(
-i =>
-source[i]
-)
-.filter(Boolean);
+  }
 
-if(
-!confirm(
-records.length +
-' টি Project\n' +
-formName() +
-' থেকে\n' +
-FORM_NAMES[flow.back] +
-' -এ Back করবেন?'
-)
-){
 
-return;
+  const target =
+    state.forms[flow.back];
 
-}
 
-records.forEach(
-r => {
+  const source =
+    state.forms[currentForm];
 
-let x;
 
-if(
-currentForm === 'tender' &&
-flow.back === 'approve'
-){
+  const selectedRecords =
+    selected.map(
+      i => source[i]
+    )
+    .filter(Boolean);
 
-x =
-copyTenderToApprove(r);
 
-}
+  if(
+    !confirm(
+      selectedRecords.length +
+      ' টি Project\n' +
+      formName() +
+      ' থেকে\n' +
+      FORM_NAMES[flow.back] +
+      ' -এ Back করবেন?'
+    )
+  ){
 
-else if(
-currentForm === 'modelTender' &&
-flow.back === 'modelApprove'
-){
+    return;
 
-x =
-copyTenderToApprove(r);
+  }
 
-}
 
-else if(
-currentForm === 'approve' &&
-flow.back === 'approach'
-){
+  selectedRecords.forEach(record => {
 
-x =
-copyBase(r);
+    const already =
+      target.some(
+        x =>
+          x.id &&
+          x.id === record.id
+      );
 
-}
 
-else if(
-currentForm === 'modelApprove' &&
-flow.back === 'modelVillage'
-){
+    if(!already){
 
-x =
-copyBase(r);
+      target.push(
+        normalizeEntry(record)
+      );
 
-}
+    }
 
-else{
+  });
 
-x =
-normalizeEntry(r);
 
-}
+  selected
+    .sort(
+      (a,b) => b-a
+    )
+    .forEach(i => {
 
-if(
-!target.some(
-t =>
-t.id === x.id
-)
-){
+      source.splice(i,1);
 
-/*
-IMPORTANT:
-আগের push() ব্যবহার করা হচ্ছে না।
-_original _order অনুযায়ী আবার সেই জায়গায় ঢুকবে।
-তাই 1 নম্বর → transfer → back করলে 16 নম্বরে যাবে না।
-*/
+    });
 
-insertByOrder(
-target,
-x
-);
 
-}
+  editIndex = -1;
 
-});
 
-selected
-.sort(
-(a,b)=>
-b-a
-)
-.forEach(
-i =>
-source.splice(
-i,
-1
-)
-);
+  persist();
 
-editIndex =
--1;
+  render();
 
-persist();
 
-render();
-
-alert(
-records.length +
-' টি Project সফলভাবে\n' +
-FORM_NAMES[flow.back] +
-' -এ Back হয়েছে ✓'
-);
+  alert(
+    selectedRecords.length +
+    ' টি Project সফলভাবে\n' +
+    FORM_NAMES[flow.back] +
+    ' -এ Back হয়েছে ✓'
+  );
 
 }
 
 
-/* =====================================================
-LIST COLUMNS
-===================================================== */
-
-function columns(){
-
-const base = [
-
-['S.L. No.','auto'],
-
-['Date','date'],
-
-['Financial Year','year'],
-
-['Scheme Name','scheme'],
-
-['Nature of Work','nature'],
-
-['Length / Area','lengthArea'],
-
-['Mouja','mouza'],
-
-['Starting Dag No.','startDag'],
-
-['End Dag No.','endDag'],
-
-['In Case I.B.S Job Card No.','jobCard'],
-
-['Lat','lat1'],
-
-['Long','long1'],
-
-['Lat','lat2'],
-
-['Long','long2']
-
-];
-
-if(
-isApproval(currentForm)
-){
-
-base.push(
-
-['Sector','sector'],
-
-['Estimated Cost','estimateCost'],
-
-['Fund','fund'],
-
-['New S.L. No.','newSL']
-
-);
-
-}
-
-if(
-isTender(currentForm)
-){
-
-base.push(
-
-['Estimated Cost','estimateCost']
-
-);
-
-}
-
-return base;
-
-}
-
-
-/* =====================================================
-LIST RENDER
-===================================================== */
+/* =========================================================
+   RENDER TABLE
+   ========================================================= */
 
 function render(){
 
-const q =
-val('search')
-.toLowerCase();
+  const q =
+    val('search')
+      .toLowerCase();
 
-const list =
-currentData()
-.map(
-(x,i)=>({
-x:x,
-i:i
-})
-)
-.filter(
-o =>
-JSON.stringify(o.x)
-.toLowerCase()
-.includes(q)
-);
 
-const cols =
-columns();
+  const list =
+    currentData()
+      .map(
+        (x,i) => ({
+          x:x,
+          i:i
+        })
+      )
+      .filter(
+        o =>
+          JSON.stringify(
+            o.x
+          )
+          .toLowerCase()
+          .includes(q)
+      );
 
-$('count')
-.textContent =
-list.length +
-' entries — ' +
-formName();
 
-$('thead')
-.innerHTML =
+  $('count')
+    .textContent =
+      list.length +
+      ' entries — ' +
+      formName();
 
-'<tr>' +
 
-'<th>' +
+  $('tbody').innerHTML =
 
-'<input type="checkbox" class="selectAll" id="selectAll" onchange="toggleAll(this)">' +
+    list.length
 
-'<br>Select' +
+    ?
 
-'</th>' +
+    list.map(
+      (o,n) => {
 
-cols.map(
-c =>
-'<th>' +
-esc(c[0]) +
-'</th>'
-)
-.join('') +
+        const x =
+          o.x;
 
-'<th>Action</th>' +
+        const i =
+          o.i;
 
-'</tr>';
 
-if(!list.length){
+        return (
 
-$('tbody')
-.innerHTML =
+          '<tr>' +
 
-'<tr>' +
+          '<td class="selectCell">' +
 
-'<td colspan="' +
-(cols.length+2) +
-'" class="empty">' +
+          '<input ' +
+          'type="checkbox" ' +
+          'class="rowcheck" ' +
+          'data-index="' +
+          i +
+          '" ' +
+          'onchange="updateSelectedInfo()">' +
 
-formName() +
-' এ কোনো Data Entry নেই।' +
+          '</td>' +
 
-'</td>' +
+          '<td>' +
+          (n+1) +
+          '</td>' +
 
-'</tr>';
+          '<td>' +
+          esc(x.date) +
+          '</td>' +
 
-updateSelectedInfo();
+          '<td>' +
+          esc(x.year) +
+          '</td>' +
 
-return;
+          '<td>' +
+          esc(x.scheme) +
+          '</td>' +
 
-}
+          '<td>' +
+          esc(x.nature) +
+          '</td>' +
 
-$('tbody')
-.innerHTML =
+          '<td>' +
+          esc(x.lengthArea) +
+          '</td>' +
 
-list.map(
-(o,n)=>{
+          '<td>' +
+          esc(x.mouza)
+            .toUpperCase() +
+          '</td>' +
 
-const x =
-o.x;
+          '<td>' +
+          esc(x.startDag) +
+          '</td>' +
 
-return (
+          '<td>' +
+          esc(x.endDag) +
+          '</td>' +
 
-'<tr>' +
+          '<td>' +
+          esc(x.jobCard) +
+          '</td>' +
 
-'<td class="selectCell">' +
+          '<td>' +
+          esc(x.lat1) +
+          '</td>' +
 
-'<input type="checkbox" class="rowcheck" data-index="' +
-o.i +
-'" onchange="updateSelectedInfo()">' +
+          '<td>' +
+          esc(x.long1) +
+          '</td>' +
 
-'</td>' +
+          '<td>' +
+          esc(x.lat2) +
+          '</td>' +
 
-cols.map(
-c => {
+          '<td>' +
+          esc(x.long2) +
+          '</td>' +
 
-let v;
+          '<td>' +
 
-if(c[1] === 'auto')
+          '<button ' +
+          'class="actionbtn primary" ' +
+          'onclick="edit(' +
+          i +
+          ')">' +
+          'Edit' +
+          '</button>' +
 
-v =
-n+1;
+          '<button ' +
+          'class="actionbtn danger" ' +
+          'onclick="del(' +
+          i +
+          ')">' +
+          'Delete' +
+          '</button>' +
 
-else if(c[1] === 'mouza')
+          '</td>' +
 
-v =
-String(
-x[c[1]] || ''
-)
-.toUpperCase();
+          '</tr>'
 
-else
+        );
 
-v =
-x[c[1]] || '';
+      }
+    ).join('')
 
-return (
-'<td>' +
-esc(v) +
-'</td>'
-);
+    :
 
-}
-)
-.join('') +
+    '<tr>' +
 
-'<td>' +
+    '<td colspan="16" class="empty">' +
 
-'<button class="actionbtn primary" onclick="edit(' +
-o.i +
-')">' +
+    formName() +
+    ' এ কোনো Data Entry নেই।' +
 
-'Edit' +
+    '</td>' +
 
-'</button>' +
+    '</tr>';
 
-'<button class="actionbtn danger" onclick="del(' +
-o.i +
-')">' +
 
-'Delete' +
+  /*
+    Select All reset
+  */
 
-'</button>' +
+  $('selectAll').checked =
+    false;
 
-'</td>' +
 
-'</tr>'
-
-);
-
-}
-)
-.join('');
-
-$('selectAll')
-.checked =
-false;
-
-updateSelectedInfo();
-
-}
-
-
-/* =====================================================
-EXCEL EXPORT
-===================================================== */
-
-/*
-REFERENCE FILE:
-VBGRAMG.xlsx
-
-EXACT BASE COLUMN ORDER:
-
-A  S.L. No.
-B  Scheme Name
-C  Nature of Work
-D  Length / Area
-E  Mouja
-F  Starting Dag No.
-G  End Dag No.
-H  In Case I.B.S Job Card No.
-I  Lat
-J  Long
-K  Lat
-L  Long
-
-Date এবং Financial Year এখানে export হবে না।
-এটাই reference Excel-এর মতো রাখার মূল fix।
-*/
-
-function exportColumns(){
-
-const base = [
-
-['S.L. No.','auto'],
-
-['Scheme Name','scheme'],
-
-['Nature of Work','nature'],
-
-['Length / Area','lengthArea'],
-
-['Mouja','mouza'],
-
-['Starting Dag No.','startDag'],
-
-['End Dag No.','endDag'],
-
-['In Case I.B.S Job Card No.','jobCard'],
-
-['Lat','lat1'],
-
-['Long','long1'],
-
-['Lat','lat2'],
-
-['Long','long2']
-
-];
-
-
-/*
-Approve-এর নিজের data দরকার হলে
-reference design-এর পরে extra columns থাকবে।
-*/
-
-if(
-isApproval(currentForm)
-){
-
-base.push(
-
-['Sector','sector'],
-
-['Estimated Cost','estimateCost'],
-
-['Fund','fund'],
-
-['New S.L. No.','newSL']
-
-);
+  updateSelectedInfo();
 
 }
 
 
-/*
-Tender-এ শুধু Estimated Cost থাকবে।
-*/
-
-if(
-isTender(currentForm)
-){
-
-base.push(
-
-['Estimated Cost','estimateCost']
-
-);
-
-}
-
-return base;
-
-}
-
+/* =========================================================
+   EXCEL ESCAPE
+   ========================================================= */
 
 function excelEsc(s){
 
-return String(
-s ?? ''
-)
-.replace(
-/&/g,
-'&amp;'
-)
-.replace(
-/</g,
-'&lt;'
-)
-.replace(
-/>/g,
-'&gt;'
-)
-.replace(
-/"/g,
-'&quot;'
-)
-.replace(
-/'/g,
-'&apos;'
-);
+  return String(s ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&apos;');
 
 }
 
 
 function excelCell(
-s,
-style='Cell',
-merge=''
+  s,
+  style='Cell',
+  merge=''
 ){
 
-return (
+  return (
 
-'<Cell ss:StyleID="' +
-style +
-'"' +
+    '<Cell ss:StyleID="' +
+    style +
+    '"' +
 
-(
-merge !== ''
-?
-' ss:MergeAcross="' +
-merge +
-'"'
-:
-''
-) +
+    (
+      merge !== ''
+      ?
+      ' ss:MergeAcross="' +
+      merge +
+      '"'
+      :
+      ''
+    ) +
 
-'><Data ss:Type="String">' +
+    '>' +
 
-excelEsc(s)
-.replace(
-/\n/g,
-'&#10;'
-) +
+    '<Data ss:Type="String">' +
 
-'</Data></Cell>'
+    excelEsc(s)
+      .replace(
+        /\n/g,
+        '&#10;'
+      ) +
 
-);
+    '</Data></Cell>'
+
+  );
 
 }
 
+
+/* =========================================================
+   EXCEL EXPORT
+   ========================================================= */
 
 function exportExcel(){
 
-const data =
-currentData();
+  const data =
+    currentData();
 
-if(!data.length){
 
-alert(
-formName() +
-' এ Export করার মতো Data নেই।'
-);
+  if(!data.length){
 
-return;
+    alert(
+      formName() +
+      ' এ Export করার মতো Data নেই।'
+    );
 
-}
+    return;
 
-const cols =
-exportColumns();
+  }
 
 
-/*
-=========================================================
-REFERENCE VBGRAMG.XLSX COLUMN WIDTH
-=========================================================
+  const headers = [
 
-A = 8
-B = 25
-C = 14.3984375
-D = 11
-E = 14
-F = 13
-G = 13
-H = 15.59765625
-I = 9.59765625
-J = 13
-K = 13
-L = 13
+    'S.L.\nNo.',
 
-=========================================================
-*/
+    'Date',
 
-const baseWidths = [
+    'Financial\nYear',
 
-8,
+    'Scheme Name',
 
-25,
+    'Nature of\nWork',
 
-14.3984375,
+    'Length /\nArea',
 
-11,
+    'Mouja',
 
-14,
+    'Starting\nDag No.',
 
-13,
+    'End Dag\nNo.',
 
-13,
+    'In Case I.B.S\nJob Card\nNo.',
 
-15.59765625,
+    'Lat',
 
-9.59765625,
+    'Long',
 
-13,
+    'Lat',
 
-13,
+    'Long'
 
-13
+  ];
 
-];
 
+  const widths = [
 
-const extraWidths = {
+    40,
+    70,
+    65,
+    125,
+    72,
+    55,
+    70,
+    65,
+    65,
+    78,
+    48,
+    48,
+    48,
+    48
 
-sector:12,
+  ];
 
-estimateCost:14,
 
-fund:18,
+  let xml =
 
-newSL:12
+    '<?xml version="1.0" encoding="UTF-8"?>' +
 
-};
+    '<?mso-application progid="Excel.Sheet"?>' +
 
+    '<Workbook ' +
 
-const widths =
-cols.map(
-(c,i)=>
-i < baseWidths.length
-?
-baseWidths[i]
-:
-(
-extraWidths[c[1]] ||
-12
-)
-);
+    'xmlns="urn:schemas-microsoft-com:office:spreadsheet" ' +
 
+    'xmlns:o="urn:schemas-microsoft-com:office:office" ' +
 
-let xml =
+    'xmlns:x="urn:schemas-microsoft-com:office:excel" ' +
 
-'<?xml version="1.0" encoding="UTF-8"?>' +
+    'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
 
-'<?mso-application progid="Excel.Sheet"?>' +
 
-'<Workbook ' +
+  xml +=
 
-'xmlns="urn:schemas-microsoft-com:office:spreadsheet" ' +
+    '<Styles>' +
 
-'xmlns:o="urn:schemas-microsoft-com:office:office" ' +
+    '<Style ss:ID="Default" ss:Name="Normal">' +
 
-'xmlns:x="urn:schemas-microsoft-com:office:excel" ' +
+    '<Alignment ss:Vertical="Center"/>' +
 
-'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
+    '<Font ss:FontName="Arial" ss:Size="9"/>' +
 
+    '</Style>' +
 
-/* =====================================================
-STYLES
-===================================================== */
 
-xml +=
+    '<Style ss:ID="Title">' +
 
-'<Styles>' +
+    '<Alignment ' +
+    'ss:Horizontal="Center" ' +
+    'ss:Vertical="Center" ' +
+    'ss:WrapText="1"/>' +
 
-'<Style ss:ID="Default" ss:Name="Normal">' +
+    '<Font ' +
+    'ss:FontName="Arial" ' +
+    'ss:Size="14" ' +
+    'ss:Bold="1"/>' +
 
-'<Alignment ' +
+    '</Style>' +
 
-'ss:Horizontal="Center" ' +
 
-'ss:Vertical="Center" ' +
+    '<Style ss:ID="Header">' +
 
-'ss:WrapText="1"/>' +
+    '<Alignment ' +
+    'ss:Horizontal="Center" ' +
+    'ss:Vertical="Center" ' +
+    'ss:WrapText="1"/>' +
 
-'<Font ' +
+    '<Font ' +
+    'ss:FontName="Arial" ' +
+    'ss:Size="10" ' +
+    'ss:Bold="1"/>' +
 
-'ss:FontName="Arial" ' +
+    '<Borders>' +
 
-'ss:Size="9"/>' +
+    '<Border ' +
+    'ss:Position="Bottom" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-'</Style>' +
+    '<Border ' +
+    'ss:Position="Left" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
+    '<Border ' +
+    'ss:Position="Right" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-'<Style ss:ID="Title">' +
+    '<Border ' +
+    'ss:Position="Top" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-'<Alignment ' +
+    '</Borders>' +
 
-'ss:Horizontal="Center" ' +
+    '</Style>' +
 
-'ss:Vertical="Center" ' +
 
-'ss:WrapText="1"/>' +
+    '<Style ss:ID="Cell">' +
 
-'<Font ' +
+    '<Alignment ' +
+    'ss:Horizontal="Center" ' +
+    'ss:Vertical="Center" ' +
+    'ss:WrapText="1"/>' +
 
-'ss:FontName="Arial" ' +
+    '<Font ' +
+    'ss:FontName="Arial" ' +
+    'ss:Size="9"/>' +
 
-'ss:Size="14" ' +
+    '<Borders>' +
 
-'ss:Bold="1"/>' +
+    '<Border ' +
+    'ss:Position="Bottom" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-'<Borders>' +
+    '<Border ' +
+    'ss:Position="Left" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+    '<Border ' +
+    'ss:Position="Right" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+    '<Border ' +
+    'ss:Position="Top" ' +
+    'ss:LineStyle="Continuous" ' +
+    'ss:Weight="1"/>' +
 
-'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+    '</Borders>' +
 
-'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+    '</Style>' +
 
-'</Borders>' +
+    '</Styles>';
 
-'</Style>' +
 
+  /*
+    Excel sheet name
+  */
 
-'<Style ss:ID="Header">' +
+  xml +=
 
-'<Alignment ' +
+    '<Worksheet ss:Name="' +
 
-'ss:Horizontal="Center" ' +
+    excelEsc(
+      formName()
+        .slice(0,31)
+    ) +
 
-'ss:Vertical="Center" ' +
+    '">' +
 
-'ss:WrapText="1"/>' +
 
-'<Font ' +
+    '<Table ' +
 
-'ss:FontName="Arial" ' +
+    'ss:ExpandedColumnCount="14" ' +
 
-'ss:Size="10" ' +
+    'ss:ExpandedRowCount="' +
+    (data.length + 2) +
+    '" ' +
 
-'ss:Bold="1"/>' +
+    'x:FullColumns="1" ' +
 
-'<Borders>' +
+    'x:FullRows="1">';
 
-'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+  xml +=
+    widths.map(
+      w =>
+        '<Column ss:Width="' +
+        w +
+        '" ss:AutoFitWidth="1"/>'
+    ).join('');
 
-'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+  /*
+    IMPORTANT:
+    Regular form = A.A.P heading
+    Model Village = MODEL VILLAGE
+  */
 
-'</Borders>' +
+  const excelHeading =
 
-'</Style>' +
+    (
+      currentForm === 'modelVillage' ||
+      currentForm === 'modelApprove' ||
+      currentForm === 'modelTender'
+    )
 
+    ?
 
-'<Style ss:ID="Cell">' +
+    'MODEL VILLAGE'
 
-'<Alignment ' +
+    :
 
-'ss:Horizontal="Center" ' +
+    'A. A. P Format of V. B. G. R. A. M. G';
 
-'ss:Vertical="Center" ' +
 
-'ss:WrapText="1"/>' +
+  xml +=
 
-'<Font ' +
+    '<Row ss:Height="32">' +
 
-'ss:FontName="Arial" ' +
+    excelCell(
+      excelHeading,
+      'Title',
+      '13'
+    ) +
 
-'ss:Size="9"/>' +
+    '</Row>';
 
-'<Borders>' +
 
-'<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+  /*
+    এখানে আর
+    Approach Scheme 2026-27
+    টাইপ আলাদা দ্বিতীয় heading নেই।
+  */
 
-'<Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>' +
 
-'<Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+  xml +=
 
-'<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>' +
+    '<Row ss:Height="62">' +
 
-'</Borders>' +
+    headers
+      .map(
+        h =>
+          excelCell(
+            h,
+            'Header'
+          )
+      )
+      .join('') +
 
-'</Style>' +
+    '</Row>';
 
-'</Styles>';
 
+  data.forEach(
+    (x,n) => {
 
-/* =====================================================
-WORKSHEET
-===================================================== */
+      const row = [
 
-xml +=
+        n+1,
 
-'<Worksheet ss:Name="' +
+        x.date || '',
 
-excelEsc(
-formName().slice(0,31)
-) +
+        x.year || state.year,
 
-'">' +
+        x.scheme || '',
 
-'<Table ' +
+        x.nature || '',
 
-'ss:ExpandedColumnCount="' +
-cols.length +
-'" ' +
+        x.lengthArea || '',
 
-'ss:ExpandedRowCount="' +
-(data.length + 2) +
-'" ' +
+        String(
+          x.mouza || ''
+        ).toUpperCase(),
 
-'x:FullColumns="1" ' +
+        x.startDag || '',
 
-'x:FullRows="1">';
+        x.endDag || '',
 
+        x.jobCard || '',
 
-widths.forEach(
-w=>{
+        x.lat1 || '',
 
-xml +=
+        x.long1 || '',
 
-'<Column ' +
+        x.lat2 || '',
 
-'ss:Width="' +
-w +
-'" ' +
+        x.long2 || ''
 
-'ss:AutoFitWidth="0"/>';
+      ];
 
-});
 
+      let maxLines = 1;
 
-/* =====================================================
-TITLE
-===================================================== */
 
-const heading =
+      row.forEach(
+        (value,index) => {
 
-isModel(currentForm)
+          const text =
+            String(
+              value ?? ''
+            );
 
-?
 
-'MODEL VILLAGE'
+          let charsPerLine = 8;
 
-:
 
-'A. A. P Format of V. B. G. R. A. M. G';
+          if(index === 3)
+            charsPerLine = 17;
 
+          else if(index === 4)
+            charsPerLine = 10;
 
-xml +=
+          else if(index === 5)
+            charsPerLine = 8;
 
-'<Row ss:Height="32">' +
+          else if(index === 6)
+            charsPerLine = 9;
 
-excelCell(
+          else if(
+            index === 7 ||
+            index === 8
+          )
+            charsPerLine = 8;
 
-heading,
+          else if(index === 9)
+            charsPerLine = 11;
 
-'Title',
 
-String(
-cols.length - 1
-)
+          maxLines =
+            Math.max(
 
-) +
+              maxLines,
 
-'</Row>';
+              Math.ceil(
+                text.length /
+                charsPerLine
+              ),
 
+              text
+                .split(/\n/)
+                .length
 
-/* =====================================================
-HEADER
-===================================================== */
+            );
 
-xml +=
+        }
+      );
 
-'<Row ss:Height="62">' +
 
-cols.map(
-c =>
-excelCell(
-c[0],
-'Header'
-)
-)
-.join('') +
+      const rowHeight =
+        Math.max(
+          20,
+          Math.min(
+            75,
+            14 +
+            maxLines * 9
+          )
+        );
 
-'</Row>';
 
+      xml +=
 
-/* =====================================================
-DATA ROW
-===================================================== */
+        '<Row ' +
+        'ss:AutoFitHeight="1" ' +
+        'ss:Height="' +
+        rowHeight +
+        '">' +
 
-data.forEach(
-(x,n)=>{
+        row
+          .map(
+            v =>
+              excelCell(
+                v,
+                'Cell'
+              )
+          )
+          .join('') +
 
-const row =
-cols.map(
-c=>{
+        '</Row>';
 
-if(c[1] === 'auto')
-return n+1;
+    }
+  );
 
-if(c[1] === 'mouza')
-return String(
-x[c[1]] || ''
-)
-.toUpperCase();
 
-return x[c[1]] || '';
+  xml +=
 
-});
+    '</Table>' +
 
+    '<WorksheetOptions ' +
+    'xmlns="urn:schemas-microsoft-com:office:excel">' +
 
-/*
-=========================================================
-AUTO FIT DATA CELL / ROW HEIGHT
-=========================================================
+    '<PageSetup>' +
 
-Long text হলে row নিজে বড় হবে।
-Text cell-এর ভিতরে wrap হবে।
-=========================================================
-*/
+    '<Layout ' +
+    'x:Orientation="Landscape" ' +
+    'x:CenterHorizontal="1" ' +
+    'x:CenterVertical="0"/>' +
 
-let maxLines = 1;
+    '<PageMargins ' +
+    'x:Bottom="0.20" ' +
+    'x:Left="0.15" ' +
+    'x:Right="0.15" ' +
+    'x:Top="0.20"/>' +
 
+    '</PageSetup>' +
 
-row.forEach(
-(value,index)=>{
+    '<FitToPage/>' +
 
-const text =
-String(
-value ?? ''
-);
+    '<Print>' +
 
+    '<ValidPrinterInfo/>' +
 
-let charsPerLine = 12;
+    '<Gridlines>False</Gridlines>' +
 
+    '<HorizontalCentered>1</HorizontalCentered>' +
 
-if(index === 0){
+    '</Print>' +
 
-charsPerLine = 5;
+    '<Selected/>' +
 
-}
+    '<FreezePanes>' +
 
-else if(
-cols[index] &&
-cols[index][1] === 'scheme'
-){
+    '<FrozenNoSplit/>' +
 
-charsPerLine = 30;
+    '<SplitHorizontal>2</SplitHorizontal>' +
 
-}
+    '<TopRowBottom>2</TopRowBottom>' +
 
-else if(
-cols[index] &&
-cols[index][1] === 'nature'
-){
+    '</FreezePanes>' +
 
-charsPerLine = 18;
+    '<FitToWidth>1</FitToWidth>' +
 
-}
+    '<FitToHeight>0</FitToHeight>' +
 
-else if(
-cols[index] &&
-cols[index][1] === 'lengthArea'
-){
+    '</WorksheetOptions>' +
 
-charsPerLine = 13;
+    '</Worksheet>' +
 
-}
+    '</Workbook>';
 
-else if(
-cols[index] &&
-cols[index][1] === 'mouza'
-){
 
-charsPerLine = 14;
+  download(
 
-}
+    new Blob(
+      [xml],
+      {
+        type:
+        'application/vnd.ms-excel'
+      }
+    ),
 
-else if(
-cols[index] &&
-(
-cols[index][1] === 'startDag' ||
-cols[index][1] === 'endDag'
-)
-){
+    formName()
+      .replace(/\s+/g,'_') +
+    '_' +
+    state.year +
+    '.xls'
 
-charsPerLine = 15;
-
-}
-
-else if(
-cols[index] &&
-cols[index][1] === 'jobCard'
-){
-
-charsPerLine = 18;
-
-}
-
-else if(
-cols[index] &&
-(
-cols[index][1] === 'lat1' ||
-cols[index][1] === 'long1' ||
-cols[index][1] === 'lat2' ||
-cols[index][1] === 'long2'
-)
-){
-
-charsPerLine = 12;
-
-}
-
-else if(
-cols[index] &&
-cols[index][1] === 'sector'
-){
-
-charsPerLine = 14;
-
-}
-
-else if(
-cols[index] &&
-cols[index][1] === 'estimateCost'
-){
-
-charsPerLine = 14;
-
-}
-
-else if(
-cols[index] &&
-cols[index][1] === 'fund'
-){
-
-charsPerLine = 18;
-
-}
-
-else if(
-cols[index] &&
-cols[index][1] === 'newSL'
-){
-
-charsPerLine = 12;
+  );
 
 }
 
 
-maxLines =
-
-Math.max(
-
-maxLines,
-
-Math.ceil(
-text.length /
-charsPerLine
-),
-
-text
-.split(/\n/)
-.length
-
-);
-
-});
-
-
-/*
-Reference file-এর মতো compact কিন্তু
-long text-এর জন্য যথেষ্ট height।
-*/
-
-const rowHeight =
-
-Math.max(
-
-20,
-
-Math.min(
-
-110,
-
-14 +
-maxLines * 9
-
-)
-
-);
-
-
-xml +=
-
-'<Row ' +
-
-'ss:AutoFitHeight="1" ' +
-
-'ss:Height="' +
-rowHeight +
-'">' +
-
-row.map(
-v =>
-excelCell(
-v,
-'Cell'
-)
-)
-.join('') +
-
-'</Row>';
-
-});
-
-
-/* =====================================================
-PAGE BREAK
-10 PROJECT PER PAGE
-===================================================== */
-
-let pageBreakXml = '';
-
-
-if(data.length > 10){
-
-const breaks = [];
-
-
-for(
-let i=10;
-i<data.length;
-i+=10
-){
-
-/*
-Row 1 = Title
-Row 2 = Header
-
-10 data = Row 3 থেকে Row 12
-
-তাই 10,20,30... data-এর পরে break।
-*/
-
-breaks.push(
-i+2
-);
-
-}
-
-
-if(breaks.length){
-
-pageBreakXml =
-
-'<PageBreaks>' +
-
-'<RowBreaks>' +
-
-breaks.map(
-r =>
-
-'<RowBreak>' +
-
-'<Row>' +
-r +
-'</Row>' +
-
-'</RowBreak>'
-
-)
-.join('') +
-
-'</RowBreaks>' +
-
-'</PageBreaks>';
-
-}
-
-}
-
-
-/* =====================================================
-A4 PAGE SETUP + LANDSCAPE + FIT TO PAPER
-===================================================== */
-
-xml +=
-
-'</Table>' +
-
-'<WorksheetOptions ' +
-
-'xmlns="urn:schemas-microsoft-com:office:excel">' +
-
-
-'<PageSetup>' +
-
-'<Layout ' +
-
-'x:Orientation="Landscape" ' +
-
-'x:CenterHorizontal="1" ' +
-
-'x:CenterVertical="0"/>' +
-
-'<PageMargins ' +
-
-'x:Bottom="0.20" ' +
-
-'x:Left="0.15" ' +
-
-'x:Right="0.15" ' +
-
-'x:Top="0.20"/>' +
-
-'</PageSetup>' +
-
-
-/*
-A4 paper
-PaperSizeIndex 9 = A4
-*/
-
-'<Print>' +
-
-'<ValidPrinterInfo/>' +
-
-'<PaperSizeIndex>9</PaperSizeIndex>' +
-
-'<Gridlines>False</Gridlines>' +
-
-'<HorizontalCentered>1</HorizontalCentered>' +
-
-'</Print>' +
-
-
-/*
-First two rows repeat/freeze concept
-*/
-
-'<FreezePanes>' +
-
-'<FrozenNoSplit/>' +
-
-'<SplitHorizontal>2</SplitHorizontal>' +
-
-'<TopRowBottom>2</TopRowBottom>' +
-
-'</FreezePanes>' +
-
-
-/*
-Fit to one page wide
-Height automatic
-*/
-
-'<FitToPage/>' +
-
-'<FitToWidth>1</FitToWidth>' +
-
-'<FitToHeight>0</FitToHeight>' +
-
-
-pageBreakXml +
-
-
-'</WorksheetOptions>' +
-
-'</Worksheet>' +
-
-'</Workbook>';
-
-
-download(
-
-new Blob(
-[xml],
-{
-type:
-'application/vnd.ms-excel'
-}
-),
-
-formName()
-.replace(
-/\s+/g,
-'_'
-) +
-
-'_' +
-
-state.year +
-
-'.xls'
-
-);
-
-}
-
-
-/* =====================================================
-DOWNLOAD
-===================================================== */
-
-function download(
-blob,
-name
-){
-
-const a =
-document.createElement('a');
-
-a.href =
-URL.createObjectURL(
-blob
-);
-
-a.download =
-name;
-
-document.body.appendChild(a);
-
-a.click();
-
-setTimeout(
-()=>{
-
-URL.revokeObjectURL(
-a.href
-);
-
-a.remove();
-
-},
-1000
-);
-
-}
-
-
-/* =====================================================
-BACKUP
-===================================================== */
+/* =========================================================
+   BACKUP
+   ========================================================= */
 
 function backup(){
 
-const b = {
+  const backupObject = {
 
-backupVersion:8,
+    backupVersion:5,
 
-app:
-'A.A.P Offline Data Entry',
+    app:
+      'A.A.P Offline Data Entry',
 
-createdAt:
-new Date().toISOString(),
+    createdAt:
+      new Date().toISOString(),
 
-year:
-state.year,
+    year:
+      state.year,
 
-forms:
-state.forms
+    forms:{
 
-};
+      approach:
+        state.forms.approach,
 
-download(
+      approve:
+        state.forms.approve,
 
-new Blob(
+      tender:
+        state.forms.tender,
 
-[
-JSON.stringify(
-b,
-null,
-2
-)
-],
+      modelVillage:
+        state.forms.modelVillage,
 
-{
-type:
-'application/json'
+      modelApprove:
+        state.forms.modelApprove,
+
+      modelTender:
+        state.forms.modelTender
+
+    }
+
+  };
+
+
+  download(
+
+    new Blob(
+
+      [
+        JSON.stringify(
+          backupObject,
+          null,
+          2
+        )
+      ],
+
+      {
+        type:
+          'application/json'
+      }
+
+    ),
+
+    'AAP_All_Forms_Backup.json'
+
+  );
+
 }
 
-),
 
-'AAP_All_Forms_Backup.json'
-
-);
-
-}
-
-
-/* =====================================================
-RESTORE
-===================================================== */
+/* =========================================================
+   RESTORE
+   ========================================================= */
 
 function restore(e){
 
-const f =
-e.target.files[0];
+  const f =
+    e.target.files[0];
 
-if(!f)
-return;
 
-const r =
-new FileReader();
+  if(!f) return;
 
-r.onload =
-()=>{
 
-try{
+  const reader =
+    new FileReader();
 
-const parsed =
-JSON.parse(
-r.result
-);
 
-const restored =
-normalizeState(
-parsed
-);
+  reader.onload = () => {
 
-const total =
+    try{
 
-Object.values(
-restored.forms
-)
-.reduce(
-(s,a)=>
-s+a.length,
-0
-);
+      const parsed =
+        JSON.parse(
+          reader.result
+        );
 
-if(
 
-!total &&
+      const restored =
+        normalizeState(
+          parsed
+        );
 
-!Array.isArray(
-parsed
-) &&
 
-!(
-parsed &&
-parsed.forms
-)
+      const total =
+        Object.values(
+          restored.forms
+        )
+        .reduce(
+          (sum,arr) =>
+            sum + arr.length,
+          0
+        );
 
+
+      if(
+        !total &&
+        !Array.isArray(parsed) &&
+        !(
+          parsed &&
+          parsed.forms
+        )
+      ){
+
+        throw new Error(
+          'Invalid backup structure'
+        );
+
+      }
+
+
+      state =
+        restored;
+
+
+      $('year').value =
+        state.year ||
+        '2026-27';
+
+
+      $('headerYear')
+        .textContent =
+          state.year
+            .replace(
+              '-',
+              ' - '
+            );
+
+
+      if(!persist()){
+
+        throw new Error(
+          'Storage failed'
+        );
+
+      }
+
+
+      clearForm();
+
+      render();
+
+
+      alert(
+
+        'Backup Restore হয়েছে ✓\n\n' +
+
+        'Approach Scheme: ' +
+        state.forms.approach.length +
+
+        '\nApprove Scheme: ' +
+        state.forms.approve.length +
+
+        '\nTender Scheme: ' +
+        state.forms.tender.length +
+
+        '\nModel Village Approach: ' +
+        state.forms.modelVillage.length +
+
+        '\nModel Village Approve: ' +
+        state.forms.modelApprove.length +
+
+        '\nModel Village Tender: ' +
+        state.forms.modelTender.length
+
+      );
+
+
+    }catch(err){
+
+      console.error(err);
+
+
+      alert(
+
+        'Backup Restore হয়নি।\n' +
+
+        'সঠিক AAP backup JSON file নির্বাচন করুন।'
+
+      );
+
+    }
+
+  };
+
+
+  reader.onerror = () => {
+
+    alert(
+      'JSON file পড়া যায়নি। আবার চেষ্টা করুন।'
+    );
+
+  };
+
+
+  reader.readAsText(f);
+
+
+  e.target.value = '';
+
+}
+
+
+/* =========================================================
+   DOWNLOAD
+   ========================================================= */
+
+function download(
+  blob,
+  name
 ){
 
-throw Error(
-'Invalid backup'
-);
+  const a =
+    document.createElement('a');
 
-}
 
-state =
-restored;
+  const url =
+    URL.createObjectURL(blob);
 
-$('year').value =
-state.year ||
-'2026-27';
 
-$('headerYear')
-.textContent =
-state.year.replace(
-'-',
-' - '
-);
+  a.href =
+    url;
 
-if(!persist())
-throw Error(
-'Storage failed'
-);
 
-clearForm();
+  a.download =
+    name;
 
-render();
 
-alert(
+  document
+    .body
+    .appendChild(a);
 
-'Backup Restore হয়েছে ✓\n\n' +
 
-'Approach Scheme: ' +
-state.forms.approach.length +
+  a.click();
 
-'\nApprove Scheme: ' +
-state.forms.approve.length +
 
-'\nTender Scheme: ' +
-state.forms.tender.length +
+  setTimeout(
+    () => {
 
-'\nModel Village Approach: ' +
-state.forms.modelVillage.length +
+      URL.revokeObjectURL(
+        url
+      );
 
-'\nModel Village Approve: ' +
-state.forms.modelApprove.length +
+      a.remove();
 
-'\nModel Village Tender: ' +
-state.forms.modelTender.length
-
-);
-
-}catch(err){
-
-alert(
-'Restore failed: Invalid backup file।'
-);
-
-}
-
-e.target.value =
-'';
-
-};
-
-r.readAsText(f);
+    },
+    1000
+  );
 
 }
 
 
-/* =====================================================
-START
-===================================================== */
-
-$('entryDate')
-.value =
-todayISO();
+/* =========================================================
+   START
+   ========================================================= */
 
 load();
 
