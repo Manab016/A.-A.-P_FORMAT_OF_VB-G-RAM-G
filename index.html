@@ -169,7 +169,6 @@ td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
         <input id="endDag" placeholder="যেমন 205/1424">
       </div>
 
-      <!-- New Dynamic Fields (Shown in Approve / Tender) -->
       <div class="field" id="wrap-sector" style="display:none;">
         <label>Sector</label>
         <input id="sector" placeholder="Sector">
@@ -183,7 +182,7 @@ td{ white-space:normal; overflow-wrap:anywhere; word-break:break-word }
         <input id="fund" placeholder="Fund">
       </div>
       <div class="field" id="wrap-fNewSl" style="display:none;">
-        <label>F New S.L.</label>
+        <label>New S.L.</label>
         <input id="fNewSl" placeholder="F New S.L.">
       </div>
 
@@ -287,7 +286,7 @@ let state = {
 
 let currentForm = 'approach';
 let editIndex = -1;
-let globalSortCounter = Date.now(); // Used to guarantee strict sorting order
+let globalSortCounter = Date.now();
 
 const $ = id => document.getElementById(id);
 function val(id){ const el = $(id); return el ? el.value.trim() : ''; }
@@ -314,12 +313,16 @@ function updateMainHeading(){
   }
 }
 
-// Ensure every entry has a strictly sequential sortIndex based on its array position
 function normalizeEntry(x, index = 0){
   x = x || {};
+  let baseIndex = Number(x.sortIndex ?? (globalSortCounter + index));
   return {
     id: String(x.id || (Date.now() + '_' + Math.random().toString(36).slice(2))),
-    sortIndex: Number(x.sortIndex ?? (globalSortCounter + index)),
+    sortIndex: baseIndex,
+    approveIndex: Number(x.approveIndex ?? baseIndex),
+    tenderIndex: Number(x.tenderIndex ?? baseIndex),
+    modelApproveIndex: Number(x.modelApproveIndex ?? baseIndex),
+    modelTenderIndex: Number(x.modelTenderIndex ?? baseIndex),
     scheme: String(x.scheme ?? ''),
     nature: String(x.nature ?? ''),
     lengthArea: String(x.lengthArea ?? ''),
@@ -453,11 +456,20 @@ function saveEntry(){
   
   if(editIndex >= 0){
     x.id = arr[editIndex].id || createId();
-    x.sortIndex = arr[editIndex].sortIndex; // Preserve original position when edited
+    x.sortIndex = arr[editIndex].sortIndex;
+    x.approveIndex = arr[editIndex].approveIndex;
+    x.tenderIndex = arr[editIndex].tenderIndex;
+    x.modelApproveIndex = arr[editIndex].modelApproveIndex;
+    x.modelTenderIndex = arr[editIndex].modelTenderIndex;
     arr[editIndex] = x;
   } else {
     x.id = createId();
-    x.sortIndex = Date.now(); // Put new items at the bottom
+    const now = Date.now();
+    x.sortIndex = now;
+    x.approveIndex = now;
+    x.tenderIndex = now;
+    x.modelApproveIndex = now;
+    x.modelTenderIndex = now;
     arr.push(x);
   }
   
@@ -554,7 +566,7 @@ function transferNext(){
   
   if(!confirm(selectedRecords.length + ' টি Project\n' + formName() + ' থেকে\n' + FORM_NAMES[flow.next] + ' -এ Transfer করবেন?')) return;
   
-  selectedRecords.forEach(record => {
+  selectedRecords.forEach((record, idx) => {
     let newRecord = JSON.parse(JSON.stringify(record));
     
     // Tender transfer logic: Keep Estimate Cost, delete others
@@ -564,15 +576,14 @@ function transferNext(){
       newRecord.fNewSl = '';
     }
     
+    // নতুন Stage-এর জন্য নির্দিষ্ট Index সেট করা হচ্ছে
+    newRecord[flow.next + 'Index'] = Date.now() + idx;
+    
     const already = target.some(x => x.id && x.id === newRecord.id);
     if(!already){ target.push(normalizeEntry(newRecord, target.length)); }
   });
   
-  // Sort from last to first so splicing doesn't mess up the indices during removal
   selected.sort((a,b) => b-a).forEach(i => { source.splice(i,1); });
-  
-  // Guarantee exact sequential order matching the original S.L array
-  target.sort((a,b) => a.sortIndex - b.sortIndex);
   
   editIndex = -1; persist(); render();
   alert(selectedRecords.length + ' টি Project সফলভাবে\n' + FORM_NAMES[flow.next] + ' -এ Transfer হয়েছে ✓');
@@ -608,8 +619,12 @@ function transferBack(){
   
   selected.sort((a,b) => b-a).forEach(i => { source.splice(i,1); });
   
-  // Guarantee exact sequential order matching the original S.L array
-  target.sort((a,b) => a.sortIndex - b.sortIndex);
+  // Back Transfer-এর সময় অরিজিনাল Index অনুযায়ী Sort করা হলো
+  if(flow.back === 'approach' || flow.back === 'modelVillage') {
+      target.sort((a,b) => a.sortIndex - b.sortIndex);
+  } else {
+      target.sort((a,b) => (a[flow.back + 'Index'] || a.sortIndex) - (b[flow.back + 'Index'] || b.sortIndex));
+  }
   
   editIndex = -1; persist(); render();
   alert(selectedRecords.length + ' টি Project সফলভাবে\n' + FORM_NAMES[flow.back] + ' -এ Back হয়েছে ✓');
@@ -624,7 +639,6 @@ function render(){
   const isApprove = (currentForm === 'approve' || currentForm === 'modelApprove');
   const isTender = (currentForm === 'tender' || currentForm === 'modelTender');
 
-  // Dynamic Table Header Generation
   let theadHTML = `
     <tr>
       <th><input type="checkbox" class="selectAll" id="selectAll" onchange="toggleAll(this)"><br>Select</th>
@@ -655,7 +669,6 @@ function render(){
     
   $('tableHead').innerHTML = theadHTML;
 
-  // Dynamic Table Body Generation
   $('tbody').innerHTML = list.length ? list.map((o,n) => {
     const x = o.x; const i = o.i;
     let dynamicTds = '';
