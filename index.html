@@ -651,6 +651,25 @@ const OLD_KEYS = [
   'AAP_OFFLINE_DATA_MOBILE_V1'
 ];
 
+// Safe Storage Wrapper to prevent browser security blocking crashes
+let memoryStore = {};
+const safeStorage = {
+  getItem(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch(e) {
+      return memoryStore[key] || null;
+    }
+  },
+  setItem(key, val) {
+    try {
+      localStorage.setItem(key, val);
+    } catch(e) {
+      memoryStore[key] = val;
+    }
+  }
+};
+
 
 const FORM_NAMES = {
   approach: 'Approach Scheme',
@@ -723,6 +742,7 @@ function formName(){
 
 function updateMainHeading(){
   const heading = $('appHeading');
+  if(!heading) return;
   if(currentForm === 'modelVillage' || currentForm === 'modelApprove' || currentForm === 'modelTender'){
     heading.textContent = 'MODEL VILLAGE';
   }else{
@@ -790,10 +810,9 @@ function normalizeEntry(x){
 function persist(){
   try{
     state.version = 5;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    safeStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     return true;
   }catch(e){
-    alert('Browser Storage unavailable। Backup file ব্যবহার করুন।');
     return false;
   }
 }
@@ -801,14 +820,14 @@ function persist(){
 function load(){
   let loaded = false;
   try{
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = safeStorage.getItem(STORAGE_KEY);
     if(raw){
       state = normalizeState(JSON.parse(raw));
       loaded = true;
     }
     else{
       for(const key of OLD_KEYS){
-        const oldRaw = localStorage.getItem(key);
+        const oldRaw = safeStorage.getItem(key);
         if(!oldRaw) continue;
         try{
           const oldParsed = JSON.parse(oldRaw);
@@ -827,8 +846,8 @@ function load(){
     state = normalizeState([]);
   }
 
-  $('year').value = state.year || '2026-27';
-  $('entryDate').value = todayISO();
+  if($('year')) $('year').value = state.year || '2026-27';
+  if($('entryDate')) $('entryDate').value = todayISO();
   updateUI();
 }
 
@@ -856,10 +875,12 @@ function switchForm(form){
   }
 
   const modelBar = $('modelStageBar');
-  if(form === 'modelVillage' || form === 'modelApprove' || form === 'modelTender'){
-    modelBar.classList.add('show');
-  }else{
-    modelBar.classList.remove('show');
+  if(modelbar => modelBar){
+    if(form === 'modelVillage' || form === 'modelApprove' || form === 'modelTender'){
+      modelBar.classList.add('show');
+    }else{
+      modelBar.classList.remove('show');
+    }
   }
 
   document.querySelectorAll('#modelStageBar button').forEach(b => {
@@ -867,43 +888,43 @@ function switchForm(form){
     b.classList.add('secondary');
   });
 
-  if(form === 'modelVillage'){
+  if(form === 'modelVillage' && $('stage-modelVillage')){
     $('stage-modelVillage').classList.add('active');
     $('stage-modelVillage').classList.remove('secondary');
   }
-  if(form === 'modelApprove'){
+  if(form === 'modelApprove' && $('stage-modelApprove')){
     $('stage-modelApprove').classList.add('active');
     $('stage-modelApprove').classList.remove('secondary');
   }
-  if(form === 'modelTender'){
+  if(form === 'modelTender' && $('stage-modelTender')){
     $('stage-modelTender').classList.add('active');
     $('stage-modelTender').classList.remove('secondary');
   }
 
   updateMainHeading();
-  $('currentFormName').textContent = formName();
-  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
-  $('savedTitle').textContent = '📋 ' + formName() + ' — Saved Data';
-  $('search').value = '';
+  if($('currentFormName')) $('currentFormName').textContent = formName();
+  if($('formTitle')) $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
+  if($('savedTitle')) $('savedTitle').textContent = '📋 ' + formName() + ' — Saved Data';
+  if($('search')) $('search').value = '';
   clearForm(false);
   updateTransferButtons();
   render();
 }
 
 function updateUI(){
-  $('headerYear').textContent = String(state.year).replace('-', ' - ');
-  $('year').value = state.year;
-  $('currentFormName').textContent = formName();
-  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
-  $('savedTitle').textContent = '📋 ' + formName() + ' — Saved Data';
+  if($('headerYear')) $('headerYear').textContent = String(state.year).replace('-', ' - ');
+  if($('year')) $('year').value = state.year;
+  if($('currentFormName')) $('currentFormName').textContent = formName();
+  if($('formTitle')) $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
+  if($('savedTitle')) $('savedTitle').textContent = '📋 ' + formName() + ' — Saved Data';
   updateMainHeading();
   updateTransferButtons();
   render();
 }
 
 function changeYear(){
-  state.year = $('year').value;
-  $('headerYear').textContent = state.year.replace('-', ' - ');
+  if($('year')) state.year = $('year').value;
+  if($('headerYear')) $('headerYear').textContent = state.year.replace('-', ' - ');
   persist();
   render();
 }
@@ -928,7 +949,7 @@ function saveEntry(){
     arr.push(x);
   }
 
-  if(!persist()) return;
+  if(!persist()) alert('Storage warning: ডেটা মেমরিতে সেভ হয়েছে। ব্যাকআপ ফাইল ডাউনলোড করে রাখুন।');
   render();
   clearForm();
   alert(formName() + ' Entry Save হয়েছে ✓');
@@ -942,10 +963,10 @@ function clearForm(resetDate=true){
   ids.forEach(id => {
     if($(id)) $(id).value = '';
   });
-  $('mouza').value = 'Sahara';
+  if($('mouza')) $('mouza').value = 'Sahara';
   editIndex = -1;
-  $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
-  if(resetDate){
+  if($('formTitle')) $('formTitle').textContent = '➕ ' + formName() + ' — নতুন Data Entry';
+  if(resetDate && $('entryDate')){
     $('entryDate').value = todayISO();
   }
 }
@@ -953,17 +974,17 @@ function clearForm(resetDate=true){
 function edit(i){
   const x = currentData()[i];
   if(!x) return;
-  ids.forEach(id => { $(id).value = x[id] || ''; });
-  $('entryDate').value = x.date || todayISO();
+  ids.forEach(id => { if($(id)) $(id).value = x[id] || ''; });
+  if($('entryDate')) $('entryDate').value = x.date || todayISO();
 
   if(x.year && x.year !== state.year){
     state.year = x.year;
-    $('year').value = x.year;
-    $('headerYear').textContent = x.year.replace('-', ' - ');
+    if($('year')) $('year').value = x.year;
+    if($('headerYear')) $('headerYear').textContent = x.year.replace('-', ' - ');
     persist();
   }
   editIndex = i;
-  $('formTitle').textContent = '✏️ ' + formName() + ' — Data Entry Edit করুন';
+  if($('formTitle')) $('formTitle').textContent = '✏️ ' + formName() + ' — Data Entry Edit করুন';
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -1019,12 +1040,15 @@ function toggleAll(box){
 
 function updateSelectedInfo(){
   const selected = getSelectedIndexes();
-  $('selectedInfo').textContent = selected.length ? selected.length + ' টি Project Select করা হয়েছে' : 'কোনো Project Select করা হয়নি';
+  if($('selectedInfo')){
+    $('selectedInfo').textContent = selected.length ? selected.length + ' টি Project Select করা হয়েছে' : 'কোনো Project Select করা হয়নি';
+  }
 }
 
 function updateTransferButtons(){
   const flow = FLOW[currentForm];
   const bar = $('transferBar');
+  if(!bar) return;
   if(flow.next || flow.back){
     bar.classList.add('show');
   }else{
@@ -1033,17 +1057,17 @@ function updateTransferButtons(){
   const nextBtn = $('nextTransferBtn');
   const backBtn = $('backTransferBtn');
 
-  if(flow.next){
+  if(flow.next && nextBtn){
     nextBtn.style.display = 'block';
     nextBtn.textContent = '➡ ' + FORM_NAMES[flow.next] + ' -এ Transfer';
-  }else{
+  }else if(nextBtn){
     nextBtn.style.display = 'none';
   }
 
-  if(flow.back){
+  if(flow.back && backBtn){
     backBtn.style.display = 'block';
     backBtn.textContent = '⬅ ' + FORM_NAMES[flow.back] + ' -এ Back';
-  }else{
+  }else if(backBtn){
     backBtn.style.display = 'none';
   }
 }
@@ -1138,7 +1162,6 @@ function restore(e){
       const parsed = JSON.parse(ev.target.result);
       const restored = normalizeState(parsed);
       
-      // Merge restored forms with existing state forms to prevent old data from being removed
       Object.keys(restored.forms).forEach(formKey => {
         if(restored.forms[formKey] && Array.isArray(restored.forms[formKey])){
           if(!state.forms[formKey]) state.forms[formKey] = [];
@@ -1153,7 +1176,7 @@ function restore(e){
 
       persist();
       alert('সফলভাবে Backup Restore এবং Merge করা হয়েছে ✓');
-      $('year').value = state.year || '2026-27';
+      if($('year')) $('year').value = state.year || '2026-27';
       render();
     }catch(err){
       alert('File সঠিক নয় বা নষ্ট হয়ে গেছে।');
@@ -1238,17 +1261,18 @@ function exportExcel(){
 
 function render(){
   const tbody = $('tbody');
+  if(!tbody) return;
   const q = val('search').toLowerCase();
 
   const list = currentData()
     .map((x,i) => ({x:x, i:i}))
     .filter(o => JSON.stringify(o.x).toLowerCase().includes(q));
 
-  $('count').textContent = list.length + ' entries (' + formName() + ')';
+  if($('count')) $('count').textContent = list.length + ' entries (' + formName() + ')';
 
   if(!list.length){
     tbody.innerHTML = '<tr><td colspan="16" class="empty">কোনো Data পাওয়া যায়নি</td></tr>';
-    $('selectAll').checked = false;
+    if($('selectAll')) $('selectAll').checked = false;
     updateSelectedInfo();
     return;
   }
@@ -1285,7 +1309,7 @@ function render(){
   }).join('');
 
   tbody.innerHTML = h;
-  $('selectAll').checked = false;
+  if($('selectAll')) $('selectAll').checked = false;
   updateSelectedInfo();
 }
 
