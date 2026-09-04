@@ -564,7 +564,7 @@ td{
 
       <button class="success" onclick="exportExcel()">📊 Export Excel</button>
       <button class="gray" onclick="backup()">💾 Backup All</button>
-      <button class="gray" onclick="document.getElementById('restore').click()">♻ Restore</button>
+      <button class="gray" onclick="document.getElementById('restore').click()">♻ Restore & Merge</button>
       
       <button class="danger" onclick="deleteSelected()">🗑 Delete Selected</button>
       <button class="danger" onclick="deleteCurrentForm()">🗑 Clear This Stage</button>
@@ -1137,11 +1137,24 @@ function restore(e){
     try{
       const parsed = JSON.parse(ev.target.result);
       const restored = normalizeState(parsed);
-      state = restored;
+      
+      // Merge restored forms with existing state forms to prevent old data from being removed
+      Object.keys(restored.forms).forEach(formKey => {
+        if(restored.forms[formKey] && Array.isArray(restored.forms[formKey])){
+          if(!state.forms[formKey]) state.forms[formKey] = [];
+          restored.forms[formKey].forEach(newItem => {
+            const exists = state.forms[formKey].some(existing => existing.id === newItem.id);
+            if(!exists){
+              state.forms[formKey].push(newItem);
+            }
+          });
+        }
+      });
+
       persist();
-      alert('সফলভাবে Backup Restore হয়েছে ✓');
+      alert('সফলভাবে Backup Restore এবং Merge করা হয়েছে ✓');
       $('year').value = state.year || '2026-27';
-      switchForm('approach');
+      render();
     }catch(err){
       alert('File সঠিক নয় বা নষ্ট হয়ে গেছে।');
     }
@@ -1203,7 +1216,7 @@ function exportExcel(){
         <td>${esc(row.startDag)}</td>
         <td>${esc(row.endDag)}</td>
         <td>${esc(row.jobCard)}</td>
-        -><td>${esc(row.lat1)}</td>
+        <td>${esc(row.lat1)}</td>
         <td>${esc(row.long1)}</td>
         <td>${esc(row.lat2)}</td>
         <td>${esc(row.long2)}</td>
